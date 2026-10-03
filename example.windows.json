@@ -1,0 +1,26 @@
+{
+  "input_dir": "D:/trigger-demo/inbox",
+  "state_dir": "D:/trigger-demo/state",
+  "thread_id": "00000000-0000-0000-0000-000000000000",
+  "expected_cwd": "D:/trigger-demo/project",
+  "include": [
+    "*"
+  ],
+  "exclude": [
+    "*.tmp",
+    "*.part",
+    "~$*",
+    ".git/*",
+    "*/.git/*"
+  ],
+  "settle_seconds": 120,
+  "rescan_seconds": 60,
+  "ready_file": null,
+  "max_file_bytes": 104857600,
+  "max_zip_expanded_bytes": 209715200,
+  "transport_command": [],
+  "owner_verified": false,
+  "resume_unloaded": false,
+  "rpc_timeout_seconds": 15,
+  "max_connect_attempts": 5
+}

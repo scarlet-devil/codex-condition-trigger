@@ -1,14 +1,5 @@
 # Codex Condition Trigger
 
-> 实现代码保留在 [`draft/initial-prototype`](https://github.com/scarlet-devil/codex-condition-trigger/tree/draft/initial-prototype) 分支，供 Draft PR 审查；`main` 是项目介绍入口。当前为实验原型，尚未通过真实 Desktop 接入验收。
-
-取得完整原型：
-
-```bash
-git clone --branch draft/initial-prototype --single-branch https://github.com/scarlet-devil/codex-condition-trigger.git
-cd codex-condition-trigger
-```
-
 **Use file conditions to decide when an existing Codex thread should receive work.**
 
 一个实验性的文件条件触发器：普通程序负责监听、稳定判断和去重，只有出现新内容时才准备 Codex 任务。
@@ -101,7 +92,7 @@ mkdir -p /tmp/codex-trigger-demo/inbox
 
 `transport_command` 是连接**已有实际宿主**的 JSONL 代理 argv，不是新开 `codex app-server` 的启动命令。本项目目前没有提供经过真实 Windows Desktop 验证的通用连接命令。
 
-完整说明见 [本机接入与回执](https://github.com/scarlet-devil/codex-condition-trigger/blob/draft/initial-prototype/docs/INTEGRATION.md)。`owner_verified` 是本机操作者完成验证后的登记；程序不能替代这项验证。适配器不发送模型、工作目录或审批/沙箱权限覆盖字段，也不会代替 Desktop 工具或批准权限请求。
+完整说明见 [本机接入与回执](docs/INTEGRATION.md)。`owner_verified` 是本机操作者完成验证后的登记；程序不能替代这项验证。适配器不发送模型、工作目录或审批/沙箱权限覆盖字段，也不会代替 Desktop 工具或批准权限请求。
 
 ## 主要参考思路
 
@@ -112,7 +103,7 @@ mkdir -p /tmp/codex-trigger-demo/inbox
 | [watchdog](https://pypi.org/project/watchdog/6.0.0/) | 实际运行依赖；使用其系统文件监听能力 |
 | [chokidar-cdx](https://github.com/codexophile/chokidar-cdx)、[gnosis-container](https://github.com/DeepBlueDynamics/gnosis-container) | 调研比较对象，用于判断通用文件触发器和容器任务方案是否适合原会话需求 |
 
-本项目独立编写，没有复制上述候选应用的源码。watchdog 通过 requirements 安装，没有随仓库打包。更详细的取舍、固定源码链接和证据范围见 [设计与来源](https://github.com/scarlet-devil/codex-condition-trigger/blob/draft/initial-prototype/docs/DESIGN_AND_REFERENCES.md) 和 [SOURCES.json](https://github.com/scarlet-devil/codex-condition-trigger/blob/draft/initial-prototype/SOURCES.json)。
+本项目独立编写，没有复制上述候选应用的源码。watchdog 通过 requirements 安装，没有随仓库打包。更详细的取舍、固定源码链接和证据范围见 [设计与来源](docs/DESIGN_AND_REFERENCES.md) 和 [SOURCES.json](SOURCES.json)。
 
 ## 已实现与边界
 
@@ -132,6 +123,6 @@ mkdir -p /tmp/codex-trigger-demo/inbox
 python -m unittest discover -s tests -v
 ```
 
-公开版本在 Linux / Python 3.12.14 / watchdog 6.0.0 下的复跑结果见 [test-results.txt](https://github.com/scarlet-devil/codex-condition-trigger/blob/draft/initial-prototype/evidence/test-results.txt)。测试包括真实 inotify、停机期间新增文件的启动恢复，以及明确使用替身的协议/回执故障情景。模拟宿主测试不构成真实 Codex Desktop 接入证明。
+公开版本在 Linux / Python 3.12.14 / watchdog 6.0.0 下的复跑结果见 [test-results.txt](evidence/test-results.txt)。测试包括真实 inotify、停机期间新增文件的启动恢复，以及明确使用替身的协议/回执故障情景。模拟宿主测试不构成真实 Codex Desktop 接入证明。
 
-项目现状与下一步见 [CURRENT_STATE.md](https://github.com/scarlet-devil/codex-condition-trigger/blob/draft/initial-prototype/CURRENT_STATE.md)，增量记录见 [WORK_LOG.md](https://github.com/scarlet-devil/codex-condition-trigger/blob/draft/initial-prototype/WORK_LOG.md)。
+项目现状与下一步见 [CURRENT_STATE.md](CURRENT_STATE.md)，增量记录见 [WORK_LOG.md](WORK_LOG.md)。
