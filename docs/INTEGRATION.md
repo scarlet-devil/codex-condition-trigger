@@ -54,12 +54,14 @@ python trigger.py --config local-production.json ack BATCH_ID --evidence /absolu
 
 Windows 使用对应的绝对证据路径。ack 可以与 watcher 并行，记录证据文件哈希和调用者的核验声明。程序不独立联系外部交付系统。模型回合 completed 不会自动成为 delivered。
 
+delivered 是终态：SQL 更新原子排除该状态，旧轮询不能覆盖状态或原交付证据。重复 ACK 会报错并保留第一次证据，不表示发生新的交付。
+
 | 状态 | 含义 | 后续行为 |
 | --- | --- | --- |
 | ready | 固定版本已准备，尚未发送 | 校验宿主后可发送 |
 | sending | 外部请求前已写意图 | 重启后转 uncertain |
 | queued | 队列已接受 | 查询已有队列/回合，不重复提交 |
-| running | 历史含相应用户批次标记，回合未结束 | 等待回合结果 |
+| running | 本地有发送意图，历史中唯一的完整投递文本匹配，回合未结束 | 等待回合结果 |
 | completed / failed | 对应回合已经结束 | 等待业务核验或处置 |
 | uncertain | 发送结果或后续证据不明确 | 不自动重发 |
 | blocked | 投递前连接失败达到上限 | 修复后显式 retry-connect |
@@ -72,6 +74,14 @@ python trigger.py --config local-production.json retry-connect BATCH_ID
 ```
 
 该命令不能重置已发送或 uncertain 批次。业务执行失败的续接不在本版自动重试范围内。
+
+## 旧状态库与历史关联
+
+首次打开旧状态库时，会增加可空的 `dispatch_text` 字段。新投递在发送之前将完整原文和 sending 状态一并保存。迁移不会为旧批次推测发送文本，也不会重写已有业务结论。
+
+旧的 queued/uncertain 批次仍可按原 client ID 核对队列；离开队列后，缺少已保存原文就不能自动关联历史回合，将保留待核对状态。核实业务结果后仍可登记 ACK。若旧记录曾被普通引用误标为 completed/failed，需要人工核查，不能靠本次迁移认定实际业务已完成。
+
+本版没有已验证的宿主消息 ID 到历史回合的映射。完整文本匹配不等于认证：宿主改写文本可能导致漏匹配，单次人工原样复制也仍可能混淆。多个完整匹配会拒绝自动认领。真实宿主试验必须验证这些字段和行为，不能以文本匹配证明 Desktop 原生能力。
 
 ## 完整性与停止
 

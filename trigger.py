@@ -164,7 +164,7 @@ class Store:
           CREATE TABLE IF NOT EXISTS meta(k TEXT PRIMARY KEY, v TEXT NOT NULL);
           CREATE TABLE IF NOT EXISTS batches(
             id TEXT PRIMARY KEY, state TEXT NOT NULL, manifest TEXT NOT NULL,
-            client_id TEXT NOT NULL, submission TEXT, turn_id TEXT,
+            client_id TEXT NOT NULL, submission TEXT, turn_id TEXT, dispatch_text TEXT,
             attempts INTEGER NOT NULL DEFAULT 0, next_try REAL NOT NULL DEFAULT 0,
             detail TEXT, created REAL NOT NULL);
           CREATE TABLE IF NOT EXISTS versions(
@@ -177,6 +177,11 @@ class Store:
             raise ValueError("state belongs to a different root/thread/cwd")
         with self.db:
             self.db.execute("INSERT OR IGNORE INTO meta VALUES ('binding', ?)", (binding,))
+            # The write transaction serializes legacy-schema migration with ACK
+            # connections. Never reconstruct evidence for old pending batches.
+            columns = {r[1] for r in self.db.execute("PRAGMA table_info(batches)")}
+            if "dispatch_text" not in columns:
+                self.db.execute("ALTER TABLE batches ADD COLUMN dispatch_text TEXT")
             if worker:
                 self.db.execute("UPDATE batches SET state='uncertain', detail='process ended while sending' WHERE state='sending'")
         (self.path / "blobs").mkdir(exist_ok=True)
@@ -194,12 +199,16 @@ class Store:
         return [dict(x) for x in self.db.execute("SELECT * FROM batches ORDER BY created, id")]
 
     def update(self, batch_id, state, **values):
-        if not set(values) <= {"submission", "turn_id", "attempts", "next_try", "detail"}:
+        if not set(values) <= {"submission", "turn_id", "dispatch_text", "attempts", "next_try", "detail"}:
             raise ValueError("unknown update field")
         fields = {"state": state, **values}
         with self.db:
-            self.db.execute("UPDATE batches SET " + ",".join(k + "=?" for k in fields) + " WHERE id=?",
-                            (*fields.values(), batch_id))
+            # ACK is terminal. The predicate and write must be one SQLite
+            # operation, so a stale RPC result cannot erase delivery evidence.
+            changed = self.db.execute("UPDATE batches SET " + ",".join(k + "=?" for k in fields)
+                                      + " WHERE id=? AND state<>'delivered'",
+                                      (*fields.values(), batch_id))
+        return changed.rowcount == 1
 
     def plan(self, files):
         known = {r[0] for r in self.db.execute("SELECT sha256 FROM versions")}
@@ -245,8 +254,9 @@ class Store:
             raise ValueError("evidence must be a non-empty local file")
         # This records the caller's attestation, not independent delivery verification.
         sha, _ = file_hash(p, 20 * 1024 * 1024)
-        self.update(batch_id, "delivered", detail=encode({"evidence": str(p), "sha256": sha,
-                                                         "attestation": "caller_verified_delivery"}))
+        if not self.update(batch_id, "delivered", detail=encode({"evidence": str(p), "sha256": sha,
+                                                                "attestation": "caller_verified_delivery"})):
+            raise ValueError("batch already delivered; original evidence preserved")
 
     def seed(self, manifest_path):
         if self.rows():
@@ -330,10 +340,15 @@ class StdioRPC:
         self._write({"id": serial, "method": method, "params": params})
         end = time.monotonic() + self.timeout
         while True:
+            remaining = end - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError(f"RPC timeout: {method}")
             try:
-                item = self.inbox.get(timeout=max(0.001, end - time.monotonic()))
+                item = self.inbox.get(timeout=remaining)
             except queue.Empty:
                 raise TimeoutError(f"RPC timeout: {method}") from None
+            if time.monotonic() >= end:
+                raise TimeoutError(f"RPC timeout: {method}")
             if isinstance(item, Exception):
                 raise item
             if "method" in item:
@@ -341,8 +356,6 @@ class StdioRPC:
                     # Never grant permissions or impersonate Desktop-only tools.
                     self._write({"id": item["id"], "error": {"code": -32601,
                                  "message": "trigger does not implement owner tools or approvals"}})
-                if time.monotonic() >= end:
-                    raise TimeoutError(f"RPC timeout: {method}")
                 continue
             if item.get("id") != serial:
                 continue
@@ -389,15 +402,20 @@ def list_queue(rpc, c):
         seen.add(cursor)
 
 
-def history_match(thread, batch_id):
-    marker = "batch_id=" + batch_id
+def history_match(thread, row):
+    # This fallback is exact text correlation, not authenticated provenance.
+    # A ready batch or legacy row has no persisted send intent to reconcile.
+    if row["state"] not in ("sending", "queued", "running", "uncertain") or not row.get("dispatch_text"):
+        return None
+    matches = []
     for turn in thread.get("turns", []):
         for item in turn.get("items", []):
-            if item.get("type") == "userMessage" and any(
-                x.get("type") == "text" and marker in x.get("text", "") for x in item.get("content", [])
-            ):
-                return turn
-    return None
+            content = item.get("content", [])
+            if (item.get("type") == "userMessage" and len(content) == 1
+                    and content[0].get("type") == "text"
+                    and content[0].get("text") == row["dispatch_text"]):
+                matches.append(turn)
+    return matches[0] if len(matches) == 1 else None
 
 
 def dispatch_one(store, rpc_factory=StdioRPC, now=None):
@@ -421,15 +439,18 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None):
         t = read_thread(rpc, c)
         pending = list_queue(rpc, c)
         existing = next((q for q in pending if q.get("clientUserMessageId") == row["client_id"]), None)
-        turn = history_match(t, row["id"])
+        turn = history_match(t, row)
         if turn:
             state = {"completed": "completed", "failed": "failed", "interrupted": "failed"}.get(turn.get("status"), "running")
-            store.update(row["id"], state, turn_id=turn["id"], detail="matched original user-message batch marker")
+            if not store.update(row["id"], state, turn_id=turn["id"], detail="matched exact persisted dispatch text"):
+                return "delivered"
             return state
         if existing:
-            store.update(row["id"], "queued", submission=existing["id"], detail="queue readback matched client ID")
+            if not store.update(row["id"], "queued", submission=existing["id"], detail="queue readback matched client ID"):
+                return "delivered"
         elif row["state"] != "ready":
-            store.update(row["id"], "uncertain", detail="not visible in queue/history; no automatic resubmission")
+            if not store.update(row["id"], "uncertain", detail="not visible in queue/history; no automatic resubmission"):
+                return "delivered"
             return "uncertain"
         status = t.get("status", {}).get("type")
         turns = t.get("turns", [])
@@ -458,24 +479,28 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None):
                   "delivered; if so, return its existing evidence to avoid duplicate work. "
                   "Record ack through the project's receipt flow only after verifying business "
                   "delivery. A completed model turn alone does not count as delivery.")
-        store.update(row["id"], "sending", detail="persisted intent before external request")
+        if not store.update(row["id"], "sending", dispatch_text=prompt, detail="persisted intent before external request"):
+            return "delivered"
         sending = True
         reply = rpc.request("thread/queue/add", {"threadId": c["thread_id"],
                             "input": [{"type": "text", "text": prompt, "textElements": []}],
                             "clientUserMessageId": row["client_id"]})["queuedSubmission"]
         if reply.get("clientUserMessageId") != row["client_id"]:
             raise ValueError("queue response client ID mismatch")
-        store.update(row["id"], "queued", submission=reply["id"], detail="accepted, not proof of wake or business delivery")
+        if not store.update(row["id"], "queued", submission=reply["id"], detail="accepted, not proof of wake or business delivery"):
+            return "delivered"
         emit("queue_accepted", batch_id=row["id"], submission=reply["id"])
         return "queued"
     except (OSError, ValueError, RPCError, TimeoutError, EOFError, KeyError) as e:
         if sending:
-            store.update(row["id"], "uncertain", detail=f"{type(e).__name__}: reconcile before retry")
+            if not store.update(row["id"], "uncertain", detail=f"{type(e).__name__}: reconcile before retry"):
+                return "delivered"
         elif row["state"] == "ready":
             n = row["attempts"] + 1
-            store.update(row["id"], "blocked" if n >= c["max_connect_attempts"] else "ready",
-                         attempts=n, next_try=now + min(300, 5 * 2 ** min(n, 6)),
-                         detail=f"{type(e).__name__}: pre-send check failed")
+            if not store.update(row["id"], "blocked" if n >= c["max_connect_attempts"] else "ready",
+                                attempts=n, next_try=now + min(300, 5 * 2 ** min(n, 6)),
+                                detail=f"{type(e).__name__}: pre-send check failed"):
+                return "delivered"
         emit("dispatch_pending", batch_id=row["id"], reason=type(e).__name__)
         return "uncertain" if sending else "pending"
     finally:

@@ -2,6 +2,7 @@
 import json
 from pathlib import Path
 import sys
+import time
 
 p = Path(sys.argv[1])
 state = json.loads(p.read_text())
@@ -15,6 +16,13 @@ for line in sys.stdin:
         state["initializations"] = state.get("initializations", 0) + 1
         result = {"userAgent": "fake-owner-for-tests"}
     elif method == "thread/read":
+        if state.get("mode") == "wrong_id_flood":
+            state["noise_started"] = True
+            p.write_text(json.dumps(state))
+            end = time.monotonic() + 8
+            while time.monotonic() < end:
+                print(json.dumps({"id": "unrelated", "result": {}}), flush=True)
+            continue
         result = {"thread": {"id": state["thread_id"], "cwd": state["cwd"],
                              "status": {"type": "idle"}, "turns": []}}
     elif method == "thread/queue/list":

@@ -1,3 +1,14 @@
+test_ack_survives_stale_completed_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_completed_poll) ... ok
+test_ack_survives_stale_queued_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_queued_poll) ... ok
+test_ack_survives_stale_uncertain_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_uncertain_poll) ... ok
+test_ambiguous_identical_history_messages_remain_uncertain (test_review_regressions.HistoryReceiptTests.test_ambiguous_identical_history_messages_remain_uncertain) ... ok
+test_exact_sent_text_recovers_after_ack_loss_and_restart (test_review_regressions.HistoryReceiptTests.test_exact_sent_text_recovers_after_ack_loss_and_restart) ... ok
+test_legacy_pending_batch_is_not_given_invented_history_evidence (test_review_regressions.HistoryReceiptTests.test_legacy_pending_batch_is_not_given_invented_history_evidence) ... ok
+test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) ... ok
+test_unsent_user_reference_cannot_replace_first_dispatch (test_review_regressions.HistoryReceiptTests.test_unsent_user_reference_cannot_replace_first_dispatch) ... ok
+test_continuous_wrong_response_ids_obey_deadline (test_review_regressions.RPCDeadlineTests.test_continuous_wrong_response_ids_obey_deadline) ... ok
+test_matching_response_after_deadline_is_rejected (test_review_regressions.RPCDeadlineTests.test_matching_response_after_deadline_is_rejected) ... ok
+test_stop_after_wrong_id_flood_returns_from_live_watcher (test_review_regressions.WatcherDeadlineTests.test_stop_after_wrong_id_flood_returns_from_live_watcher) ... ok
 test_burst_is_one_batch (test_trigger.ConditionTests.test_burst_is_one_batch) ... ok
 test_captured_version_survives_overwrite (test_trigger.ConditionTests.test_captured_version_survives_overwrite) ... ok
 test_config_binding_prevents_silent_thread_switch (test_trigger.ConditionTests.test_config_binding_prevents_silent_thread_switch) ... ok
@@ -33,6 +44,6 @@ test_real_jsonl_proxy_process_handshake_and_queue (test_trigger.ProtocolProcessT
 test_native_watcher_and_offline_restart_recovery (test_trigger.WatcherProcessTests.test_native_watcher_and_offline_restart_recovery) ... ok
 
 ----------------------------------------------------------------------
-Ran 33 tests in 1.243s
+Ran 44 tests in 2.011s
 
 OK

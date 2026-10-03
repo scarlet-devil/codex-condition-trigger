@@ -288,9 +288,10 @@ class DispatchTests(Fixture):
 
     def test_running_and_completion_need_matching_user_message(self):
         self.send()
+        sent_text = self.rpc.queued[0]["input"][0]["text"]
         self.rpc.queued = []
         self.rpc.thread["turns"] = [{"id": "turn-1", "status": "completed", "items": [
-            {"type": "userMessage", "content": [{"type": "text", "text": "batch_id=" + self.batch}]}]}]
+            {"type": "userMessage", "content": [{"type": "text", "text": sent_text}]}]}]
         self.assertEqual(self.send(), "completed")
         evidence = self.root / "receipt.json"
         evidence.write_text('{"verified": true}')

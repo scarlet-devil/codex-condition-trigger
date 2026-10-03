@@ -114,7 +114,7 @@ mkdir -p /tmp/codex-trigger-demo/inbox
 | ZIP CRC 和体积限制 | ZIP 与展开材料没有语义去重 |
 | 投递前连接失败退避重试 | 接受结果不明时不盲目重发，不保证 exactly-once |
 | 精确 UUID 队列、忙碌时排队 | 未验证真实 Desktop 工具继承；默认不恢复未加载线程 |
-| 交付证据 ack，允许与 watcher 并行 | ack 是调用者的核验声明；本包不访问 Drive 等交付服务 |
+| 交付证据 ack，允许与 watcher 并行；delivered 及原证据受原子更新条件保护 | ack 是调用者的核验声明；本包不访问 Drive 等交付服务 |
 | 一个未交付批次阻止后续投递 | 业务失败续接仍需现有工作流处理，不能无人值守无限推进 |
 
 ## 测试
@@ -124,5 +124,7 @@ python -m unittest discover -s tests -v
 ```
 
 公开版本在 Linux / Python 3.12.14 / watchdog 6.0.0 下的复跑结果见 [test-results.txt](evidence/test-results.txt)。测试包括真实 inotify、停机期间新增文件的启动恢复，以及明确使用替身的协议/回执故障情景。模拟宿主测试不构成真实 Codex Desktop 接入证明。
+
+2026-10-03 静态复核后的修订通过 44 项测试（原有 33 项方法及新增 11 项）。并行 ACK、响应 deadline 和历史文本误关联的旧版失败证据、修复说明及旧状态库兼容边界见 [复核修订记录](docs/REVIEW_FIXES_20261003.md)。
 
 项目现状与下一步见 [CURRENT_STATE.md](CURRENT_STATE.md)，增量记录见 [WORK_LOG.md](WORK_LOG.md)。
