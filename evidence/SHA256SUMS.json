@@ -1,11 +1,11 @@
 {
   ".gitignore": "89190276bf9a9bd49c383df7f0c0ba95b08daddc62854d478921cc1fff18e754",
-  "CURRENT_STATE.md": "625e2c71d1be2ac39fa4eb12ddf472a0740c1d12589d1a5b3a2847d662b8cf8c",
-  "README.md": "2dbedd5b889a24adcbd4f86eafbb59475b9f2b684ccf9d43815e71d980fcf080",
-  "SOURCES.json": "a03afd5810524aaff3c580f7bab9b39bd18fa1995b2afce9afdd06712c39bdef",
-  "WORK_LOG.md": "c11c1d0d242ea55da7dedd579a5c67328f1fea5b5b86c56c4cd99e5c369f4a80",
-  "docs/DESIGN_AND_REFERENCES.md": "fb7c19c4a25ae36e91978da7b44f17f3a4b9d082c5e2bf3e52852fdeee624851",
-  "docs/INTEGRATION.md": "43694564195f1457e79b23db3583cf15c1ae4844dd0478f8ee7bea8a04dde4c1",
+  "CURRENT_STATE.md": "279d99ee488c7f24551986ccd65e36ab625865056a3e016025308ecb9744ce02",
+  "README.md": "c6b24585fe7480ee6ae94d4d062040b1dfd3af4caff5a92b8b70a66bb083a14a",
+  "SOURCES.json": "1c88371481c57298d700e1772e7fbc4c56ebb5981674cace89e4cd71ea669212",
+  "WORK_LOG.md": "89f886e4730fa6266a762c9bc577fdb91c6c5be821d86f77908df6fa4d97fecb",
+  "docs/DESIGN_AND_REFERENCES.md": "f265301f98874cf40183349496296896219af26e7d538850cd72d7818b0d519b",
+  "docs/INTEGRATION.md": "a471bac5d56d00b2679ea088007cefa06cee33112e3d30626fa1edf30f7b3167",
   "docs/REVIEW_FIXES_20261003.md": "2671162223fb8a3cf7d6d045dbe4b1d0291a003ecc198473ac3c75b2738587e8",
   "evidence/initial-archive-verification.json": "8034f9e2a2a0bbf0aa572e75cbf546bea1a8c54aed3a4d34db600153d11c9646",
   "evidence/review-20261003-before.txt": "d031baa891e5a81261c36dbeae9cf544ff225490f52f420c19b1ee79e34455cd",
@@ -16,5 +16,6 @@
   "tests/fake_owner.py": "882b7a2fb4bfd63f54abefce0108913ebbe2d56b4a9d729199abbcfdfc5e6747",
   "tests/test_review_regressions.py": "6358dc57ec92df1c04b118f179f7da57439e3f17cfe7945932fe764845feda44",
   "tests/test_trigger.py": "3b955c9f38608c5cc2432d7ca0542eac7ae63284251aa7bf5e5a5d6ee869b046",
-  "trigger.py": "67c932a106f6b80ed16fb6bf3f3c49aaa8c2091e6ea8bd7a994f4e745d01fc5b"
+  "trigger.py": "67c932a106f6b80ed16fb6bf3f3c49aaa8c2091e6ea8bd7a994f4e745d01fc5b",
+  "docs/IPC_ADAPTER_TRIAL_20261003.md": "e0abc6c910105723ec282700405a877ed4dd29d046f71c37f4bd82612770311b"
 }

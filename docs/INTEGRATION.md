@@ -1,5 +1,7 @@
 # 本机接入与交付回执
 
+> 本文描述 `886755e` 的现有 JSONL/queue 实现。2026-10-03 已选择 [独立聊天适配器与 Desktop IPC 小试](IPC_ADAPTER_TRIAL_20261003.md) 作为下一步；新后端尚未实现/验收，不可把 IPC start-turn 直接当成本文的 queue/add。现有安全状态与业务 ACK 边界继续保留。
+
 ## 配置真实目标
 
 从本机既有项目记录核对准确 thread UUID 和 cwd。示例配置全部使用虚构路径和全零 UUID，不含任何可用会话绑定。

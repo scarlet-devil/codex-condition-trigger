@@ -4,7 +4,7 @@
 
 一个实验性的文件条件触发器：普通程序负责监听、稳定判断和去重，只有出现新内容时才准备 Codex 任务。
 
-**状态：原型 / review_pending。** 文件监听和恢复逻辑已在 Linux 实测；Codex 协议适配器通过模拟宿主测试。**Windows 原生监听、真实 Desktop 原聊天唤醒、原生工具继承尚未验收。** 本项目不是 OpenAI 官方产品。
+**状态：原型 / review_pending。** Linux 44 项回归通过；本地执行者已报告 Windows 原生文件监听 dry 验收 14/14 通过，原版 Windows suite 仍有 1 项清理错误及 1 项跳过。**当前真实 Desktop 原聊天接入与工具/Hook 尚未验收。** 下一步按 [独立聊天接口与 IPC 小试](docs/IPC_ADAPTER_TRIAL_20261003.md) 执行；该适配器尚未由本次文档更新实现。本项目不是 OpenAI 官方产品。
 
 ## 用途
 
