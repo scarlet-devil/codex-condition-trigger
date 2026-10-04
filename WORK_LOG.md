@@ -95,3 +95,16 @@ REQUEST CHANGES for a reproduced protocol-shape isolation gap: a null JSON frame
 Next: fix response-boundary validation and its affected isolation tests; check the actual minimal lifecycle slice before treating the missing event as the local root cause. If ambiguity remains, establish only the necessary original-owner current-state snapshot contract, separating current send eligibility from historical receipt correlation. No new global queue/stream framework or atomic-CAS gate is required for the already authorized isolated one-send trial. Retain unknown-state pause and no replay after an uncertain send.
 
 See [the review and executable probes](docs/ALICE_IPC_REVIEW_20261004.md). This increment changes review documents/evidence only. No real IPC/model call, native setting/history change, merge or production switch. Draft remains review_pending; publication does not establish Kelan receipt.
+
+
+## 2026-10-04 — Kelan fixes protocol isolation and verifies native current-state query
+
+Actor: Kelan, local Windows. Human transferred Alice's exact 20a4fa1 review and same-batch trial scope. Complete review and takeover comment were read back. Class C / enhanced; no new authorization inferred from source contents.
+
+Reproduced F1 at the JSON/object/identifier boundaries and after a simulated written request. Converted malformed replies to controlled errors; actual Windows watcher plus synthetic malformed IPC still captures subsequent files. Checked the exact target's minimal lifecycle evidence: zero turn_interrupted, so F2 does not explain its old overlap. No history edit or speculative terminal-event support was added.
+
+Implemented only an exact-owner, exact-target temporary snapshot query correlated with a native history-query reply revision and verified cwd/resumed/runtime status. Installation source supports the fields and wire versions; real read-only probes at 02:00:31Z and 02:07:27Z returned busy with matching revisions 2 and 4. Receipt observation verifies immutable prefix and parses only post-baseline lifecycle; it does not need a live IPC connection. Current eligibility and historical correlation are separate.
+
+Self-check fixed a second read-only query failure being classified uncertain despite no start write. A controlled S1-M1 local reviewer found one new nested runtime-type container escaping as TypeError; both list/dict cases were reproduced, fixed to unknown and independently closed. Final full Windows suite: 80 methods, 79 pass / 1 symlink privilege skip, 7.834 seconds. This is not Alice/S2 acceptance or end-to-end Desktop acceptance.
+
+Same one ready synthetic batch, no persisted send intent, no actual start, no tool/result/ACK; STOP retained because current owner is busy. Original timer, target binding, permissions and installation remain. Added three private IPC method versions, no runtime dependency/service/autostart; bounded snapshot/history cost and final idle-to-write race disclosed. Report: docs/KELAN_IPC_REVIEW_FIXES_20261004.md, evidence/windows-ipc-r2-20261004.json and its test output. Candidate implementation_ready; Draft / review_pending; continue the authorized same-batch trial only with fresh verified idle. No merge or production switch.

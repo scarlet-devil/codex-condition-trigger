@@ -1,0 +1,58 @@
+{
+  "actor": "Kelan",
+  "environment": "local Windows",
+  "input": "20a4fa127f6aacb31401b650cbc5091b52fb888f",
+  "workflow": "review_pending",
+  "desktop_version": "26.930.3930.0",
+  "actual_current_queries": [
+    {
+      "at_utc": "2026-10-04T02:00:31.753785+00:00",
+      "status": "busy",
+      "revision": 2,
+      "requested_revision": 2,
+      "exact_target_owner_cwd": true,
+      "unfollow_sent": true,
+      "raw_private_sha256": "67ea2921bd11f394b62346212e87d4a5ab024bf8e7d1abfde2d954b26d031584"
+    },
+    {
+      "at_utc": "2026-10-04T02:07:27.557167+00:00",
+      "status": "busy",
+      "revision": 4,
+      "requested_revision": 4,
+      "exact_target_owner_cwd": true,
+      "unfollow_sent": true,
+      "raw_private_sha256": "08a950f1fe18427ce959a81771283bfdc1d5e84dd4c5e3a0141bea2dd250d649"
+    }
+  ],
+  "actual_start_turns": 0,
+  "actual_tools": 0,
+  "actual_canary_ack": 0,
+  "original_batch": "one ready, no intent, STOP retained",
+  "historical_event_check": {
+    "turn_interrupted": 0,
+    "task_started": 32,
+    "task_complete": 31,
+    "conclusion": "F2 not the observed historical cause"
+  },
+  "tests": {
+    "total": 80,
+    "passed": 79,
+    "skipped": 1,
+    "seconds": 7.834,
+    "skip": "Windows symlink creation privilege unavailable"
+  },
+  "controlled_review": {
+    "type": "controlled local code review",
+    "independence": "S1-M1; not Alice/S2",
+    "found": 1,
+    "closed": 1,
+    "remaining": 0,
+    "closure": "runtime type []/{} returns unknown; final native tests 7 passed; read-only pre-send conversion boundary checked",
+    "reviewed_sha256": {
+      "desktop_ipc.py": "cab934b4efd78fd6d9aa58dc1db50d17761e70131f0ce3e7e0ef763dc005dd81",
+      "tests/test_desktop_ipc.py": "891588607e582d3c560a81bad4ca7232f1d85571e98479e167dd1ed748508775",
+      "tests/test_native_state.py": "280ed0cc077156319403856529738e9a55cebabf432e2672bb52ddefaf23e3f3"
+    }
+  },
+  "privacy": "No actual target/owner IDs, raw conversation, private paths, identity kernel or credentials included"
+}

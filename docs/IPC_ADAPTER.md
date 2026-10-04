@@ -14,7 +14,8 @@ the operator has checked the intended host and authorized the bounded task.
 Run `python trigger.py --config local-ipc.json probe` for read-only host and
 target inspection. This opens the pipe, checks its server process and OpenAI
 signature, inspects required protocol methods, initializes a client, and asks
-for the configured thread's owner. It does not start a model turn. An execution
+for the configured thread's owner and a revision-correlated current-state snapshot.
+The native history query may hydrate cached history; it does not start a model turn. An execution
 sandbox can deny pipe access; the program does not elevate itself or weaken ACLs.
 
 Use the normal dry watcher first. For an explicitly authorized experiment,
@@ -36,7 +37,8 @@ are always included.
   bound to one adapter. Existing databases migrate nullable receipt metadata;
   they default to the old JSONL backend and cannot silently switch to IPC.
 - IPC methods: `initialize` v1, `thread-owner-discovery` v1 and
-  `thread-follower-start-turn` v2. Frames are 4-byte little-endian lengths plus
+  `thread-follower-start-turn` v2, `thread-stream-following-changed` v1,
+  `thread-stream-state-changed` v11 and `thread-follower-load-complete-history` v1. Frames are 4-byte little-endian lengths plus
   UTF-8 JSON, capped at 32 MiB; response matching uses request ID, method and
   routed owner, with one absolute timeout.
   Cancelling pending Windows I/O must still drain its completion before freeing
@@ -45,7 +47,7 @@ are always included.
   inherited thread settings. Model, cwd, approval, sandbox and permission
   overrides are omitted, including `permissions: null`.
 - Busy, interrupted, absent or unknown targets retain local work. Immediately
-  before writing, the adapter rechecks the rollout baseline, owner and STOP.
+  before writing, the adapter rechecks the native current status, rollout baseline, owner and STOP.
   There is no verified atomic idle compare-and-set in this private protocol;
   another actor can still start work in the final race window. This limitation
   precludes a general unattended concurrency guarantee.
@@ -73,10 +75,15 @@ of top-level context record names. Unknown or incomplete lifecycle evidence
   does not establish idle or completion. A future format change may still require
   an adapter update. No future-version or sustained production claim is made.
 
-Historical overlapping/duplicate lifecycle starts also fail closed. A later
-apparently complete turn alone does not erase an earlier unresolved turn.
-This prototype does not yet implement a native owner-state snapshot to resolve
-that ambiguity. Do not edit real history or bypass the check to enable a trial.
+Current send eligibility uses one exact-owner, exact-target snapshot bound to a
+fresh history-query revision, verified cwd and resumed state. Only the native
+threadRuntimeStatus idle value permits sending. Temporary following is removed
+after each query. This is not a general stream client or a supported public API.
+
+Receipt observation uses only lifecycle after the persisted immutable baseline;
+it needs no current-state query or Desktop connection. Old gaps remain evidence
+but cannot permanently block newer receipts. New ambiguous lifecycle still fails
+closed. Do not edit real history. See the [revision report](KELAN_IPC_REVIEW_FIXES_20261004.md).
 
 Local state contains private paths, conversation identifiers and prompts. Keep
 raw evidence local and publish only a minimal sanitized report. Synthetic

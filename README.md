@@ -4,7 +4,7 @@
 
 一个实验性的文件条件触发器：普通程序负责监听、稳定判断和去重，只有出现新内容时才准备 Codex 任务。
 
-**状态：实验候选 / review_pending，PR 保持 Draft。** 已拆分核心与聊天适配器并新增 Windows Desktop IPC 后端；本轮 Windows 回归 69 项中 68 通过、1 项跳过。真实管道、签名与指定 owner 查询已通过，但原聊天历史存在未解决的重叠生命周期，**本轮没有发送 start-turn，工具/Hook 和端到端结果仍未验收**。详见 [给爱丽丝的调查报告](docs/KELAN_IPC_TRIAL_20261004.md)。本项目不是 OpenAI 官方产品。
+**状态：实验候选 / review_pending，PR 保持 Draft。** 已修正异常回复隔离，并以准确 owner、目标目录和本次 revision 核对原生当前状态；Windows 回归 80 项中 79 通过、1 项跳过。两次真实只读查询均返回 busy，所以仍没有发送 start-turn；原聊天工具、Hook 与合成结果尚未验收。详见 [本轮修正报告](docs/KELAN_IPC_REVIEW_FIXES_20261004.md)。本项目不是 OpenAI 官方产品。
 
 ## 用途
 
@@ -113,7 +113,7 @@ JSONL 说明见 [本机接入与回执](docs/INTEGRATION.md)，实验 Windows �
 | SQLite 批次、启动补偿、单 worker 锁 | 没有自动清理历史 blob 的保留策略 |
 | ZIP CRC 和体积限制 | ZIP 与展开材料没有语义去重 |
 | 投递前连接失败退避重试 | 接受结果不明时不盲目重发，不保证 exactly-once |
-| 精确 UUID 的 JSONL 队列；独立 IPC 后端忙碌时保留本地批次 | IPC 的真实聊天、设置、工具与 Hook 仍未验收；历史重叠会阻止 IPC 投递 |
+| 精确 UUID 的 JSONL 队列；独立 IPC 后端忙碌时保留本地批次 | IPC 的真实投递、设置、工具与 Hook 仍未验收；原生当前 busy/unknown 保留本地批次 |
 | 交付证据 ack，允许与 watcher 并行；delivered 及原证据受原子更新条件保护 | ack 是调用者的核验声明；本包不访问 Drive 等交付服务 |
 | 一个未交付批次阻止后续投递 | 业务失败续接仍需现有工作流处理，不能无人值守无限推进 |
 

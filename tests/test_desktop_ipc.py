@@ -74,6 +74,20 @@ class RolloutTests(unittest.TestCase):
 
 
 class WireTests(unittest.TestCase):
+    def test_non_object_json_frames_are_controlled_protocol_errors(self):
+        for value in (None, [], 'unexpected', 7):
+            with self.subTest(value=value):
+                client = self.client(lambda request: [value])
+                with self.assertRaises(ipc.RPCError):
+                    client.request('initialize', {})
+
+    def test_malformed_initialize_results_are_controlled(self):
+        for value in (None, [], {'clientId': []}, {'clientId': ''}):
+            with self.subTest(value=value):
+                client = self.client(lambda request: [dict(self.reply(request), result=value)])
+                with self.assertRaises(ipc.RPCError):
+                    ipc.IPCClient(1, pipe=client.pipe, verifier=lambda pipe: {})
+
     @unittest.skipUnless(os.name == 'nt', 'Windows overlapped-I/O contract')
     def test_interrupt_cancels_and_drains_before_freeing_storage(self):
         calls = []
@@ -98,6 +112,8 @@ class WireTests(unittest.TestCase):
 
     def client(self, replies, tick=None):
         class Pipe:
+            def close(self):
+                pass
             def write(self, data, deadline):
                 self.request = json.loads(data[4:])
                 packets = replies(self.request)
@@ -145,12 +161,22 @@ class WireTests(unittest.TestCase):
 
 class DesktopDispatchTests(Fixture):
     def test_watcher_still_captures_after_host_check_failure(self):
+        def unavailable():
+            raise subprocess.TimeoutExpired('synthetic-signature-check', 20)
+        self.check_watcher_after_failure(unavailable)
+
+    def test_watcher_still_captures_after_malformed_frame(self):
+        def malformed():
+            WireTests().client(lambda request: [None]).request('initialize', {})
+        self.check_watcher_after_failure(malformed)
+
+    def check_watcher_after_failure(self, failure):
         self.ready()
         checked, stop = threading.Event(), threading.Event()
         errors = []
         def unavailable(*args):
             checked.set()
-            raise subprocess.TimeoutExpired('synthetic-signature-check', 20)
+            failure()
         def writer():
             try:
                 if not checked.wait(3):
@@ -177,6 +203,19 @@ class DesktopDispatchTests(Fixture):
             raise errors[0]
         self.assertEqual(len(self.store.rows()), 2)
         self.assertTrue(all(row['state'] == 'ready' for row in self.store.rows()))
+
+    def test_malformed_written_receipt_is_uncertain_and_not_replayed(self):
+        self.ready()
+        original = self.client.request
+        def malformed(client, *args, **kwargs):
+            original(client, *args, **kwargs)
+            return {'result': None}
+        self.client.request = malformed
+        self.assertEqual(self.dispatch(), 'uncertain')
+        self.assertEqual(self.store.rows()[0]['state'], 'uncertain')
+        self.reopen()
+        self.assertEqual(self.dispatch(), 'running')
+        self.assertEqual(len(self.sent), 1)
 
     def test_host_check_process_failures_leave_local_batch_retryable(self):
         self.ready()
@@ -205,6 +244,7 @@ class DesktopDispatchTests(Fixture):
         self.lose_ack = False
         self.match_text = None
         self.owner_changed = False
+        self.native_status = None
         test = self
         class Client:
             client_id, installation = 'source-client', {'synthetic': True}
@@ -212,6 +252,9 @@ class DesktopDispatchTests(Fixture):
             def owner(self, thread):
                 self.owners += 1
                 return 'other' if test.owner_changed and self.owners > 1 else 'owner'
+            def current_state(self, thread, owner, cwd):
+                status = test.native_status or ipc.rollout_state(test.path, thread, cwd)['status']
+                return {'status': status, 'revision': 1, 'owner_id': owner}
             def request(self, method, params, **kwargs):
                 test.sent.append((method, params, kwargs))
                 test.append('event_msg', type='task_started', turn_id='native')
