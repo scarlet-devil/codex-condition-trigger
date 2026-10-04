@@ -4,7 +4,7 @@
 
 一个实验性的文件条件触发器：普通程序负责监听、稳定判断和去重，只有出现新内容时才准备 Codex 任务。
 
-**状态：原型 / review_pending。** Linux 44 项回归通过；本地执行者已报告 Windows 原生文件监听 dry 验收 14/14 通过，原版 Windows suite 仍有 1 项清理错误及 1 项跳过。**当前真实 Desktop 原聊天接入与工具/Hook 尚未验收。** 下一步按 [独立聊天接口与 IPC 小试](docs/IPC_ADAPTER_TRIAL_20261003.md) 执行；该适配器尚未由本次文档更新实现。本项目不是 OpenAI 官方产品。
+**状态：实验候选 / review_pending，PR 保持 Draft。** 已拆分核心与聊天适配器并新增 Windows Desktop IPC 后端；本轮 Windows 回归 69 项中 68 通过、1 项跳过。真实管道、签名与指定 owner 查询已通过，但原聊天历史存在未解决的重叠生命周期，**本轮没有发送 start-turn，工具/Hook 和端到端结果仍未验收**。详见 [给爱丽丝的调查报告](docs/KELAN_IPC_TRIAL_20261004.md)。本项目不是 OpenAI 官方产品。
 
 ## 用途
 
@@ -21,7 +21,7 @@
 1. watchdog 接收系统文件事件；启动时和周期性本地扫描用于补偿漏事件。
 2. 两次内容快照保持一致并满足稳定时间后，用 SHA-256 判定是否出现新内容。
 3. 保存固定版本和批次清单，在 SQLite 中登记待投递状态。
-4. 通过用户核验过的原宿主 JSONL 代理，向准确 thread UUID 入队。
+4. 通过已明确选择的聊天适配器投递：JSONL 后端向准确 thread 入队，实验 IPC 后端只在可证明空闲时发起准确原聊天回合。
 5. 分开记录入队、回合状态和业务交付回执；不能确认发送结果时保留待核对状态。
 
 无新内容、无待投递批次时，不连接 Codex、不产生模型回合。补偿扫描和待投递状态核对由本地程序执行。它们仍会使用少量本机资源。
@@ -92,7 +92,7 @@ mkdir -p /tmp/codex-trigger-demo/inbox
 
 `transport_command` 是连接**已有实际宿主**的 JSONL 代理 argv，不是新开 `codex app-server` 的启动命令。本项目目前没有提供经过真实 Windows Desktop 验证的通用连接命令。
 
-完整说明见 [本机接入与回执](docs/INTEGRATION.md)。`owner_verified` 是本机操作者完成验证后的登记；程序不能替代这项验证。适配器不发送模型、工作目录或审批/沙箱权限覆盖字段，也不会代替 Desktop 工具或批准权限请求。
+JSONL 说明见 [本机接入与回执](docs/INTEGRATION.md)，实验 Windows 后端见 [IPC 适配器与限制](docs/IPC_ADAPTER.md)。`owner_verified` 是本机操作者完成验证后的登记；程序不能替代这项验证。适配器不发送模型、工作目录或审批/沙箱权限覆盖字段，也不会代替 Desktop 工具或批准权限请求。
 
 ## 主要参考思路
 
@@ -103,7 +103,7 @@ mkdir -p /tmp/codex-trigger-demo/inbox
 | [watchdog](https://pypi.org/project/watchdog/6.0.0/) | 实际运行依赖；使用其系统文件监听能力 |
 | [chokidar-cdx](https://github.com/codexophile/chokidar-cdx)、[gnosis-container](https://github.com/DeepBlueDynamics/gnosis-container) | 调研比较对象，用于判断通用文件触发器和容器任务方案是否适合原会话需求 |
 
-本项目独立编写，没有复制上述候选应用的源码。watchdog 通过 requirements 安装，没有随仓库打包。更详细的取舍、固定源码链接和证据范围见 [设计与来源](docs/DESIGN_AND_REFERENCES.md) 和 [SOURCES.json](SOURCES.json)。
+本项目独立编写，没有复制上述候选应用的源码。新增 IPC 协议参考与许可列在 [第三方说明](THIRD_PARTY_NOTICES.md)。watchdog 通过 requirements 安装，没有随仓库打包。更详细的取舍、固定源码链接和证据范围见 [设计与来源](docs/DESIGN_AND_REFERENCES.md) 和 [SOURCES.json](SOURCES.json)。
 
 ## 已实现与边界
 
@@ -113,7 +113,7 @@ mkdir -p /tmp/codex-trigger-demo/inbox
 | SQLite 批次、启动补偿、单 worker 锁 | 没有自动清理历史 blob 的保留策略 |
 | ZIP CRC 和体积限制 | ZIP 与展开材料没有语义去重 |
 | 投递前连接失败退避重试 | 接受结果不明时不盲目重发，不保证 exactly-once |
-| 精确 UUID 队列、忙碌时排队 | 未验证真实 Desktop 工具继承；默认不恢复未加载线程 |
+| 精确 UUID 的 JSONL 队列；独立 IPC 后端忙碌时保留本地批次 | IPC 的真实聊天、设置、工具与 Hook 仍未验收；历史重叠会阻止 IPC 投递 |
 | 交付证据 ack，允许与 watcher 并行；delivered 及原证据受原子更新条件保护 | ack 是调用者的核验声明；本包不访问 Drive 等交付服务 |
 | 一个未交付批次阻止后续投递 | 业务失败续接仍需现有工作流处理，不能无人值守无限推进 |
 

@@ -1,5 +1,6 @@
 """Regressions for the 2026-10-03 static review; no real Codex connection."""
 import copy
+from contextlib import closing
 import json
 from pathlib import Path
 import sqlite3
@@ -183,7 +184,7 @@ class HistoryReceiptTests(Fixture):
         sent_text = self.rpc.queued[0]["input"][0]["text"]
         self.store.close()
         # Recreate the original on-disk batch schema, preserving actual rows.
-        with sqlite3.connect(self.root / "state" / "state.sqlite") as db:
+        with closing(sqlite3.connect(self.root / "state" / "state.sqlite")) as db, db:
             db.executescript("""
               ALTER TABLE batches RENAME TO saved_batches;
               CREATE TABLE batches(

@@ -1,17 +1,16 @@
 # Current state
 
-- Goal: gate work in a specified existing Codex Desktop thread on stable, previously unseen file content.
-- Status: experimental prototype / review_pending; Human approved a bounded IPC-adapter trial, not deployment or release.
-- Current implementation baseline: `886755e8341e79174c4d047acca1aea86e6a35ea`; Python watcher, immutable snapshots, SQLite outbox and an existing-owner JSONL/queue backend. The IPC adapter described below is not implemented by this documentation change.
-- Direct cloud validation: 44 Linux tests passed at that baseline; see evidence/test-results.txt and docs/REVIEW_FIXES_20261003.md.
-- Transferred Windows evidence (Kelan, report read by Alice): original suite 42 passed / 1 cleanup error / 1 skipped; cleanup-only diagnostic copy 43 passed / 1 skipped; native watcher dry checks 14/14 passed. Original failure and skip remain, and no cloud Windows rerun is claimed.
-- Review corrections retained: delivered rows and ACK evidence resist stale polling; response waits enforce one absolute deadline; history correlation requires saved send intent and unique exact submitted text.
-- Selected next route: separate the file-condition core from a replaceable chat interface; trial Desktop private IPC for the original-chat backend. Keep pending batches usable when the host is unavailable.
-- Compatibility goal: validate the required target/dispatch/receipt/settings behavior rather than reject every package version/hash change. Current-version success does not prove future-version compatibility.
-- Unverified in this project: current Desktop-owner connection and real dispatch, native tools/Hooks, external business delivery, lifecycle branches and sustained upgrade tolerance.
-- State safety: legacy pending batches without dispatch text are not guessed; accepted/uncertain attempts are not automatically replayed; completed is not delivered.
-- Configuration: public examples remain synthetic, dry by default. Real chat bindings and private evidence stay local.
-- Next work: local Kelan follows [IPC adapter trial instructions](docs/IPC_ADAPTER_TRIAL_20261003.md), including the known test-connection cleanup correction as needed. Preserve the existing mechanism while evaluating this candidate.
-- Workflow: use the existing Draft PR #1 and non-force commits; no Ready/merge or production switch is included.
+- Goal: stable new file content gates work in the explicitly selected original Desktop chat.
+- Workflow: implementation_ready candidate / Alice review_pending; Draft PR, no release or deployment.
+- Handoff input: 678f6366b5f56e25f98e78a699420d2a89419090. This candidate splits core and chat contracts and implements an experimental Windows IPC backend.
+- Current Windows tests: 69 methods, 68 pass and 1 Windows symlink condition skip. Historical original Windows failure evidence remains unchanged; see the trial report.
+- Actual connection: current signed Desktop 26.930.3930.0, pipe server, initialization and exact target owner verified. The initial idle claim was withdrawn after the observer overlap counterexample.
+- Real trial outcome: not_dispatched. An unresolved historical lifecycle overlap prevents a verified idle decision. No actual start-turn, native tool execution, canary result or delivery ACK occurred.
+- Synthetic input: one real native-watcher capture, one immutable ready batch, stopped watcher and persistent local STOP. Original chat identifiers, input and state remain private.
+- Safety corrections: reject overlap/duplicate lifecycle; host-check subprocess failures retain local processing; pending Windows I/O cancels and drains on interruption. Three controlled reviewer findings closed at code level.
+- State: database bound to an adapter; nullable dispatch metadata migration; accepted distinct from queued/completed/delivered; no replay after accepted or uncertain writes; terminal ACK remains atomic.
+- Next research: establish a verified read-only native owner state snapshot and concurrency contract before reconsidering the same-target single-send canary. Do not bypass history ambiguity or silently use another chat.
+- Unverified: real original-chat dispatch, effective settings, native tools/Hooks, canary result, external business delivery, update tolerance and sustained operation.
+- Existing periodic mechanism remains. No Ready/merge, forced resume/restart/update, permission mutation, service or autostart.
 
-Read [WORK_LOG.md](WORK_LOG.md) for decisions, alternatives, evidence attribution and incremental progress. The new trial instructions govern the proposed IPC backend; [docs/INTEGRATION.md](docs/INTEGRATION.md) still documents the current JSONL implementation.
+Read [Kelan's trial report](docs/KELAN_IPC_TRIAL_20261004.md), [adapter contract](docs/IPC_ADAPTER.md) and [WORK_LOG.md](WORK_LOG.md).

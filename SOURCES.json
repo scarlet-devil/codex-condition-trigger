@@ -84,7 +84,26 @@
       "url": "https://github.com/Destiny-Rul/CodexAgentControl/blob/76408870888198f7ee3973b807d2302a86236143/skills/codex-desktop-control/references/protocol.md",
       "commit": "76408870888198f7ee3973b807d2302a86236143",
       "git_blob": "e2afe74b616468e0c5b6c4b999d6f7a2f0f98a24",
-      "kind": "protocol reference for the proposed IPC trial; not an installed dependency"
+      "kind": "protocol reference for experimental IPC implementation; not an installed dependency",
+      "verified_date": "2026-10-04"
+    },
+    {
+      "name": "Windows ReadFile",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-readfile",
+      "kind": "official API documentation, accessed by controlled reviewer",
+      "verified_date": "2026-10-04"
+    },
+    {
+      "name": "Windows CancelIoEx",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-cancelioex",
+      "kind": "official API documentation, accessed by controlled reviewer",
+      "verified_date": "2026-10-04"
+    },
+    {
+      "name": "Windows GetOverlappedResult",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-getoverlappedresult",
+      "kind": "official API documentation, accessed by controlled reviewer",
+      "verified_date": "2026-10-04"
     }
   ]
 }

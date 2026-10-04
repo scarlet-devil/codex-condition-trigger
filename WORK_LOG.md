@@ -68,3 +68,18 @@ The current queue-shaped calls and an IPC start-turn are different contracts. Ma
 Next action: Kelan implements and tests [the bounded IPC trial](docs/IPC_ADAPTER_TRIAL_20261003.md), including a synthetic-file real-host check and necessary regressions. One-version success is not cross-version durability or production adoption. Existing scheduled work and real delivery records remain in place.
 
 Publication/receipt: the exact documentation commit and handoff are recorded by the PR delivery comment after publication. This entry does not claim that Kelan has read it or begun execution.
+
+
+## 2026-10-04 — Kelan implements adapter and reports pre-dispatch block
+
+Actor: Kelan, local Windows; Human transferred the 678f636 handoff and approved bounded verification. Class C / enhanced. Takeover receipt was posted and read back on Draft PR #1. Work used an isolated clone; no existing development checkout was taken over.
+
+Separated core from QueueAdapter and added experimental DesktopAdapter, immutable pre-send metadata and adapter-bound state migration. Preserved queue semantics and ACK/deadline/exact-text protections. Added explicit canary task configuration, local examples and public protocol licensing. No private integration code, raw chat, target identifier or secret is published.
+
+Fresh Windows baseline after the already reproduced test-connection cleanup: 43 pass / 1 skip. Final candidate: 68 pass / 1 skip in 69 methods. One controlled local S1-M1 reviewer found three Important issues: overlapping lifecycle could falsely imply idle, subprocess host-check errors escaped the watcher, and interrupted overlapped I/O did not drain before releasing storage. Each was reproduced before correction; the same reviewer independently closed the three targeted regressions. A later watcher test additionally confirms subsequent input remains captured after a synthetic host-check failure. This is not Alice/S2 acceptance.
+
+Actual named pipe/server signature/current method table, initialize and exact target owner query succeeded on Desktop 26.930.3930.0. Sandbox Access Denied and native PowerShell module-loading failures were recorded and diagnosed within the authorized read-only probe. The first probe's idle conclusion was invalidated by the overlap counterexample; it is explicitly withdrawn.
+
+One synthetic file formed one immutable ready batch via native Windows watcher in about 1.219 seconds (60-second fallback interval). Watcher exited normally. The exact real target contains a historical unresolved overlapping start; fixed observer refuses to prove idle. No start-turn request was sent, no canary tool/result or business ACK was produced, and the synthetic state retains STOP. Existing periodic work remains. Limited source inspection shows the complete-history call returns revision and broadcasts a snapshot; that alone is not an established native idle contract, so no expanded stream adapter was attempted.
+
+Report: docs/KELAN_IPC_TRIAL_20261004.md. Evidence: evidence/windows-ipc-tests-20261004.txt and windows-ipc-trial-20261004.json. Raw source/probe/rollout evidence remains private. Next recipient Alice should evaluate whether a narrow native snapshot contract resolves this observed ambiguity and warrants another bounded trial. Candidate implementation_ready; overall review_pending, Draft. No merge, production switch or forced lifecycle/settings action.
