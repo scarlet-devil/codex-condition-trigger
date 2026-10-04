@@ -1,0 +1,32 @@
+Input: 93d84fdd4be5d6ed7b9ea9317a3326489a12a41b
+Alice cloud Linux; original candidate unchanged.
+Excluded (watchdog unavailable): test_desktop_ipc.DesktopDispatchTests.test_watcher_still_captures_after_host_check_failure
+test_custom_task_does_not_inject_business_ack_workflow (test_chat_adapters.AdapterConfigTests.test_custom_task_does_not_inject_business_ack_workflow) ... ok
+test_ipc_cannot_force_resume (test_chat_adapters.AdapterConfigTests.test_ipc_cannot_force_resume) ... ok
+test_ipc_needs_exact_absolute_rollout (test_chat_adapters.AdapterConfigTests.test_ipc_needs_exact_absolute_rollout) ... ok
+test_state_cannot_change_adapter (test_chat_adapters.AdapterConfigTests.test_state_cannot_change_adapter) ... ok
+test_unknown_adapter_rejected (test_chat_adapters.AdapterConfigTests.test_unknown_adapter_rejected) ... ok
+test_ack_wins_against_stale_ipc_result (test_desktop_ipc.DesktopDispatchTests.test_ack_wins_against_stale_ipc_result) ... ok
+test_busy_keeps_batch_local (test_desktop_ipc.DesktopDispatchTests.test_busy_keeps_batch_local) ... ok
+test_host_check_process_failures_leave_local_batch_retryable (test_desktop_ipc.DesktopDispatchTests.test_host_check_process_failures_leave_local_batch_retryable) ... ok
+test_lost_ack_exact_new_turn_reconciles_without_resend (test_desktop_ipc.DesktopDispatchTests.test_lost_ack_exact_new_turn_reconciles_without_resend) ... ok
+test_native_acceptance_completion_and_ack_are_distinct (test_desktop_ipc.DesktopDispatchTests.test_native_acceptance_completion_and_ack_are_distinct) ... ok
+test_owner_change_and_stop_prevent_send_after_intent (test_desktop_ipc.DesktopDispatchTests.test_owner_change_and_stop_prevent_send_after_intent) ... ok
+test_plain_reference_after_lost_ack_remains_uncertain (test_desktop_ipc.DesktopDispatchTests.test_plain_reference_after_lost_ack_remains_uncertain) ... ok
+test_rewritten_rollout_cannot_reconcile (test_desktop_ipc.DesktopDispatchTests.test_rewritten_rollout_cannot_reconcile) ... ok
+test_busy_and_idle_require_lifecycle (test_desktop_ipc.RolloutTests.test_busy_and_idle_require_lifecycle) ... ok
+test_inherited_start_has_no_setting_overrides (test_desktop_ipc.RolloutTests.test_inherited_start_has_no_setting_overrides) ... ok
+test_overlapping_or_duplicate_starts_cannot_report_idle (test_desktop_ipc.RolloutTests.test_overlapping_or_duplicate_starts_cannot_report_idle) ... ok
+test_partial_and_unmatched_lifecycle_are_not_idle (test_desktop_ipc.RolloutTests.test_partial_and_unmatched_lifecycle_are_not_idle) ... ok
+test_unrelated_context_records_do_not_drop_tool_actions (test_desktop_ipc.RolloutTests.test_unrelated_context_records_do_not_drop_tool_actions) ... ok
+test_wrong_identity_is_rejected (test_desktop_ipc.RolloutTests.test_wrong_identity_is_rejected) ... ok
+test_frame_limit_precedes_body_read (test_desktop_ipc.WireTests.test_frame_limit_precedes_body_read) ... ok
+test_interrupt_cancels_and_drains_before_freeing_storage (test_desktop_ipc.WireTests.test_interrupt_cancels_and_drains_before_freeing_storage) ... skipped 'Windows overlapped-I/O contract'
+test_noise_cannot_extend_absolute_deadline (test_desktop_ipc.WireTests.test_noise_cannot_extend_absolute_deadline) ... ok
+test_unrelated_notification_then_exact_response (test_desktop_ipc.WireTests.test_unrelated_notification_then_exact_response) ... ok
+test_wrong_owner_response_rejected (test_desktop_ipc.WireTests.test_wrong_owner_response_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.040s
+
+OK (skipped=1)
