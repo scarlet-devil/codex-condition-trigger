@@ -1,0 +1,75 @@
+{
+  "accepted_once": true,
+  "actual_tool_output_verified": true,
+  "native_and_rollout_completion_match": true,
+  "marker_match": true,
+  "result": 346,
+  "inputs": [
+    137,
+    209
+  ],
+  "blob_bytes": 89,
+  "blob_sha256": "a9e4517d712939cfe7e34752f4a056e00535f4d787953676a0c61a841388fc82",
+  "manifest_bytes": 493,
+  "manifest_sha256": "00a09dc297c3f75acd6d679fef62dbd6f511f7f081ab048eff3c919d2ce245f2",
+  "manifest_matches_pre_send_database": true,
+  "settings_inherited_exact": [
+    "approval_policy",
+    "cwd",
+    "effort",
+    "model",
+    "sandbox_policy"
+  ],
+  "tools": {
+    "functions_exec_calls": 3,
+    "exec_command_success_outputs": 6,
+    "cmdlets": [
+      "Get-Content",
+      "Get-FileHash",
+      "Get-Item",
+      "Get-ChildItem"
+    ]
+  },
+  "hook": {
+    "same_turn_UserPromptSubmit": true,
+    "developer_continuity_message_visible": true,
+    "response_reads_hook": true,
+    "source_ack_not_performed_by_canary": true,
+    "general_effectiveness_claim": false
+  },
+  "native_duration_ms": 302607,
+  "business_delivery": false,
+  "alice_review": "review_pending",
+  "review_type": "Self-review S0; actual native acceptance evidence, not Alice acceptance",
+  "date": "2026-10-06",
+  "timezone": "Asia/Shanghai",
+  "actor": "Kelan",
+  "environment": "local Windows",
+  "implementation_head": "087c228c791ff494b4c15ae9eeeabedf4e344cb2",
+  "current_state_revisions": [
+    6,
+    8,
+    10
+  ],
+  "all_current_state_idle": true,
+  "native_start_requests": 1,
+  "original_chat_confirmed": true,
+  "synthetic_ack": "delivered",
+  "same_bytes_rescan_batches": 1,
+  "watcher_running": false,
+  "canary_STOP": true,
+  "periodic_automation": "PAUSED; Human setting preserved",
+  "production_code_changed": false,
+  "prior_tests_reused": {
+    "methods": 80,
+    "passed": 79,
+    "skipped": 1,
+    "source_manifest_exact": true
+  },
+  "private_evidence_hashes": {
+    "actual-dispatch.json": "babc6fc3f8a59abc5bd8ba927d11ac666ee00fa1130460139256ec7511333711",
+    "turn-evidence.json": "82e4ff9995d0ad46355750d475c6adef0f39782ffd5bd1eed0d77aaa1d7b9222",
+    "native-completion.json": "c32f2b4790d701ad5aa30efcf0dd1c211a83d3585ccce1cfed475b8f9c8729c8",
+    "pre-dispatch.sqlite": "73509dc06ab93149dbf64333bbc20eae7c9abaf5949a3f42a0f17eef9dcc1991"
+  }
+}
