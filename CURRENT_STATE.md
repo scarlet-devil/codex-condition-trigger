@@ -16,6 +16,12 @@ Latest Draft implementation: [owner diagnostic/waiting fixes and an explicit def
 
 Human's window preference: minimize manual interaction by scripting the same chat's dedicated-window opening and minimization; prefer native creation without foreground activation if a callable route exists. Existing reachable owners/windows should be reused. The native new-window entry and its current Windows behavior require local confirmation; standard handle-based minimization does not prove activation-free creation. See the review supplement. No window-automation script has been run in this cloud review.
 
+## Latest research — exact deep link and window selection
+
+The Human-supplied existing-chat ID is accepted by the installed UUID syntax and preserved in its internal /local route; a read-only app snapshot finds the exact local target. Normal deep links navigate the most recently active main/navigation window and do not request a dedicated one. Internal new-window messages explicitly show/focus; externally callable exact-window creation and HWND association remain unverified. A feature-gated sidebar Ctrl branch is a limited UI lead, not a verified title-click shortcut.
+
+See [Kelan’s capability/limitations report](docs/KELAN_DEEPLINK_WINDOW_RESEARCH_20261008.md). Nine isolated checks passed; zero live navigation, UI input, window creation/minimization or new model turns. No runtime code changed. This research is review_pending and does not establish zero-focus creation, cold recovery or unattended adoption.
+
 ## Operating boundary
 
 - Bounded supervised use requires the exact target to be loaded and proven idle.
