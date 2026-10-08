@@ -1,6 +1,6 @@
 # Current state
 
-Status: experimental candidate / Draft. Alice accepts both the prior single IPC trial and the 2026-10-08 supervised automatic watcher trial within their recorded scopes. No merge or production adoption.
+Status: experimental candidate / Draft. Alice accepts the prior IPC/watcher trials, default-off owner preparation and the supervised exact-chat window/minimization result within their recorded scopes. The Human now requests an on-demand window cycle with closure after verified completion; this cycle is not implemented or accepted. No merge or production adoption.
 
 ## Latest accepted evidence — 2026-10-08
 
@@ -14,7 +14,7 @@ After restart the target was notLoaded; discovery returned no-client-found. Open
 
 Latest Draft implementation: [owner diagnostic/waiting fixes and an explicit default-off loader interface](docs/KELAN_OWNER_LOADER_20261008.md). Final local suite: 101 tests, 100 pass, one environment skip. A bounded native read-only probe found the exact original target already idle; no new turn/window/load occurred. The new interface has no bundled window backend and is not connected to watcher auto-loading. Alice accepts this disabled interface preparation and the scoped diagnostic/waiting fixes after source review and 21/21 focused cloud tests. Unattended exact-chat window recovery remains unimplemented and unaccepted.
 
-Human's window preference: minimize manual interaction by scripting the same chat's dedicated-window opening and minimization; prefer native creation without foreground activation if a callable route exists. Existing reachable owners/windows should be reused. The native new-window entry and its current Windows behavior require local confirmation; standard handle-based minimization does not prove activation-free creation. See the review supplement. No window-automation script has been run in this cloud review.
+Human's latest window preference: on each trigger, check the exact chat's owner first; reuse idle, wait if busy, open a dedicated window only when definitely missing. Minimize during work, then close only the program-managed dedicated window after verified delivery and a fresh idle/identity check. Direct background opening remains a preference. This supersedes retaining a minimized window indefinitely as the proposed final lifecycle. See [the current cycle handoff](docs/ALICE_WINDOW_CYCLE_HANDOFF_20261008.md). No window actions have run in this cloud review.
 
 ## Latest research — exact deep link and window selection
 
@@ -24,11 +24,17 @@ See [Kelan’s capability/limitations report](docs/KELAN_DEEPLINK_WINDOW_RESEARC
 
 ## Latest supervised window probe — 2026-10-08
 
-Kelan executed Alice's one-window handoff at 356467e. The exact target sidebar context menu opened one new window; its own RootWebArea initialRoute matched the exact configured original chat. The identified window was minimized, the main initiating chat stayed selected, and fresh read-only IPC still found the same target/cwd idle (revision 14 → 16, same existing owner). Zero model turns, watcher starts or business ACKs. Window remains minimized for reuse.
+Kelan executed Alice's one-window handoff at 356467e. The exact target sidebar context menu opened one new window; its own RootWebArea initialRoute matched the exact configured original chat. The identified window was minimized, the main initiating chat stayed selected, and fresh read-only IPC still found the same target/cwd idle (revision 14 → 16, same existing owner). Zero model turns, watcher starts or business ACKs. At trial end the window was left minimized for reuse; no fresh cloud observation is implied.
 
-See [report](docs/KELAN_WINDOW_CHAIN_TRIAL_20261008.md) and [evidence](evidence/window-chain-trial-20261008.json). This local S0 result is implementation_ready / Alice review_pending. Visible foreground interruption occurred. The 28.857-second supervised observation interval is not a focus-duration benchmark. No cold recovery, owner creation/transfer or sustained retention claim. No bundled window backend or watcher auto-loading was added.
+See [report](docs/KELAN_WINDOW_CHAIN_TRIAL_20261008.md) and [evidence](evidence/window-chain-trial-20261008.json). Alice accepts this bounded local S0 result after S2-M0 transferred-evidence review of c78feb7159c5ec71e7ef0372171dfd73a9c5bd5a. Visible foreground interruption occurred. The 28.857-second supervised observation interval is not a focus-duration benchmark. No cold recovery, owner creation/transfer or sustained retention claim. No bundled window backend or watcher auto-loading was added.
 
-The operational loader still reuses an available owner. A later separately authorized implementation can use the demonstrated explicit menu and exact new-window route; do not substitute ordinary main-window deep-link navigation or force unload. Fixed isolated input was verified against the fetched 57-file Git tree; original checkout/prepared files remain preserved.
+The operational loader still reuses an available owner. The Human's latest request authorizes continuing the on-demand open/minimize/work/close implementation and bounded supervised validation on this Draft. The prior probe's retain-window/no-deliberate-close restriction does not govern this new cycle: a verified trial-owned window may be normally closed to observe its lifecycle. Do not substitute main-window deep-link navigation or terminate the application. Fixed isolated input was verified locally against the fetched 57-file Git tree; original checkout/prepared files remain preserved.
+
+## Next implementation — on-demand window cycle
+
+[Current Alice review and Kelan handoff](docs/ALICE_WINDOW_CYCLE_HANDOFF_20261008.md). Implement the demonstrated menu as a default-off bounded backend, integrate pre-send owner preparation, replace lifetime-once loading with durable per-cycle action claims, and close only the verified program-owned window after delivery plus fresh idle/identity checks. Failed/unknown opening must not reset on new input or restart; close failure must not undo delivered or resend. Existing-owner reuse never authorizes closing a user window.
+
+Current source has no bundled window backend or automatic close lifecycle; the loader is not called by the watcher. Current ACK records caller-verified delivery, so automatic business verification must not be inferred. Validate two successive synthetic batches using existing result checks; disclose any manual ACK. Query after close to establish whether owner remains or needs loading next time. No claim of cold recovery if the owner never becomes unavailable.
 
 ## Operating boundary
 
