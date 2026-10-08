@@ -1,25 +1,28 @@
 # Current state
 
-Status: experimental candidate / Draft. The prior single IPC trial has bounded Alice acceptance; the new supervised automatic watcher trial is implementation_ready / Alice review_pending. No merge or production adoption.
+Status: experimental candidate / Draft. Alice accepts both the prior single IPC trial and the 2026-10-08 supervised automatic watcher trial within their recorded scopes. No merge or production adoption.
 
-## Latest supervised evidence — 2026-10-08
+## Latest accepted evidence — 2026-10-08
 
-At input commit 05864a467d12b1480bdb901d2f0ae1d27dc84e12, one synthetic file was captured by WindowsApiObserver, stabilized and automatically dispatched by the unchanged live watcher into the exact original chat. One native start, zero manual dispatch calls. Actual tool reads and hashes, 173+284=457, native completion and inherited settings passed 27/27 evidence assertions. Synthetic ACK followed caller verification; post-stop duplicate-byte scans retained one batch. Watcher exited at 101.188 seconds and STOP was retained.
+At input 05864a467d12b1480bdb901d2f0ae1d27dc84e12, one synthetic file was captured by WindowsApiObserver, stabilized and automatically dispatched by the unchanged live watcher into the exact original chat. One native start, zero manual dispatch. Local actual-tool/hash checks, 173+284=457, native completion and inherited settings passed the recorded 27/27 evidence assertions; caller verification preceded synthetic ACK. The external supervisor requested normal watcher shutdown at about 101 seconds; its one-send/deadline guards are trial controls, not new product features.
 
-Opening the exact original chat was a prerequisite: after restart it was notLoaded and owner discovery returned no-client-found. The generic method/owner mismatch exception did not accurately name this condition. The operator opened the chat using native UI; current idle was then proven. No autonomous unloaded-chat recovery was added or accepted.
+Alice reviewed final evidence 4de66f288210f9410d3f3f5c17f00fd85de33734 and accepts this loaded-and-idle, single-file automatic watcher-to-turn result. Native evidence review is S2-M0; private raw Windows evidence was not reread in the cloud, and no application tests or native trial were rerun. See [Alice's review and next direction](docs/ALICE_SUPERVISED_WATCH_REVIEW_20261008.md), [local report](docs/KELAN_SUPERVISED_WATCH_TRIAL_20261008.md) and [sanitized trial evidence](evidence/supervised-watch-trial-20261008.json).
 
-[Trial report](docs/KELAN_SUPERVISED_WATCH_TRIAL_20261008.md) and [sanitized evidence](evidence/supervised-watch-trial-20261008.json) record the limits and provenance. Product/test source is unchanged; historical test counts are not new runs.
+## Owner availability and next work
 
-## Boundaries and next decision
+After restart the target was notLoaded; discovery returned no-client-found. Opening the exact original chat restored owner/idle. This is an owner-lifecycle prerequisite; the generic method/owner mismatch text obscures it. The same class of problem occurred in earlier native communication work. Prior deep-link tests established navigation and foreground effects with an already-loaded target, not automatic cold recovery.
 
-- Suitable candidate for bounded supervised use with the target already loaded and idle; not an unattended business monitor.
-- Original timer remains Human-paused; previous and current canary STOP markers remain. No watcher is left running.
-- Sustained operation, real business/external delivery, concurrent actors, unloaded-chat startup and future Desktop versions remain unaccepted.
-- Alice should review this specific automatic watcher-to-turn evidence. No further trial, model turn or adoption begins automatically.
+Next scoped Draft work: correct stage-specific diagnostics and prepare a disabled, separate original-chat loading interface with targeted offline checks. Reuse the native existing-thread navigation candidate only when an owner is missing; keep inspection read-only, revalidate identity/current owner/idle afterward, and preserve no replay of uncertain or already-sent batches. A genuine unloaded-to-ready observation remains the next distinct runtime question. No such recovery capability is currently implemented or accepted.
+
+## Operating boundary
+
+- Bounded supervised use requires the exact target to be loaded and proven idle.
+- Sustained unattended operation, real business/external delivery, concurrent actors, unloaded-chat startup and future Desktop versions remain unaccepted.
+- Original timer remains Human-paused; prior/current canary STOP markers remain. Local trial reports no watcher left running.
+- No new trial, navigation, model turn, deployment or adoption was started by Alice's review.
 
 ## Prior records
 
-- [Alice acceptance of prior single IPC stage](docs/ALICE_IPC_ACCEPTANCE_20261008.md).
-- [Prior native IPC canary](docs/KELAN_IPC_CANARY_20261006.md).
+- [Prior Alice single IPC acceptance](docs/ALICE_IPC_ACCEPTANCE_20261008.md).
 - [Runtime recovery and readiness](docs/KELAN_STATUS_AND_RECOVERY_20261008.md).
 - [Complete work log](WORK_LOG.md).
