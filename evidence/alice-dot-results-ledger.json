@@ -1,0 +1,119 @@
+{
+  "schema_version": 1,
+  "record_scope": "Alice cloud Dot research analysis; separate from Kelan production delivery ledger",
+  "setup_status": "paused_pending_model_configuration",
+  "recorded_at": "2026-10-08T15:01:17Z",
+  "source_repository_head": "64984a7b5c1e0e9a6927c384c90b74ca692cf960",
+  "folder": {
+    "file_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
+    "name": "40_REPORTS",
+    "parent_file_id": "1BEewRhn2j_zAVUw57obfX6TlLkRAhR6B",
+    "parent_name": "new-skill-merge",
+    "relationship_verified": true
+  },
+  "automation": {
+    "title": "精读小点成果",
+    "timing_mode": "condition_watch",
+    "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Shanghai:20261008T234821\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+    "timezone": "Asia/Shanghai",
+    "is_enabled": false,
+    "observed_updated_at": "2026-10-08T14:57:11.972027+00:00",
+    "last_run_time": null,
+    "next_run_time": null,
+    "requested_model": "GPT-6 Astra",
+    "requested_reasoning_effort": "max",
+    "observed_model": null,
+    "observed_reasoning_effort": null,
+    "model_configuration_status": "not_exposed_by_available_tools; task_UI_not_inspected"
+  },
+  "version_policy": {
+    "report_identity": [
+      "file_id",
+      "raw_content_sha256"
+    ],
+    "delivery_set_includes_evidence_hashes": true,
+    "metadata_is_not_content_identity": true,
+    "missing_evidence_remains_pending": true,
+    "native_document_export_format_must_be_recorded": true,
+    "exactly_once_guarantee": false
+  },
+  "local_trial_expires_at": "2026-10-10T13:11:50Z",
+  "local_trial_authorization_extended": false,
+  "items": [
+    {
+      "file_id": "1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P",
+      "name": "KELAN_DOT_CATCHUP_PRELIMINARY_20261008.md",
+      "observed_metadata": {
+        "size_bytes": 16898,
+        "modified_time": "2026-10-08T13:56:17.969Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "pending",
+      "raw_content_sha256": null,
+      "content_version_key": null,
+      "analysis_output": null,
+      "reviewed_at": null,
+      "related_prior_report_id": null,
+      "evidence": [
+        {
+          "file_id": "1RGCnIN2opLnf4Px-EDwHl78VSyl0LDUb",
+          "name": "KELAN_DOT_CATCHUP_MINIMAL_PACKAGE_20261008.zip",
+          "observed_size_bytes": 15497,
+          "observed_modified_time": "2026-10-08T14:01:40.459Z",
+          "raw_sha256": null,
+          "inspection": "metadata_only"
+        }
+      ],
+      "inspection": "readable_text_fetched_and_preliminarily_located; no_completed_fine_analysis"
+    },
+    {
+      "file_id": "1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B",
+      "name": "KELAN_R3_BLOCKED_ADDENDUM_20261008.md",
+      "observed_metadata": {
+        "size_bytes": 8351,
+        "modified_time": "2026-10-08T14:14:00.745Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "pending",
+      "raw_content_sha256": null,
+      "content_version_key": null,
+      "analysis_output": null,
+      "reviewed_at": null,
+      "related_prior_report_id": "1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P",
+      "evidence": [
+        {
+          "file_id": "1ZMbPVLEsRZqxE5FwVb3a5KLTNzku6Dfv",
+          "name": "KELAN_R3_BLOCKED_ADDENDUM_PACKAGE_20261008.zip",
+          "observed_size_bytes": 19302,
+          "observed_modified_time": "2026-10-08T14:14:10.134Z",
+          "raw_sha256": null,
+          "inspection": "metadata_only"
+        }
+      ],
+      "inspection": "readable_text_fetched_and_preliminarily_located; no_completed_fine_analysis"
+    },
+    {
+      "file_id": "1qgZgs3qmoXjP_p5WW--vvWJov99UPq3I",
+      "name": "KELAN_R3_CONTINUATION_SURVEY_20261008_579a8a32.md",
+      "observed_metadata": {
+        "size_bytes": 17264,
+        "modified_time": "2026-10-08T14:42:31.948Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "pending",
+      "raw_content_sha256": null,
+      "content_version_key": null,
+      "analysis_output": null,
+      "reviewed_at": null,
+      "related_prior_report_id": "1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B",
+      "evidence": [],
+      "inspection": "readable_text_fetched_and_preliminarily_located; no_completed_fine_analysis"
+    }
+  ],
+  "reviewed_delivery_sets": [],
+  "notes": [
+    "All source content hashes remain null until full raw bytes are obtained. Normalized readable text is not a raw byte identity.",
+    "No analysis run or end-to-end cloud delivery has been validated.",
+    "Third report states no separate ZIP for the four-input continuation; assess its actual cited evidence, not a universal ZIP requirement."
+  ]
+}

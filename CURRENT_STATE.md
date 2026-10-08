@@ -41,3 +41,11 @@ New window was foreground; invoke-to-minimize sample interval 8.552924 seconds. 
 Alice has reviewed the bounded two-batch cycle separately from unattended current-route and focus limits. F1 repair is accepted and that scoped review is complete; the new two-day trial scope is above. Wider product limits are not reopened as F1 repair gates. Local Kelan has started one temporary Windows live watcher; legacy timer PAUSED and historical canary STOPs remain. See [startup report](docs/KELAN_PRODUCTION_TRIAL_STARTUP_20261008.md) and its evidence. Backlog report/package and R3 addendum/package are all Drive readback verified. 1269 historical byte versions seeded; four new versions at launch scan remain for automatic intake. Alice trial review_pending. Existing business history, Hook config and exact binding must be preserved.
 
 启动后观察（2026-10-08T14:22:13.144911+00:00）：自动IPC接受事件1、当前批次状态['running']、关联turn1、业务核验交付0；人工dispatch0、窗口动作0。发现/接受不代替交付，继续由原任务按真实结果核验。
+
+## Alice cloud Dot results watcher — prepared, paused
+
+Human requested automatic fine analysis of Kelan's Dot research reports in new-skill-merge / 40_REPORTS with GPT-6 Astra / max. The task **精读小点成果** exists as an hourly condition watch and is **paused_pending_model_configuration**. The available task API has no model/reasoning fields; actual settings remain unknown. Configure the requested model and effort in the task UI before enabling. This is polling, not a Drive upload event trigger.
+
+Three report families (main backlog, R3 blocked addendum, and newly discovered R3 continuation) are queued as pending. No fine analysis has run, no raw source hashes have been verified by Alice, and no report is marked reviewed. See [watch specification](docs/ALICE_DOT_RESULTS_WATCH_20261008.md) and [analysis ledger](evidence/alice-dot-results-ledger.json).
+
+This separate cloud task does not extend the local trial deadline or modify production ACK/state. Local startup and new deadline implementation remain Alice review_pending; prior F1 acceptance is unchanged. Cloud analysis may continue for later deliveries until Human pauses it. Existing local expiry and cloud expiry-check task remain independent.
