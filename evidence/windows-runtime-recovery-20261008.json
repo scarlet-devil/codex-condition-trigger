@@ -1,0 +1,71 @@
+{
+  "schema": "kelan-runtime-recovery-public-v1",
+  "date": "2026-10-08",
+  "author": "Kelan",
+  "deployment": "local Windows",
+  "review_type": "S0",
+  "candidate_input": "da76e78f31cbf58f36f9d7040e2f2d4d672dcf66",
+  "tested_implementation": "087c228c791ff494b4c15ae9eeeabedf4e344cb2",
+  "scope": "status documentation and sanitized runtime-recovery evidence; no new IPC trial",
+  "single_ipc_stage": "Alice accepted; closed",
+  "overall_candidate": "Draft; no production adoption",
+  "runtime_before": {
+    "error": "helper_unknown_error / setup refresh had errors",
+    "native_cause": "active node_repl.exe root-only ACL open: Windows error 32",
+    "current_window_js_reset": "did not restore ordinary exec",
+    "upstream_matching_fix": "dd12f892f1b857e5161abd33a2967125b265d550",
+    "installed_fix_claim": false
+  },
+  "runtime_after": {
+    "at": "2026-10-08T02:20:33.792770+00:00",
+    "execution": "exec_command default sandbox; no escalation",
+    "read": true,
+    "exclusive_write_and_readback": true,
+    "exact_owned_probe_cleanup": true,
+    "python_child_process": "346",
+    "probe_sha256": "3f688f23c8269d515c9cf7d8425ac65423783ef548a2d78b872290a584fb8bc4",
+    "status": "current_session_operational",
+    "limits": "No long-running or recurrence claim; no Desktop upgrade claimed."
+  },
+  "config": {
+    "bytes_changed_since_prior_observation": true,
+    "windows_sandbox": "elevated",
+    "modified_by_this_task": false,
+    "prior_full_config_available": false,
+    "author_and_cause": "not established"
+  },
+  "protected_governance_git_access": "approved read-only escalation required; distinct from process-creation failure",
+  "source_hashes": {
+    "restart-probe-receipt.json": "b4513bf56af110135eb17ea7b77a01a6910c9c8810b7a85c22ea0975cf99e6a6",
+    "restart-config-observation.json": "2414c7ed7b7aa66ed6210121f831e5b9108c1e111121972bc64c9fd8a699f480",
+    "runtime-diagnosis.json": "73c8db9c563338655b3496232c782f5164ed49f830ac43f8d84b57c60f5ae8ab",
+    "restart-ack-readback.json": "645f353a694e6bee933414eb05f18d7ad9f2692c22eff2a380be05d656078658",
+    "sandbox-error-excerpts.json": "1ed90bcf8b52317a67ac58079bbabea8a9cd1e0231af12684e0c16c3e78f077a"
+  },
+  "preserved": {
+    "business_state": true,
+    "original_timer": "PAUSED",
+    "canary_STOP": true,
+    "hook_config_and_binding": true,
+    "hook_eight_source_files": true
+  },
+  "not_tested": [
+    "live watcher directly dispatching without manual dispatch",
+    "sustained unattended operation",
+    "real business delivery",
+    "current updated Desktop IPC compatibility",
+    "future-version compatibility",
+    "permanent nonrecurrence"
+  ],
+  "redactions": [
+    "private session/target identifiers",
+    "private absolute paths",
+    "raw database and transcript",
+    "identity files",
+    "credentials"
+  ],
+  "tests_not_rerun": [
+    "Windows 80 methods: 79 pass, 1 skip",
+    "Alice cloud 14 focused: all pass"
+  ]
+}

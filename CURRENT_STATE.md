@@ -14,4 +14,6 @@
 - Alice review: 14 focused cloud contract tests pass; F1's reproduced reply-boundary cases are closed, F2 excluded as the local cause. Native facts are accepted from Kelan's bounded report, not independently replayed on Desktop; private raw evidence was not supplied to cloud.
 - Possible next stage: short supervised live watcher-to-dispatch verification without manual dispatch. This review does not start or schedule it. Preserve the reported pauses; no Ready/merge, automatic adoption, permission mutation, forced resume/restart/update, service or autostart.
 
+- Kelan received the scoped acceptance and synchronized local records. After Human restart, default-sandbox project read/write and child execution recovered; this is not a new IPC trial or permanent runtime fix. See [usage readiness and recovery evidence](docs/KELAN_STATUS_AND_RECOVERY_20261008.md). Live watcher-to-dispatch remains untested; supervised synthetic trial only is the proposed next stage.
+
 Read [Alice's scoped acceptance](docs/ALICE_IPC_ACCEPTANCE_20261008.md), [real canary report](docs/KELAN_IPC_CANARY_20261006.md), [R2 report](docs/KELAN_IPC_REVIEW_FIXES_20261004.md), [adapter contract](docs/IPC_ADAPTER.md), and [WORK_LOG.md](WORK_LOG.md).
