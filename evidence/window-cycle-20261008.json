@@ -1,0 +1,299 @@
+{
+  "schema": 1,
+  "author": "Kelan",
+  "deployment": "local",
+  "input_commit": "b8225af531d6da73f69dbd7dfc7d88a6b769f443",
+  "status": "implementation_ready / review_pending",
+  "review_type": "local self review plus controlled implementation review; Alice pending",
+  "started_at": "2026-10-08T10:04:37.809874+00:00",
+  "finished_at": "2026-10-08T10:08:02.165615+00:00",
+  "elapsed_seconds": 204.359,
+  "installation": {
+    "version": "26.1002.7124.0",
+    "asar_sha256": "76fe7078248c00e4e03dd2177a4275ec9ce158a9dd43452a4f0427d39a4ed012"
+  },
+  "windows": {
+    "opened": 1,
+    "minimized": 1,
+    "normal_closed": 1,
+    "main_chat_preserved_at_checks": true,
+    "owner_after_close": "available",
+    "second_batch": "reuse",
+    "initial_owner": "already_loaded_idle",
+    "explicit_direct_backend_probe": true,
+    "cold_recovery_verified": false,
+    "supervised_no_navigation": true,
+    "independent_current_route_available": false,
+    "new_window_was_foreground": true,
+    "foreground_immediately_after_minimize_still_new": true,
+    "open_invoke_to_minimize_sample_seconds": 8.552924,
+    "zero_focus_verified": false,
+    "focus_restore_latency_verified": false
+  },
+  "batches": [
+    {
+      "batch": 1,
+      "left": 174,
+      "right": 285,
+      "result": 459,
+      "actual_tool_calls": 2,
+      "successful_commands": 4,
+      "native_starts": 1,
+      "manual_dispatches": 0,
+      "immutable_blob_bytes": 93,
+      "immutable_blob_sha256": "1062c00e84c2e5eb6cd7831b3e4815441e3b312fab27d63a8bfac3746e42e4f5",
+      "manifest_bytes": 456,
+      "captured_after_write_seconds": 2.188,
+      "settings_inherited": true,
+      "caller_verified_ACK": true
+    },
+    {
+      "batch": 2,
+      "left": 175,
+      "right": 286,
+      "result": 461,
+      "actual_tool_calls": 2,
+      "successful_commands": 2,
+      "native_starts": 1,
+      "manual_dispatches": 0,
+      "immutable_blob_bytes": 93,
+      "immutable_blob_sha256": "c9be4c744b2824c4e54b37a93b044e1270606a2dbb27d8bce9152cc4fdbb37ee",
+      "manifest_bytes": 456,
+      "captured_after_write_seconds": 2.093,
+      "settings_inherited": true,
+      "caller_verified_ACK": true
+    }
+  ],
+  "tests": {
+    "total": 119,
+    "passed": 118,
+    "skipped": 1,
+    "skip_reason": "Windows symlink privilege"
+  },
+  "checks": [
+    {
+      "name": "two_cycles_stopped_normally",
+      "passed": true
+    },
+    {
+      "name": "two_exact_distinct_sends_zero_manual_dispatch",
+      "passed": true
+    },
+    {
+      "name": "two_verified_synthetic_deliveries",
+      "passed": true
+    },
+    {
+      "name": "single_open_and_close",
+      "passed": true
+    },
+    {
+      "name": "exact_created_route_and_title",
+      "passed": true
+    },
+    {
+      "name": "new_window_not_main",
+      "passed": true
+    },
+    {
+      "name": "native_IsIconic_after_minimize",
+      "passed": true
+    },
+    {
+      "name": "native_normal_close_confirmed_absent",
+      "passed": true
+    },
+    {
+      "name": "main_chat_unchanged_at_open_and_close",
+      "passed": true
+    },
+    {
+      "name": "forefront_window_was_new_before_minimize",
+      "passed": true
+    },
+    {
+      "name": "close_after_first_verified_receipt",
+      "passed": true
+    },
+    {
+      "name": "second_send_after_first_close",
+      "passed": true
+    },
+    {
+      "name": "next_cycle_reused_surviving_owner",
+      "passed": true
+    },
+    {
+      "name": "real_windows_event_observer",
+      "passed": true
+    },
+    {
+      "name": "batch_1_raw_hash",
+      "passed": true
+    },
+    {
+      "name": "batch_1_tool_call_correlated_0",
+      "passed": true
+    },
+    {
+      "name": "batch_1_command_0_successful",
+      "passed": true
+    },
+    {
+      "name": "batch_1_command_1_successful",
+      "passed": true
+    },
+    {
+      "name": "batch_1_tool_call_correlated_2",
+      "passed": true
+    },
+    {
+      "name": "batch_1_command_2_successful",
+      "passed": true
+    },
+    {
+      "name": "batch_1_command_3_successful",
+      "passed": true
+    },
+    {
+      "name": "batch_1_actual_tool_execution",
+      "passed": true
+    },
+    {
+      "name": "batch_1_correlated_complete",
+      "passed": true
+    },
+    {
+      "name": "batch_1_native_identity_idle",
+      "passed": true
+    },
+    {
+      "name": "batch_1_terminal_ACK_hash",
+      "passed": true
+    },
+    {
+      "name": "batch_1_captured_before_compensation_rescan",
+      "passed": true
+    },
+    {
+      "name": "batch_2_raw_hash",
+      "passed": true
+    },
+    {
+      "name": "batch_2_tool_call_correlated_0",
+      "passed": true
+    },
+    {
+      "name": "batch_2_command_0_successful",
+      "passed": true
+    },
+    {
+      "name": "batch_2_tool_call_correlated_1",
+      "passed": true
+    },
+    {
+      "name": "batch_2_command_1_successful",
+      "passed": true
+    },
+    {
+      "name": "batch_2_actual_tool_execution",
+      "passed": true
+    },
+    {
+      "name": "batch_2_correlated_complete",
+      "passed": true
+    },
+    {
+      "name": "batch_2_native_identity_idle",
+      "passed": true
+    },
+    {
+      "name": "batch_2_terminal_ACK_hash",
+      "passed": true
+    },
+    {
+      "name": "batch_2_captured_before_compensation_rescan",
+      "passed": true
+    },
+    {
+      "name": "protected_business_state",
+      "passed": true
+    },
+    {
+      "name": "protected_hooks",
+      "passed": true
+    },
+    {
+      "name": "protected_binding",
+      "passed": true
+    },
+    {
+      "name": "protected_automation",
+      "passed": true
+    },
+    {
+      "name": "all_three_trial_STOPs_present",
+      "passed": true
+    },
+    {
+      "name": "unit_suite_119_118_pass_1_skip",
+      "passed": true
+    }
+  ],
+  "manual_business_receipt_dependency": true,
+  "unattended_current_chat_close_accepted": false,
+  "original_timer": "PAUSED",
+  "production_adoption": false,
+  "alice_review": "review_pending",
+  "private_evidence_sha256": {
+    "cycle-trace.private.json": "ebda9f1f7e4b2b47da587445c85f6a7026aef7a2b4956b1bd757d21a74123927",
+    "supervised_cycle.py": "293478d7ae2a5c3769530bad0e98524ae905e20630766bfcac51585fff2b1071",
+    "tests-final.txt": "b81f3c81af7ea217a1ee3c3e7f066a76cd6b2a81c939d5ee1d0a165e7190a0ea",
+    "ack-race-red.txt": "5a61543284fee3fb534600c31805221d634b88f967391de9a2617db807355867",
+    "ack-race-green.txt": "6c7f6b975b20fad00744433c5c5ec0f0d6e68ad61f6dee590f7ee088eb83006a",
+    "late-ack-red.txt": "99b8e9ed9ddebd52ab6792f65a1387e4b98b10f81a4b20628008a365fd63c1a7",
+    "tests-post-final.txt": "11761e10091ea4cee3047bcede1721feeb23b3ad8ed9f9bd288ea909dd8a9406",
+    "deadline-red.json": "92ccc42b1566ac92399f2004b2902f87bdd2bc94fc7428f73d40948fc31d963c",
+    "deadline-green.json": "578235be17b5ea8709b3bee5bf5bc555e308dddf49ddd45ec6171b83f264e6f8"
+  },
+  "live_source_sha256": {
+    "trigger.py": "a640b359b5834fd89e3b70f98f0753d98cfb121f574b7d37bf5095f3b9f45ada",
+    "owner_loading.py": "fa369bce24deba4e1503afa13e8bcd71a346c85173b77d50d42a9a519cb1785e",
+    "windows_window_backend.ps1": "89879618295b3bf08f438dc5dac07baa22a2fc216883b4ba166f5e8f169300cc",
+    "desktop_ipc.py": "cd65ad074678e8712109d309205d9e2360085164e6dcc93d3de7045b1811de46",
+    "chat_adapters.py": "6b513d1d447af390c07bb4b370601271e0d30921a2c0b0f462c7a7efd2734e76"
+  },
+  "final_runtime_sha256": {
+    "trigger.py": "99c2e4eee8ba26c43795a327ee1509d0cfadcc70a8c2c95e46a29d1ae77848f1",
+    "owner_loading.py": "fa369bce24deba4e1503afa13e8bcd71a346c85173b77d50d42a9a519cb1785e",
+    "windows_window_backend.ps1": "31de19805aeca7d58468305990346ed6555d533bbfba814272ddb71366348de7",
+    "desktop_ipc.py": "cd65ad074678e8712109d309205d9e2360085164e6dcc93d3de7045b1811de46",
+    "chat_adapters.py": "6b513d1d447af390c07bb4b370601271e0d30921a2c0b0f462c7a7efd2734e76"
+  },
+  "post_trial_change": {
+    "path": "windows_window_backend.ps1",
+    "change": "BeforeAction now also rejects expired supervision before every side effect",
+    "expired_before_fix_blocked": false,
+    "expired_after_fix_blocked": true,
+    "unexpired_after_fix_allowed": true,
+    "validation": "isolated actual function extraction plus PowerShell syntax; zero additional native UI",
+    "new_live_trial_after_change": false,
+    "line_ending_normalization": "Changed publication files normalized CRLF to LF; no runtime semantics changed by newline normalization."
+  },
+  "controlled_review": {
+    "deployment": "local",
+    "identity": "Kelan-controlled reviewer",
+    "independence": "S1-M1 for code/tests; not Alice review",
+    "findings": [
+      "ACK selecting next batch before cleanup: fixed",
+      "ACK before lost-acceptance correlation: rejected until worker reconciliation",
+      "disable flag bypassing unclosed cycle: fixed",
+      "current route unavailable: supervision-only limitation retained",
+      "deadline could elapse between actions: BeforeAction gate added"
+    ],
+    "focused_tests_passed": 39,
+    "native_actions": 0,
+    "final_deadline_fix_independently_confirmed": true
+  },
+  "source_hash_byte_domain": "Exact local Windows worktree bytes; inherited source line endings may differ from canonical Git blobs. SHA256SUMS.json covers staged Git blobs."
+}

@@ -65,6 +65,13 @@ def load_config(path):
             raise ValueError(f"{k} must be boolean")
     if not isinstance(c.setdefault("owner_loading_enabled", False), bool):
         raise ValueError("owner_loading_enabled must be boolean")
+    command = c.get("window_backend_command", [])
+    if not isinstance(command, list) or not all(isinstance(x, str) and x for x in command):
+        raise ValueError("window_backend_command must be a non-empty-string argv array")
+    if not isinstance(c.get("window_backend_options", {}), dict):
+        raise ValueError("window_backend_options must be an object")
+    if not isinstance(c.get("window_timeout_seconds", 30), (int, float)) or not 0 < c.get("window_timeout_seconds", 30) <= 120:
+        raise ValueError("window_timeout_seconds must be within (0, 120]")
     adapter = c.setdefault("chat_adapter", "jsonl_queue")
     if adapter not in ("jsonl_queue", "desktop_ipc"):
         raise ValueError("unknown chat_adapter")
@@ -269,9 +276,12 @@ class Store:
         return batch_id
 
     def acknowledge(self, batch_id, evidence):
-        row = self.db.execute("SELECT state FROM batches WHERE id=?", (batch_id,)).fetchone()
+        row = self.db.execute("SELECT state,turn_id FROM batches WHERE id=?", (batch_id,)).fetchone()
         if not row or row[0] not in ("accepted", "queued", "running", "completed", "failed", "uncertain"):
             raise ValueError("ack requires a dispatched batch and checked business-delivery evidence")
+        cycle = self.db.execute('SELECT v FROM meta WHERE k=?', ('window_cycle:' + batch_id,)).fetchone()
+        if cycle and not row['turn_id']:
+            raise ValueError('window cycle ACK requires a correlated turn; let the worker reconcile first')
         p = Path(evidence).resolve()
         if not p.is_file() or p.stat().st_size == 0:
             raise ValueError("evidence must be a non-empty local file")
@@ -343,14 +353,20 @@ def dispatch_prompt(store, row):
             "delivery. A completed model turn alone does not count as delivery.")
 
 
-def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None):
+def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None, expected_batch_id=None):
     """One outstanding batch. Adapters cannot commit business delivery."""
     c = store.c
     if store.paused():
         return "paused"
     if not c["owner_verified"]:
         raise ValueError("owner_verified is false; complete the local ownership/tool probe")
-    rows = [r for r in store.rows() if r["state"] != "delivered"]
+    rows = store.rows()
+    if expected_batch_id is not None:
+        rows = [r for r in rows if r['id'] == expected_batch_id]
+        if not rows or rows[0]['state'] == 'delivered':
+            return 'delivered'  # concurrent ACK: cleanup before selecting another batch
+    else:
+        rows = [r for r in rows if r['state'] != 'delivered']
     if not rows:
         return "quiet"
     row = rows[0]
@@ -448,7 +464,9 @@ def run(store, live=False, stop_event=None):
                         delay = min(delay, remaining)
                 next_scan = now + max(0.05, delay)
             if live and now >= next_dispatch:
-                dispatch_one(store)
+                from owner_loading import cycle_tick
+                result = cycle_tick(store)
+                emit("cycle_tick", state=result)
                 next_dispatch = now + 10
             stop_event.wait(0.1)
     finally:
@@ -514,7 +532,8 @@ def main():
         elif args.command == "status":
             emit("status", paused=s.paused(), batches=[{k: r[k] for k in ("id", "state", "submission", "turn_id", "detail")} for r in s.rows()])
         elif args.command == "dispatch":
-            emit("dispatch", state=dispatch_one(s))
+            from owner_loading import cycle_tick
+            emit("dispatch", state=cycle_tick(s))
         elif args.command == "ack":
             s.acknowledge(args.batch_id, args.evidence)
         elif args.command == "seed":

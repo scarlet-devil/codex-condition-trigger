@@ -1,5 +1,6 @@
 """Synthetic owner recovery checks. No native IPC or window actions."""
 import unittest
+from types import SimpleNamespace
 from unittest import mock
 
 import desktop_ipc as ipc
@@ -63,10 +64,12 @@ class OwnerLoadingTests(DesktopDispatchTests):
     def load(self, **kwargs):
         self.loads.append(kwargs)
         self.missing = False
+        return {'token': 'synthetic-lease', 'thread_id': self.config['thread_id']}
 
     def prepare_owner(self, loader=None):
-        from owner_loading import prepare_owner
-        return prepare_owner(self.store, loader=loader, client_factory=lambda timeout: self.client())
+        from owner_loading import WindowCycles
+        backend = SimpleNamespace(open=loader) if loader else None
+        return WindowCycles(self.store, backend, self.adapter).step()
 
     def test_owner_wait_survives_restart_without_spending_connection_budget(self):
         for n in range(8):
@@ -127,10 +130,10 @@ class OwnerLoadingTests(DesktopDispatchTests):
         def failure(**kwargs):
             self.loads.append(kwargs)
             raise OSError('private backend detail')
-        self.assertEqual(self.prepare_owner(failure), 'loader_failed')
+        self.assertEqual(self.prepare_owner(failure), 'window_open_unknown')
         self.reopen()
         self.ready(b'new file event')
-        self.assertEqual(self.prepare_owner(self.load), 'loader_budget_exhausted')
+        self.assertEqual(self.prepare_owner(self.load), 'window_reconciliation_required')
         self.assertEqual(len(self.loads), 1)
         self.assertEqual(self.sent, [])
 

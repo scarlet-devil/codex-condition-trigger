@@ -10,9 +10,9 @@
 2026-10-08 新增一次短时监督自动监听试验：一个合成文件由真实 Windows watcher 自动投递，无手动 dispatch；实际工具、173+284=457、设置继承和合成回执核验通过，由外层监督器在约 101 秒后通知正常停止。Alice 已复审最终证据并限定接受，见[复审与原聊天加载方向](docs/ALICE_SUPERVISED_WATCH_REVIEW_20261008.md)。重启后需先在原生界面打开目标聊天，未验收无人值守加载或正式业务运行。见[监督试验报告](docs/KELAN_SUPERVISED_WATCH_TRIAL_20261008.md)。
 
 
-2026-10-08 加载准备：无 owner 改为持久等待；新增默认关闭的显式 `owner_loading.prepare_owner` 接口。当前没有内置开窗后端，也未接入 watcher 自动加载。一次加载预算跨重启保留，禁止已发送/不明批次加载重发。最终 101 项测试中 100 通过、1 条环境跳过；实际只读探针发现原聊天已 idle，零新任务。见[给爱丽丝的本轮报告](docs/KELAN_OWNER_LOADER_20261008.md)。加载准备与窗口调查已获 Alice 限定接受，前次云端 21 项定点检查通过。随后本机一次明确菜单开窗、准确新窗口绑定、最小化及 fresh IPC 查询也获限定接受；27 项是转交的证据断言，不是新增应用测试。当前尚无可部署的窗口后端。
+2026-10-08 早期默认关闭的加载准备、准确菜单开窗与最小化试验已获 Alice 限定接受，见[历史报告](docs/KELAN_OWNER_LOADER_20261008.md)。当前后续实现已用逐批 WindowCycles 替代原永久一次 prepare_owner 接口，接入 watcher，并提供一个监督限定的 Windows 后端。
 
-红魔最新要求：每次触发先检查 owner，空闲则复用、忙碌则等待、确实缺失才另开专窗；执行中最小化，核验结果并登记回执后关闭自有专窗。下一步实现逐轮加载额度、窗口归属与自动收尾，并验证两个连续批次，见[最新复审和循环实现交接](docs/ALICE_WINDOW_CYCLE_HANDOFF_20261008.md)。此循环尚未实现或验收；当前 ACK 仍由调用者核验后登记，未声称全程无人值守。
+红魔要求的逐批循环已完成候选实现和两个连续合成批次的监督试验：1次新开/最小化/正常关闭，2次原生发送、0次手动dispatch，关闭后owner仍在而直接复用。新结果等待 Alice 复审，见[详细报告与未解决项](docs/KELAN_WINDOW_CYCLE_20261008.md)。当前 ACK 仍由调用者核验；任意导航后的准确当前聊天识别和无人值守关闭尚未解决，整体默认关闭、Draft。
 
 ## 用途
 
@@ -126,6 +126,16 @@ JSONL 说明见 [本机接入与回执](docs/INTEGRATION.md)，实验 Windows �
 | 一个未交付批次阻止后续投递 | 业务失败续接仍需现有工作流处理，不能无人值守无限推进 |
 
 ## 测试
+
+### 实验窗口循环（默认关闭）
+
+Windows Desktop IPC 的 `run --live` / `dispatch` 已接入逐批准备和交付后清理。空闲 owner 复用、忙碌等待、明确缺失才开窗；下一批须等上一轮清理确认。旧 `owner_load_attempt:*` claim 保留待人工对账，不自动迁移或删除。`status` 的批次 delivered 只代表调用者 ACK，窗口阶段另保存在 `meta` 的 `window_cycle:<batch_id>`。
+
+`owner_loading_enabled` 默认 false。配置 `window_backend_command` 为无 shell 展开的 argv；`windows_window_backend.ps1` 需要 Windows UI Automation、明确主 HWND、当前安装可执行文件路径、准确目标标题和菜单名。其 JSON 参数格式及试验边界见 [窗口循环报告](docs/KELAN_WINDOW_CYCLE_20261008.md)。不要把示例零 UUID 或任意标题当成准确归属。
+
+**当前 Windows 后端只支持有截止时间的人工监督、不导航试用。** UIA initialRoute 是创建时路由，当前标题不能排除同名导航；因此后端要求操作者明确登记最长 600 秒的 `supervised_no_navigation_until`，并在每个副作用前检查截止时间与 STOP。这项登记不检测或强制用户不导航，也不构成无人值守的当前聊天身份验证。过期或结果不明保留清理状态，不重开、不重发。真实业务仍由调用者核验并 ACK；关联 turn 尚未对账时先拒绝循环 ACK。未合并、安装或恢复正式调度。
+
+后端返回的 lease 包含真实 HWND、进程启动信息和独有窗口属性 token，不能用 Computer Use 的 opaque ID 替代。仅关闭本次创建并在监督范围内复核的专窗；旧窗口和复用 owner 的用户窗口不获得关闭权。正常关闭使用 WM_CLOSE，不退出主应用。
 
 ```bash
 python -m unittest discover -s tests -v
