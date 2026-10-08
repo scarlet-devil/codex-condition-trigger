@@ -4,6 +4,10 @@ from pathlib import Path
 import sys
 import time
 
+# Match the proxy's UTF-8 JSONL contract even under a Windows legacy locale.
+sys.stdin.reconfigure(encoding='utf-8')
+sys.stdout.reconfigure(encoding='utf-8')
+
 p = Path(sys.argv[1])
 state = json.loads(p.read_text())
 for line in sys.stdin:

@@ -1,0 +1,168 @@
+{
+  "schema": "owner-loader-preparation-v1",
+  "date": "2026-10-08",
+  "author": "Kelan",
+  "deployment_environment": "local",
+  "base_commit": "ef7852d74552e8533759dc90609666c76eb3b815",
+  "status": "implementation_ready / review_pending; window backend unavailable",
+  "source_files": {
+    "desktop_ipc.py": {
+      "bytes": 26540,
+      "sha256": "5adbbc5770f3cf789e02e373a65b88387faa653b0450bdd2d1b6ef41df1ad30c"
+    },
+    "trigger.py": {
+      "bytes": 24580,
+      "sha256": "9a37842b79974d75566502d1c2c89939bd49d80768ed9baa172c017c1bb4d6fe"
+    },
+    "owner_loading.py": {
+      "bytes": 2995,
+      "sha256": "aadfb66b79c05a1edddcfdb3e914817c283e0afaa771c471c75fd0bd74659ae4"
+    },
+    "tests/test_owner_loading.py": {
+      "bytes": 9512,
+      "sha256": "94edb586efe0f3b1ac75f1defb0f109b24d3a0385f26022d0bf09f695138bb3b"
+    },
+    "tests/fake_owner.py": {
+      "bytes": 1671,
+      "sha256": "df5edb419844c1b20a8ad42b8427b6c6e498740167c80344f3907386b95c0c27"
+    }
+  },
+  "tests": {
+    "initial_red": {
+      "run": 16,
+      "failures": 0,
+      "errors": 14,
+      "skipped": 0,
+      "success": false,
+      "seconds": 1.359000000054948,
+      "pattern": "test_owner_loading.py"
+    },
+    "focused_green_before_review": {
+      "run": 19,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "success": true,
+      "seconds": 1.8589999999385327,
+      "pattern": "test_owner_loading.py"
+    },
+    "review_regression_red": {
+      "run": 21,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "success": false,
+      "seconds": 2.062999999965541,
+      "pattern": "test_owner_loading.py"
+    },
+    "final_suite": {
+      "run": 101,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 1,
+      "success": true,
+      "seconds": 10.35999999998603,
+      "pattern": "test*.py"
+    },
+    "skip_reason": "Windows symlink creation permission; not treated as pass",
+    "initial_full_suite_failure": "legacy-locale fake_owner stdin decoded UTF-8 JSONL incorrectly; fixture now explicit UTF-8"
+  },
+  "native_observation": {
+    "kind": "read_only_exact_original_target",
+    "status": "idle",
+    "methods": [
+      "initialize",
+      "thread-owner-discovery",
+      "thread-stream-following-changed",
+      "thread-follower-load-complete-history",
+      "thread-stream-following-changed",
+      "thread-stream-following-changed"
+    ],
+    "start_turn_count": 0,
+    "loader_calls": 0,
+    "new_window_count": 0,
+    "cold_recovery": "not tested: owner already available",
+    "ordinary_sandbox_probe": "transport denied, no frames written; authorized scoped probe succeeded",
+    "package": "OpenAI.Codex_26.1002.7124.0_x64",
+    "archive_sha256": "76fe7078248c00e4e03dd2177a4275ec9ce158a9dd43452a4f0427d39a4ed012"
+  },
+  "installed_source_findings": {
+    "main_bundle": ".vite/build/main-p91kJShj.js",
+    "main_sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889",
+    "open_in_new_window_character_offset": 3341153,
+    "new_window_handler": "renderer-to-host message; validates route; creates window; restores/shows/focuses it",
+    "background_character_offsets": [
+      3715840,
+      3759821
+    ],
+    "background_limitation": "startup/nonactivating primitives found; external exact-chat new-window path not established",
+    "public_sources": [
+      "https://learn.chatgpt.com/docs/reference/commands#deep-links",
+      "https://learn.chatgpt.com/docs/reference/settings#keep-a-chat-near-your-work",
+      "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow"
+    ]
+  },
+  "ui_probe": {
+    "scope": "one returned Codex package window; read state, then one File-menu click",
+    "limitation": "selected main chat changed during observation; cause not established; no subsequent action",
+    "no_claims": [
+      "main window unchanged",
+      "exact target new window",
+      "minimized owner retention",
+      "activation-free creation"
+    ]
+  },
+  "operating_contract": {
+    "inspect": "read-only",
+    "default_owner_loading_enabled": false,
+    "interface": "owner_loading.prepare_owner(store, loader=None, client_factory=None)",
+    "automatic_watcher_integration": false,
+    "bundled_window_backend": false,
+    "load_budget": "one durable claim per target/state store, before callback; no automatic reset",
+    "budget_is": "action-count limit; backend must honor timeout, not enforced thread cancellation",
+    "callback_input": [
+      "thread_id",
+      "expected_cwd",
+      "timeout_seconds"
+    ],
+    "waiting_owner": "ready dispatch state + detail waiting_owner + 30-second read-only recheck",
+    "old_blocked_batches": "not automatically migrated/reset",
+    "no_reload_for": [
+      "accepted",
+      "queued",
+      "running",
+      "completed",
+      "failed",
+      "uncertain",
+      "sending",
+      "ready with persisted intent"
+    ]
+  },
+  "privacy": "no raw session, chat identifiers, HWND, personal paths, settings, credentials or kernel files included",
+  "review": "new implementation awaits Alice; previous accepted trials retain their original scope",
+  "code_review": {
+    "context": "independent local task",
+    "independence": "S1/M1",
+    "scoped_passes": 19,
+    "fix_verification_passes": 2,
+    "extra_boundary_checks": 2,
+    "finding": "P2 owner missing during snapshot read consumed connection budget; reproduced then closed",
+    "unresolved_material_findings": 0,
+    "files_sha256": {
+      "desktop_ipc.py": "5adbbc5770f3cf789e02e373a65b88387faa653b0450bdd2d1b6ef41df1ad30c",
+      "owner_loading.py": "aadfb66b79c05a1edddcfdb3e914817c283e0afaa771c471c75fd0bd74659ae4",
+      "trigger.py": "9a37842b79974d75566502d1c2c89939bd49d80768ed9baa172c017c1bb4d6fe",
+      "tests/test_owner_loading.py": "94edb586efe0f3b1ac75f1defb0f109b24d3a0385f26022d0bf09f695138bb3b",
+      "tests/fake_owner.py": "df5edb419844c1b20a8ad42b8427b6c6e498740167c80344f3907386b95c0c27"
+    },
+    "alice_acceptance": false
+  },
+  "private_evidence_hashes": {
+    "red.txt": "dfbcb8cb799e223af3cb1569f0718d4f30a3a8ed13e643d285868c9695c87ac2",
+    "review-red.txt": "87170320dbc8f0512271a5af6edd4a814951ac23e638d01461c754763a58c67b",
+    "final-suite.txt": "fec36709b2b211771d7532ccea0c129a7340bba9e3d892eb740ff27c87fb4118",
+    "native-probe.json": "a4dc83019a2e2f26a375daf6b01d391f036406213b27812514a8f7c315f4e8cc",
+    "installed-loader-sources.json": "d9660a5f1978732a4401f57c5adc71d5c1c2a149338ae908a63f3a77abc6e749",
+    "entry-contract.json": "313f28799bbeb0f7d4a30d213967ca1203dc0c264f88c70df05eaec6869c404e"
+  }
+}

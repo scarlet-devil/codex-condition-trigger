@@ -63,6 +63,8 @@ def load_config(path):
     for k in ("owner_verified", "resume_unloaded"):
         if not isinstance(c[k], bool):
             raise ValueError(f"{k} must be boolean")
+    if not isinstance(c.setdefault("owner_loading_enabled", False), bool):
+        raise ValueError("owner_loading_enabled must be boolean")
     adapter = c.setdefault("chat_adapter", "jsonl_queue")
     if adapter not in ("jsonl_queue", "desktop_ipc"):
         raise ValueError("unknown chat_adapter")
@@ -372,6 +374,11 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None):
         if row["state"] != "ready":
             return commit(dict(state="uncertain", detail="not visible; no automatic resubmission"))
         if not inspection["can_send"]:
+            # Missing owner is ordinary pre-send waiting, not a connection
+            # failure or an uncertain send. Persist it across worker restarts.
+            if inspection["reason"] == "waiting_owner":
+                if not store.update(row["id"], "ready", detail="waiting_owner", next_try=now + 30):
+                    return "delivered"
             return inspection["reason"]
         metadata = adapter.prepare(row)
         if store.paused():
@@ -390,6 +397,8 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None):
             return "delivered"
         return str(e)
     except (OSError, ValueError, RPCError, TimeoutError, EOFError, KeyError, subprocess.SubprocessError) as e:
+        from desktop_ipc import IPCFailure
+        diagnostic = str(e) if isinstance(e, IPCFailure) else type(e).__name__
         if sending:
             if not store.update(row["id"], "uncertain", detail=f"{type(e).__name__}: reconcile before retry"):
                 return "delivered"
@@ -397,9 +406,9 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None):
             n = row["attempts"] + 1
             if not store.update(row["id"], "blocked" if n >= c["max_connect_attempts"] else "ready",
                                 attempts=n, next_try=now + min(300, 5 * 2 ** min(n, 6)),
-                                detail=f"{type(e).__name__}: pre-send check failed"):
+                                detail=f"{diagnostic}: pre-send check failed"):
                 return "delivered"
-        emit("dispatch_pending", batch_id=row["id"], reason=type(e).__name__)
+        emit("dispatch_pending", batch_id=row["id"], reason=diagnostic)
         return "uncertain" if sending else "pending"
     finally:
         if adapter is not None:

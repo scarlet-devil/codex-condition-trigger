@@ -23,6 +23,24 @@ METHODS = {'initialize': 1, 'thread-owner-discovery': 1, 'thread-follower-start-
            'thread-follower-load-complete-history': 1}
 
 
+class IPCFailure(RPCError):
+    """Fixed diagnostic fields only; never retain arbitrary remote error text."""
+    def __init__(self, stage, category):
+        self.stage = stage if stage in ('transport', 'installation', 'initialize',
+            'owner_discovery', 'current_state', 'start_turn') else 'protocol'
+        self.category = category if category in ('transport', 'timeout', 'protocol',
+            'owner_unavailable', 'remote_rejected') else 'protocol'
+        super().__init__(self.stage + ':' + self.category)
+
+
+def ipc_failure(error, stage):
+    if isinstance(error, IPCFailure):
+        return error
+    category = ('timeout' if isinstance(error, (TimeoutError, subprocess.TimeoutExpired)) else
+                'transport' if isinstance(error, (OSError, EOFError, subprocess.SubprocessError)) else 'protocol')
+    return IPCFailure(stage, category)
+
+
 def sha(data):
     return hashlib.sha256(data).hexdigest()
 
@@ -261,12 +279,20 @@ def verify_installation(pipe):
 
 class IPCClient:
     def __init__(self, timeout, pipe=None, verifier=verify_installation):
-        self.pipe, self.timeout = pipe or WindowsPipe(), timeout
+        try:
+            self.pipe, self.timeout = pipe or WindowsPipe(), timeout
+        except (OSError, TimeoutError) as error:
+            raise ipc_failure(error, 'transport') from None
         self.client_id = 'initializing-client'
+        stage = 'installation'
         try:
             self.installation = verifier(self.pipe)
+            stage = 'initialize'
             reply = self.request('initialize', {'clientType': 'farfield'})
             self.client_id = protocol_id(protocol_object(reply.get('result'), 'initialize.result').get('clientId'), 'clientId')
+        except (OSError, ValueError, RPCError, TimeoutError, EOFError, KeyError, subprocess.SubprocessError) as error:
+            self.close()
+            raise ipc_failure(error, stage) from None
         except BaseException:
             self.close()
             raise
@@ -301,6 +327,14 @@ class IPCClient:
             item = self.read_frame(deadline)
             if item.get('type') != 'response' or item.get('requestId') != request_id:
                 continue
+            # Router-level negative envelopes omit method/handledByClientId.
+            # Correlate the request first. This is a rejection, never success.
+            if item.get('resultType') == 'error':
+                stage = {'initialize': 'initialize', 'thread-owner-discovery': 'owner_discovery',
+                         'thread-follower-start-turn': 'start_turn'}.get(method, 'current_state')
+                category = ('owner_unavailable' if item.get('error') == 'no-client-found'
+                            else 'remote_rejected')
+                raise IPCFailure(stage, category)
             if item.get('method') != method or (target and item.get('handledByClientId') != target):
                 raise ValueError('IPC response method or owner mismatch')
             if item.get('resultType') != 'success':
@@ -382,10 +416,19 @@ class DesktopAdapter:
     def inspect(self, row):
         if row.get('state', 'ready') != 'ready':
             return {'can_send': False, 'reason': 'receipt_only'}
-        self.client = self.client_factory(self.c['rpc_timeout_seconds'])
-        self.owner_id = self.client.owner(self.c['thread_id'])
-        self.native = self.client.current_state(self.c['thread_id'], self.owner_id, self.c['expected_cwd'])
-        self.current = self.scan(lifecycle=False)
+        stage = 'initialize'
+        try:
+            self.client = self.client_factory(self.c['rpc_timeout_seconds'])
+            stage = 'owner_discovery'
+            self.owner_id = self.client.owner(self.c['thread_id'])
+            stage = 'current_state'
+            self.native = self.client.current_state(self.c['thread_id'], self.owner_id, self.c['expected_cwd'])
+            self.current = self.scan(lifecycle=False)
+        except (OSError, ValueError, RPCError, TimeoutError, EOFError, KeyError, subprocess.SubprocessError) as error:
+            failure = ipc_failure(error, stage)
+            if failure.stage in ('owner_discovery', 'current_state') and failure.category == 'owner_unavailable':
+                return {'can_send': False, 'reason': 'waiting_owner'}
+            raise failure from None
         return {'can_send': self.native['status'] == 'idle', 'reason': 'waiting_owner_' + self.native['status']}
 
     def observe(self, row):
