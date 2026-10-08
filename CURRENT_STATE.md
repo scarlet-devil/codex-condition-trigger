@@ -14,6 +14,8 @@ After restart the target was notLoaded; discovery returned no-client-found. Open
 
 Next scoped Draft work: correct stage-specific diagnostics and prepare a disabled, separate original-chat loading interface with targeted offline checks. Reuse the native existing-thread navigation candidate only when an owner is missing; keep inspection read-only, revalidate identity/current owner/idle afterward, and preserve no replay of uncertain or already-sent batches. A genuine unloaded-to-ready observation remains the next distinct runtime question. No such recovery capability is currently implemented or accepted.
 
+Human's window preference: minimize manual interaction by scripting the same chat's dedicated-window opening and minimization; prefer native creation without foreground activation if a callable route exists. Existing reachable owners/windows should be reused. The native new-window entry and its current Windows behavior require local confirmation; standard handle-based minimization does not prove activation-free creation. See the review supplement. No window-automation script has been run in this cloud review.
+
 ## Operating boundary
 
 - Bounded supervised use requires the exact target to be loaded and proven idle.
