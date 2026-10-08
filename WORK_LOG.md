@@ -281,3 +281,10 @@ The optional absolute `trial_expires_at_utc` is now bound to the state ledger. U
 TDD: corrected initial red run 9 methods / 12 assertion failures / 0 errors, plus expiry-latch red counterexample. Controlled S1/M1 review found two additional final-write boundary defects; both fixed. Final affected modules: 114 tests, 113 pass and one Windows symlink privilege skip. Five final-write probes pass. Real Windows watchdog dry observer stopped itself after 2.953 seconds with STOP/expiry evidence, 0 batches/IPC/model/window actions. [Machine evidence](evidence/trial-deadline-20261008.json), [focused tests](evidence/trial-deadline-tests-20261008.txt), [final-write probes](evidence/trial-final-write-probe-20261008.py), [plan](docs/PRODUCTION_TRIAL_PLAN_20261008.md).
 
 This is user-space bounded enforcement, not hard real-time/tamper-proof-clock assurance. Review covers only the selected Desktop mode, not unattended window identity or other transports. Implementation ready; real trial startup and backlog delivery receipt are recorded separately when complete. PR remains Draft; Alice review_pending.
+
+
+## 2026-10-08 Kelan — real bounded trial started and backlog delivered
+
+The single temporary Windows live watcher started at 2026-10-08T14:16:14.349361Z, runtime2c38055, fixed expiry2026-10-10T13:11:50Z. Loaded-owner-only, no window backend, no auto-start/restart, old timer PAUSED and canary STOPs retained. Backlog 498-version initial report/package and 116-version R3 blocked addendum/package all delivered and raw-readback verified in original Drive reports folder. Original survey plus six delivered manifests seed1269 unique historical byte versions; launch scan1476 files/four uncovered versions. Only exact delivered versions seed the ledger; ongoing input remains pending. [Startup report](docs/KELAN_PRODUCTION_TRIAL_STARTUP_20261008.md), [sanitized receipt](evidence/production-trial-startup-20261008.json). Model acceptance/completion/business ACK are separate from watcher startup. PR Draft, Alice review_pending.
+
+启动后观察（2026-10-08T14:22:13.144911+00:00）：自动IPC接受事件1、当前批次状态['running']、关联turn1、业务核验交付0；人工dispatch0、窗口动作0。发现/接受不代替交付，继续由原任务按真实结果核验。
