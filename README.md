@@ -1,5 +1,7 @@
 # Codex Condition Trigger
 
+> **两天真实环境试验已获批准，尚无本机启动回执。** 有效期为北京时间 2026-10-08 21:11:50 至 2026-10-10 21:11:50；需由本机落实到期停止。已加载聊天可按既有范围试用，开关窗仍受最长 600 秒的明确监督条件约束。见[授权与执行交接](docs/ALICE_PRODUCTION_TRIAL_AUTHORIZATION_20261008.md)。PR 保持 Draft。
+
 **Use file conditions to decide when an existing Codex thread should receive work.**
 
 一个实验性的文件条件触发器：普通程序负责监听、稳定判断和去重，只有出现新内容时才准备 Codex 任务。

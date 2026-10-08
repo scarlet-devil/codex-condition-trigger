@@ -1,6 +1,14 @@
 # Current state
 
-Status: F1 accepted by Alice on 6c2589d7d100d135c1f5deb301268929d0b375c8. Original probe independently red/green; 46/46 focused checks pass. Previously accepted supervised two-batch evidence is preserved; PR Draft, no unattended acceptance, merge or deployment.
+Status: two-day real production-environment trial approved by Human; local_start_pending (no startup receipt). Authorization: 2026-10-08T21:11:50+08:00 to 2026-10-10T21:11:50+08:00. F1 remains accepted on 6c2589d; PR Draft; no unattended acceptance or merge.
+
+## Current authorization — 2026-10-08
+
+Human explicitly approved a two-day production-environment trial after the supervised limits were explained. See [exact authorization and Kelan execution brief](docs/ALICE_PRODUCTION_TRIAL_AUTHORIZATION_20261008.md). This supersedes the prior no-production-activation restriction only for the existing project directory, exact original chat and established task scope during the fixed 48-hour window. Delayed start/restart does not extend the deadline. Merge, permanent enablement, expanded permissions and auto-start deployment are not approved.
+
+Local Kelan may prepare and start one bounded real-file watcher after implementing/verifying a local hard expiry; startup evidence is still required before reporting it running. The baseline only checks STOP, so a two-day deadline is not already enforced by existing source. Expiry must block fresh sends/window actions even after wake/restart; cloud reminders are not the enforcement mechanism. The legacy periodic timer remains PAUSED to avoid duplicate execution. Only the specifically bound trial instance may be unpaused; historical canary STOPs remain.
+
+The existing window backend still requires an explicit no-navigation supervision interval of at most 600 seconds. Do not change that to 48 hours or renew it automatically. Loaded-owner processing may proceed; missing supervision or unresolved cleanup must wait/pause, not bypass protections. This does not require Human to avoid using the computer for two days. Startup must state any loaded-owner-only mode. At expiry pause the trial, retain in-flight turns and undelivered state, and report actual stop evidence; no automatic renewal.
 
 ## Latest implementation and evidence — 2026-10-08
 
@@ -30,4 +38,4 @@ New window was foreground; invoke-to-minimize sample interval 8.552924 seconds. 
 - [Alice input handoff](docs/ALICE_WINDOW_CYCLE_HANDOFF_20261008.md)
 - [Tests](evidence/window-cycle-tests-20261008.txt) and [supervisor](evidence/window-cycle-supervisor-20261008.py)
 
-Alice has reviewed the bounded two-batch cycle separately from unattended current-route and focus limits. F1 repair is accepted and this scoped review is complete. Any next implementation stage has a separate scope; these wider product limits are not additional F1 repair gates. Original timer remains PAUSED; both historical canary STOPs and this trial STOP remain. Existing business state, Hook config and binding unchanged. No further live work is running.
+Alice has reviewed the bounded two-batch cycle separately from unattended current-route and focus limits. F1 repair is accepted and that scoped review is complete; the new two-day trial scope is above. Wider product limits are not reopened as F1 repair gates. Last reported local state was stopped, legacy timer PAUSED and canary STOPs present. Cloud Alice has not accessed or started local execution; await Kelan startup receipt. Existing business history, Hook config and exact binding must be preserved.
