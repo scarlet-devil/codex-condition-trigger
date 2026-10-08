@@ -35,7 +35,7 @@
 | 第一次 tick | waiting_owner |
 | 批次与发送意图 | ready；dispatch_text、dispatch_meta 均为 null |
 | 周期 | reused；lease 为 null |
-| 重启后 3 次 tick | 均 waiting_owner |
+| 重启后将模拟时钟推进至 next_try 后 60 秒，再作 3 次 tick | 均 waiting_owner；并非正常退避尚未到期 |
 | 新增第二份文件后 | 仍 waiting_owner；2 个批次待处理 |
 | 开窗 / 发送 | 0 / 0 |
 

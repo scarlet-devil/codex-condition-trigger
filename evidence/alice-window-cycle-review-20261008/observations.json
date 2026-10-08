@@ -37,6 +37,7 @@
       "open_calls": 0,
       "send_calls": 0
     },
+    "retry_deadline_bypassed_by_seconds": 60,
     "ticks_after_restart": [
       "waiting_owner",
       "waiting_owner",
@@ -197,5 +198,6 @@
     "final_deadline_gate_native_replay": false,
     "unattended_accepted": false
   },
-  "live_source_reconstruction_note": "Only published final source was obtained. A simple LF/CRLF reconstruction did not reproduce the two old live hashes for trigger.py and windows_window_backend.ps1; it is not proof of a semantic mismatch and is not used as independent verification of the original live bytes. Local reported semantic scope/normalization remain transferred evidence."
+  "live_source_reconstruction_note": "Only published final source was obtained. A simple LF/CRLF reconstruction did not reproduce the two old live hashes for trigger.py and windows_window_backend.ps1; it is not proof of a semantic mismatch and is not used as independent verification of the original live bytes. Local reported semantic scope/normalization remain transferred evidence.",
+  "probe_timing": "The synthetic clock advances 60 seconds beyond next_try after restart; the failure is not normal retry backoff."
 }

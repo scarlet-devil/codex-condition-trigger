@@ -45,9 +45,13 @@ try:
         'send_calls': len(case.sent),
     }
     case.reopen()
-    trace['ticks_after_restart'] = [case.tick() for _ in range(3)]
-    case.ready(b'Alice synthetic second pending batch')
-    trace['tick_after_new_file'] = case.tick()
+    retry_at = case.store.rows()[0]['next_try']
+    trace['retry_deadline_bypassed_by_seconds'] = 60
+    # Advance the synthetic clock, so normal pre-send retry backoff has expired.
+    with mock.patch('time.time', return_value=retry_at + 60):
+        trace['ticks_after_restart'] = [case.tick() for _ in range(3)]
+        case.ready(b'Alice synthetic second pending batch')
+        trace['tick_after_new_file'] = case.tick()
     trace['pending_batches'] = len(case.store.rows())
     trace['final_open_calls'] = case.actions.count('open')
     trace['final_send_calls'] = len(case.sent)
@@ -56,7 +60,7 @@ try:
         'Definite owner absence for a ready, never-dispatched, reused cycle '
         'with no lease or prior window action permits one durable open claim.'
     )
-    trace['requirement_satisfied'] = case.actions.count('open') == 1
+    trace['requirement_satisfied'] = case.actions.count('open') == 1 and len(case.sent) == 1
     trace['native_actions'] = 0
     trace['model_calls'] = 0
 finally:
@@ -64,3 +68,4 @@ finally:
     case.doCleanups()
 print(json.dumps(trace, indent=2))
 raise SystemExit(0 if trace['requirement_satisfied'] else 1)
+
