@@ -1,30 +1,32 @@
 {
   "schema_version": 1,
   "record_scope": "Alice cloud Dot research analysis; separate from Kelan production delivery ledger",
-  "setup_status": "paused_pending_model_configuration",
-  "recorded_at": "2026-10-08T15:01:17Z",
-  "source_repository_head": "64984a7b5c1e0e9a6927c384c90b74ca692cf960",
+  "setup_status": "enabled_observed_first_analysis_partial",
+  "recorded_at": "2026-10-08T15:32:57Z",
+  "source_repository_head": "42901a1d359a89f28f4609543d32beb52d2e17be",
   "folder": {
     "file_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
     "name": "40_REPORTS",
     "parent_file_id": "1BEewRhn2j_zAVUw57obfX6TlLkRAhR6B",
     "parent_name": "new-skill-merge",
-    "relationship_verified": true
+    "relationship_verified": true,
+    "last_listing_direct_item_count": 194,
+    "pagination": "list_folder top_k1000 returned194; no continuation token; document search also returned no continuation token"
   },
   "automation": {
     "title": "精读小点成果",
     "timing_mode": "condition_watch",
     "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Shanghai:20261008T234821\nRRULE:FREQ=HOURLY\nEND:VEVENT",
     "timezone": "Asia/Shanghai",
-    "is_enabled": false,
-    "observed_updated_at": "2026-10-08T14:57:11.972027+00:00",
+    "is_enabled": true,
+    "observed_updated_at": "2026-10-08T15:13:55.519255+00:00",
     "last_run_time": null,
     "next_run_time": null,
     "requested_model": "GPT-6 Astra",
     "requested_reasoning_effort": "max",
     "observed_model": null,
     "observed_reasoning_effort": null,
-    "model_configuration_status": "not_exposed_by_available_tools; task_UI_not_inspected"
+    "model_configuration_status": "actual_model_and_reasoning_metadata_not_exposed; unknown; no_explicit_mismatch_observed"
   },
   "version_policy": {
     "report_identity": [
@@ -48,23 +50,68 @@
         "modified_time": "2026-10-08T13:56:17.969Z",
         "mime_type": "text/markdown"
       },
-      "status": "pending",
-      "raw_content_sha256": null,
-      "content_version_key": null,
-      "analysis_output": null,
+      "status": "partial",
+      "raw_content_sha256": "c4af1b59c8633a84ab813fa1a887fcf63a7cf5527ae17ee4381c75d53daab06a",
+      "content_version_key": "1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P:c4af1b59c8633a84ab813fa1a887fcf63a7cf5527ae17ee4381c75d53daab06a",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_ANALYSIS_20261008.md",
       "reviewed_at": null,
       "related_prior_report_id": null,
       "evidence": [
         {
           "file_id": "1RGCnIN2opLnf4Px-EDwHl78VSyl0LDUb",
           "name": "KELAN_DOT_CATCHUP_MINIMAL_PACKAGE_20261008.zip",
+          "raw_sha256": "c2549fc8649bfeb45823997e13ffb241acf8b5ce198a40875faffcec3c5a1265",
           "observed_size_bytes": 15497,
           "observed_modified_time": "2026-10-08T14:01:40.459Z",
-          "raw_sha256": null,
-          "inspection": "metadata_only"
+          "mime_type": "application/zip",
+          "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis"
+        },
+        {
+          "file_id": "1pvbq5RgXd-TTNVB8x6XwZNetiakUij1k",
+          "name": "DOT_SKILL_TRIAL_DAY5_EVIDENCE_20261005.zip",
+          "raw_sha256": "79205643dcf2ad7531926dddfcacf1b1b32f5f8c13a25cb38aeb94ebf0290163",
+          "observed_size_bytes": 177653,
+          "observed_modified_time": "2026-10-05T01:06:37.052Z",
+          "mime_type": "application/zip",
+          "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis"
+        },
+        {
+          "file_id": "12--7es8WpRU4f4_vhJv_FTP5OMV1u-Yp",
+          "name": "DOT_SKILL_TRIAL_DAY5_20261005.md",
+          "raw_sha256": "bf3de36662d68099e18bcc33dae84ada513385ae20bc950bd79eae20039153cc",
+          "observed_size_bytes": 9990,
+          "observed_modified_time": "2026-10-05T01:06:30.266Z",
+          "mime_type": "text/markdown",
+          "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis"
+        },
+        {
+          "file_id": "1iveoVPoqr-TvrALZj2Mr9PqjSOMxl1LD",
+          "name": "DOT_SKILL_TRIAL_DAY7_EVIDENCE_20261007.zip",
+          "raw_sha256": "793c5115098dd1fc2c860ea3413e97bed1796266fea402b5e8b6e71015da7295",
+          "observed_size_bytes": 285325,
+          "observed_modified_time": "2026-10-07T01:13:30.611Z",
+          "mime_type": "application/zip",
+          "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis"
+        },
+        {
+          "file_id": "1ZA3S25yY9Ag7YTQKfH4qvsG7cepcnid_",
+          "name": "DOT_SKILL_TRIAL_DAY7_AND_SUMMARY_20261007.md",
+          "raw_sha256": "025c212907dbe95608a3f36363b2e9f832b362fc3e41f9a44489f5e836348b96",
+          "observed_size_bytes": 12183,
+          "observed_modified_time": "2026-10-07T01:13:21.561Z",
+          "mime_type": "text/markdown",
+          "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis"
         }
       ],
-      "inspection": "readable_text_fetched_and_preliminarily_located; no_completed_fine_analysis"
+      "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis",
+      "last_analyzed_at": "2026-10-08T15:32:57Z",
+      "open_scope": [
+        "Day5/Day7 bounded saved-evidence analysis complete; R1 original cases/runner/results and R2 original frozen input/results not in this delivery; status-fidelity originals unavailable. No benefit measurement."
+      ],
+      "delivery_set_key": "1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P:c4af1b59c8633a84ab813fa1a887fcf63a7cf5527ae17ee4381c75d53daab06a|12--7es8WpRU4f4_vhJv_FTP5OMV1u-Yp:bf3de36662d68099e18bcc33dae84ada513385ae20bc950bd79eae20039153cc|1RGCnIN2opLnf4Px-EDwHl78VSyl0LDUb:c2549fc8649bfeb45823997e13ffb241acf8b5ce198a40875faffcec3c5a1265|1ZA3S25yY9Ag7YTQKfH4qvsG7cepcnid_:025c212907dbe95608a3f36363b2e9f832b362fc3e41f9a44489f5e836348b96|1iveoVPoqr-TvrALZj2Mr9PqjSOMxl1LD:793c5115098dd1fc2c860ea3413e97bed1796266fea402b5e8b6e71015da7295|1pvbq5RgXd-TTNVB8x6XwZNetiakUij1k:79205643dcf2ad7531926dddfcacf1b1b32f5f8c13a25cb38aeb94ebf0290163",
+      "last_notified_delivery_set_key": "1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P:c4af1b59c8633a84ab813fa1a887fcf63a7cf5527ae17ee4381c75d53daab06a|12--7es8WpRU4f4_vhJv_FTP5OMV1u-Yp:bf3de36662d68099e18bcc33dae84ada513385ae20bc950bd79eae20039153cc|1RGCnIN2opLnf4Px-EDwHl78VSyl0LDUb:c2549fc8649bfeb45823997e13ffb241acf8b5ce198a40875faffcec3c5a1265|1ZA3S25yY9Ag7YTQKfH4qvsG7cepcnid_:025c212907dbe95608a3f36363b2e9f832b362fc3e41f9a44489f5e836348b96|1iveoVPoqr-TvrALZj2Mr9PqjSOMxl1LD:793c5115098dd1fc2c860ea3413e97bed1796266fea402b5e8b6e71015da7295|1pvbq5RgXd-TTNVB8x6XwZNetiakUij1k:79205643dcf2ad7531926dddfcacf1b1b32f5f8c13a25cb38aeb94ebf0290163",
+      "notification_evidence": "Current conversation: 2026-10-08 first-analysis substantive commentary before ledger write; no message ID exposed",
+      "resume_condition": "New report bytes, changed/new related evidence, or changed access to listed missing sources; no unchanged-gap repeat"
     },
     {
       "file_id": "1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B",
@@ -74,23 +121,32 @@
         "modified_time": "2026-10-08T14:14:00.745Z",
         "mime_type": "text/markdown"
       },
-      "status": "pending",
-      "raw_content_sha256": null,
-      "content_version_key": null,
-      "analysis_output": null,
+      "status": "partial",
+      "raw_content_sha256": "2641d9bf71a77b27425924786781a7f2e030b88495b12d8f882c92ea1a8eeac8",
+      "content_version_key": "1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B:2641d9bf71a77b27425924786781a7f2e030b88495b12d8f882c92ea1a8eeac8",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_ANALYSIS_20261008.md",
       "reviewed_at": null,
       "related_prior_report_id": "1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P",
       "evidence": [
         {
           "file_id": "1ZMbPVLEsRZqxE5FwVb3a5KLTNzku6Dfv",
           "name": "KELAN_R3_BLOCKED_ADDENDUM_PACKAGE_20261008.zip",
+          "raw_sha256": "2034aa4ef3876f846141e071bbfbffee65b25fc02118b5b2945c0ab979357d05",
           "observed_size_bytes": 19302,
           "observed_modified_time": "2026-10-08T14:14:10.134Z",
-          "raw_sha256": null,
-          "inspection": "metadata_only"
+          "mime_type": "application/zip",
+          "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis"
         }
       ],
-      "inspection": "readable_text_fetched_and_preliminarily_located; no_completed_fine_analysis"
+      "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis",
+      "last_analyzed_at": "2026-10-08T15:32:57Z",
+      "open_scope": [
+        "Historical state and byte-count correction analyzed; original install/diagnostic receipts not included. Superseded freeze absence by latest report. Navigation work_log_final=false differs from report six-artifact wording; no source corruption inferred."
+      ],
+      "delivery_set_key": "1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B:2641d9bf71a77b27425924786781a7f2e030b88495b12d8f882c92ea1a8eeac8|1ZMbPVLEsRZqxE5FwVb3a5KLTNzku6Dfv:2034aa4ef3876f846141e071bbfbffee65b25fc02118b5b2945c0ab979357d05",
+      "last_notified_delivery_set_key": "1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B:2641d9bf71a77b27425924786781a7f2e030b88495b12d8f882c92ea1a8eeac8|1ZMbPVLEsRZqxE5FwVb3a5KLTNzku6Dfv:2034aa4ef3876f846141e071bbfbffee65b25fc02118b5b2945c0ab979357d05",
+      "notification_evidence": "Current conversation: 2026-10-08 first-analysis substantive commentary before ledger write; no message ID exposed",
+      "resume_condition": "New report bytes, changed/new related evidence, or changed access to listed missing sources; no unchanged-gap repeat"
     },
     {
       "file_id": "1qgZgs3qmoXjP_p5WW--vvWJov99UPq3I",
@@ -100,20 +156,189 @@
         "modified_time": "2026-10-08T14:42:31.948Z",
         "mime_type": "text/markdown"
       },
-      "status": "pending",
-      "raw_content_sha256": null,
-      "content_version_key": null,
-      "analysis_output": null,
+      "status": "partial",
+      "raw_content_sha256": "a2238b5c879411a4881519826aed5a1d251a47828ffd669a4ca4430d25cf94af",
+      "content_version_key": "1qgZgs3qmoXjP_p5WW--vvWJov99UPq3I:a2238b5c879411a4881519826aed5a1d251a47828ffd669a4ca4430d25cf94af",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_ANALYSIS_20261008.md",
       "reviewed_at": null,
       "related_prior_report_id": "1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B",
-      "evidence": [],
-      "inspection": "readable_text_fetched_and_preliminarily_located; no_completed_fine_analysis"
+      "evidence": [
+        {
+          "file_id": "173jeIpRK5aroTo5IdZf1MGISn8XftiJF",
+          "name": "KELAN_R3_CONTINUATION_EVIDENCE_20261008_579a8a32.json",
+          "raw_sha256": "9e815a7bf880710e064b889a645c36507663711b76eef82b27e109ebda7f5734",
+          "observed_size_bytes": 6715,
+          "observed_modified_time": "2026-10-08T14:43:36.983Z",
+          "mime_type": "application/json",
+          "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis"
+        }
+      ],
+      "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis",
+      "last_analyzed_at": "2026-10-08T15:32:57Z",
+      "open_scope": [
+        "Historical continuation and official source paths analyzed; private checkpoint/command originals not included. Later freeze report supersedes missing-freeze state; no runtime acceptance."
+      ],
+      "delivery_set_key": "1qgZgs3qmoXjP_p5WW--vvWJov99UPq3I:a2238b5c879411a4881519826aed5a1d251a47828ffd669a4ca4430d25cf94af|173jeIpRK5aroTo5IdZf1MGISn8XftiJF:9e815a7bf880710e064b889a645c36507663711b76eef82b27e109ebda7f5734",
+      "last_notified_delivery_set_key": "1qgZgs3qmoXjP_p5WW--vvWJov99UPq3I:a2238b5c879411a4881519826aed5a1d251a47828ffd669a4ca4430d25cf94af|173jeIpRK5aroTo5IdZf1MGISn8XftiJF:9e815a7bf880710e064b889a645c36507663711b76eef82b27e109ebda7f5734",
+      "notification_evidence": "Current conversation: 2026-10-08 first-analysis substantive commentary before ledger write; no message ID exposed",
+      "resume_condition": "New report bytes, changed/new related evidence, or changed access to listed missing sources; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "1TSwfFvJ8H5UUyPb8LuItXnttiG4_vaYX",
+      "name": "KELAN_R3_EXECUTION_FREEZE_SURVEY_20261008_20116ee0.md",
+      "related_prior_report_id": "1qgZgs3qmoXjP_p5WW--vvWJov99UPq3I",
+      "evidence": [
+        {
+          "file_id": "1g3rd-lVPxHPVsyqukki5oY2fwbGhT3nx",
+          "name": "KELAN_R3_EXECUTION_FREEZE_EVIDENCE_20261008_20116ee0.json",
+          "raw_sha256": "b646da2ebe3c57017965cc89ddafacd8014ef9fe109b8bffee0df558ac2c1005",
+          "observed_size_bytes": 17292,
+          "observed_modified_time": "2026-10-08T15:10:35.257Z",
+          "mime_type": "application/json",
+          "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis"
+        }
+      ],
+      "observed_metadata": {
+        "size_bytes": 17287,
+        "modified_time": "2026-10-08T15:06:21.625Z",
+        "mime_type": "text/markdown"
+      },
+      "raw_content_sha256": "3966bf8a7cc7d2524f6f285950fee2a97c4bc7655840d5c13db623b2883bffed",
+      "content_version_key": "1TSwfFvJ8H5UUyPb8LuItXnttiG4_vaYX:3966bf8a7cc7d2524f6f285950fee2a97c4bc7655840d5c13db623b2883bffed",
+      "status": "partial",
+      "reviewed_at": null,
+      "last_analyzed_at": "2026-10-08T15:32:57Z",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_ANALYSIS_20261008.md",
+      "inspection": "complete_raw_bytes_read_and_hashed; bounded_content_analysis",
+      "open_scope": [
+        "Private guard/controller/runner/closure source bodies absent; F1-F3 remain Kelan-transferred findings. Installation and T01-T08 runtime/fault/resource receipts absent. Upstream lost-batch path statically corroborated, not executed."
+      ],
+      "delivery_set_key": "1TSwfFvJ8H5UUyPb8LuItXnttiG4_vaYX:3966bf8a7cc7d2524f6f285950fee2a97c4bc7655840d5c13db623b2883bffed|1g3rd-lVPxHPVsyqukki5oY2fwbGhT3nx:b646da2ebe3c57017965cc89ddafacd8014ef9fe109b8bffee0df558ac2c1005",
+      "last_notified_delivery_set_key": "1TSwfFvJ8H5UUyPb8LuItXnttiG4_vaYX:3966bf8a7cc7d2524f6f285950fee2a97c4bc7655840d5c13db623b2883bffed|1g3rd-lVPxHPVsyqukki5oY2fwbGhT3nx:b646da2ebe3c57017965cc89ddafacd8014ef9fe109b8bffee0df558ac2c1005",
+      "notification_evidence": "Current conversation: 2026-10-08 first-analysis substantive commentary before ledger write; no message ID exposed",
+      "resume_condition": "New report bytes, changed/new related evidence, or changed access to listed missing sources; no unchanged-gap repeat"
     }
   ],
   "reviewed_delivery_sets": [],
   "notes": [
+    "Raw report/evidence versions hashed during this run; no normalization/export used.",
+    "Four groups remain partial where underlying raw evidence/code is absent; inspected report contents are complete.",
+    "Do not repeat this analysis/notification for unchanged delivery sets or unchanged missing evidence.",
+    "No candidate execution, local production ACK, automation update or trial extension. Read-before-write deduplication is not atomic exactly-once."
+  ],
+  "setup_notes_history": [
     "All source content hashes remain null until full raw bytes are obtained. Normalized readable text is not a raw byte identity.",
     "No analysis run or end-to-end cloud delivery has been validated.",
     "Third report states no separate ZIP for the four-input continuation; assess its actual cited evidence, not a universal ZIP requirement."
-  ]
+  ],
+  "last_analysis": {
+    "at": "2026-10-08T15:32:57Z",
+    "output": "docs/ALICE_DOT_RESULTS_ANALYSIS_20261008.md",
+    "status": "partial",
+    "source_head": "42901a1d359a89f28f4609543d32beb52d2e17be",
+    "source_checks": {
+      "trackio/api.py": {
+        "bytes": 5056,
+        "sha256": "f23a3a5e75fce46708fe4149831ac9f9f290741af4928dadf3c3ce3e7b81dc95",
+        "matches_saved_identity": true
+      },
+      "trackio/trace.py": {
+        "bytes": 3395,
+        "sha256": "22df34c878142ec7eb4fd0efc071687e08b4c04c6490722ceb40dfbe46d740e4",
+        "matches_saved_identity": true
+      },
+      "trackio/run.py": {
+        "bytes": 82636,
+        "sha256": "75642f9c503c96fad42430439ba1ff945ec378029cafb25a885f523f9e5d7465",
+        "matches_saved_identity": true
+      },
+      "trackio/sqlite_storage.py": {
+        "bytes": 261073,
+        "sha256": "cf6c28f8010ca76360ec93be8a990e64595c2798662c71658323db5809edd0b0",
+        "matches_saved_identity": true
+      }
+    },
+    "zip_checks": {
+      "KELAN_R3_BLOCKED_ADDENDUM_PACKAGE_20261008.zip": {
+        "members": 3,
+        "manifest_entries": 2,
+        "passed": 2,
+        "crc_ok": true,
+        "unique_members": true
+      },
+      "DOT_SKILL_TRIAL_DAY7_EVIDENCE_20261007.zip": {
+        "members": 32,
+        "manifest_entries": 31,
+        "passed": 31,
+        "crc_ok": true,
+        "unique_members": true
+      },
+      "KELAN_DOT_CATCHUP_MINIMAL_PACKAGE_20261008.zip": {
+        "members": 3,
+        "manifest_entries": 2,
+        "passed": 2,
+        "crc_ok": true,
+        "unique_members": true
+      },
+      "DOT_SKILL_TRIAL_DAY5_EVIDENCE_20261005.zip": {
+        "members": 57,
+        "manifest_entries": 56,
+        "passed": 56,
+        "crc_ok": true,
+        "unique_members": true
+      }
+    },
+    "day5": {
+      "rows": [
+        {
+          "id": "C1_unchanged",
+          "meets_frozen_expectation": true,
+          "whole_byte_equal": true
+        },
+        {
+          "id": "C2_prose_only",
+          "meets_frozen_expectation": true,
+          "whole_byte_equal": false
+        },
+        {
+          "id": "C3_heading",
+          "meets_frozen_expectation": true,
+          "whole_byte_equal": false
+        },
+        {
+          "id": "C4_inline_link",
+          "meets_frozen_expectation": true,
+          "whole_byte_equal": false
+        },
+        {
+          "id": "C5_tilde_code",
+          "meets_frozen_expectation": false,
+          "whole_byte_equal": false
+        },
+        {
+          "id": "C6_reference_link",
+          "meets_frozen_expectation": false,
+          "whole_byte_equal": false
+        }
+      ],
+      "met": 4,
+      "total": 6,
+      "candidate_rerun": false
+    },
+    "day7": {
+      "observations": 15,
+      "unique_ids": 9,
+      "budget_sum": 32,
+      "budget_limit": 30
+    },
+    "r3_sanitized_consistency": {
+      "input_count": 14,
+      "input_bytes_sum": 75768,
+      "freeze_count": 10,
+      "freeze_bytes_sum": 59505,
+      "raw_execution_scripts_available": false
+    },
+    "candidate_execution": false,
+    "model_metadata": "unknown"
+  }
 }

@@ -42,10 +42,10 @@ Alice has reviewed the bounded two-batch cycle separately from unattended curren
 
 启动后观察（2026-10-08T14:22:13.144911+00:00）：自动IPC接受事件1、当前批次状态['running']、关联turn1、业务核验交付0；人工dispatch0、窗口动作0。发现/接受不代替交付，继续由原任务按真实结果核验。
 
-## Alice cloud Dot results watcher — prepared, paused
+## Alice cloud Dot results analysis — first bounded analysis delivered
 
-Human requested automatic fine analysis of Kelan's Dot research reports in new-skill-merge / 40_REPORTS with GPT-6 Astra / max. The task **精读小点成果** exists as an hourly condition watch and is **paused_pending_model_configuration**. The available task API has no model/reasoning fields; actual settings remain unknown. Configure the requested model and effort in the task UI before enabling. This is polling, not a Drive upload event trigger.
+The service now reports enabled (updated 2026-10-08T15:13:55.519255Z). Actual model/reasoning metadata remains unknown; prompt text is not configuration evidence. Alice did not change the task switch or model.
 
-Three report families (main backlog, R3 blocked addendum, and newly discovered R3 continuation) are queued as pending. No fine analysis has run, no raw source hashes have been verified by Alice, and no report is marked reviewed. See [watch specification](docs/ALICE_DOT_RESULTS_WATCH_20261008.md) and [analysis ledger](evidence/alice-dot-results-ledger.json).
+Alice has read and hashed four report/evidence groups plus Day5/Day7 supporting originals. Four ZIPs: 91/91 manifest entries and CRC passed. Saved Day5 expectations yield4/6 with two false negatives; Day7 snapshots yield15 observations/9IDs and32/30 budget. Fixed upstream Humanizer and Trackio source paths corroborate structural-check limits and a possible lost-batch path. No candidate execution or installation. See [bounded analysis](docs/ALICE_DOT_RESULTS_ANALYSIS_20261008.md) and [exact versions/gaps](evidence/alice-dot-results-ledger.json).
 
-This separate cloud task does not extend the local trial deadline or modify production ACK/state. Local startup and new deadline implementation remain Alice review_pending; prior F1 acceptance is unchanged. Cloud analysis may continue for later deliveries until Human pauses it. Existing local expiry and cloud expiry-check task remain independent.
+All four families remain partial for underlying source/experiment gaps; new R3 freeze supersedes old missing-freeze claims, not the absence of real runtime evidence. Unchanged delivery sets/gaps do not cause repeated notifications. This analysis does not accept or alter the local trial, deadline code, production ACK or timer. Fixed expiry remains2026-10-10T13:11:50Z; PR Draft and prior F1 acceptance unchanged.
