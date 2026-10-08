@@ -100,14 +100,33 @@ class WindowCycles:
             return 'legacy_reconciliation_required'
         if self.backend is None:
             return 'loader_unavailable'
-        if any(x['phase'] != 'closed' for x in self.records()):
-            return 'window_reconciliation_required'
-        cycle = dict(batch_id=row['id'], phase='opening', lease=None, events=[])
+        active = [x for x in self.records() if x['phase'] != 'closed']
+        if active:
+            cycle = active[0]
+            # Reuse spent no window action. Preserve its history and promote
+            # only this exact never-opened cycle, never an uncertain action.
+            if (len(active) != 1 or cycle['batch_id'] != row['id']
+                    or cycle['phase'] != 'reused' or cycle.get('lease') is not None
+                    or not cycle.get('events')
+                    or any(e.get('phase') != 'reused'
+                           or e.get('reason') != 'fresh_idle_owner_reused'
+                           for e in cycle['events'])):
+                return 'window_reconciliation_required'
+            previous = json.dumps(cycle)
+            cycle = dict(cycle, phase='opening')
+        else:
+            cycle = dict(batch_id=row['id'], phase='opening', lease=None, events=[])
         with self.store.db:
-            claimed = self.store.db.execute("INSERT OR IGNORE INTO meta(k,v) "
-                "SELECT ?,? WHERE EXISTS (SELECT 1 FROM batches WHERE id=? AND state='ready' "
-                "AND dispatch_text IS NULL AND dispatch_meta IS NULL)",
-                ('window_cycle:' + row['id'], json.dumps(cycle), row['id']))
+            if active:
+                claimed = self.store.db.execute("UPDATE meta SET v=? WHERE k=? AND v=? "
+                    "AND EXISTS (SELECT 1 FROM batches WHERE id=? AND state='ready' "
+                    "AND dispatch_text IS NULL AND dispatch_meta IS NULL)",
+                    (json.dumps(cycle), 'window_cycle:' + row['id'], previous, row['id']))
+            else:
+                claimed = self.store.db.execute("INSERT OR IGNORE INTO meta(k,v) "
+                    "SELECT ?,? WHERE EXISTS (SELECT 1 FROM batches WHERE id=? AND state='ready' "
+                    "AND dispatch_text IS NULL AND dispatch_meta IS NULL)",
+                    ('window_cycle:' + row['id'], json.dumps(cycle), row['id']))
         if claimed.rowcount != 1:
             return 'window_reconciliation_required'
         if self.store.paused():
@@ -202,6 +221,8 @@ class WindowCycles:
                 if row['state'] != 'ready' or row.get('dispatch_text') or row.get('dispatch_meta'):
                     return 'receipt_only'
                 result = self.inspect_owner(row)
+                if result['reason'] == 'waiting_owner' and cycle['phase'] == 'reused':
+                    return self.claim_open(row)
                 return 'owner_ready' if result['can_send'] else result['reason']
             pending = [r for r in rows if r['state'] != 'delivered']
             if not pending:

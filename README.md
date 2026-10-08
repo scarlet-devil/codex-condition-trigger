@@ -12,7 +12,7 @@
 
 2026-10-08 早期默认关闭的加载准备、准确菜单开窗与最小化试验已获 Alice 限定接受，见[历史报告](docs/KELAN_OWNER_LOADER_20261008.md)。当前后续实现已用逐批 WindowCycles 替代原永久一次 prepare_owner 接口，接入 watcher，并提供一个监督限定的 Windows 后端。
 
-红魔要求的逐批循环已完成候选实现和两个连续合成批次的监督试验：1次新开/最小化/正常关闭，2次原生发送、0次手动dispatch，关闭后owner仍在而直接复用。Alice 已限定接受这次监督路径，但源码复审发现一个必修恢复缺口：未发送批次已记为 reused 后，owner 消失会持续等待，不能进入首次开窗。云端既有 39 项定点检查通过，补充反例失败；当前 changes_requested，见[复审与修订范围](docs/ALICE_WINDOW_CYCLE_REVIEW_20261008.md)及[本地报告](docs/KELAN_WINDOW_CYCLE_20261008.md)。当前 ACK 仍由调用者核验；任意导航后的准确当前聊天识别和无人值守关闭尚未解决，整体默认关闭、Draft。
+红魔要求的逐批循环已完成候选实现和两个连续合成批次的监督试验：1次新开/最小化/正常关闭，2次原生发送、0次手动dispatch，关闭后owner仍在而直接复用。Alice 已限定接受这次监督路径，但源码复审发现一个必修恢复缺口：未发送批次已记为 reused 后，owner 消失会持续等待，不能进入首次开窗。云端既有39项通过且补充反例失败后，柯蓝已完成F1的Python修复：原反例红转绿，受影响模块46项通过，真实Windows证据保持。修复等待Alice定点复审，见[修订报告](docs/KELAN_OWNER_REUSE_RECOVERY_20261008.md)；历史见[复审与修订范围](docs/ALICE_WINDOW_CYCLE_REVIEW_20261008.md)及[本地报告](docs/KELAN_WINDOW_CYCLE_20261008.md)。当前 ACK 仍由调用者核验；任意导航后的准确当前聊天识别和无人值守关闭尚未解决，整体默认关闭、Draft。
 
 ## 用途
 

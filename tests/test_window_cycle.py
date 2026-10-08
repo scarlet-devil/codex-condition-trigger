@@ -229,6 +229,134 @@ class CycleTests(DesktopDispatchTests):
         self.assertEqual(self.tick(), 'window_cycle_disabled_reconciliation_required')
         self.assertEqual(len(self.sent), 1)
 
+    def test_reused_owner_loss_recovers_same_batch_once_across_restart(self):
+        original_owner = self.client.owner
+        calls = 0
+        def disappears(client, target):
+            nonlocal calls
+            calls += 1
+            if calls >= 2:
+                self.available = False
+            return original_owner(client, target)
+        with mock.patch.object(self.client, 'owner', disappears):
+            self.assertEqual(self.tick(), 'waiting_owner')
+        row = self.store.rows()[0]
+        self.assertIsNone(row['dispatch_text'])
+        self.assertIsNone(row['dispatch_meta'])
+        self.reopen()
+        with mock.patch('time.time', return_value=row['next_try'] + 60):
+            self.assertEqual(self.tick(), 'accepted')
+            self.reopen()
+            self.ready(b'next pending file')
+            for _ in range(3):
+                self.tick()
+        self.assertEqual(self.actions, ['open'])
+        self.assertEqual(len(self.sent), 1)
+        current = next(r for r in self.store.rows() if r['id'] == row['id'])
+        self.assertIsNotNone(current['dispatch_text'])
+        self.assertEqual(current['turn_id'], 'cycle-turn-1')
+        events = self.manager().records()[0]['events']
+        self.assertEqual(events[0]['reason'], 'fresh_idle_owner_reused')
+        self.assertEqual(sum(e['reason'] == 'claimed_before_open' for e in events), 1)
+
+    def test_reused_cycle_busy_or_unknown_never_promotes(self):
+        self.assertEqual(self.manager().step(), 'owner_ready')
+        self.native_status = 'busy'
+        self.assertEqual(self.tick(), 'waiting_owner_busy')
+        from desktop_ipc import IPCFailure
+        with mock.patch.object(self.client, 'owner', side_effect=IPCFailure('owner_discovery', 'timeout')):
+            self.assertEqual(self.tick(), 'owner_check_failed')
+        self.assertEqual(self.manager().records()[0]['phase'], 'reused')
+        self.assertEqual(self.actions, [])
+        self.assertEqual(self.sent, [])
+
+    def test_reused_promotion_rechecks_send_state_atomically(self):
+        manager = self.manager()
+        self.assertEqual(manager.step(), 'owner_ready')
+        row = self.store.rows()[0]
+        for field, value in (('dispatch_text', ''), ('dispatch_meta', ''), ('state', 'accepted')):
+            with self.subTest(field=field):
+                def race(_row):
+                    external = tr.Store(self.config, worker=False)
+                    try:
+                        with external.db:
+                            external.db.execute('UPDATE batches SET '+field+'=? WHERE id=?', (value, row['id']))
+                    finally:
+                        external.close()
+                    return {'can_send': False, 'reason': 'waiting_owner'}
+                with mock.patch.object(manager, 'inspect_owner', race):
+                    manager.step()
+                self.assertEqual(self.manager().records()[0]['phase'], 'reused')
+                self.assertEqual(self.actions, [])
+                with self.store.db:
+                    self.store.db.execute("UPDATE batches SET state='ready',dispatch_text=NULL,dispatch_meta=NULL WHERE id=?", (row['id'],))
+
+    def test_reused_cycle_with_prior_open_history_or_lease_cannot_reopen(self):
+        manager = self.manager()
+        self.assertEqual(manager.step(), 'owner_ready')
+        cycle = manager.records()[0]
+        original = json.loads(json.dumps(cycle))
+        self.available = False
+        cycle['lease'] = {'token': 'already-owned', 'thread_id': self.config['thread_id']}
+        manager.save(cycle, 'reused', 'fresh_idle_owner_reused')
+        manager.step()
+        self.assertEqual(self.actions, [])
+        manager.save(original, 'opening', 'claimed_before_open')
+        manager.save(original, 'reused', 'fresh_idle_owner_reused')
+        manager.step()
+        self.assertEqual(self.actions, [])
+        self.assertEqual(self.sent, [])
+
+    def test_promoted_open_timeout_is_durable_across_restart(self):
+        self.assertEqual(self.manager().step(), 'owner_ready')
+        self.available = False
+        def lost_open(**kwargs):
+            self.actions.append('open-attempt')
+            raise TimeoutError('outcome unknown')
+        with mock.patch.object(self.backend, 'open', lost_open):
+            self.assertEqual(self.tick(), 'window_open_unknown')
+            self.reopen()
+            self.ready(b'another pending file')
+            self.assertEqual(self.tick(), 'window_reconciliation_required')
+        self.assertEqual(self.actions, ['open-attempt'])
+        self.assertEqual(self.sent, [])
+
+    def test_reused_claim_cannot_overwrite_changed_cycle_snapshot(self):
+        manager = self.manager()
+        self.assertEqual(manager.step(), 'owner_ready')
+        stale = manager.records()
+        row = self.store.rows()[0]
+        changed = dict(stale[0], phase='opening')
+        changed['events'] = stale[0]['events'] + [dict(phase='opening', reason='claimed_before_open')]
+        encoded = json.dumps(changed)
+        external = tr.Store(self.config, worker=False)
+        try:
+            with external.db:
+                external.db.execute('UPDATE meta SET v=? WHERE k=?', (encoded, 'window_cycle:'+row['id']))
+        finally:
+            external.close()
+        with mock.patch.object(manager, 'records', return_value=stale):
+            self.assertEqual(manager.claim_open(row), 'window_reconciliation_required')
+        self.assertEqual(self.store.db.execute('SELECT v FROM meta WHERE k=?', ('window_cycle:'+row['id'],)).fetchone()[0], encoded)
+        self.assertEqual(self.actions, [])
+        self.assertEqual(self.sent, [])
+
+    def test_promoted_open_budget_not_reset_if_owner_disappears_again(self):
+        self.assertEqual(self.manager().step(), 'owner_ready')
+        self.available = False
+        original_open = self.backend.open
+        def open_then_lose_owner(**kwargs):
+            lease = original_open(**kwargs)
+            self.available = False
+            return lease
+        with mock.patch.object(self.backend, 'open', open_then_lose_owner):
+            self.assertEqual(self.tick(), 'waiting_owner')
+        self.reopen()
+        self.ready(b'another pending file')
+        self.assertEqual(self.tick(), 'waiting_owner')
+        self.assertEqual(self.actions, ['open'])
+        self.assertEqual(self.sent, [])
+
 
 def load_tests(loader, tests, pattern):
     return unittest.TestSuite(CycleTests(name) for name in CycleTests.__dict__ if name.startswith('test_'))

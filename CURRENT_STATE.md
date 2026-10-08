@@ -1,6 +1,6 @@
 # Current state
 
-Status: changes_requested; experimental candidate, PR Draft. Alice accepts the recorded bounded two-batch supervised path, but requests one pre-send owner-recovery fix in input 2622fd65ae37c122cf4d563d5758757a560e569b. No merge, installation or production adoption.
+Status: implementation_ready / review_pending; F1 repaired on input 93e3f96 with 46/46 focused checks and the original probe red/green. Alice follow-up pending. Previously accepted supervised two-batch evidence is preserved; PR Draft, no unattended acceptance, merge or deployment.
 
 ## Latest implementation and evidence — 2026-10-08
 
@@ -14,7 +14,7 @@ Windows UIA backend completed one explicitly supervised loaded-target open/minim
 
 [Review and scoped handoff](docs/ALICE_WINDOW_CYCLE_REVIEW_20261008.md): 39/39 existing focused tests passed on cloud Linux. One additional synthetic counterexample fails: an idle owner is recorded as reused, then disappears before dispatch; the ready batch has no send intent or window lease, yet the active-cycle branch waits forever instead of claiming its first open. This persists after restart and a new file. Zero extra sends/windows occurred.
 
-Kelan should permit one durable reused-to-opening transition only for the same never-dispatched, never-opened batch after definite absence. Preserve busy/unknown, sent-intent and unknown-action protections. Bring back the regression and affected tests; no full Windows replay is required for a Python-only fix. The native two-batch result remains accepted within its reported supervision limits; source acceptance is changes_requested until F1 is resolved.
+Kelan implemented the same-batch reused-to-opening promotion with a cycle-snapshot compare-and-swap and atomic ready/no-send-intent predicate. Only never-opened reused history with no lease qualifies after fresh definite absence. Original probe changes from exit1/0 opens/0 sends to exit0/1 open/1 send. Seven new checks bring the affected modules to 46/46 pass. Python-only; Windows backend and prior native evidence unchanged. See [repair report](docs/KELAN_OWNER_REUSE_RECOVERY_20261008.md) and [red/green evidence](evidence/owner-reuse-recovery-20261008.json). Await Alice focused rereview.
 
 ## Material limits
 
@@ -30,4 +30,4 @@ New window was foreground; invoke-to-minimize sample interval 8.552924 seconds. 
 - [Alice input handoff](docs/ALICE_WINDOW_CYCLE_HANDOFF_20261008.md)
 - [Tests](evidence/window-cycle-tests-20261008.txt) and [supervisor](evidence/window-cycle-supervisor-20261008.py)
 
-Alice has reviewed the bounded two-batch cycle separately from unattended current-route and focus limits. Next action is the single F1 repair and focused review; these wider product limits are not additional repair gates. Original timer remains PAUSED; both historical canary STOPs and this trial STOP remain. Existing business state, Hook config and binding unchanged. No further live work is running.
+Alice has reviewed the bounded two-batch cycle separately from unattended current-route and focus limits. F1 repair is ready; next action is Alice focused rereview; these wider product limits are not additional repair gates. Original timer remains PAUSED; both historical canary STOPs and this trial STOP remain. Existing business state, Hook config and binding unchanged. No further live work is running.
