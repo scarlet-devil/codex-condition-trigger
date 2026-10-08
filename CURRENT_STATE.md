@@ -22,11 +22,13 @@ The Human-supplied existing-chat ID is accepted by the installed UUID syntax and
 
 See [Kelan’s capability/limitations report](docs/KELAN_DEEPLINK_WINDOW_RESEARCH_20261008.md). Nine isolated checks passed; zero live navigation, UI input, window creation/minimization or new model turns. No runtime code changed. Alice accepts this bounded research as transferred installed-source/native evidence; it does not establish zero-focus creation, cold recovery or unattended adoption.
 
-## Next supervised window probe
+## Latest supervised window probe — 2026-10-08
 
-[Latest Alice review and execution handoff](docs/ALICE_OWNER_WINDOW_REVIEW_20261008.md), input 0f35dd3ae4a31bea9087f67e7d4b6c49fed713b2: proceed under the existing same-chat window-automation goal with one no-model native UI new-window/minimization probe. Brief initial focus is within this supervised candidate; fully background creation remains preferred, not a prerequisite. Preserve the main window's current chat and require a verified association to the new window before minimizing it. Normal deep-link navigation is not an equivalent fallback.
+Kelan executed Alice's one-window handoff at 356467e. The exact target sidebar context menu opened one new window; its own RootWebArea initialRoute matched the exact configured original chat. The identified window was minimized, the main initiating chat stayed selected, and fresh read-only IPC still found the same target/cwd idle (revision 14 → 16, same existing owner). Zero model turns, watcher starts or business ACKs. Window remains minimized for reuse.
 
-The operational loader still skips when an owner is available. A separately explicit backend probe may test window opening with an already-loaded target without forcing unload or changing that guard; that proves window behavior only. A naturally unloaded start can additionally establish recovery. The local Git fetch did not complete, so preserve prepared files and establish exact local inputs before running the probe. No Windows probe has been executed by Alice.
+See [report](docs/KELAN_WINDOW_CHAIN_TRIAL_20261008.md) and [evidence](evidence/window-chain-trial-20261008.json). This local S0 result is implementation_ready / Alice review_pending. Visible foreground interruption occurred. The 28.857-second supervised observation interval is not a focus-duration benchmark. No cold recovery, owner creation/transfer or sustained retention claim. No bundled window backend or watcher auto-loading was added.
+
+The operational loader still reuses an available owner. A later separately authorized implementation can use the demonstrated explicit menu and exact new-window route; do not substitute ordinary main-window deep-link navigation or force unload. Fixed isolated input was verified against the fetched 57-file Git tree; original checkout/prepared files remain preserved.
 
 ## Operating boundary
 
