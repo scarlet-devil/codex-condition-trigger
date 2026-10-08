@@ -12,7 +12,7 @@ Alice reviewed final evidence 4de66f288210f9410d3f3f5c17f00fd85de33734 and accep
 
 After restart the target was notLoaded; discovery returned no-client-found. Opening the exact original chat restored owner/idle. This is an owner-lifecycle prerequisite; the generic method/owner mismatch text obscures it. The same class of problem occurred in earlier native communication work. Prior deep-link tests established navigation and foreground effects with an already-loaded target, not automatic cold recovery.
 
-Latest Draft implementation: [owner diagnostic/waiting fixes and an explicit default-off loader interface](docs/KELAN_OWNER_LOADER_20261008.md). Final local suite: 101 tests, 100 pass, one environment skip. A bounded native read-only probe found the exact original target already idle; no new turn/window/load occurred. The new interface has no bundled window backend and is not connected to watcher auto-loading. Its code and evidence are implementation_ready / Alice review_pending; unattended exact-chat window recovery remains unimplemented and unaccepted.
+Latest Draft implementation: [owner diagnostic/waiting fixes and an explicit default-off loader interface](docs/KELAN_OWNER_LOADER_20261008.md). Final local suite: 101 tests, 100 pass, one environment skip. A bounded native read-only probe found the exact original target already idle; no new turn/window/load occurred. The new interface has no bundled window backend and is not connected to watcher auto-loading. Alice accepts this disabled interface preparation and the scoped diagnostic/waiting fixes after source review and 21/21 focused cloud tests. Unattended exact-chat window recovery remains unimplemented and unaccepted.
 
 Human's window preference: minimize manual interaction by scripting the same chat's dedicated-window opening and minimization; prefer native creation without foreground activation if a callable route exists. Existing reachable owners/windows should be reused. The native new-window entry and its current Windows behavior require local confirmation; standard handle-based minimization does not prove activation-free creation. See the review supplement. No window-automation script has been run in this cloud review.
 
@@ -20,7 +20,13 @@ Human's window preference: minimize manual interaction by scripting the same cha
 
 The Human-supplied existing-chat ID is accepted by the installed UUID syntax and preserved in its internal /local route; a read-only app snapshot finds the exact local target. Normal deep links navigate the most recently active main/navigation window and do not request a dedicated one. Internal new-window messages explicitly show/focus; externally callable exact-window creation and HWND association remain unverified. A feature-gated sidebar Ctrl branch is a limited UI lead, not a verified title-click shortcut.
 
-See [Kelan’s capability/limitations report](docs/KELAN_DEEPLINK_WINDOW_RESEARCH_20261008.md). Nine isolated checks passed; zero live navigation, UI input, window creation/minimization or new model turns. No runtime code changed. This research is review_pending and does not establish zero-focus creation, cold recovery or unattended adoption.
+See [Kelan’s capability/limitations report](docs/KELAN_DEEPLINK_WINDOW_RESEARCH_20261008.md). Nine isolated checks passed; zero live navigation, UI input, window creation/minimization or new model turns. No runtime code changed. Alice accepts this bounded research as transferred installed-source/native evidence; it does not establish zero-focus creation, cold recovery or unattended adoption.
+
+## Next supervised window probe
+
+[Latest Alice review and execution handoff](docs/ALICE_OWNER_WINDOW_REVIEW_20261008.md), input 0f35dd3ae4a31bea9087f67e7d4b6c49fed713b2: proceed under the existing same-chat window-automation goal with one no-model native UI new-window/minimization probe. Brief initial focus is within this supervised candidate; fully background creation remains preferred, not a prerequisite. Preserve the main window's current chat and require a verified association to the new window before minimizing it. Normal deep-link navigation is not an equivalent fallback.
+
+The operational loader still skips when an owner is available. A separately explicit backend probe may test window opening with an already-loaded target without forcing unload or changing that guard; that proves window behavior only. A naturally unloaded start can additionally establish recovery. The local Git fetch did not complete, so preserve prepared files and establish exact local inputs before running the probe. No Windows probe has been executed by Alice.
 
 ## Operating boundary
 
