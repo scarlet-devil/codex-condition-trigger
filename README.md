@@ -86,6 +86,8 @@ mkdir -p /tmp/codex-trigger-demo/inbox
 
 `unpause` 清除持久暂停标记，之后重新运行 `run`。Ctrl+C 只结束当前 watcher。已经投递到 Codex 的工作不受本地 `stop` 自动撤销。
 
+有明确期限的试验可设置 `trial_expires_at_utc`，例如 `2026-10-10T13:11:50Z`。首次使用时将绝对截止绑定到状态库，此后不能删除或改期来续跑。程序同时检查 UTC 与当前进程的单调时钟预算；到期写入 `STOP` / `TRIAL_EXPIRED.json`、停止监听，过期 `unpause` 被拒绝。已接受的模型任务不会被强杀，未交付状态保留。Desktop IPC 最终写入沿用这一预算并重查暂停；这是用户态边界检查，不是操作系统硬实时或抗篡改时钟保证。此次验证限于无窗口 backend 的 loaded-owner-only 模式，不据此宣称其他适配器或长时窗口监督已验收。
+
 ## 接入真实 Codex 前要知道的事
 
 **入队成功不等于原聊天已被唤醒。** 在本项目核对的官方源码版本中，`queue` 对未加载线程只保存输入；已有 Desktop 会话与另起的 app-server 也不能仅凭相同 UUID 视作相同运行环境。

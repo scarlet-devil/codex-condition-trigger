@@ -19,8 +19,10 @@ import threading
 import time
 import uuid
 import zipfile
+from datetime import datetime, timezone
 
 from chat_adapters import RPCError, StdioRPC, QueueAdapter, NotDispatched, read_thread, list_queue, history_match
+from trial_limits import trial_deadline
 
 
 def encode(value):
@@ -46,6 +48,7 @@ def atomic_write(path, data):
 
 def load_config(path):
     c = json.loads(Path(path).read_text(encoding="utf-8-sig"))
+    trial_deadline(c)
     for k in ("input_dir", "state_dir", "expected_cwd"):
         if not Path(c[k]).is_absolute():
             raise ValueError(f"{k} must be an absolute path")
@@ -118,7 +121,7 @@ def file_hash(path, max_bytes):
     return h.hexdigest(), before.st_size
 
 
-def snapshot(c):
+def snapshot(c, paused=lambda: False):
     root = Path(c["input_dir"])
     if not root.is_dir():
         raise ValueError("input directory is unavailable")
@@ -132,6 +135,8 @@ def snapshot(c):
     def fail(error):
         raise error
     for parent, dirs, files in os.walk(root, followlinks=False, onerror=fail):
+        if paused():
+            raise InterruptedError('scan paused')
         for name in list(dirs):
             p = Path(parent) / name
             rel = p.relative_to(root).as_posix()
@@ -140,6 +145,8 @@ def snapshot(c):
                 continue
             safe_stat(p)
         for name in sorted(files):
+            if paused():
+                raise InterruptedError('scan paused')
             p = Path(parent) / name
             rel = p.relative_to(root).as_posix()
             if rel == c.get("ready_file") or matches(rel, c["exclude"]) or not matches(rel, c["include"]):
@@ -176,6 +183,9 @@ class InstanceLock:
 class Store:
     def __init__(self, c, worker=True):
         self.c = c
+        self.expires_at = trial_deadline(c)
+        self.monotonic_deadline = (None if self.expires_at is None else
+                                   time.monotonic() + max(0, self.expires_at - time.time()))
         self.path = Path(c["state_dir"])
         self.path.mkdir(parents=True, exist_ok=True)
         self.lock = InstanceLock(self.path / "instance.lock") if worker else None
@@ -202,7 +212,14 @@ class Store:
         if (registered and registered[0] != backend) or (not registered and legacy and backend != "jsonl_queue"):
             self.close()
             raise ValueError("state belongs to a different chat adapter")
+        registered_deadline = self.db.execute("SELECT v FROM meta WHERE k='trial_deadline'").fetchone()
+        deadline_value = encode(self.expires_at)
+        if registered_deadline and registered_deadline[0] != deadline_value:
+            self.close()
+            raise ValueError('registered trial deadline cannot be changed or removed')
         with self.db:
+            if self.expires_at is not None:
+                self.db.execute("INSERT OR IGNORE INTO meta VALUES ('trial_deadline', ?)", (deadline_value,))
             self.db.execute("INSERT OR IGNORE INTO meta VALUES ('chat_adapter', ?)", (backend,))
             self.db.execute("INSERT OR IGNORE INTO meta VALUES ('binding', ?)", (binding,))
             # The write transaction serializes legacy-schema migration with ACK
@@ -222,8 +239,27 @@ class Store:
         if self.lock:
             self.lock.close()
 
+    def trial_expired(self):
+        if self.expires_at is None:
+            return False
+        receipt = self.path / 'TRIAL_EXPIRED.json'
+        if (not receipt.exists() and time.time() < self.expires_at
+                and time.monotonic() < self.monotonic_deadline):
+            return False
+        stop = self.path / 'STOP'
+        if not stop.exists():
+            stop.touch()
+        if not receipt.exists():
+            record = dict(reason='fixed authorization deadline reached',
+                          expires_at_utc=datetime.fromtimestamp(self.expires_at, timezone.utc).isoformat(),
+                          observed_at_utc=datetime.now(timezone.utc).isoformat(),
+                          pending_batches_preserved=True, in_flight_turns_not_cancelled=True)
+            atomic_write(receipt, (encode(record) + '\n').encode())
+            emit('trial_expired', **record)
+        return True
+
     def paused(self):
-        return (self.path / "STOP").exists()
+        return self.trial_expired() or (self.path / "STOP").exists()
 
     def rows(self):
         return [dict(x) for x in self.db.execute("SELECT * FROM batches ORDER BY created, id")]
@@ -247,6 +283,8 @@ class Store:
             return None
         batch_id = digest(encode({"root": self.c["input_dir"], "thread": self.c["thread_id"], "files": fresh}).encode())
         for f in fresh:
+            if self.paused():
+                return None
             src = Path(self.c["input_dir"]) / f["path"]
             # Preserve exact stable bytes, including when the source is replaced later.
             before = safe_stat(src)
@@ -264,10 +302,14 @@ class Store:
                         raise ValueError("ZIP exceeds expanded-size limit")
                     if z.testzip() is not None:
                         raise ValueError("ZIP CRC validation failed")
+        if self.paused():
+            return None
         manifest = {"schema": 1, "batch_id": batch_id, "thread_id": self.c["thread_id"],
                     "input_dir": self.c["input_dir"], "blob_dir": str(self.path / "blobs"), "files": fresh}
         atomic_write(self.path / "batches" / (batch_id + ".json"), (encode(manifest) + "\n").encode())
         with self.db:
+            if self.paused():
+                return None
             self.db.execute("INSERT OR IGNORE INTO batches(id,state,manifest,client_id,created) VALUES (?, 'ready', ?, ?, ?)",
                             (batch_id, encode(manifest), str(uuid.uuid5(uuid.NAMESPACE_URL, batch_id)), time.time()))
             for f in fresh:
@@ -315,9 +357,11 @@ class StableScanner:
         self.since = 0.0
 
     def scan(self, now=None):
+        if self.store.paused():
+            return None
         now = time.monotonic() if now is None else now
         try:
-            current = snapshot(self.store.c)
+            current = snapshot(self.store.c, self.store.paused)
             if current != self.candidate:
                 self.candidate, self.since = current, now
                 return None
@@ -383,6 +427,8 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None, ex
         return state
     try:
         adapter = adapter_factory(c, store.paused) if adapter_factory else make_adapter(c, store.paused, rpc_factory)
+        # Carry the original process budget through final transport preparation.
+        adapter.authorization_deadline = store.monotonic_deadline
         inspection = adapter.inspect(row)
         receipt = adapter.observe(row)
         if receipt:
@@ -432,6 +478,9 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None, ex
 
 
 def run(store, live=False, stop_event=None):
+    if store.paused():
+        emit('watcher_not_started', reason='paused')
+        return
     from watchdog.events import FileSystemEventHandler
     from watchdog.observers import Observer
     stop_event = stop_event or threading.Event()
@@ -496,7 +545,13 @@ def main():
         if args.command == "stop":
             p.parent.mkdir(parents=True, exist_ok=True); p.touch()
         else:
-            p.unlink(missing_ok=True)
+            guard = Store(c, worker=False)
+            try:
+                if guard.trial_expired():
+                    raise ValueError('trial expired; unpause cannot renew authorization')
+                p.unlink(missing_ok=True)
+            finally:
+                guard.close()
         emit(args.command)
         return
     if args.command == "probe":

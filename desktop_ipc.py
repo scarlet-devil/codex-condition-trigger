@@ -176,7 +176,7 @@ class WindowsPipe:
         finally:
             k.CloseHandle(process)
 
-    def io(self, value, deadline, write=False):
+    def io(self, value, deadline, write=False, before_write=None):
         ct, wt, k = self.ct, self.wt, self.k
         remaining = deadline - time.monotonic()
         if remaining <= 0:
@@ -190,6 +190,11 @@ class WindowsPipe:
         overlapped.hEvent = event
         pending = False
         try:
+            if write and before_write is not None and before_write():
+                raise TimeoutError('pipe deadline or pause before write')
+            remaining = deadline - time.monotonic()
+            if remaining <= 0:
+                raise TimeoutError('pipe deadline')
             ok = (k.WriteFile if write else k.ReadFile)(self.handle, buffer, length, ct.byref(count), ct.byref(overlapped))
             if not ok:
                 error = ct.get_last_error()
@@ -216,10 +221,10 @@ class WindowsPipe:
                 k.GetOverlappedResult(self.handle, ct.byref(overlapped), ct.byref(count), True)
             k.CloseHandle(event)
 
-    def write(self, data, deadline):
+    def write(self, data, deadline, before_write=None):
         offset = 0
         while offset < len(data):
-            offset += self.io(data[offset:], deadline, True)
+            offset += self.io(data[offset:], deadline, True, before_write)
 
     def read(self, size, deadline):
         data = bytearray()
@@ -297,11 +302,15 @@ class IPCClient:
             self.close()
             raise
 
-    def write_frame(self, item, deadline):
+    def write_frame(self, item, deadline, before_write=None):
         data = json.dumps(item, ensure_ascii=False, separators=(',', ':')).encode('utf-8')
         if len(data) > MAX_FRAME:
             raise ValueError('oversized IPC request')
-        self.pipe.write(struct.pack('<I', len(data)) + data, deadline)
+        frame = struct.pack('<I', len(data)) + data
+        if before_write is None:
+            self.pipe.write(frame, deadline)
+        else:
+            self.pipe.write(frame, deadline, before_write=before_write)
 
     def read_frame(self, deadline):
         if time.monotonic() >= deadline:
@@ -314,7 +323,7 @@ class IPCClient:
             raise TimeoutError('IPC response deadline')
         return item
 
-    def request(self, method, params, target=None, request_id=None, deadline=None):
+    def request(self, method, params, target=None, request_id=None, deadline=None, before_write=None):
         request_id = request_id or str(uuid.uuid4())
         deadline = deadline if deadline is not None else time.monotonic() + self.timeout
         request = {'type': 'request', 'requestId': request_id, 'sourceClientId': self.client_id,
@@ -322,7 +331,7 @@ class IPCClient:
                    'timeoutMs': max(1, int(self.timeout * 1000))}
         if target:
             request['targetClientId'] = target
-        self.write_frame(request, deadline)
+        self.write_frame(request, deadline, before_write)
         while True:
             item = self.read_frame(deadline)
             if item.get('type') != 'response' or item.get('requestId') != request_id:
@@ -408,6 +417,7 @@ class IPCClient:
 class DesktopAdapter:
     def __init__(self, c, paused, client_factory=None):
         self.c, self.paused = c, paused
+        self.authorization_deadline = None
         self.client_factory, self.client = client_factory or IPCClient, None
 
     def scan(self, **kwargs):
@@ -481,8 +491,20 @@ class DesktopAdapter:
             raise NotDispatched('waiting_owner_changed')
         if self.paused():
             raise NotDispatched('paused')
+        from trial_limits import trial_deadline
+        expires_at = trial_deadline(self.c)
+        request_options = {}
+        if expires_at is not None:
+            remaining = expires_at - time.time()
+            if remaining <= 0:
+                raise NotDispatched('trial_expired')
+            # WindowsPipe checks the monotonic deadline before the actual write.
+            request_options['deadline'] = time.monotonic() + min(remaining, self.c['rpc_timeout_seconds'])
+            if self.authorization_deadline is not None:
+                request_options['deadline'] = min(request_options['deadline'], self.authorization_deadline)
+            request_options['before_write'] = self.paused
         reply = self.client.request('thread-follower-start-turn', start_params(self.c['thread_id'], row['client_id'], text),
-                                    target=metadata['owner_id'], request_id=metadata['request_id'])
+                                    target=metadata['owner_id'], request_id=metadata['request_id'], **request_options)
         result = protocol_object(protocol_object(reply, 'start.reply').get('result'), 'start.result')
         native = protocol_object(result.get('result'), 'start.native')
         turn_id = protocol_id(protocol_object(native.get('turn'), 'start.turn').get('id'), 'turn.id')
