@@ -1,6 +1,6 @@
 # Current state
 
-Status: listener restored; repair report/ZIP and16-version research report/evidence delivered_verified. Original db099a48 and waiting de670c1f independently observed delivered with exact receipt hashes; later queued materials remain pending. Single Human-authorized continuation is completing records. Fixed trial expiry2026-10-10T13:11:50Z; Draft/Alice review_pending.
+Status: listener restored; repair report/ZIP and16-version research report/evidence delivered_verified. Original db099a48 and waiting de670c1f independently observed delivered with exact receipt hashes; later queued materials remain pending. Single Human-authorized continuation completed without native error at 2026-10-10T08:13:25+00:00. Fixed trial expiry2026-10-10T13:11:50Z; Draft/Alice review_pending.
 
 
 ## Recovery update — 2026-10-10
