@@ -1,8 +1,8 @@
 # Alice 云端小点成果监听 — 2026-10-08
 
-状态：**已观察任务启用并完成首轮有界分析；实际模型/推理元数据未知。四组材料保留 partial，见分析账本。**
+状态：**已观察任务启用并完成首轮及 2026-10-10 增量有界分析；实际模型/推理元数据未知。五组材料保留 partial，见分析账本。**
 
-本页下方“已建立的任务与配置缺口”“首轮待处理队列”“本轮验证范围”是创建时历史；由 [首轮分析](ALICE_DOT_RESULTS_ANALYSIS_20261008.md) 与当前账本更新其运行/处理状态，每轮处理规则继续适用。
+本页下方“已建立的任务与配置缺口”“首轮待处理队列”“本轮验证范围”是创建时历史；由 [首轮分析](ALICE_DOT_RESULTS_ANALYSIS_20261008.md)、[2026-10-10 增量分析](ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md) 与当前账本更新其运行/处理状态，每轮处理规则继续适用。
 
 ## 授权、角色与对象
 
@@ -30,7 +30,8 @@
 | --- | --- | --- |
 | [主补采](https://drive.google.com/file/d/1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P/view) | [主补采 ZIP](https://drive.google.com/file/d/1RGCnIN2opLnf4Px-EDwHl78VSyl0LDUb/view) | pending |
 | [R3 受阻增补](https://drive.google.com/file/d/1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B/view) | [R3 增补 ZIP](https://drive.google.com/file/d/1ZMbPVLEsRZqxE5FwVb3a5KLTNzku6Dfv/view) | pending |
-| [R3 续接调查](https://drive.google.com/file/d/1qgZgs3qmoXjP_p5WW--vvWJov99UPq3I/view) | 以报告实际引用为准；报告说明本次四项输入未另打 ZIP | pending |
+| [R3 续接调查](https://drive.google.com/file/d/1qgZgs3qmoXjP_p5WW--vvWJov99UPq3I/view) | 以报告实际引用为准；报告说明本次四项输入未另打 ZIP | partial |
+| [2026-10-10 增量调查](https://drive.google.com/file/d/13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw/view) | [汇总证据 JSON](https://drive.google.com/file/d/1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W/view) | partial；底层 16 个 blob 与两件 Library 原件未取得 |
 
 本轮取得目录元数据与报告可读内容并进行初步定位；没有完成这些报告的精细分析。两件 ZIP 仅核对元数据，未解包。报告原始字节的 Alice SHA-256 也未取得，账本中明确留空；不能拿规范化文本哈希冒充原始版本，也不能把柯蓝的回读结论记为 Alice 的独立验证。
 
@@ -56,3 +57,8 @@
 ## 本轮验证范围
 
 核对 Drive 文件夹和父目录、三份报告候选及前两份的 ZIP 元数据、自动任务能力和暂停回执。自身配置/记录检查属于 S0，没有独立运行分析任务，也没有重跑本机期限测试。没有本机 IPC、窗口或模型投递。发布时只更新本文件、处理账本、CURRENT_STATE、WORK_LOG 及对应清单项。
+
+
+## 2026-10-10 增量结果
+
+本轮核对直接子项 200 件。新增小点调查/证据原字节哈希为 `e46cacbf…` / `a7ec1c43…`，内部清单 16 个版本、113,970B 自洽。爱丽丝直接复核固定 Trackio 源码和 Claude/Rex 官方材料后，结论仍为 partial：静态材料支持优先做 T07 数据丢失负例，AI 两原件与真实模型对照仍缺，Claude/Rex 只能提供通信状态/门控语义。详情见 [增量分析](ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md)。同目录条件触发器恢复修复材料不纳入小点成果账本。
