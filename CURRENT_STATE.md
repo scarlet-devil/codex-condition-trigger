@@ -54,3 +54,10 @@ The service now reports enabled (updated 2026-10-08T15:13:55.519255Z). Actual mo
 Alice has read and hashed four report/evidence groups plus Day5/Day7 supporting originals. Four ZIPs: 91/91 manifest entries and CRC passed. Saved Day5 expectations yield4/6 with two false negatives; Day7 snapshots yield15 observations/9IDs and32/30 budget. Fixed upstream Humanizer and Trackio source paths corroborate structural-check limits and a possible lost-batch path. No candidate execution or installation. See [bounded analysis](docs/ALICE_DOT_RESULTS_ANALYSIS_20261008.md) and [exact versions/gaps](evidence/alice-dot-results-ledger.json).
 
 All four families remain partial for underlying source/experiment gaps; new R3 freeze supersedes old missing-freeze claims, not the absence of real runtime evidence. Unchanged delivery sets/gaps do not cause repeated notifications. This analysis does not accept or alter the local trial, deadline code, production ACK or timer. Fixed expiry remains2026-10-10T13:11:50Z; PR Draft and prior F1 acceptance unchanged.
+
+
+## Alice cloud Dot results analysis — 2026-10-10 increment
+
+Alice read and hashed the new incremental report/evidence pair (16,894B/8,743B; SHA-256 e46cacbf…/a7ec1c43…) and rechecked the related prior freeze pair. The evidence index is internally consistent at 16 exact versions and 113,970B, but the 16 referenced raw blobs were not attached for Alice byte-level verification. Trackio source confirms a local clear-before-write / warn-only failure path; no candidate ran. Two AI Library originals remain unavailable, and Claude/Rex sources are design references rather than Codex capability proof. The new delivery set remains partial. See [increment analysis](docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md) and [ledger](evidence/alice-dot-results-ledger.json).
+
+This cloud review does not accept or modify the local trial, its fixed 2026-10-10T13:11:50Z expiry, production ACK, timer, window permissions, or model configuration. PR remains Draft.
