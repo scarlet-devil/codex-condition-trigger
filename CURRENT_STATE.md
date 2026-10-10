@@ -1,6 +1,6 @@
 # Current state
 
-Status: listener restored; repair report and evidence Drive delivery verified 2026-10-10T07:52:49Z. Original research chat has one Human-authorized continuation inProgress after its platform network failure; business delivery still unverified. Fixed trial expiry2026-10-10T13:11:50Z; Draft/Alice review_pending.
+Status: listener restored; repair report/ZIP and16-version research report/evidence delivered_verified. Original db099a48 and waiting de670c1f independently observed delivered with exact receipt hashes; later queued materials remain pending. Single Human-authorized continuation is completing records. Fixed trial expiry2026-10-10T13:11:50Z; Draft/Alice review_pending.
 
 
 ## Recovery update — 2026-10-10
