@@ -345,3 +345,12 @@ Research report: https://drive.google.com/file/d/13QGcbcdqLifP-oIoqkXWw3AkQOs9Yp
 Repair report and ZIP are separately delivered_verified per previous entry. The native continuation was still completing records at the last snapshot; verified delivery/ACK does not depend on pretending its native turn had already ended. Native taskRunning and accurate worker present08:05:52Z, noSTOP or expiry latch. Runtime/source unchangeda631736; no new code regression required for records-only work. Original fixed expiry13:11:50Z, legacytimerPAUSED, no new windows/permanent enablement/merge. See evidence/recovery-retry-outcome-20261010.json.
 
 Native closeout: the same single retry completed at 2026-10-10T08:13:25+00:00 with error=null (1449.818s). Actual artifacts and both delivery ACKs were already verified; no second manual retry. The UI icon itself was not visually inspected.
+
+
+## 2026-10-10 — Alice bounded Dot-results increment review
+
+Actor: Alice cloud review. Scope: Kelan incremental small-point report/evidence only; condition-trigger recovery artifacts excluded from the research ledger.
+
+Read complete Drive bytes for report 13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw (16,894B, SHA-256 e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3) and evidence 1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W (8,743B, SHA-256 a7ec1c4309ad37fc645b0420fa2b0ca180ee8a69d3e9bdbad5e0ef69872612a5). Re-read the related prior freeze pair with unchanged hashes. The evidence index reconciles 14 + 2 exact versions and 105,197 + 8,773 = 113,970B; underlying 16 raw blobs were not attached to Alice.
+
+Pinned Trackio source supports a local clear-before-write and warn-only failure path, so T07 remains the smallest useful negative experiment; no candidate was installed or run. The AI archive still lacks two registered Library originals (45,506B), so transferred 25 checks and 15 scenarios remain unverified. Claude Code official changelog/hooks and Rex OSC 7501 support design semantics only; no Codex capability claim or runtime probe. Output: docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md. Ledger status: partial. No production ACK, timer, window, model, trial, PR-ready, or Kelan-ledger change.
