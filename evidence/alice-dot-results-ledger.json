@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
   "record_scope": "Alice cloud Dot research analysis; separate from Kelan production delivery ledger",
-  "setup_status": "enabled_observed_first_analysis_partial",
-  "recorded_at": "2026-10-08T15:32:57Z",
-  "source_repository_head": "42901a1d359a89f28f4609543d32beb52d2e17be",
+  "setup_status": "enabled_observed_increment_analysis_partial",
+  "recorded_at": "2026-10-10T08:30:15Z",
+  "source_repository_head": "f294ec6a2dd3153613505cf5ac804bea11484ea5",
   "folder": {
     "file_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
     "name": "40_REPORTS",
     "parent_file_id": "1BEewRhn2j_zAVUw57obfX6TlLkRAhR6B",
     "parent_name": "new-skill-merge",
     "relationship_verified": true,
-    "last_listing_direct_item_count": 194,
-    "pagination": "list_folder top_k1000 returned194; no continuation token; document search also returned no continuation token"
+    "last_listing_direct_item_count": 200,
+    "pagination": "list_folder top_k1000 returned200 direct children; no continuation token exposed"
   },
   "automation": {
     "title": "精读小点成果",
@@ -217,6 +217,58 @@
       "last_notified_delivery_set_key": "1TSwfFvJ8H5UUyPb8LuItXnttiG4_vaYX:3966bf8a7cc7d2524f6f285950fee2a97c4bc7655840d5c13db623b2883bffed|1g3rd-lVPxHPVsyqukki5oY2fwbGhT3nx:b646da2ebe3c57017965cc89ddafacd8014ef9fe109b8bffee0df558ac2c1005",
       "notification_evidence": "Current conversation: 2026-10-08 first-analysis substantive commentary before ledger write; no message ID exposed",
       "resume_condition": "New report bytes, changed/new related evidence, or changed access to listed missing sources; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw",
+      "name": "KELAN_INCREMENT_SURVEY_20261010_db099a48.md",
+      "observed_metadata": {
+        "size_bytes": 16894,
+        "modified_time": "2026-10-10T08:02:42.196Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3",
+      "content_version_key": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw:e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "1TSwfFvJ8H5UUyPb8LuItXnttiG4_vaYX",
+      "evidence": [
+        {
+          "file_id": "1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W",
+          "name": "KELAN_INCREMENT_EVIDENCE_20261010_db099a48.json",
+          "raw_sha256": "a7ec1c4309ad37fc645b0420fa2b0ca180ee8a69d3e9bdbad5e0ef69872612a5",
+          "observed_size_bytes": 8743,
+          "observed_modified_time": "2026-10-10T08:03:08.283Z",
+          "mime_type": "application/json",
+          "inspection": "complete_raw_bytes_read_and_hashed; index counts reconciled; referenced 16 raw blobs not independently fetched"
+        }
+      ],
+      "related_versions_rechecked": [
+        {
+          "file_id": "1TSwfFvJ8H5UUyPb8LuItXnttiG4_vaYX",
+          "raw_sha256": "3966bf8a7cc7d2524f6f285950fee2a97c4bc7655840d5c13db623b2883bffed",
+          "size_bytes": 17287
+        },
+        {
+          "file_id": "1g3rd-lVPxHPVsyqukki5oY2fwbGhT3nx",
+          "raw_sha256": "b646da2ebe3c57017965cc89ddafacd8014ef9fe109b8bffee0df558ac2c1005",
+          "size_bytes": 17292
+        }
+      ],
+      "delivery_set_key": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw:e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3|1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W:a7ec1c4309ad37fc645b0420fa2b0ca180ee8a69d3e9bdbad5e0ef69872612a5",
+      "last_analyzed_at": "2026-10-10T08:30:15Z",
+      "last_notified_at": "2026-10-10T08:30:15Z",
+      "last_notified_delivery_set_key": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw:e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3|1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W:a7ec1c4309ad37fc645b0420fa2b0ca180ee8a69d3e9bdbad5e0ef69872612a5",
+      "analysis_summary": "Trackio static gap narrowed and T07 remains the highest-value negative; AI originals/model controls missing; Claude/Rex semantics are design references, not Codex runtime evidence.",
+      "unresolved_scope": [
+        "16 referenced raw source/audit/archive blobs not delivered to Alice for byte-level verification",
+        "Trackio T01-T08 candidate execution absent; T08 remains BLOCKED",
+        "Trackio T05 boundary, WITH-wrapped DML negative, tree resource guarantee, and T07 real fault reproduction absent",
+        "two AI Library originals totaling 45506 registered bytes unavailable; CRC/path safety not run",
+        "25 historical checks and 15 scenarios not independently verified; model/control/scientific runs absent",
+        "no Claude/Rex/Codex local compatibility probe or business benefit measurement"
+      ],
+      "completion_note": "partial only; not added to reviewed_delivery_sets; same-turn final delivery uses read-before-write dedupe and is not atomic exactly-once"
     }
   ],
   "reviewed_delivery_sets": [],
@@ -232,113 +284,54 @@
     "Third report states no separate ZIP for the four-input continuation; assess its actual cited evidence, not a universal ZIP requirement."
   ],
   "last_analysis": {
-    "at": "2026-10-08T15:32:57Z",
-    "output": "docs/ALICE_DOT_RESULTS_ANALYSIS_20261008.md",
+    "at": "2026-10-10T08:30:15Z",
+    "output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md",
     "status": "partial",
-    "source_head": "42901a1d359a89f28f4609543d32beb52d2e17be",
-    "source_checks": {
-      "trackio/api.py": {
-        "bytes": 5056,
-        "sha256": "f23a3a5e75fce46708fe4149831ac9f9f290741af4928dadf3c3ce3e7b81dc95",
-        "matches_saved_identity": true
+    "source_head": "f294ec6a2dd3153613505cf5ac804bea11484ea5",
+    "delivery_set_key": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw:e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3|1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W:a7ec1c4309ad37fc645b0420fa2b0ca180ee8a69d3e9bdbad5e0ef69872612a5",
+    "raw_inputs": {
+      "report": {
+        "file_id": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw",
+        "bytes": 16894,
+        "sha256": "e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3"
       },
-      "trackio/trace.py": {
-        "bytes": 3395,
-        "sha256": "22df34c878142ec7eb4fd0efc071687e08b4c04c6490722ceb40dfbe46d740e4",
-        "matches_saved_identity": true
-      },
-      "trackio/run.py": {
-        "bytes": 82636,
-        "sha256": "75642f9c503c96fad42430439ba1ff945ec378029cafb25a885f523f9e5d7465",
-        "matches_saved_identity": true
-      },
-      "trackio/sqlite_storage.py": {
-        "bytes": 261073,
-        "sha256": "cf6c28f8010ca76360ec93be8a990e64595c2798662c71658323db5809edd0b0",
-        "matches_saved_identity": true
+      "evidence": {
+        "file_id": "1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W",
+        "bytes": 8743,
+        "sha256": "a7ec1c4309ad37fc645b0420fa2b0ca180ee8a69d3e9bdbad5e0ef69872612a5"
       }
     },
-    "zip_checks": {
-      "KELAN_R3_BLOCKED_ADDENDUM_PACKAGE_20261008.zip": {
-        "members": 3,
-        "manifest_entries": 2,
-        "passed": 2,
-        "crc_ok": true,
-        "unique_members": true
+    "index_reconciliation": {
+      "new_versions": 14,
+      "new_bytes": 105197,
+      "prior_waiting_versions": 2,
+      "prior_waiting_bytes": 8773,
+      "total_versions": 16,
+      "total_bytes": 113970,
+      "counts_match": true
+    },
+    "direct_source_checks": {
+      "trackio": {
+        "repository": "gradio-app/trackio",
+        "commit": "605a645cf555da7945095ca50b0efb5de802df1b",
+        "finding": "local queue is cleared before write; SQLite write exceptions are caught and warned without requeue",
+        "runtime_reproduction": false
       },
-      "DOT_SKILL_TRIAL_DAY7_EVIDENCE_20261007.zip": {
-        "members": 32,
-        "manifest_entries": 31,
-        "passed": 31,
-        "crc_ok": true,
-        "unique_members": true
+      "claude_code": {
+        "commits": [
+          "602df92bf481ed904533e95c09f740f40aab5aed",
+          "2301018b1f61073c501a8e7a4813ef48c239163b"
+        ],
+        "finding": "onFailure block and managed-hook turn-continuation semantics confirmed; event-specific limits remain"
       },
-      "KELAN_DOT_CATCHUP_MINIMAL_PACKAGE_20261008.zip": {
-        "members": 3,
-        "manifest_entries": 2,
-        "passed": 2,
-        "crc_ok": true,
-        "unique_members": true
-      },
-      "DOT_SKILL_TRIAL_DAY5_EVIDENCE_20261005.zip": {
-        "members": 57,
-        "manifest_entries": 56,
-        "passed": 56,
-        "crc_ok": true,
-        "unique_members": true
+      "rex": {
+        "revision": "0.3 / 2026-10-07",
+        "finding": "working/blocked transient; done/error persistent; status is not business ACK"
       }
     },
-    "day5": {
-      "rows": [
-        {
-          "id": "C1_unchanged",
-          "meets_frozen_expectation": true,
-          "whole_byte_equal": true
-        },
-        {
-          "id": "C2_prose_only",
-          "meets_frozen_expectation": true,
-          "whole_byte_equal": false
-        },
-        {
-          "id": "C3_heading",
-          "meets_frozen_expectation": true,
-          "whole_byte_equal": false
-        },
-        {
-          "id": "C4_inline_link",
-          "meets_frozen_expectation": true,
-          "whole_byte_equal": false
-        },
-        {
-          "id": "C5_tilde_code",
-          "meets_frozen_expectation": false,
-          "whole_byte_equal": false
-        },
-        {
-          "id": "C6_reference_link",
-          "meets_frozen_expectation": false,
-          "whole_byte_equal": false
-        }
-      ],
-      "met": 4,
-      "total": 6,
-      "candidate_rerun": false
-    },
-    "day7": {
-      "observations": 15,
-      "unique_ids": 9,
-      "budget_sum": 32,
-      "budget_limit": 30
-    },
-    "r3_sanitized_consistency": {
-      "input_count": 14,
-      "input_bytes_sum": 75768,
-      "freeze_count": 10,
-      "freeze_bytes_sum": 59505,
-      "raw_execution_scripts_available": false
-    },
+    "referenced_blobs_independently_available": false,
     "candidate_execution": false,
+    "installation": false,
     "model_metadata": "unknown"
   }
 }
