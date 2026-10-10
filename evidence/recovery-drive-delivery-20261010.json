@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "status": "delivered_verified",
+  "verified_at_utc": "2026-10-10T07:52:49.054Z",
+  "scope": "Condition trigger repair report and sanitized evidence, not Dot research business ACK",
+  "files": [
+    {
+      "bytes": 9962,
+      "raw_bytes_equal": true,
+      "name": "KELAN_RECOVERY_REPAIR_20261010.md",
+      "sha256": "7035bc24ca11bdfa5f42557b76d1f1c830840ff5ad2ca9a6f9617a8bfa3b4c2f",
+      "id": "1Deql7Q8TxXhBQ2pbkqdUGcvPw55PWCUn",
+      "parent_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
+      "shared": false,
+      "url": "https://drive.google.com/file/d/1Deql7Q8TxXhBQ2pbkqdUGcvPw55PWCUn/view?usp=drivesdk",
+      "metadata_verified": true
+    },
+    {
+      "bytes": 15321,
+      "raw_bytes_equal": true,
+      "name": "KELAN_RECOVERY_REPAIR_20261010_EVIDENCE.zip",
+      "sha256": "06dca58c7b46cb6b34826815cf3c3926b35458d17363df4b4f88c6e1432acef1",
+      "id": "1YUIGsdHbpB0u24RJD7FonO7UG2Uww0j4",
+      "parent_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
+      "shared": false,
+      "url": "https://drive.google.com/file/d/1YUIGsdHbpB0u24RJD7FonO7UG2Uww0j4/view?usp=drivesdk",
+      "metadata_verified": true
+    }
+  ],
+  "alice_review": "review_pending",
+  "manual_original_chat_retry": {
+    "human_authorized": true,
+    "attempts": 1,
+    "status": "inProgress at initial native readback",
+    "business_ack": false
+  },
+  "source_code_changed": false
+}
