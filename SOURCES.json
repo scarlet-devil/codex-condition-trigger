@@ -1,0 +1,109 @@
+{
+  "retrieved_date": "2026-10-03",
+  "sources": [
+    {
+      "name": "OpenAI queue processor",
+      "url": "https://github.com/openai/codex/blob/86a54b051c08f34f373c507ae16a91915ab08700/codex-rs/app-server/src/request_processors/thread_queue_processor.rs",
+      "git_blob": "ea6ec7ddab9148b81852644217fe394cb4ebc3e5",
+      "commit": "86a54b051c08f34f373c507ae16a91915ab08700"
+    },
+    {
+      "name": "OpenAI CLI queue client",
+      "url": "https://github.com/openai/codex/blob/86a54b051c08f34f373c507ae16a91915ab08700/codex-rs/tui/src/session_queue_commands.rs",
+      "git_blob": "9752a4281737248ab8c4d0c7a0718ef7f11d5e0b",
+      "commit": "86a54b051c08f34f373c507ae16a91915ab08700"
+    },
+    {
+      "name": "OpenAI queue service",
+      "url": "https://github.com/openai/codex/blob/86a54b051c08f34f373c507ae16a91915ab08700/codex-rs/ext/queue/src/service.rs",
+      "git_blob": "06aeb63b4cacccf562ee91897bafbcf962bd978c",
+      "commit": "86a54b051c08f34f373c507ae16a91915ab08700"
+    },
+    {
+      "name": "OpenAI thread protocol",
+      "url": "https://github.com/openai/codex/blob/86a54b051c08f34f373c507ae16a91915ab08700/codex-rs/app-server-protocol/src/protocol/v2/thread.rs",
+      "git_blob": "9eee37dcac9756c899f7facb17053d193486ae9e",
+      "commit": "86a54b051c08f34f373c507ae16a91915ab08700"
+    },
+    {
+      "name": "Codex Triggers app-server controller",
+      "url": "https://github.com/ank1015/codex-triggers/blob/beac312b381cf2841ff46be8510f3a54ecd14ac4/apps/trigger/src/delivery/services/codex-app-server/controller.ts",
+      "git_blob": "1c3fa42fec6422f0901c9c920d5bc1f7bd799a09",
+      "commit": "beac312b381cf2841ff46be8510f3a54ecd14ac4"
+    },
+    {
+      "name": "Codex Triggers Desktop controller",
+      "url": "https://github.com/ank1015/codex-triggers/blob/beac312b381cf2841ff46be8510f3a54ecd14ac4/apps/trigger/src/delivery/services/codex-app/controller.ts",
+      "git_blob": "519ab6ddc3c0c60b7843e52044e032b03c85db83",
+      "commit": "beac312b381cf2841ff46be8510f3a54ecd14ac4"
+    },
+    {
+      "name": "Codex Triggers SDK adapter",
+      "url": "https://github.com/ank1015/codex-triggers/blob/beac312b381cf2841ff46be8510f3a54ecd14ac4/apps/trigger/src/delivery/services/codex-cli-service.ts",
+      "git_blob": "410867106822f87202403ef628b991fb80081b54",
+      "commit": "beac312b381cf2841ff46be8510f3a54ecd14ac4"
+    },
+    {
+      "name": "Codex Triggers queue recovery",
+      "url": "https://github.com/ank1015/codex-triggers/blob/beac312b381cf2841ff46be8510f3a54ecd14ac4/apps/trigger/src/delivery/persistence/delivery-repository.ts",
+      "git_blob": "30cb5bfdac03fa28f325f2a3dcf520aa46a634b2",
+      "commit": "beac312b381cf2841ff46be8510f3a54ecd14ac4"
+    },
+    {
+      "name": "Codex Triggers README",
+      "url": "https://github.com/ank1015/codex-triggers/blob/beac312b381cf2841ff46be8510f3a54ecd14ac4/README.md",
+      "git_blob": "b990d335cd020e5d9fdcf9a23c9741ee913e3dda"
+    },
+    {
+      "name": "Queue unloaded-thread issue",
+      "url": "https://github.com/openai/codex/issues/44491",
+      "observed_state": "closed / not_planned"
+    },
+    {
+      "name": "Codex App Server docs",
+      "url": "https://learn.chatgpt.com/docs/app-server",
+      "kind": "dynamic"
+    },
+    {
+      "name": "chokidar-cdx",
+      "url": "https://github.com/codexophile/chokidar-cdx/blob/main/README.md",
+      "git_blob": "952985afddacc7e8aa0f4b5175eda68405422b73"
+    },
+    {
+      "name": "gnosis-container",
+      "url": "https://github.com/DeepBlueDynamics/gnosis-container/blob/main/README.md",
+      "git_blob": "ee9b6383b9b6b9a68b5452bfdd8cdbb0bb19507a"
+    },
+    {
+      "name": "watchdog 6.0.0",
+      "url": "https://pypi.org/project/watchdog/6.0.0/",
+      "kind": "runtime_dependency"
+    },
+    {
+      "name": "CodexAgentControl Desktop IPC protocol",
+      "url": "https://github.com/Destiny-Rul/CodexAgentControl/blob/76408870888198f7ee3973b807d2302a86236143/skills/codex-desktop-control/references/protocol.md",
+      "commit": "76408870888198f7ee3973b807d2302a86236143",
+      "git_blob": "e2afe74b616468e0c5b6c4b999d6f7a2f0f98a24",
+      "kind": "protocol reference for experimental IPC implementation; not an installed dependency",
+      "verified_date": "2026-10-04"
+    },
+    {
+      "name": "Windows ReadFile",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/fileapi/nf-fileapi-readfile",
+      "kind": "official API documentation, accessed by controlled reviewer",
+      "verified_date": "2026-10-04"
+    },
+    {
+      "name": "Windows CancelIoEx",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-cancelioex",
+      "kind": "official API documentation, accessed by controlled reviewer",
+      "verified_date": "2026-10-04"
+    },
+    {
+      "name": "Windows GetOverlappedResult",
+      "url": "https://learn.microsoft.com/en-us/windows/win32/api/ioapiset/nf-ioapiset-getoverlappedresult",
+      "kind": "official API documentation, accessed by controlled reviewer",
+      "verified_date": "2026-10-04"
+    }
+  ]
+}

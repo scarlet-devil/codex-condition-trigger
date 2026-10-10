@@ -1,0 +1,25 @@
+{
+  "input_commit": "93d84fdd4be5d6ed7b9ea9317a3326489a12a41b",
+  "actor": "Alice, cloud Linux",
+  "real_ipc_or_model_calls": 0,
+  "interrupted_lifecycle": {
+    "after_interruption": "busy",
+    "after_next_complete_turn": {
+      "exception": "ValueError",
+      "message": "overlapping or duplicate lifecycle; native idle evidence required"
+    },
+    "source_boundary": "turn_interrupted appears in the pinned third-party reference; current Windows event shape not independently verified"
+  },
+  "malformed_success_reply": {
+    "exception": "TypeError",
+    "message": "'NoneType' object is not subscriptable",
+    "persisted_before_restart": "sending",
+    "persisted_after_restart": "uncertain",
+    "reconciliation_after_restart": "running",
+    "synthetic_requests": 1
+  },
+  "malformed_json_frame": {
+    "exception": "AttributeError",
+    "message": "'NoneType' object has no attribute 'get'"
+  }
+}

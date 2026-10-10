@@ -1,0 +1,308 @@
+{
+  "schema": "supervised-watch-trial-v1",
+  "author": "Kelan",
+  "deployment_environment": "local Windows Desktop",
+  "review": "Self-review S0; Alice review_pending",
+  "source_head": "05864a467d12b1480bdb901d2f0ae1d27dc84e12",
+  "production_code_changed": false,
+  "mode": "original trigger.run(store, live=True), external audit and bounded supervisor",
+  "manual_dispatch_calls": 0,
+  "bounds": {
+    "synthetic_files": 1,
+    "max_start_requests": 1,
+    "max_seconds": 600,
+    "input_scope": "isolated synthetic inbox; real submission folder untouched",
+    "resume_unloaded": false
+  },
+  "preflight": {
+    "before_open": "native notLoaded; owner response error=no-client-found",
+    "candidate_error_text": "IPC response method or owner mismatch",
+    "operator_action": "opened exact existing target in native Desktop; no model message",
+    "after_open": "idle; revision 6",
+    "ordinary_sandbox_pipe": "WinError 5; approved narrow elevated execution; no ACL changes",
+    "dependency": "reused isolated Python 3.12.14 and watchdog 6.0.0; no install"
+  },
+  "installation": {
+    "package": "OpenAI.Codex_26.1002.7124.0_x64",
+    "valid_openai_signature": true,
+    "archive_bytes": 561628354,
+    "archive_sha256": "76fe7078248c00e4e03dd2177a4275ec9ce158a9dd43452a4f0427d39a4ed012",
+    "methods": {
+      "initialize": 1,
+      "thread-owner-discovery": 1,
+      "thread-follower-start-turn": 2,
+      "thread-stream-following-changed": 1,
+      "thread-stream-state-changed": 11,
+      "thread-follower-load-complete-history": 1
+    }
+  },
+  "timeline": {
+    "started_at": "2026-10-08T02:58:20.718733+00:00",
+    "input_at": "2026-10-08T02:58:25.803914+00:00",
+    "events": [
+      {
+        "at": "2026-10-08T02:58:20.771572+00:00",
+        "elapsed_seconds": 0.063,
+        "event": "watching",
+        "mode": "live",
+        "backend": "WindowsApiObserver"
+      },
+      {
+        "at": "2026-10-08T02:58:27.981730+00:00",
+        "elapsed_seconds": 7.266,
+        "event": "batch_ready",
+        "files": 1
+      },
+      {
+        "at": "2026-10-08T02:58:33.983497+00:00",
+        "elapsed_seconds": 13.266,
+        "event": "dispatch_accepted",
+        "state": "accepted"
+      },
+      {
+        "at": "2026-10-08T03:00:01.892173+00:00",
+        "elapsed_seconds": 101.172,
+        "event": "watcher_stopped"
+      }
+    ],
+    "finished_at": "2026-10-08T03:00:01.895324+00:00",
+    "watcher_seconds": 101.188,
+    "file_to_ready_seconds": 2.172,
+    "file_to_accepted_seconds": 8.172,
+    "native_turn_ms": 81611,
+    "performance_benchmark": false
+  },
+  "observations": {
+    "backend": "WindowsApiObserver",
+    "file_events": [
+      {
+        "at": "2026-10-08T02:58:25.800139+00:00",
+        "elapsed_seconds": 5.094,
+        "type": "created",
+        "name": "synthetic.json",
+        "is_directory": false
+      },
+      {
+        "at": "2026-10-08T02:58:25.806790+00:00",
+        "elapsed_seconds": 5.094,
+        "type": "modified",
+        "name": "synthetic.json",
+        "is_directory": false
+      }
+    ],
+    "rescan_seconds": 60,
+    "pre_send_idle_revisions": [
+      8,
+      10
+    ],
+    "actual_start_requests": 1,
+    "one_matching_completed_turn": true,
+    "functions_exec_calls": 2,
+    "successful_exec_command_outputs": 4,
+    "settings_inherited_exact": [
+      "approval_policy",
+      "cwd",
+      "effort",
+      "model",
+      "sandbox_policy"
+    ],
+    "result": {
+      "marker": "watch-canary-d2d45098-669f-4fc7-847d-12673bb76496",
+      "left": 173,
+      "right": 284,
+      "result": 457,
+      "actual_tools": [
+        "functions.exec",
+        "exec_command"
+      ],
+      "blob_sha256": "e11f5493a4a50d47409149ec32f5bb3cc43e35e4f0c0bd34e4112d2e89852155",
+      "blob_bytes": 91,
+      "manifest_sha256": "d933b43fabac3b2886af388b18795f37e62e77caf328ba87d93ebbc1dfc84691",
+      "manifest_bytes": 476
+    },
+    "same_turn_hook_read_only_observed": true,
+    "hook_effectiveness_acceptance": false
+  },
+  "receipt": {
+    "business_delivery": false,
+    "kind": "synthetic result only; caller verified before ACK",
+    "state": "delivered",
+    "same_bytes_rescan_batches": 1,
+    "evidence_sha256": "a4fa88954b6610ca57f00a7b34eb652c48b622c246ce2caa9ac4203968da3a36",
+    "scope": "post-stop two-snapshot dedup check, not sustained live dedup acceptance"
+  },
+  "checks": [
+    {
+      "number": 1,
+      "name": "one_send_zero_manual_dispatch",
+      "passed": true
+    },
+    {
+      "number": 2,
+      "name": "supervisor_clean_stop",
+      "passed": true
+    },
+    {
+      "number": 3,
+      "name": "exact_original_target",
+      "passed": true
+    },
+    {
+      "number": 4,
+      "name": "native_and_rollout_same_completed_turn",
+      "passed": true
+    },
+    {
+      "number": 5,
+      "name": "both_pre_send_states_idle",
+      "passed": true
+    },
+    {
+      "number": 6,
+      "name": "tool_output_belongs_to_call",
+      "passed": true
+    },
+    {
+      "number": 7,
+      "name": "exec_success",
+      "passed": true
+    },
+    {
+      "number": 8,
+      "name": "exec_success",
+      "passed": true
+    },
+    {
+      "number": 9,
+      "name": "tool_output_belongs_to_call",
+      "passed": true
+    },
+    {
+      "number": 10,
+      "name": "exec_success",
+      "passed": true
+    },
+    {
+      "number": 11,
+      "name": "exec_success",
+      "passed": true
+    },
+    {
+      "number": 12,
+      "name": "actual_tools",
+      "passed": true
+    },
+    {
+      "number": 13,
+      "name": "one_final",
+      "passed": true
+    },
+    {
+      "number": 14,
+      "name": "native_final_matches_rollout",
+      "passed": true
+    },
+    {
+      "number": 15,
+      "name": "actual_result",
+      "passed": true
+    },
+    {
+      "number": 16,
+      "name": "settings_inherited_exact",
+      "passed": true
+    },
+    {
+      "number": 17,
+      "name": "manifest_matches_pre_send_database",
+      "passed": true
+    },
+    {
+      "number": 18,
+      "name": "immutable_blob_and_input_exact",
+      "passed": true
+    },
+    {
+      "number": 19,
+      "name": "returned_manifest_and_blob_hashes",
+      "passed": true
+    },
+    {
+      "number": 20,
+      "name": "actual_blob_tool_read",
+      "passed": true
+    },
+    {
+      "number": 21,
+      "name": "actual_manifest_tool_read",
+      "passed": true
+    },
+    {
+      "number": 22,
+      "name": "same_turn_hook_observed",
+      "passed": true
+    },
+    {
+      "number": 23,
+      "name": "exact_sent_text_in_turn",
+      "passed": true
+    },
+    {
+      "number": 24,
+      "name": "native_windows_observer",
+      "passed": true
+    },
+    {
+      "number": 25,
+      "name": "event_path_before_compensation_scan",
+      "passed": true
+    },
+    {
+      "number": 26,
+      "name": "old_and_new_canary_stopped",
+      "passed": true
+    },
+    {
+      "number": 27,
+      "name": "original_state_hooks_binding_timer_unchanged",
+      "passed": true
+    }
+  ],
+  "checks_passed": 27,
+  "checks_total": 27,
+  "new_unit_tests_run": 0,
+  "closure": {
+    "watcher_exit_code": 0,
+    "new_and_old_canary_STOP": true,
+    "original_timer": "PAUSED",
+    "original_business_state_hooks_and_binding_unchanged": true,
+    "background_watcher_remaining": false,
+    "production_adoption": false
+  },
+  "private_evidence_sha256": {
+    "supervised_watch.py": "5e099c910f63be39e320e48a5d884c8b57a223bb0825364064abbd13a851b7c2",
+    "verify_result.py": "64dc12c1dd963aa17f2a619d1b056638831011bc661df93ddd6622996ff758e2",
+    "watch-trace.json": "e74c1713831e4c7b7167fbe1bbde5420f33ebd57f6af90c4126cf59b057bd6f1",
+    "watcher.log": "02467355047b860eaa413131f66d0068e9a20764af6f1e821e9c352397974430",
+    "turn-evidence.json": "90693cff0814ed46161a4fee561d9b998169908f10cb561f61b0415f091cfa9f",
+    "native-completion.json": "110dc5269655d0ce043359dc37e247f31c5cc5b8385c4c9b877a8cf2ecf10636",
+    "pre-send.sqlite": "9bcadfe35efca5fef5c0195991b9eb9ef752a20f79ee36d5b251f09af3254d8a",
+    "probe-owner-diagnostic.json": "315f932bf930245c69c3e0ad8e7c06f8200baefb450707d230dfea27e4acd4e5",
+    "synthetic-result-receipt.json": "a4fa88954b6610ca57f00a7b34eb652c48b622c246ce2caa9ac4203968da3a36",
+    "ack-readback.json": "e6369470dcb2f69f39908b39829b3d95ee1b134bb064a79fe3e66fcbd937df07"
+  },
+  "redactions": [
+    "absolute private paths",
+    "thread and native turn IDs",
+    "owner/client/request IDs",
+    "full prompts and raw session/tool material",
+    "global identity and registry contents"
+  ],
+  "limitations": [
+    "operator must ensure target is loaded; no autonomous unloaded-chat recovery accepted",
+    "private protocol, only this actual Desktop package tested",
+    "one file and one turn, no multi-batch long-run/business/concurrency acceptance",
+    "single-send and deadline guard are trial supervisor, not newly added product features",
+    "new evidence awaits Alice review"
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema": "kelan-trial-deadline-evidence-v1",
+  "base_commit": "74965cd78f3b2642391a58209c30ce0886761a88",
+  "deadline": "2026-10-10T13:11:50Z",
+  "mode": "desktop_ipc loaded-owner-only; no window backend",
+  "red": {
+    "test_methods": 9,
+    "assertion_failures": 12,
+    "errors": 0,
+    "seconds": 0.568,
+    "extra_expiry_latch_counterexample_failed": true,
+    "controlled_review_counterexamples": [
+      "wall rollback extended final write budget",
+      "preparation crossed deadline before WriteFile"
+    ]
+  },
+  "green": {
+    "affected_test_methods": 114,
+    "passed": 113,
+    "skipped": 1,
+    "skip_reason": "Windows symlink privilege",
+    "seconds": 12.625,
+    "controlled_final_write_probes": 5,
+    "controlled_review_focused_tests": 18
+  },
+  "review": {
+    "type": "local controlled review",
+    "context": "S1",
+    "method": "M1",
+    "alice_acceptance": false,
+    "blocking_findings_remaining": 0
+  },
+  "smoke": {
+    "elapsed_seconds": 2.953,
+    "observer": "Windows watchdog dry observer",
+    "stop_present": true,
+    "expiry_receipt_present": true,
+    "batches": 0,
+    "ipc_calls": 0,
+    "model_starts": 0,
+    "window_actions": 0,
+    "expiry": {
+      "expires_at_utc": "2026-10-08T14:06:41.232176+00:00",
+      "in_flight_turns_not_cancelled": true,
+      "observed_at_utc": "2026-10-08T14:06:41.227003+00:00",
+      "pending_batches_preserved": true,
+      "reason": "fixed authorization deadline reached"
+    }
+  },
+  "source_files": {
+    "trigger.py": {
+      "bytes": 28509,
+      "sha256": "acc63e08b5a471a19f45a3937594311499b2f69b2ec35bc5b6c22e7e5a6d78f1"
+    },
+    "desktop_ipc.py": {
+      "bytes": 28306,
+      "sha256": "01bfce843ac2b9e54aedfdc4426fa84a37aeb61ff4104d9d1bc3c5d2382137f0"
+    },
+    "trial_limits.py": {
+      "bytes": 702,
+      "sha256": "985bf7078574cb1eeb53d9677548482c5830c308598dfdc56dfc1e03a2f1cf17"
+    },
+    "tests/test_trial_deadline.py": {
+      "bytes": 5788,
+      "sha256": "a916f0bf7c31916a25a33cda31a792a614374c44cde8e4dd6ffb948290927c13"
+    }
+  },
+  "evidence_files": {
+    "trial-final-write-probe-20261008.py": {
+      "bytes": 6954,
+      "sha256": "6884a8a1a32ffd5d4f9b61f83f5e0ec142237173b9414dcd24f374626b1964bc"
+    },
+    "trial-deadline-tests-20261008.txt": {
+      "bytes": 15962,
+      "sha256": "de3dc45d3f1a4f4114a662ce0bfeabb51a04cf1cbd6cfd29be63aa45ffa7498b"
+    }
+  },
+  "limitations": [
+    "user-space check and system call are not atomic hard real-time enforcement",
+    "not a tamper-proof clock across powered-off sessions",
+    "no new real model or window experiment during guard verification",
+    "other adapters/configured window backends outside selected trial validation"
+  ]
+}

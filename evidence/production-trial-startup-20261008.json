@@ -1,0 +1,104 @@
+{
+  "schema": "kelan-production-trial-startup-v1",
+  "recorded_at_utc": "2026-10-08T14:20:11.996885+00:00",
+  "started_at_utc": "2026-10-08T14:16:14.349361+00:00",
+  "expires_at_utc": "2026-10-10T13:11:50Z",
+  "runtime_commit": "2c380551bfc1b01a0e520d3ca5edd1bee39cb14d",
+  "mode": "loaded-owner-only",
+  "watchdog_backend": "WindowsApiObserver",
+  "observed_live": true,
+  "stderr_bytes": 0,
+  "config_sha256": "39f7d76a57e91867b165817964c24bb3699ec23cf49a54017dd4104e40b865fd",
+  "baseline_sha256": "4a54588ff3104edcf6af0ce55513f4d0cc6dd498a707bd29462fead0564f9daf",
+  "historical_unique_versions": 1269,
+  "launch_scan_file_count": 1476,
+  "launch_scan_pending_versions": 4,
+  "catchup_covered_versions": [
+    498,
+    116
+  ],
+  "catchup_deliveries": [
+    {
+      "name": "KELAN_DOT_CATCHUP_PRELIMINARY_20261008.md",
+      "id": "1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P",
+      "url": "https://drive.google.com/file/d/1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P/view",
+      "parent_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
+      "bytes": 16898,
+      "sha256": "c4af1b59c8633a84ab813fa1a887fcf63a7cf5527ae17ee4381c75d53daab06a",
+      "raw_readback_equal": true,
+      "shared": false,
+      "permission_roles": [
+        "owner"
+      ]
+    },
+    {
+      "name": "KELAN_DOT_CATCHUP_MINIMAL_PACKAGE_20261008.zip",
+      "id": "1RGCnIN2opLnf4Px-EDwHl78VSyl0LDUb",
+      "url": "https://drive.google.com/file/d/1RGCnIN2opLnf4Px-EDwHl78VSyl0LDUb/view",
+      "parent_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
+      "bytes": 15497,
+      "sha256": "c2549fc8649bfeb45823997e13ffb241acf8b5ce198a40875faffcec3c5a1265",
+      "raw_readback_equal": true,
+      "shared": false,
+      "permission_roles": [
+        "owner"
+      ]
+    },
+    {
+      "name": "KELAN_R3_BLOCKED_ADDENDUM_20261008.md",
+      "id": "1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B",
+      "url": "https://drive.google.com/file/d/1M7_wyGtjwJN_TbWZoR_TEpvGFlVCtz4B/view",
+      "parent_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
+      "bytes": 8351,
+      "sha256": "2641d9bf71a77b27425924786781a7f2e030b88495b12d8f882c92ea1a8eeac8",
+      "raw_readback_equal": true,
+      "shared": false,
+      "permission_roles": [
+        "owner"
+      ]
+    },
+    {
+      "name": "KELAN_R3_BLOCKED_ADDENDUM_PACKAGE_20261008.zip",
+      "id": "1ZMbPVLEsRZqxE5FwVb3a5KLTNzku6Dfv",
+      "url": "https://drive.google.com/file/d/1ZMbPVLEsRZqxE5FwVb3a5KLTNzku6Dfv/view",
+      "parent_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
+      "bytes": 19302,
+      "sha256": "2034aa4ef3876f846141e071bbfbffee65b25fc02118b5b2945c0ab979357d05",
+      "raw_readback_equal": true,
+      "shared": false,
+      "permission_roles": [
+        "owner"
+      ]
+    }
+  ],
+  "legacy_timer": "PAUSED",
+  "historical_canary_states": "all STOP; 4 delivered; 2 window cycles closed",
+  "window_backend_enabled": false,
+  "automatic_restart": false,
+  "expiry_guard_smoke_passed": true,
+  "startup_probe": "exact bound owner idle; read-only; no model wake",
+  "review": "review_pending",
+  "limits": [
+    "no unattended window recovery",
+    "business acceptance requires checked receipts",
+    "fixed deadline not extended by launch delay"
+  ],
+  "first_automatic_observation": {
+    "at_utc": "2026-10-08T14:22:13.144911+00:00",
+    "native_accept_events": 1,
+    "states": [
+      "running"
+    ],
+    "correlated_turns": 1,
+    "manual_dispatch_commands": 0,
+    "window_backend_actions": 0,
+    "cycle_phases": [
+      "reused"
+    ],
+    "same_original_binding_verified": true,
+    "delivery_verified_batches": 0,
+    "source_manifest_file_counts": [
+      4
+    ]
+  }
+}

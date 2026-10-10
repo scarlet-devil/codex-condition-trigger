@@ -1,0 +1,288 @@
+{
+  "archive_sha256": "76fe7078248c00e4e03dd2177a4275ec9ce158a9dd43452a4f0427d39a4ed012",
+  "installed_version": "26.1002.7124.0",
+  "offset_unit": "Unicode character offset, not byte or line",
+  "sources": [
+    {
+      "path": ".vite/build/src-BPM2XJL0.js",
+      "bytes": 202877,
+      "sha256": "0f43ea10acf2852395ba10a8a24838bc5646b8543197e8eeadd1e4fadea4c7b1"
+    },
+    {
+      "path": ".vite/build/bootstrap-Dz9A8y86.js",
+      "bytes": 2277252,
+      "sha256": "a70497f5ffa764fe74f4de7ac05a5f73aff8d1e2f44de4476d1d9a684af43ddd"
+    },
+    {
+      "path": ".vite/build/main-p91kJShj.js",
+      "bytes": 3781321,
+      "sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889"
+    },
+    {
+      "path": "webview/assets/app-initial-25361a10f2bf.js",
+      "bytes": 11147906,
+      "sha256": "bddf0e4e79918f7157682015c598b97eb833553c036026004555f88fa0cb9d3b"
+    },
+    {
+      "path": "webview/assets/app-shared-40678a67f0e3.js",
+      "bytes": 7973083,
+      "sha256": "35b467c3a05695ec354eb1d0bb4572ad7e9d1480decc1cf0fae3d16b50aa5bd8"
+    },
+    {
+      "path": "webview/assets/local-conversation-page-4fbd5c19c96d.js",
+      "bytes": 55880,
+      "sha256": "8b3cbe4f3902f6aad630d656e2a17df17bd754c190d33929dba691778a35104b"
+    }
+  ],
+  "anchors": [
+    {
+      "path": ".vite/build/src-BPM2XJL0.js",
+      "source_sha256": "0f43ea10acf2852395ba10a8a24838bc5646b8543197e8eeadd1e4fadea4c7b1",
+      "anchor": "function Gt(",
+      "unicode_character_offsets": [
+        16965
+      ],
+      "finding": "UUID syntax and exact conversationId extraction; local URL parser, not title matching"
+    },
+    {
+      "path": ".vite/build/src-BPM2XJL0.js",
+      "source_sha256": "0f43ea10acf2852395ba10a8a24838bc5646b8543197e8eeadd1e4fadea4c7b1",
+      "anchor": "function Wt(",
+      "unicode_character_offsets": [
+        16931
+      ],
+      "finding": "Internal route is /local/<conversationId>"
+    },
+    {
+      "path": ".vite/build/bootstrap-Dz9A8y86.js",
+      "source_sha256": "a70497f5ffa764fe74f4de7ac05a5f73aff8d1e2f44de4476d1d9a684af43ddd",
+      "anchor": "function q7(",
+      "unicode_character_offsets": [
+        2198928
+      ],
+      "finding": "Existing-thread links construct kind localConversation"
+    },
+    {
+      "path": ".vite/build/bootstrap-Dz9A8y86.js",
+      "source_sha256": "a70497f5ffa764fe74f4de7ac05a5f73aff8d1e2f44de4476d1d9a684af43ddd",
+      "anchor": "function Q7(",
+      "unicode_character_offsets": [
+        2206201
+      ],
+      "finding": "No generic newWindow/focus/minimized options in this route; browserActive false has special backfill checks"
+    },
+    {
+      "path": ".vite/build/bootstrap-Dz9A8y86.js",
+      "source_sha256": "a70497f5ffa764fe74f4de7ac05a5f73aff8d1e2f44de4476d1d9a684af43ddd",
+      "anchor": "queueProcessArgs:C",
+      "unicode_character_offsets": [
+        2211113
+      ],
+      "finding": "Queue routes through most recent pending link and ensurePrimaryWindowVisible except special browser backfill"
+    },
+    {
+      "path": ".vite/build/main-p91kJShj.js",
+      "source_sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889",
+      "anchor": "ensurePrimaryWindowVisible:D",
+      "unicode_character_offsets": [
+        3386295,
+        3387555
+      ],
+      "finding": "Normal deep-link navigation uses ensureWindow with forNavigation true"
+    },
+    {
+      "path": ".vite/build/main-p91kJShj.js",
+      "source_sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889",
+      "anchor": "getPrimaryWindow(){",
+      "unicode_character_offsets": [
+        2090369,
+        3684645
+      ],
+      "finding": "Window selection uses most recently active tracked primary window, not target-thread HWND"
+    },
+    {
+      "path": ".vite/build/main-p91kJShj.js",
+      "source_sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889",
+      "anchor": "async getOrCreateNavigationWindow(",
+      "unicode_character_offsets": [
+        3685391
+      ],
+      "finding": "Select main navigation window or page owner, otherwise create primary window"
+    },
+    {
+      "path": ".vite/build/main-p91kJShj.js",
+      "source_sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889",
+      "anchor": "function fXe(",
+      "unicode_character_offsets": [
+        3388226
+      ],
+      "finding": "Host selection consults connected catalog hosts; fallback origin host or local"
+    },
+    {
+      "path": ".vite/build/main-p91kJShj.js",
+      "source_sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889",
+      "anchor": "case`localConversation`:",
+      "unicode_character_offsets": [
+        3381541
+      ],
+      "finding": "navigate-to-route uses the extracted conversationId and resolved host"
+    },
+    {
+      "path": ".vite/build/main-p91kJShj.js",
+      "source_sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889",
+      "anchor": "a.type===`open-in-new-window`",
+      "unicode_character_offsets": [
+        3341143
+      ],
+      "finding": "Trusted renderer message validates path, creates fresh window, then show and focus; no HWND result"
+    },
+    {
+      "path": ".vite/build/main-p91kJShj.js",
+      "source_sha256": "aafd6a750458cb39b6202f9be00231482122d32ac14017b79d544c4ab741e889",
+      "anchor": "createFreshWindow:async",
+      "unicode_character_offsets": [
+        3717009
+      ],
+      "finding": "Fresh window uses show true; startup background environment branch is not this path"
+    },
+    {
+      "path": "webview/assets/app-initial-25361a10f2bf.js",
+      "source_sha256": "bddf0e4e79918f7157682015c598b97eb833553c036026004555f88fa0cb9d3b",
+      "anchor": "function iBo(",
+      "unicode_character_offsets": [
+        7442432
+      ],
+      "finding": "Sidebar Ctrl branch carries exact row thread ID, but excludes some target elements and requires feature flag"
+    },
+    {
+      "path": "webview/assets/app-initial-25361a10f2bf.js",
+      "source_sha256": "bddf0e4e79918f7157682015c598b97eb833553c036026004555f88fa0cb9d3b",
+      "anchor": "function zDo(",
+      "unicode_character_offsets": [
+        7100403
+      ],
+      "finding": "Interactive row link modifier events are excluded by iBo; generic Ctrl-title click cannot be assumed"
+    },
+    {
+      "path": "webview/assets/app-shared-40678a67f0e3.js",
+      "source_sha256": "35b467c3a05695ec354eb1d0bb4572ad7e9d1480decc1cf0fae3d16b50aa5bd8",
+      "anchor": "function ZSi(",
+      "unicode_character_offsets": [
+        6170478
+      ],
+      "finding": "Modifier is Ctrl on Windows and Meta on Apple platforms"
+    },
+    {
+      "path": "webview/assets/local-conversation-page-4fbd5c19c96d.js",
+      "source_sha256": "8b3cbe4f3902f6aad630d656e2a17df17bd754c190d33929dba691778a35104b",
+      "anchor": "openThreadInNewWindow",
+      "unicode_character_offsets": [
+        47821,
+        51183,
+        51269
+      ],
+      "finding": "Active conversation hook dispatches an explicit conversation path; active target must first be correct"
+    }
+  ],
+  "redistribution": "No proprietary bundle or complete code snippets included; local extraction only",
+  "schema": "kelan-deeplink-window-research-v1",
+  "checked_at_utc": "2026-10-08T06:51:38.897376+00:00",
+  "author": "Kelan",
+  "deployment_environment": "local Windows",
+  "acting_role": "Installed implementation research and handoff",
+  "task_assignment": "Human requested exact supplied existing-chat deep-link and new-window/focus investigation",
+  "candidate_input_commit": "6f7f1c3cc131ec58bd235b7c9525b730fbfcddb3",
+  "workflow_state": "review_pending",
+  "isolated_checks": {
+    "method": "Isolated copies of installed pure functions Wt/XSi/ZSi/fXe and UUID regex; fixture catalog and navigator, standard URL. Gt/q7 and Electron runtime were NOT executed. This does not verify OS activation, window focus, IPC owner or cold recovery.",
+    "checks": [
+      {
+        "name": "URL resolves exact supplied scheme/host/id",
+        "passed": true
+      },
+      {
+        "name": "Installed UUID regex accepts target",
+        "passed": true
+      },
+      {
+        "name": "Installed UUID regex rejects a title",
+        "passed": true
+      },
+      {
+        "name": "Installed Wt builds exact internal path",
+        "passed": true
+      },
+      {
+        "name": "Windows Ctrl gesture",
+        "passed": true
+      },
+      {
+        "name": "Windows Meta alone rejected",
+        "passed": true
+      },
+      {
+        "name": "No host/catalog defaults local",
+        "passed": true
+      },
+      {
+        "name": "Connected matching catalog host can be selected",
+        "passed": true
+      },
+      {
+        "name": "Apple Meta gesture",
+        "passed": true
+      }
+    ],
+    "passed": 9,
+    "new_windows": 0,
+    "navigation_calls": 0,
+    "model_starts": 0
+  },
+  "target_readonly_check": {
+    "method": "native wait_threads timeoutMs=0",
+    "exact_supplied_target_found": true,
+    "host": "local",
+    "status": "idle",
+    "private_id_omitted": true,
+    "proves_ipc_owner": false
+  },
+  "runtime_actions": {
+    "deeplink_launches": 0,
+    "ui_input": 0,
+    "new_windows": 0,
+    "minimizations": 0,
+    "model_starts": 0,
+    "watcher_activations": 0
+  },
+  "appx_manifest": {
+    "path": "AppxManifest.xml",
+    "sha256": "4cd203a7b5f28e573b03cfe23eaf676179923ffc858b9119aa3a2e80f08b2d87",
+    "protocol": "codex",
+    "application": "app/ChatGPT.exe",
+    "actual_os_launch_tested": false
+  },
+  "sources_online": [
+    "https://learn.chatgpt.com/docs/reference/commands",
+    "https://learn.chatgpt.com/docs/reference/settings",
+    "https://www.electronjs.org/docs/latest/api/browser-window",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindow",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-showwindowasync",
+    "https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-setforegroundwindow"
+  ],
+  "limits": [
+    "Installed bundle is version-specific implementation evidence, not a public official GitHub source claim",
+    "Nine isolated checks are not whole parser or native end-to-end tests",
+    "Sidebar Ctrl branch excludes interactive link/modifier cases; account flag and actual UI route unverified",
+    "No live focus timing, exact HWND association, minimization, owner recovery or zero-activation evidence",
+    "Previous UI selected-chat change remains causally unresolved",
+    "No new Alice acceptance; original timer and canary pause retained"
+  ],
+  "redactions": [
+    "Private chat and turn IDs",
+    "HWNDs and account settings",
+    "User transcript",
+    "Local private paths",
+    "Identity kernel and registry files",
+    "Full installed bundles or large source excerpts"
+  ]
+}

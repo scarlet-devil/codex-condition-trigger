@@ -1,0 +1,228 @@
+{
+  "schema": "supervised-window-chain-trial-v1",
+  "author_identity": "Kelan",
+  "deployment_environment": "local",
+  "acting_role": "bounded supervised native window-chain investigator",
+  "input_commit": "356467eb3f64deb0563dacd9bf0f91091491a576",
+  "handoff_comment": "https://github.com/scarlet-devil/codex-condition-trigger/pull/1#issuecomment-6054881305",
+  "state": "implementation_ready / review_pending",
+  "review_type": "Self-review S0; Alice review pending",
+  "installed_version": "26.1002.7124.0",
+  "archive_sha256": "76fe7078248c00e4e03dd2177a4275ec9ce158a9dd43452a4f0427d39a4ed012",
+  "entry": "Exact target sidebar row context menu: 在新窗口中打开",
+  "counts": {
+    "open_actions": 1,
+    "new_windows": 1,
+    "minimize_actions": 1,
+    "model_starts": 0,
+    "business_ack": 0,
+    "watcher_starts": 0
+  },
+  "new_window_identity": {
+    "unique_set_difference": true,
+    "root_web_area_initial_route": "app://-/index.html?initialRoute=%2Flocal%2F<exact-target-redacted>",
+    "initial_route_matches_exact_configured_target": true,
+    "displayed_chat_title_matches": true,
+    "numeric_window_identifier": "local only; API opaque ID, not claimed as independently verified HWND"
+  },
+  "main_window": {
+    "before": "current initiating chat, different from target",
+    "after": "same chat by visible title and refreshed RootWebArea",
+    "navigation_action_to_main": false
+  },
+  "minimization": {
+    "method": "click verified new window title-bar minimize control",
+    "observed_result": "new window no longer covers main window, remains enumerated; main current chat visible",
+    "win32_isiconic_probe": false,
+    "retained_for_reuse": true
+  },
+  "focus": {
+    "observed_foreground_effect": "new window visibly overlays main window; main visible again after minimization",
+    "open_action_at_utc": "2026-10-08T08:37:13.387Z",
+    "minimize_action_at_utc": "2026-10-08T08:37:41.496Z",
+    "main_visible_observed_at_utc": "2026-10-08T08:37:42.244Z",
+    "open_action_to_main_visible_seconds": 28.857,
+    "interpretation": "Includes tool latency and supervised inspection; not a measured OS focus interval, automatic minimization benchmark or upper bound. No zero-focus claim."
+  },
+  "ipc": {
+    "before": {
+      "status": "idle",
+      "revision": 14
+    },
+    "after": {
+      "status": "idle",
+      "revision": 16
+    },
+    "same_owner": true,
+    "exact_target_and_cwd_match": true,
+    "request_revision_match": true,
+    "actual_methods": [
+      "initialize",
+      "thread-owner-discovery",
+      "thread-stream-following-changed",
+      "thread-follower-load-complete-history",
+      "thread-stream-following-changed",
+      "thread-stream-following-changed"
+    ],
+    "owner_creation_or_transfer_proven": false,
+    "raw_ids_and_history": "omitted"
+  },
+  "verification": {
+    "count": 27,
+    "passed": 27,
+    "checks": [
+      {
+        "name": "fixed_input_56_sha256_entries",
+        "passed": true
+      },
+      {
+        "name": "fetched_git_tree_all_57_blobs_match_used_snapshot",
+        "passed": true
+      },
+      {
+        "name": "exactly_one_open_action",
+        "passed": true
+      },
+      {
+        "name": "exactly_one_minimize_action",
+        "passed": true
+      },
+      {
+        "name": "one_unique_new_window",
+        "passed": true
+      },
+      {
+        "name": "new_window_exact_initialRoute",
+        "passed": true
+      },
+      {
+        "name": "new_window_title_matches_target",
+        "passed": true
+      },
+      {
+        "name": "only_identified_new_window_minimized",
+        "passed": true
+      },
+      {
+        "name": "new_window_remains_enumerable",
+        "passed": true
+      },
+      {
+        "name": "main_document_unchanged_across_open_minimize",
+        "passed": true
+      },
+      {
+        "name": "before_owner_idle",
+        "passed": true
+      },
+      {
+        "name": "after_owner_idle",
+        "passed": true
+      },
+      {
+        "name": "exact_target_before_after",
+        "passed": true
+      },
+      {
+        "name": "expected_cwd_before_after",
+        "passed": true
+      },
+      {
+        "name": "same_owner_before_after",
+        "passed": true
+      },
+      {
+        "name": "fresh_revision_after",
+        "passed": true
+      },
+      {
+        "name": "revision_correlated_to_request",
+        "passed": true
+      },
+      {
+        "name": "only_readonly_allowlisted_ipc_methods",
+        "passed": true
+      },
+      {
+        "name": "zero_start_turn_frames",
+        "passed": true
+      },
+      {
+        "name": "business_state_unchanged",
+        "passed": true
+      },
+      {
+        "name": "hooks_unchanged",
+        "passed": true
+      },
+      {
+        "name": "binding_unchanged",
+        "passed": true
+      },
+      {
+        "name": "automation_unchanged",
+        "passed": true
+      },
+      {
+        "name": "original_timer_paused",
+        "passed": true
+      },
+      {
+        "name": "both_canary_stop_markers",
+        "passed": true
+      },
+      {
+        "name": "same_installed_archive",
+        "passed": true
+      },
+      {
+        "name": "new_governance_gate_17_checks",
+        "passed": true
+      }
+    ],
+    "kind": "artifact/state/UI evidence assertions, not application unit tests"
+  },
+  "preserved": {
+    "business_state": {
+      "bytes": 26985,
+      "sha256": "464931226f1da4306690eb9d0a75abdd5947436e74d90da513081b3be49270ea",
+      "unchanged": true
+    },
+    "hooks": {
+      "bytes": 956,
+      "sha256": "601ec3fb6f91785dd2db01bad36624b637109329bda9039c1ea8078f7ade2b2a",
+      "unchanged": true
+    },
+    "binding": {
+      "bytes": 482,
+      "sha256": "674042ebf61606d28abba49a6368106c749f8064b91eb8a0c17d5429e67f3980",
+      "unchanged": true
+    },
+    "automation": {
+      "bytes": 2815,
+      "sha256": "1e8123041d45d8e52ff1913445a410f8381e5d18b2def36c06221b250f41af0a",
+      "unchanged": true
+    }
+  },
+  "limitations": [
+    "Already-loaded baseline; no notLoaded recovery or owner creation proof.",
+    "No programmatic loader backend added or watcher auto-load enabled.",
+    "No sustained owner retention, concurrent use, other DPI/language/client version or unattended business validation.",
+    "UIA had delayed/stale states before controlled action; fresh screenshots plus later matching semantics were used.",
+    "The new window is bound to the exact target independently of the unchanged pre-existing IPC owner.",
+    "No operating-system focus telemetry or IsIconic query."
+  ],
+  "failures_and_recovery": [
+    "Default sandbox read-only IPC transport failed before methods; scoped approved probe succeeded.",
+    "Initial Git fetch failed DNS/reset; isolated fixed input was used and all 57 Git blobs later verified after a successful HTTP/1.1 fetch.",
+    "Pre-probe main chat changed during user activity while UIA lagged; causality was not assigned. A quiet interval and stable initiating-chat baseline preceded the one open action.",
+    "Current governance changed to 387c98a during preparation; fresh 17-check gate and full normative reads completed before opening."
+  ],
+  "redactions": [
+    "private thread/owner/request/window/process IDs",
+    "local personal paths",
+    "raw screenshots and private chat histories",
+    "identity kernels, credentials and complete installed source"
+  ],
+  "next_review": "Alice: accept or reject this limited window-chain result; consider separately implementing the verified route in a default-off bounded backend. No merge or activation implied."
+}
