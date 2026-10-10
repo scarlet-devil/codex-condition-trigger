@@ -119,5 +119,54 @@
     "production-probe.jsonl": "0f9bff0234398e9cab8d90b30e98a5fee978ec7ce18216d325fdecf0e60437ef",
     "review-temp/retry-budget-review.json": "f2a1452c525b66a5c5e6dded94e394ec215c5e80f8e39142c18915e214827448",
     "review-temp/retry-budget-fixed-review.json": "45c8cfed2b8f4e7b15167c0f103c34c4036701ffd2ec651b3b6f1e92f68fc2d0"
+  },
+  "post_start_blockage": {
+    "observed_at_utc": "2026-10-10T07:26:28Z",
+    "target_native_state": "systemError",
+    "target_turn_status": "failed",
+    "target_error": "Error running remote compact task: stream disconnected before completion: Transport error: network error: error decoding response body",
+    "failed_at_utc": "2026-10-10T07:20:09Z",
+    "duration_ms": 680768,
+    "business_delivery_verified": false,
+    "watcher_still_running": true,
+    "ledger_terminal_state": "completed from historical task_complete; not successful business completion",
+    "new_batches_at_072432": [
+      {
+        "batch_id": "db099a4835d1b174b319b774ec50c9099c15252e37b7e585e8b4d4f17dc26f61",
+        "state": "completed",
+        "has_turn": true,
+        "files": 14,
+        "bytes": 105197,
+        "manifest_sha256": "e87c08b5f730caf7222ac8380bf18a1798148235c9e743ac100e0b4dc589a182"
+      },
+      {
+        "batch_id": "acf04121f2f0111a297eb0cec34947b385270cd54cee5fa1346a6933a9dfe70d",
+        "state": "ready",
+        "has_turn": false,
+        "files": 2,
+        "bytes": 5983,
+        "manifest_sha256": "36116053ee2a67448a4223e426f63ae5c9a65cd43b075095463da75c3e8bd5bf"
+      },
+      {
+        "batch_id": "df9a24ecaa8d804fde7628bb1a5d595383c5a42e38d45ab741ef9f42b3a046bf",
+        "state": "ready",
+        "has_turn": false,
+        "files": 7,
+        "bytes": 4567,
+        "manifest_sha256": "0362dce0c9aa13241901c0652f658b790a0ac096a96efd07d950904755038fb1"
+      },
+      {
+        "batch_id": "9e41c8eca39ce544c1b70531adf44b1d5128c2aab419432cc8c4c460dd14bfd8",
+        "state": "ready",
+        "has_turn": false,
+        "files": 6,
+        "bytes": 57401,
+        "manifest_sha256": "1316d6aa7f5b1fc5759386b42461f6e379c1296c4d4bb43bfca09e1bdf0ceb20"
+      }
+    ],
+    "automatic_resend": false,
+    "drive_delivery": "pending_upload",
+    "drive_success_receipt": false,
+    "approval_review_final_result": "stream disconnected; action explicitly not executed; not an unsafe-content determination"
   }
 }

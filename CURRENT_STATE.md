@@ -1,6 +1,6 @@
 # Current state
 
-Status: bounded real trial restored 2026-10-10T07:06:37Z; automatic 14-version batch accepted in the original chat. Prior material batch retained waiting_materials. Current-user logon recovery installed under Human 2026-10-10 repair request; original expiry 2026-10-10T13:11:50Z unchanged. Draft / Alice review_pending.
+Status: listener restored, but original task failed in platform remote compact/network at 07:20:09Z; business delivery blocked and repair Drive upload pending. Bounded real trial restored 2026-10-10T07:06:37Z; automatic 14-version batch accepted in the original chat. Prior material batch retained waiting_materials. Current-user logon recovery installed under Human 2026-10-10 repair request; original expiry 2026-10-10T13:11:50Z unchanged. Draft / Alice review_pending.
 
 
 ## Recovery update — 2026-10-10

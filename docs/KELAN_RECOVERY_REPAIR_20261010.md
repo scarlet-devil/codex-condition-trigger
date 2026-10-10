@@ -61,3 +61,13 @@ Windows官方接口依据：[当前用户登录触发器](https://learn.microsof
 - Repository / review：基于bb2abe0dfedeb0eb446a4c684ca96e1a9b170c20，保留Alice既有日志；本地受控复核S1/M1，最终云端审查review_pending。
 - Evidence / privacy：公开包仅源码、合成测试、脱敏汇总和哈希；准确聊天ID、SID、会话、配置原文与私人材料路径不公开。部分早期工具聚合输出截断，相关最新条目已定向补读；测试首次Temp ACL与集合构造失败记录保留，不冒充产品失败。
 - Human decision：本次恢复不需要重复批准；原到期后续期或永久运行须新决定。Alice需要复审状态释放与恢复边界，当前未声称她接受。
+
+## 恢复后的独立平台阻塞（07:26Z核对）
+
+原聊天真实turn已接受并读取材料，但07:20:09Z以failed结束：remote compact任务stream disconnected/network error/response body decoding失败。原生任务状态为systemError，运行约680.768秒。07:24:32Z监听进程仍在，新增三个ready批次（2/7/6版本）；原14版本批次未交付、未ACK。原生状态failed与历史task_complete导致的本地completed必须区别，本地completed只证明历史终止事件，不证明模型成功或交付。本次未以缺材料接口释放这个网络失败批次，也没有绕开失败回合重发。
+
+Drive报告上传同样受服务故障阻断：首次自动审批超时；一次上传在OpenAI文件请求阶段网络失败；再次自动审批stream disconnected，工具明确本次动作未执行。中间一次精确查重为空；无Drive文件ID或成功上传回执，故Drive交付状态pending_upload。没有绕过审批，未将服务失败解释为内容违规或缺少Human批准。原始授权仍在，但网络/审批服务恢复前无法核验外部交付。
+
+修复源码、报告、测试与脱敏证据已提交同一GitHub Draft；a631736远端头部确认，脱敏证据按Git LF规范及blob身份回读一致。直接比较checkout CRLF与Git LF首次不一致已单独查明，并保留原件与Git字节哈希两种口径，未把规范化比较冒称原始字节相等。补充日志提交包含上述新失败；供Alice判断已修复范围与尚未恢复的业务链。
+
+当前可以确认“原监听已恢复并自动投递”，不能确认“全链业务已正常交付”。固定期限、已交付基线和失败/排队批次继续保留；不因网络失败无界重试、开启新窗口或续期。
