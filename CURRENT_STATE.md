@@ -1,10 +1,15 @@
 # Current state
 
-Status: fixed two-day real trial RUNNING since 2026-10-08T14:16:14Z, loaded-owner-only; startup evidence verified. Authorization: 2026-10-08T21:11:50+08:00 to 2026-10-10T21:11:50+08:00. F1 remains accepted on 6c2589d; PR Draft; no unattended acceptance or merge.
+Status: bounded real trial restored 2026-10-10T07:06:37Z; automatic 14-version batch accepted in the original chat. Prior material batch retained waiting_materials. Current-user logon recovery installed under Human 2026-10-10 repair request; original expiry 2026-10-10T13:11:50Z unchanged. Draft / Alice review_pending.
+
+
+## Recovery update — 2026-10-10
+
+See [repair report](docs/KELAN_RECOVERY_REPAIR_20261010.md) and [timestamped evidence](evidence/recovery-repair-20261010.json). Final tests154:153pass/1skip. Material-wait release is explicit and does not ACK; old delivered rows remain unchanged. Native bounded exception recovery and expiry observed; Windows OS failure retry was ineffective. Actual reboot/logon chain and same-session external kill recovery remain unaccepted. No window actions or periodic automation change. New model work is not yet business delivery.
 
 ## Current authorization — 2026-10-08
 
-Human explicitly approved a two-day production-environment trial after the supervised limits were explained. See [exact authorization and Kelan execution brief](docs/ALICE_PRODUCTION_TRIAL_AUTHORIZATION_20261008.md). This supersedes the prior no-production-activation restriction only for the existing project directory, exact original chat and established task scope during the fixed 48-hour window. Delayed start/restart does not extend the deadline. Merge, permanent enablement, expanded permissions and auto-start deployment are not approved.
+Human explicitly approved a two-day production-environment trial after the supervised limits were explained. See [exact authorization and Kelan execution brief](docs/ALICE_PRODUCTION_TRIAL_AUTHORIZATION_20261008.md). This supersedes the prior no-production-activation restriction only for the existing project directory, exact original chat and established task scope during the fixed 48-hour window. Delayed start/restart does not extend the deadline. Merge, permanent enablement and expanded permissions are not approved. The later Human 2026-10-10 repair request separately authorizes current-user logon recovery for this same fixed trial only; historical no-autostart statements describe the earlier deployment.
 
 Local Kelan has started one bounded real-file watcher after verifying the local fixed expiry; startup evidence is saved. Runtime 2c38055 now binds and enforces the fixed UTC/monotonic deadline; 114 tests (113 pass, 1 skip), five write probes and a real dry-watch expiry check are recorded. Expiry must block fresh sends/window actions even after wake/restart; cloud reminders are not the enforcement mechanism. The legacy periodic timer remains PAUSED to avoid duplicate execution. Only the specifically bound trial instance may be unpaused; historical canary STOPs remain.
 

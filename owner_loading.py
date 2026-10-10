@@ -218,13 +218,23 @@ class WindowCycles:
                     return 'window_reconciliation_required'
                 if row['state'] == 'delivered':
                     return self.finish(cycle, row)
+                if row['state'] == 'waiting_materials':
+                    from trigger import digest
+                    attestation = json.loads(row['detail'])
+                    if (attestation.get('attestation') != 'caller_waiting_materials'
+                            or digest(Path(attestation['evidence']).read_bytes()) != attestation['sha256']):
+                        return 'material_evidence_unconfirmed'
+                    if cycle['phase'] != 'reused' or cycle.get('lease') is not None:
+                        return 'window_reconciliation_required'
+                    self.save(cycle, 'closed', 'material_wait_no_owned_window')
+                    return 'cycle_deferred'
                 if row['state'] != 'ready' or row.get('dispatch_text') or row.get('dispatch_meta'):
                     return 'receipt_only'
                 result = self.inspect_owner(row)
                 if result['reason'] == 'waiting_owner' and cycle['phase'] == 'reused':
                     return self.claim_open(row)
                 return 'owner_ready' if result['can_send'] else result['reason']
-            pending = [r for r in rows if r['state'] != 'delivered']
+            pending = [r for r in rows if r['state'] not in ('delivered', 'waiting_materials')]
             if not pending:
                 return 'quiet'
             row = pending[0]
@@ -247,6 +257,7 @@ class WindowCycles:
 def cycle_tick(store, backend=None, adapter_factory=None):
     """Serial cleanup-before-dispatch under the existing worker lock."""
     from trigger import dispatch_one
+    store.reconcile_material_waits()
     if not store.c.get('owner_loading_enabled', False):
         active = store.db.execute("SELECT v FROM meta WHERE k LIKE 'window_cycle:%'")
         if any(json.loads(r[0])['phase'] != 'closed' for r in active):

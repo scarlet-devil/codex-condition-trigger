@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "author": "Kelan",
+  "deployment": "local Windows",
+  "review_status": "review_pending",
+  "fixed_expiry": "2026-10-10T13:11:50Z",
+  "tests": {
+    "tests": 154,
+    "failures": 0,
+    "errors": 0,
+    "skipped": [
+      [
+        "test_symlink_input_is_not_followed (test_trigger.ConditionTests.test_symlink_input_is_not_followed)",
+        "symlink creation depends on Windows developer mode"
+      ]
+    ],
+    "details": []
+  },
+  "controlled_review": {
+    "context": "S1",
+    "method": "M1",
+    "alice_acceptance": false,
+    "closed_findings": [
+      "manifest raw bytes include trailing newline",
+      "inherited original monotonic budget across retry"
+    ]
+  },
+  "native_retry": {
+    "observed_at_utc": "2026-10-10T07:04:57.3958706+00:00",
+    "task_state": "Ready",
+    "last_task_result": 0,
+    "task_start_requests": 1,
+    "worker_attempts": 3,
+    "recorded_failures": 2,
+    "automatic_recovery": true,
+    "fixed_deadline_exit": true,
+    "actual_ipc_calls": 0,
+    "actual_reboot_test": false,
+    "source_scope": "before final monotonic-budget inheritance patch; final patch checked separately"
+  },
+  "failed_native_os_retry_probes": 2,
+  "task": {
+    "logon": true,
+    "periodic": false,
+    "current_user": true,
+    "privilege": "Limited",
+    "hidden_pythonw": true,
+    "multiple_instances": "IgnoreNew",
+    "worker_retries": 3,
+    "retry_seconds": 30,
+    "task_state": "Running",
+    "deadline": "2026-10-10T13:11:50Z",
+    "registration_receipt_sha256": "930bb1bd106858ba40041202eb6009c6c1cebc34b693f9d0338e0adc8f3fa465"
+  },
+  "production": {
+    "observed_at_utc": "2026-10-10T07:08:52.171870+00:00",
+    "started_at_utc": "2026-10-10T07:06:37.980698+00:00",
+    "fixed_deadline_utc": "2026-10-10T13:11:50Z",
+    "source_sha256": {
+      "trial_worker.py": "ad8f9a17aae2aece321a81bb7ab2106b400ae8b4fc53331fad45299f7eeafc44",
+      "trigger.py": "e4c9e0042ef5779bf5e091cfa3498c66e20cdb5d5cb96f948812ec142a1906ec",
+      "owner_loading.py": "d5089afea58dcde19b1b0b92a11a1eea172dbfe492118bb78a899df8c366e54a",
+      "desktop_ipc.py": "01bfce843ac2b9e54aedfdc4426fa84a37aeb61ff4104d9d1bc3c5d2382137f0",
+      "chat_adapters.py": "6b513d1d447af390c07bb4b370601271e0d30921a2c0b0f462c7a7efd2734e76",
+      "trial_limits.py": "985bf7078574cb1eeb53d9677548482c5830c308598dfdc56dfc1e03a2f1cf17"
+    },
+    "source_matches": {
+      "trial_worker.py": true,
+      "trigger.py": true,
+      "owner_loading.py": true,
+      "desktop_ipc.py": true,
+      "chat_adapters.py": true,
+      "trial_limits.py": true
+    },
+    "delivered_history_unchanged": true,
+    "prior_delivered_count": 2,
+    "old_pending": [
+      {
+        "batch_id": "de670c1fadc9ba0abf28b1c132f022df17dda31169202e1bf989614407d1d675",
+        "state": "waiting_materials",
+        "has_turn": true
+      }
+    ],
+    "new_batches": [
+      {
+        "batch_id": "db099a4835d1b174b319b774ec50c9099c15252e37b7e585e8b4d4f17dc26f61",
+        "state": "accepted",
+        "has_turn": true,
+        "files": 14,
+        "bytes": 105197,
+        "manifest_sha256": "e87c08b5f730caf7222ac8380bf18a1798148235c9e743ac100e0b4dc589a182"
+      }
+    ],
+    "worker_exit_receipt_present": false,
+    "automatic_new_batch_dispatch_count": 1,
+    "dispatch_state_not_delivery": true,
+    "worker_source_bytes_binding": "Exact checkout bytes; Git may normalize CRLF. Public Git blob hashes are recorded separately in SHA256SUMS.json."
+  },
+  "actions": {
+    "manual_dispatch": 0,
+    "window_actions": 0,
+    "original_timer": "PAUSED",
+    "business_ack_by_repair": 0,
+    "config_changed_fields": [
+      "task_instruction"
+    ]
+  },
+  "limits": [
+    "No actual reboot/logon test in this repair",
+    "No same-session external-kill supervisor",
+    "Owner must remain available; window supervision unchanged",
+    "Original pre-reboot exit cause remains unknown",
+    "Trial does not renew"
+  ],
+  "evidence_hashes": {
+    "verified-tests.json": "ffc724f902fbad7b2fc42353c43052bd63363374005edb094301966eb35ed7e1",
+    "verified-tests.txt": "a03c0b1493a2e52428680af2b4f46970e3412a6f5145aea897e1dcf4088c20cd",
+    "material-wait-request.json": "7bdf9aa06036f0483ec425e2d1b599a7219c9699356b215086de98b6b01b271a",
+    "production-probe.jsonl": "0f9bff0234398e9cab8d90b30e98a5fee978ec7ce18216d325fdecf0e60437ef",
+    "review-temp/retry-budget-review.json": "f2a1452c525b66a5c5e6dded94e394ec215c5e80f8e39142c18915e214827448",
+    "review-temp/retry-budget-fixed-review.json": "45c8cfed2b8f4e7b15167c0f103c34c4036701ffd2ec651b3b6f1e92f68fc2d0"
+  }
+}
