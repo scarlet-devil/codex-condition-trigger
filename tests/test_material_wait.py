@@ -51,7 +51,7 @@ class MaterialWaitTests(CycleTests):
 
     def test_completed_without_defer_still_blocks(self):
         self.tick(); self.complete(ack=False); self.ready(b'later')
-        self.assertEqual(self.tick(), 'completed')
+        self.assertEqual(self.tick(), 'ended')
         self.assertEqual(len(self.sent), 1)
 
     def test_mismatched_receipt_cannot_release_batch(self):
@@ -59,7 +59,7 @@ class MaterialWaitTests(CycleTests):
         p = self.defer_receipt(); d = json.loads(p.read_text()); d['turn_id'] = 'wrong'
         p.write_text(json.dumps(d))
         with self.assertRaises(ValueError): self.defer(p)
-        self.assertEqual(self.store.rows()[0]['state'], 'completed')
+        self.assertEqual(self.store.rows()[0]['state'], 'ended')
 
     def test_active_or_uncertain_turn_cannot_be_deferred(self):
         self.tick()
@@ -101,10 +101,18 @@ class MaterialWaitTests(CycleTests):
     def test_stale_observation_cannot_erase_material_wait(self):
         self.tick(); self.complete(ack=False); self.defer(self.defer_receipt())
         row = self.store.rows()[0]
-        self.assertFalse(self.store.update(row['id'], 'completed', detail='stale'))
+        self.assertFalse(self.store.update(row['id'], 'ended', detail='stale'))
         self.assertEqual(self.store.rows()[0]['detail'], row['detail'])
 
     def test_stop_rejects_new_defer(self):
         self.tick(); self.complete(ack=False)
         (self.store.path / 'STOP').touch()
         with self.assertRaises(ValueError): self.defer(self.defer_receipt())
+
+
+
+def load_tests(loader, tests, pattern):
+    # Imported fixture classes and their inherited tests require other setups.
+    import unittest
+    return unittest.TestSuite(MaterialWaitTests(name) for name in MaterialWaitTests.__dict__
+                              if name.startswith('test_'))

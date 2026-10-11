@@ -34,7 +34,8 @@ def run_worker(config_path, live=True, config=None, authorization_deadline=None)
                 effective_config_sha256=trigger.digest(trigger.encode(c).encode()),
                 source_sha256={name: trigger.digest((Path(__file__).parent / name).read_bytes())
                     for name in ('trial_worker.py', 'trigger.py', 'owner_loading.py',
-                                 'desktop_ipc.py', 'chat_adapters.py', 'trial_limits.py')})
+                                 'desktop_ipc.py', 'chat_adapters.py', 'trial_limits.py',
+                                 'worker_health.py', 'execution_result.py', 'delivery_outbox.py')})
     def save(name, record):
         trigger.atomic_write(run / name, (json.dumps(record, ensure_ascii=False, indent=2) + '\n').encode())
     store = None
@@ -48,9 +49,12 @@ def run_worker(config_path, live=True, config=None, authorization_deadline=None)
             if authorization_deadline is not None:
                 store.monotonic_deadline = min(store.monotonic_deadline, authorization_deadline)
             trigger.atomic_write(Path(c['state_dir']) / 'latest-worker.json',
-                                 (json.dumps(info, ensure_ascii=False, indent=2) + '\n').encode())
+                                 (json.dumps(dict(info, state='running'), ensure_ascii=False, indent=2) + '\n').encode())
             trigger.run(store, live=live)
             info.update(result='stopped', expiry_observed=(store.path / 'TRIAL_EXPIRED.json').exists())
+        except KeyboardInterrupt:
+            info.update(result='interrupted', error_type='KeyboardInterrupt')
+            code = 130
         except Exception as error:
             # A second launcher does not terminate the existing worker. A
             # recorded worker exception is retried by the bounded entry loop.
@@ -59,10 +63,17 @@ def run_worker(config_path, live=True, config=None, authorization_deadline=None)
             code = 0 if duplicate else 1
             traceback.print_exc()
         finally:
-            if store is not None:
-                store.close()
             info.update(stopped_at_utc=now(), exit_code=code)
-            save('exit.json', info)
+            try:
+                save('exit.json', info)
+                # Only the lock owner publishes this record, before releasing
+                # its lock. Duplicate launchers cannot overwrite an active run.
+                if store is not None:
+                    trigger.atomic_write(store.path / 'latest-worker.json',
+                        (json.dumps(dict(info, state=info['result']), ensure_ascii=False, indent=2) + '\n').encode())
+            finally:
+                if store is not None:
+                    store.close()
     return code
 
 
@@ -95,8 +106,8 @@ def run_bounded(config_path, live=True, retry_seconds=30):
                 for k in ('input_dir', 'state_dir', 'thread_id', 'expected_cwd'))):
             return 1  # a retry cannot silently move or renew this instance
         result = run_worker(config_path, live=live, config=current, authorization_deadline=budget)
-        if result == 0:
-            return 0
+        if result in (0, 130):
+            return result
     return 1
 
 
@@ -106,3 +117,4 @@ if __name__ == '__main__':
     parser.add_argument('--dry', action='store_true', help='observe files only; no IPC')
     args = parser.parse_args()
     raise SystemExit(run_bounded(args.config, live=not args.dry))
+

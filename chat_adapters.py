@@ -152,7 +152,10 @@ class QueueAdapter:
         turn = history_match(self.thread, row)
         if turn:
             state = {'completed': 'completed', 'failed': 'failed', 'interrupted': 'failed'}.get(turn.get('status'), 'running')
-            return dict(state=state, turn_id=turn['id'], detail='matched exact persisted dispatch text')
+            return dict(state=state, turn_id=turn['id'],
+                        execution_outcome={'completed': 'succeeded', 'failed': 'failed',
+                                           'interrupted': 'interrupted'}.get(turn.get('status'), 'unknown'),
+                        detail='matched exact persisted dispatch text')
         if self.existing:
             return dict(state='queued', submission=self.existing['id'], detail='queue readback matched client ID')
         return None
@@ -186,3 +189,4 @@ class QueueAdapter:
 
     def close(self):
         self.rpc.close()
+

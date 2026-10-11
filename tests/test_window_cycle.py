@@ -111,7 +111,7 @@ class CycleTests(DesktopDispatchTests):
         self.tick(); self.complete(ack=False)
         self.tick()
         self.assertEqual(self.actions, ['open'])
-        self.assertEqual(self.store.rows()[0]['state'], 'completed')
+        self.assertEqual(self.store.rows()[0]['state'], 'ended')
 
     def test_early_ack_does_not_close_active_turn(self):
         self.available = False
@@ -217,7 +217,7 @@ class CycleTests(DesktopDispatchTests):
         receipt = self.root / 'receipt'; receipt.write_text('verified')
         with self.assertRaisesRegex(ValueError, 'correlated turn'):
             self.store.acknowledge(self.store.rows()[0]['id'], receipt)
-        self.assertEqual(self.tick(), 'completed')
+        self.assertEqual(self.tick(), 'ended')
         self.store.acknowledge(self.store.rows()[0]['id'], receipt)
         self.assertEqual(self.tick(), 'cycle_closed')
         self.assertEqual(len(self.sent), 1)
@@ -360,3 +360,4 @@ class CycleTests(DesktopDispatchTests):
 
 def load_tests(loader, tests, pattern):
     return unittest.TestSuite(CycleTests(name) for name in CycleTests.__dict__ if name.startswith('test_'))
+

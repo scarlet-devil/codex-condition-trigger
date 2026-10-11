@@ -1,6 +1,6 @@
 # Codex Condition Trigger
 
-> **两天真实环境试验已获批准，尚无本机启动回执。** 有效期为北京时间 2026-10-08 21:11:50 至 2026-10-10 21:11:50；需由本机落实到期停止。已加载聊天可按既有范围试用，开关窗仍受最长 600 秒的明确监督条件约束。见[授权与执行交接](docs/ALICE_PRODUCTION_TRIAL_AUTHORIZATION_20261008.md)。PR 保持 Draft。
+> **两天真实环境试验已结束并归档。** 收尾材料记录监听器正常退出、登录任务停用，原周期任务保持 PAUSED。2026-10-11 已补入监听状态、执行结果分离及上传续传候选修复；云端测试通过，本机验收仍待完成。见[修复说明与本机交接](docs/ALICE_TRIGGER_FOLLOWUP_20261011.md)及[当前状态](CURRENT_STATE.md)。PR 保持 Draft。
 
 **Use file conditions to decide when an existing Codex thread should receive work.**
 
@@ -24,7 +24,7 @@
 - 实验或构建结果写入目录，稳定后交给已有项目会话分析。
 - 文档内容发生实际变化后触发增量处理，跳过仅修改时间戳或重复复制。
 
-本版只实现**文件内容条件**，不包含通用规则语言、Webhook、GUI 或后台自启。机器上需要运行监听进程。
+本版只实现**文件内容条件**，不包含通用规则语言、Webhook 或 GUI。机器上需要运行监听进程；试验专用的登录恢复入口受固定期限限制，已随本次试验停用。
 
 ## 工作原理
 
@@ -150,3 +150,4 @@ python -m unittest discover -s tests -v
 2026-10-03 静态复核后的修订通过 44 项测试（原有 33 项方法及新增 11 项）。并行 ACK、响应 deadline 和历史文本误关联的旧版失败证据、修复说明及旧状态库兼容边界见 [复核修订记录](docs/REVIEW_FIXES_20261003.md)。
 
 项目现状与下一步见 [CURRENT_STATE.md](CURRENT_STATE.md)，增量记录见 [WORK_LOG.md](WORK_LOG.md)。
+

@@ -76,7 +76,7 @@ class HistoryGapTests(fixtures.DesktopDispatchTests):
         with mock.patch.object(self.client, 'current_state', side_effect=AssertionError('receipt needs no native query')):
             self.assertEqual(self.dispatch(), 'running')
         self.append('event_msg', type='task_complete', turn_id='native')
-        self.assertEqual(self.dispatch(), 'completed')
+        self.assertEqual(self.dispatch(), 'ended')
         self.assertEqual(len(self.sent), 1)
 
     def test_unknown_native_state_does_not_infer_idle_from_history(self):
@@ -97,3 +97,4 @@ class HistoryGapTests(fixtures.DesktopDispatchTests):
 for name in dir(fixtures.DesktopDispatchTests):
     if name.startswith('test_') and name not in HistoryGapTests.__dict__:
         setattr(HistoryGapTests, name, None)
+

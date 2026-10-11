@@ -80,7 +80,7 @@ class WindowCycles:
         adapter = self.adapter_factory(self.store.c, self.store.paused)
         try:
             receipt = adapter.observe(row)
-            return bool(row.get('turn_id') and receipt and receipt['state'] == 'completed'
+            return bool(row.get('turn_id') and receipt and receipt['state'] in ('completed', 'ended')
                         and receipt.get('turn_id') == row['turn_id'])
         finally:
             adapter.close()
@@ -268,3 +268,4 @@ def cycle_tick(store, backend=None, adapter_factory=None):
     if result in ('owner_ready', 'receipt_only'):
         return dispatch_one(store, adapter_factory=adapter_factory, expected_batch_id=manager.batch_id)
     return result
+

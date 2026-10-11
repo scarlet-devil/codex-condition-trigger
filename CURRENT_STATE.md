@@ -1,10 +1,16 @@
 # Current state
 
+## Trigger follow-up fixes — 2026-10-11
+
+Current production state: **the bounded trial has ended and its materials are archived**. Closeout evidence records normal listener exit, the trial logon task disabled, zero matching workers at the last local check, and the original periodic task still PAUSED. This cloud change does not renew the expired authorization or claim current access to the Windows process list. Six input versions remain unresearched; two Library originals remain unavailable. Historical runtime paragraphs below retain their original observation dates.
+
+Human authorized the three recommended fixes in the main discussion chat. Candidate code now records watcher progress/exit and backlog, separates lifecycle end from execution outcome and business ACK, and provides durable upload-only recovery for frozen artifacts. **Local acceptance remains pending:** actual Windows logon/recovery, exact native outcome collection, and the real upload backend must be validated by Kelan. The repository contains no production upload driver. Cloud S0 validation: 170 tests, 169 pass, one Windows-only skip. See [implementation and local handoff](docs/ALICE_TRIGGER_FOLLOWUP_20261011.md). PR remains Draft.
+
 ## Cloud research automation takeover — 2026-10-11
 
 Human authorized Alice to move the hourly Dot-results analysis into a separate current chat. New task `6acb2ccc63c881919ad4f5f29f9747ad` is enabled with an Asia/Shanghai hourly schedule starting at 2026-10-11 15:00; old task `6ac7af46bcb8819182af5160b558dabd` is verified paused and was not resumed. Results go only to the new bound chat. The same Drive folder, Draft PR #1 and latest [analysis ledger](evidence/alice-dot-results-ledger.json) continue; all six partial items retain their completed bounded analysis, hashes, evidence sets and notification keys. Actual GPT-6 Astra / max configuration remains unknown because the automation tools expose no model/effort fields. No material was reanalysed and no local production trial was resumed or extended. See [takeover and execution rules](docs/ALICE_DOT_RESULTS_WATCH_20261008.md#2026-10-11-接管到独立自动化窗口). Earlier local-runtime paragraphs below describe their dated observations, not a renewed authorization.
 
-Status: listener restored; repair report/ZIP and16-version research report/evidence delivered_verified. Original db099a48 and waiting de670c1f independently observed delivered with exact receipt hashes; later queued materials remain pending. Single Human-authorized continuation completed without native error at 2026-10-10T08:13:25+00:00. Fixed trial expiry2026-10-10T13:11:50Z; Draft/Alice review_pending.
+Historical observation (2026-10-10, before expiry): listener restored; repair report/ZIP and16-version research report/evidence delivered_verified. Original db099a48 and waiting de670c1f independently observed delivered with exact receipt hashes; later queued materials remain pending. Single Human-authorized continuation completed without native error at 2026-10-10T08:13:25+00:00. Fixed trial expiry2026-10-10T13:11:50Z; Draft/Alice review_pending.
 
 
 ## Recovery update — 2026-10-10
@@ -70,3 +76,4 @@ This cloud review does not accept or modify the local trial, its fixed 2026-10-1
 ## Alice cloud Dot results analysis — 2026-10-11 closeout increment
 
 Alice read and hashed the final closeout report/ZIP/receipt (17,709B / 103,346B / 2,886B) and verified ZIP CRC, path safety and all 34 listed member hashes. The archive newly contains a Library-failure survey/index, but not the two Library originals or the nine referenced raw stderr/exit/work-log blobs. It supports a three-stage failure taxonomy (module import, stdin JSON, tools-list/DNS), not root-cause confirmation, archive completion or model-effect evidence. Status remains partial; see [analysis](docs/ALICE_DOT_RESULTS_CLOSEOUT_INCREMENT_ANALYSIS_20261011.md) and [ledger](evidence/alice-dot-results-ledger.json). Production closeout is outside this research review; no local process, ACK, timer, window, model or Draft-state change.
+

@@ -120,7 +120,11 @@ def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=Tru
         if kind == 'event_msg' and p.get('type') in ('task_complete', 'turn_aborted', 'task_failed'):
             if active is None or p.get('turn_id') != active:
                 raise ValueError('unmatched lifecycle completion')
-            turns[active]['state'] = 'completed' if p['type'] == 'task_complete' else 'failed'
+            # task_complete also occurs after native systemError. It only
+            # closes the local lifecycle; success requires separate evidence.
+            turns[active]['state'] = 'ended' if p['type'] == 'task_complete' else 'failed'
+            turns[active]['execution_outcome'] = {
+                'task_complete': 'unknown', 'task_failed': 'failed', 'turn_aborted': 'interrupted'}[p['type']]
             status = 'idle' if p['type'] == 'task_complete' else 'interrupted'
             active = None
     return {'status': status, 'turns': turns, 'settings': settings,
@@ -451,7 +455,8 @@ class DesktopAdapter:
         if row.get('turn_id'):
             turn = candidates.get(row['turn_id'])
             if turn:
-                return dict(state=turn['state'], turn_id=row['turn_id'], detail='native accepted turn observed in target rollout')
+                return dict(state=turn['state'], execution_outcome=turn.get('execution_outcome', 'unknown'),
+                            turn_id=row['turn_id'], detail='target rollout lifecycle; task_complete does not prove success')
             return dict(state='accepted', turn_id=row['turn_id'], detail='native acceptance retained; lifecycle not visible yet')
         matches = []
         for key, turn in candidates.items():
@@ -464,7 +469,8 @@ class DesktopAdapter:
                     matches.append((key, turn))
         if len(matches) == 1:
             key, turn = matches[0]
-            return dict(state=turn['state'], turn_id=key, detail='exact post-intent text fallback; not authenticated provenance')
+            return dict(state=turn['state'], execution_outcome=turn.get('execution_outcome', 'unknown'),
+                        turn_id=key, detail='exact post-intent text fallback; not authenticated provenance')
         return None
 
     def prepare(self, row):
@@ -513,3 +519,4 @@ class DesktopAdapter:
     def close(self):
         if self.client is not None:
             self.client.close()
+

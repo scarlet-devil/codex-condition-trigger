@@ -291,7 +291,7 @@ class DesktopDispatchTests(Fixture):
         self.assertIsNone(self.store.rows()[0]['submission'])
         self.assertEqual(self.dispatch(), 'running')
         self.append('event_msg', type='task_complete', turn_id='native')
-        self.assertEqual(self.dispatch(), 'completed')
+        self.assertEqual(self.dispatch(), 'ended')
         self.assertEqual(len(self.sent), 1)
         receipt = self.root / 'receipt.json'
         receipt.write_text('{"synthetic_result_verified":true}')
@@ -361,3 +361,4 @@ class DesktopDispatchTests(Fixture):
 
 if __name__ == '__main__':
     unittest.main()
+

@@ -229,6 +229,8 @@ class Store:
                 self.db.execute("ALTER TABLE batches ADD COLUMN dispatch_text TEXT")
             if "dispatch_meta" not in columns:
                 self.db.execute("ALTER TABLE batches ADD COLUMN dispatch_meta TEXT")
+            if "execution_outcome" not in columns:
+                self.db.execute("ALTER TABLE batches ADD COLUMN execution_outcome TEXT NOT NULL DEFAULT 'unknown'")
             if worker:
                 self.db.execute("UPDATE batches SET state='uncertain', detail='process ended while sending' WHERE state='sending'")
         (self.path / "blobs").mkdir(exist_ok=True)
@@ -265,16 +267,20 @@ class Store:
         return [dict(x) for x in self.db.execute("SELECT * FROM batches ORDER BY created, id")]
 
     def update(self, batch_id, state, **values):
-        if not set(values) <= {"submission", "turn_id", "dispatch_text", "dispatch_meta", "attempts", "next_try", "detail"}:
+        if not set(values) <= {"submission", "turn_id", "dispatch_text", "dispatch_meta", "attempts", "next_try", "detail", "execution_outcome"}:
             raise ValueError("unknown update field")
+        if values.get('execution_outcome', 'unknown') not in ('unknown', 'succeeded', 'failed', 'interrupted'):
+            raise ValueError('invalid execution outcome')
         fields = {"state": state, **values}
         with self.db:
             # ACK is terminal. The predicate and write must be one SQLite
             # operation, so a stale RPC result cannot erase delivery evidence.
             changed = self.db.execute("UPDATE batches SET " + ",".join(k + "=?" for k in fields)
                                       + " WHERE id=? AND state<>'delivered'"
-                                        " AND (state<>'waiting_materials' OR ?='delivered')",
-                                      (*fields.values(), batch_id, state))
+                                        " AND (state<>'waiting_materials' OR ?='delivered')"
+                                        " AND (?='delivered' OR NOT EXISTS (SELECT 1 FROM meta "
+                                        "WHERE k='execution_result:' || batches.id))",
+                                      (*fields.values(), batch_id, state, state))
         return changed.rowcount == 1
 
     def defer_materials(self, batch_id, evidence):
@@ -293,7 +299,8 @@ class Store:
             # Serialize the state check, window check and request with ACK.
             self.db.execute('BEGIN IMMEDIATE')
             row = self.db.execute('SELECT * FROM batches WHERE id=?', (batch_id,)).fetchone()
-            if (not row or row['state'] not in ('accepted', 'running', 'completed')
+            if (not row or row['state'] not in ('accepted', 'running', 'completed', 'ended')
+                    or row['execution_outcome'] in ('failed', 'interrupted')
                     or not row['turn_id'] or not isinstance(record, dict)
                     or record.get('schema') != 1 or record.get('batch_id') != batch_id
                     or record.get('turn_id') != row['turn_id']
@@ -320,7 +327,7 @@ class Store:
         if self.paused():
             return
         for row in self.rows():
-            if row['state'] != 'completed':
+            if row['state'] not in ('completed', 'ended') or row['execution_outcome'] in ('failed', 'interrupted'):
                 continue
             request = self.db.execute('SELECT v FROM meta WHERE k=?', ('material_wait:' + row['id'],)).fetchone()
             if not request:
@@ -334,7 +341,8 @@ class Store:
             if valid:
                 with self.db:
                     self.db.execute("UPDATE batches SET state='waiting_materials',detail=? "
-                                    "WHERE id=? AND state='completed' AND turn_id=?",
+                                    "WHERE id=? AND state IN ('completed','ended') AND turn_id=? "
+                                    "AND execution_outcome NOT IN ('failed','interrupted')",
                                     (encode(request), row['id'], row['turn_id']))
 
     def plan(self, files):
@@ -380,7 +388,7 @@ class Store:
 
     def acknowledge(self, batch_id, evidence):
         row = self.db.execute("SELECT state,turn_id FROM batches WHERE id=?", (batch_id,)).fetchone()
-        if not row or row[0] not in ("accepted", "queued", "running", "completed", "failed", "uncertain", "waiting_materials"):
+        if not row or row[0] not in ("accepted", "queued", "running", "completed", "ended", "failed", "uncertain", "waiting_materials"):
             raise ValueError("ack requires a dispatched batch and checked business-delivery evidence")
         cycle = self.db.execute('SELECT v FROM meta WHERE k=?', ('window_cycle:' + batch_id,)).fetchone()
         if cycle and not row['turn_id']:
@@ -486,12 +494,12 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None, ex
         return "quiet"
     row = rows[0]
     now = time.time() if now is None else now
-    if row["state"] in ("blocked", "failed", "completed", "waiting_materials") or now < row["next_try"]:
+    if row["state"] in ("blocked", "failed", "completed", "ended", "waiting_materials") or now < row["next_try"]:
         return row["state"]
     adapter, sending = None, False
     def commit(receipt):
         state = receipt["state"]
-        if state not in ("accepted", "queued", "running", "completed", "failed", "uncertain"):
+        if state not in ("accepted", "queued", "running", "completed", "ended", "failed", "uncertain"):
             raise ValueError("invalid adapter state")
         if not store.update(row["id"], state, **{k: v for k, v in receipt.items() if k != "state"}):
             return next(r['state'] for r in store.rows() if r['id'] == row['id'])
@@ -549,34 +557,42 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None, ex
 
 
 def run(store, live=False, stop_event=None):
-    if store.paused():
-        emit('watcher_not_started', reason='paused')
-        return
-    from watchdog.events import FileSystemEventHandler
-    from watchdog.observers import Observer
-    stop_event = stop_event or threading.Event()
-    changed = threading.Event()
-    scanner = StableScanner(store)
-    class Handler(FileSystemEventHandler):
-        def on_any_event(self, event):
-            # Reading/hashing files must not trigger the watcher itself.
-            if event.event_type in ("created", "modified", "moved", "deleted"):
-                changed.set()
-    observer = Observer()
-    observer.schedule(Handler(), store.c["input_dir"], recursive=True)
-    observer.start()
-    next_scan, next_dispatch = 0.0, 0.0
+    from worker_health import Progress
+    progress = Progress(store, live)
+    observer = None
     try:
+        if store.paused():
+            emit('watcher_not_started', reason='paused')
+            progress.finish('stopped', 'trial_expired' if (store.path / 'TRIAL_EXPIRED.json').exists() else 'STOP')
+            return
+        from watchdog.events import FileSystemEventHandler
+        from watchdog.observers import Observer
+        stop_event = stop_event or threading.Event()
+        changed = threading.Event()
+        scanner = StableScanner(store)
+        class Handler(FileSystemEventHandler):
+            def on_any_event(self, event):
+                # Reading/hashing files must not trigger the watcher itself.
+                if event.event_type in ("created", "modified", "moved", "deleted"):
+                    changed.set()
+        observer = Observer()
+        observer.schedule(Handler(), store.c["input_dir"], recursive=True)
+        next_scan, next_dispatch = 0.0, 0.0
+        observer.start()
         emit("watching", mode="live" if live else "dry", backend=type(observer).__name__)
         while not stop_event.is_set() and not store.paused():
             now = time.monotonic()
+            progress.write()
             event_seen = changed.is_set()
             if event_seen or now >= next_scan:
                 changed.clear()
+                progress.write('scanning')
                 try:
                     scanner.scan(now)
+                    progress.write('waiting', last_scan_at_utc=progress.utc(), scan_result='ok')
                 except (OSError, ValueError, zipfile.BadZipFile, RuntimeError) as e:
                     emit("scan_pending", reason=type(e).__name__)
+                    progress.write('waiting', last_scan_at_utc=progress.utc(), scan_result=type(e).__name__)
                 delay = store.c["rescan_seconds"]
                 if scanner.candidate is not None:
                     remaining = store.c["settle_seconds"] - (now - scanner.since)
@@ -585,13 +601,23 @@ def run(store, live=False, stop_event=None):
                 next_scan = now + max(0.05, delay)
             if live and now >= next_dispatch:
                 from owner_loading import cycle_tick
+                progress.write('checking_dispatch')
                 result = cycle_tick(store)
                 emit("cycle_tick", state=result)
+                progress.write('waiting', last_dispatch_check_at_utc=progress.utc(), dispatch_result=result)
                 next_dispatch = now + 10
             stop_event.wait(0.1)
+        reason = ('trial_expired' if (store.path / 'TRIAL_EXPIRED.json').exists() else
+                  'STOP' if (store.path / 'STOP').exists() else 'stop_event')
+        progress.finish('stopped', reason)
+    except BaseException as error:
+        progress.finish('failed', type(error).__name__)
+        raise
     finally:
-        observer.stop()
-        observer.join(timeout=5)
+        if observer is not None:
+            observer.stop()
+            if observer.is_alive():
+                observer.join(timeout=5)
         emit("watcher_stopped")
 
 
@@ -608,6 +634,9 @@ def main():
     sub.add_parser("unpause")
     p = sub.add_parser("ack"); p.add_argument("batch_id"); p.add_argument("--evidence", required=True)
     p = sub.add_parser("defer-materials"); p.add_argument("batch_id"); p.add_argument("--evidence", required=True)
+    p = sub.add_parser("record-outcome"); p.add_argument("batch_id"); p.add_argument("--evidence", required=True)
+    p = sub.add_parser("delivery-stage"); p.add_argument("batch_id"); p.add_argument("--parent-id", required=True); p.add_argument("files", nargs='+')
+    p = sub.add_parser("delivery-resume"); p.add_argument("job_id")
     p = sub.add_parser("seed"); p.add_argument("manifest")
     p = sub.add_parser("retry-connect"); p.add_argument("batch_id")
     args = parser.parse_args()
@@ -645,7 +674,7 @@ def main():
         finally:
             rpc.close()
         return
-    s = Store(c, worker=args.command not in ("status", "ack", "defer-materials"))
+    s = Store(c, worker=args.command not in ("status", "ack", "defer-materials", "record-outcome", "delivery-stage", "delivery-resume"))
     try:
         if args.command == "run":
             if args.live and not c["owner_verified"]:
@@ -657,7 +686,15 @@ def main():
             time.sleep(c["settle_seconds"])
             scanner.scan()
         elif args.command == "status":
-            emit("status", paused=s.paused(), batches=[{k: r[k] for k in ("id", "state", "submission", "turn_id", "detail")} for r in s.rows()])
+            from worker_health import read_health
+            from execution_result import batch_status
+            from delivery_outbox import jobs
+            rows = s.rows()
+            emit("status", paused=s.paused(), watcher=read_health(s.path),
+                 backlog=dict(batches=sum(r['state'] != 'delivered' for r in rows),
+                              input_versions=sum(len(json.loads(r['manifest'])['files']) for r in rows if r['state'] != 'delivered'),
+                              by_state={state: sum(r['state'] == state for r in rows) for state in sorted({r['state'] for r in rows})}),
+                 batches=[batch_status(r) for r in rows], delivery_jobs=jobs(s))
         elif args.command == "dispatch":
             from owner_loading import cycle_tick
             emit("dispatch", state=cycle_tick(s))
@@ -666,6 +703,16 @@ def main():
         elif args.command == "defer-materials":
             s.defer_materials(args.batch_id, args.evidence)
             emit('material_wait_requested', batch_id=args.batch_id, delivered=False)
+        elif args.command == "record-outcome":
+            from execution_result import record_outcome
+            record_outcome(s, args.batch_id, args.evidence)
+            emit('execution_outcome_recorded', batch_id=args.batch_id, delivered=False)
+        elif args.command == "delivery-stage":
+            from delivery_outbox import stage
+            emit('delivery_staged', job_id=stage(s, args.batch_id, args.parent_id, args.files))
+        elif args.command == "delivery-resume":
+            from delivery_outbox import resume
+            emit('delivery_attempt', **resume(s, args.job_id))
         elif args.command == "seed":
             s.seed(args.manifest)
         elif args.command == "retry-connect":
@@ -682,3 +729,4 @@ if __name__ == "__main__":
         main()
     except KeyboardInterrupt:
         pass
+
