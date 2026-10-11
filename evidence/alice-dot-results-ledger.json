@@ -2,7 +2,7 @@
   "schema_version": 1,
   "record_scope": "Alice cloud Dot research analysis; separate from Kelan production delivery ledger",
   "setup_status": "enabled_observed_increment_analysis_partial",
-  "recorded_at": "2026-10-10T08:30:15Z",
+  "recorded_at": "2026-10-11T06:14:06Z",
   "source_repository_head": "f294ec6a2dd3153613505cf5ac804bea11484ea5",
   "folder": {
     "file_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
@@ -269,6 +269,67 @@
         "no Claude/Rex/Codex local compatibility probe or business benefit measurement"
       ],
       "completion_note": "partial only; not added to reviewed_delivery_sets; same-turn final delivery uses read-before-write dedupe and is not atomic exactly-once"
+    },
+    {
+      "file_id": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y",
+      "name": "KELAN_FINAL_CLOSEOUT_20261011.md",
+      "observed_metadata": {
+        "size_bytes": 17709,
+        "modified_time": "2026-10-11T06:08:15.238Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "2b2aedea46164b29b4908c09363cfea16ae2c95a187e7396d39a8aeaedfd4608",
+      "content_version_key": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y:2b2aedea46164b29b4908c09363cfea16ae2c95a187e7396d39a8aeaedfd4608",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_CLOSEOUT_INCREMENT_ANALYSIS_20261011.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw",
+      "evidence": [
+        {
+          "file_id": "1nhaXlQ__mtQvkUtPfMagUpYqZB52Id_9",
+          "name": "KELAN_FINAL_CLOSEOUT_EVIDENCE_20261011.zip",
+          "raw_sha256": "dcdd57e21b90cc17d1a31c2e0897ab2e0fe62884c06377c8030341e201c998ef",
+          "observed_size_bytes": 103346,
+          "observed_modified_time": "2026-10-11T06:08:25.558Z",
+          "mime_type": "application/zip",
+          "inspection": "complete raw bytes; ZIP CRC passed; 34/34 listed member hashes and lengths matched; path safety checked"
+        },
+        {
+          "file_id": "1SVMOvMtS5d8Oh5Yxzh6S7g_E9LogJSuW",
+          "name": "KELAN_FINAL_CLOSEOUT_RECEIPT_20261011.json",
+          "raw_sha256": "e4e02b41d63a556729863ffdd3892cc767eab0f821c595678011a7fb06607143",
+          "observed_size_bytes": 2886,
+          "observed_modified_time": "2026-10-11T06:11:21.806Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw bytes; parent and ACL assertions reconciled with Drive metadata"
+        }
+      ],
+      "embedded_research_artifacts": [
+        {
+          "path": "archived_pending/KELAN_LIBRARY_FAILURE_SURVEY_20261010_df9a24ec.md",
+          "bytes": 10977,
+          "sha256": "4ae9691521415c2ca02145ed8b42364e8502d37d9118654ed2114f1e49d27c13"
+        },
+        {
+          "path": "archived_pending/KELAN_LIBRARY_FAILURE_EVIDENCE_20261010_df9a24ec.json",
+          "bytes": 7455,
+          "sha256": "4f38d80b4e270ce71efa201cdd9b83868809af85d2ac9403656e8f6b8a4b75fe"
+        }
+      ],
+      "delivery_set_key": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y:2b2aedea46164b29b4908c09363cfea16ae2c95a187e7396d39a8aeaedfd4608|1nhaXlQ__mtQvkUtPfMagUpYqZB52Id_9:dcdd57e21b90cc17d1a31c2e0897ab2e0fe62884c06377c8030341e201c998ef|1SVMOvMtS5d8Oh5Yxzh6S7g_E9LogJSuW:e4e02b41d63a556729863ffdd3892cc767eab0f821c595678011a7fb06607143",
+      "last_analyzed_at": "2026-10-11T06:14:06Z",
+      "last_notified_at": "2026-10-11T06:14:06Z",
+      "last_notified_delivery_set_key": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y:2b2aedea46164b29b4908c09363cfea16ae2c95a187e7396d39a8aeaedfd4608|1nhaXlQ__mtQvkUtPfMagUpYqZB52Id_9:dcdd57e21b90cc17d1a31c2e0897ab2e0fe62884c06377c8030341e201c998ef|1SVMOvMtS5d8Oh5Yxzh6S7g_E9LogJSuW:e4e02b41d63a556729863ffdd3892cc767eab0f821c595678011a7fb06607143",
+      "analysis_summary": "Closeout archive verifies delivery of the failure survey/index and separates import, stdin-JSON and tools-list/DNS stages; it still lacks both Library originals and the nine underlying raw input blobs, so no root-cause, archive-completion or model-effect claim is accepted.",
+      "unresolved_scope": [
+        "Library originals totaling 45506 expected bytes remain unavailable; no original hashes, ZIP CRC/member/path checks",
+        "Nine referenced stderr/exit/work-log input blobs are indexed but not included for Alice byte-level verification",
+        "Helper source/version, original stdin, service request/response and native execution receipts absent",
+        "Transferred 25 checks and 15 scenarios remain unverified; no model/control/scientific run or business-benefit measurement"
+      ],
+      "inspection": "complete raw report/ZIP/receipt bytes; embedded survey/index fully read; candidate code not executed",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; same-turn notification precedes ledger mutation; read-before-write dedupe is not atomic exactly-once",
+      "resume_condition": "Only new bytes for the two Library originals, the nine raw input blobs, helper/runtime receipts, or an explicitly authorized new experiment"
     }
   ],
   "reviewed_delivery_sets": [],
@@ -284,52 +345,42 @@
     "Third report states no separate ZIP for the four-input continuation; assess its actual cited evidence, not a universal ZIP requirement."
   ],
   "last_analysis": {
-    "at": "2026-10-10T08:30:15Z",
-    "output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md",
+    "at": "2026-10-11T06:14:06Z",
+    "output": "docs/ALICE_DOT_RESULTS_CLOSEOUT_INCREMENT_ANALYSIS_20261011.md",
     "status": "partial",
-    "source_head": "f294ec6a2dd3153613505cf5ac804bea11484ea5",
-    "delivery_set_key": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw:e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3|1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W:a7ec1c4309ad37fc645b0420fa2b0ca180ee8a69d3e9bdbad5e0ef69872612a5",
+    "source_head": "b9e4fffaf7db6fe863b5d98ebaf7600afb5678bf",
+    "delivery_set_key": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y:2b2aedea46164b29b4908c09363cfea16ae2c95a187e7396d39a8aeaedfd4608|1nhaXlQ__mtQvkUtPfMagUpYqZB52Id_9:dcdd57e21b90cc17d1a31c2e0897ab2e0fe62884c06377c8030341e201c998ef|1SVMOvMtS5d8Oh5Yxzh6S7g_E9LogJSuW:e4e02b41d63a556729863ffdd3892cc767eab0f821c595678011a7fb06607143",
     "raw_inputs": {
       "report": {
-        "file_id": "13QGcbcdqLifP-oIoqkXWw3AkQOs9Yppw",
-        "bytes": 16894,
-        "sha256": "e46cacbfcc7334959ca667b37da0ad7b74193a0adbb7893b3f6a5cff4cc6c8e3"
+        "file_id": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y",
+        "bytes": 17709,
+        "sha256": "2b2aedea46164b29b4908c09363cfea16ae2c95a187e7396d39a8aeaedfd4608"
       },
-      "evidence": {
-        "file_id": "1hDkbdoMiJZgKRUweAq8BFQ0C_1n85F-W",
-        "bytes": 8743,
-        "sha256": "a7ec1c4309ad37fc645b0420fa2b0ca180ee8a69d3e9bdbad5e0ef69872612a5"
+      "evidence_zip": {
+        "file_id": "1nhaXlQ__mtQvkUtPfMagUpYqZB52Id_9",
+        "bytes": 103346,
+        "sha256": "dcdd57e21b90cc17d1a31c2e0897ab2e0fe62884c06377c8030341e201c998ef"
+      },
+      "receipt": {
+        "file_id": "1SVMOvMtS5d8Oh5Yxzh6S7g_E9LogJSuW",
+        "bytes": 2886,
+        "sha256": "e4e02b41d63a556729863ffdd3892cc767eab0f821c595678011a7fb06607143"
       }
     },
-    "index_reconciliation": {
-      "new_versions": 14,
-      "new_bytes": 105197,
-      "prior_waiting_versions": 2,
-      "prior_waiting_bytes": 8773,
-      "total_versions": 16,
-      "total_bytes": 113970,
-      "counts_match": true
+    "archive_verification": {
+      "zip_members": 35,
+      "manifest_listed_files": 34,
+      "manifest_matches": 34,
+      "crc_ok": true,
+      "unsafe_paths": 0
     },
-    "direct_source_checks": {
-      "trackio": {
-        "repository": "gradio-app/trackio",
-        "commit": "605a645cf555da7945095ca50b0efb5de802df1b",
-        "finding": "local queue is cleared before write; SQLite write exceptions are caught and warned without requeue",
-        "runtime_reproduction": false
-      },
-      "claude_code": {
-        "commits": [
-          "602df92bf481ed904533e95c09f740f40aab5aed",
-          "2301018b1f61073c501a8e7a4813ef48c239163b"
-        ],
-        "finding": "onFailure block and managed-hook turn-continuation semantics confirmed; event-specific limits remain"
-      },
-      "rex": {
-        "revision": "0.3 / 2026-10-07",
-        "finding": "working/blocked transient; done/error persistent; status is not business ACK"
-      }
+    "embedded_research": {
+      "path_versions": 9,
+      "input_version_bytes": 10550,
+      "unique_blobs": 8,
+      "raw_referenced_blobs_included": false
     },
-    "referenced_blobs_independently_available": false,
+    "originals_available": false,
     "candidate_execution": false,
     "installation": false,
     "model_metadata": "unknown"
