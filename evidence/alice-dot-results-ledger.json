@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
   "record_scope": "Alice cloud Dot research analysis; separate from Kelan production delivery ledger",
-  "setup_status": "enabled_observed_increment_analysis_partial",
-  "recorded_at": "2026-10-11T06:14:06Z",
-  "source_repository_head": "f294ec6a2dd3153613505cf5ac804bea11484ea5",
+  "setup_status": "takeover_enabled_model_metadata_unknown",
+  "recorded_at": "2026-10-11T06:29:53.454211+00:00",
+  "source_repository_head": "5f782e22eccdc434b26f338725ae7382567bbc79",
   "folder": {
     "file_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
     "name": "40_REPORTS",
@@ -16,17 +16,20 @@
   "automation": {
     "title": "精读小点成果",
     "timing_mode": "condition_watch",
-    "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Shanghai:20261008T234821\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+    "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Shanghai:20261011T150000\nRRULE:FREQ=HOURLY;INTERVAL=1\nEND:VEVENT",
     "timezone": "Asia/Shanghai",
     "is_enabled": true,
-    "observed_updated_at": "2026-10-08T15:13:55.519255+00:00",
+    "observed_updated_at": "2026-10-11T06:29:53.454211+00:00",
     "last_run_time": null,
     "next_run_time": null,
     "requested_model": "GPT-6 Astra",
     "requested_reasoning_effort": "max",
     "observed_model": null,
     "observed_reasoning_effort": null,
-    "model_configuration_status": "actual_model_and_reasoning_metadata_not_exposed; unknown; no_explicit_mismatch_observed"
+    "model_configuration_status": "actual_model_and_reasoning_metadata_not_exposed; unknown; prompt_does_not_configure_model",
+    "id": "6acb2ccc63c881919ad4f5f29f9747ad",
+    "delivery_destination": "only_the_current_takeover_chat_bound_by_automations_create",
+    "supersedes_paused_automation_id": "6ac7af46bcb8819182af5160b558dabd"
   },
   "version_policy": {
     "report_identity": [
@@ -384,5 +387,51 @@
     "candidate_execution": false,
     "installation": false,
     "model_metadata": "unknown"
+  },
+  "automation_history": [
+    {
+      "title": "精读小点成果",
+      "timing_mode": "condition_watch",
+      "schedule": "BEGIN:VEVENT\nDTSTART;TZID=Asia/Shanghai:20261008T234821\nRRULE:FREQ=HOURLY\nEND:VEVENT",
+      "timezone": "Asia/Shanghai",
+      "is_enabled": false,
+      "observed_updated_at": "2026-10-11T06:25:19.773471+00:00",
+      "last_run_time": "2026-10-11T06:17:55.096056+00:00",
+      "next_run_time": null,
+      "requested_model": "GPT-6 Astra",
+      "requested_reasoning_effort": "max",
+      "observed_model": null,
+      "observed_reasoning_effort": null,
+      "model_configuration_status": "actual_model_and_reasoning_metadata_not_exposed; unknown; no_explicit_mismatch_observed",
+      "id": "6ac7af46bcb8819182af5160b558dabd",
+      "status": "paused_by_human_before_takeover; not_resumed",
+      "previous_ledger_metadata_preserved": true
+    }
+  ],
+  "takeover": {
+    "at": "2026-10-11T06:29:53.454211+00:00",
+    "actor": "Alice",
+    "deployment_environment": "cloud",
+    "authorization_source": "Human direct request in the takeover conversation on 2026-10-11",
+    "task_class": "C",
+    "governance_profile": "enhanced",
+    "governance_pin": "387c98a45b8fcc4409647c5bdc3363d614542859",
+    "source_head": "5f782e22eccdc434b26f338725ae7382567bbc79",
+    "source_ledger_blob": "a1a813909f3bb63a2ea535fb05c895af439ef869",
+    "source_last_analysis_at": "2026-10-11T06:14:06Z",
+    "previous_automation_id": "6ac7af46bcb8819182af5160b558dabd",
+    "previous_automation_enabled": false,
+    "new_automation_id": "6acb2ccc63c881919ad4f5f29f9747ad",
+    "new_automation_enabled": true,
+    "prompt_readback_match": true,
+    "old_and_new_chat_bindings_differ": true,
+    "model_configuration_verified": false,
+    "existing_item_count": 6,
+    "existing_items_preserved": true,
+    "existing_reviewed_delivery_sets_preserved": true,
+    "analysis_reexecuted": false,
+    "local_trial_resumed": false,
+    "next_step": "Read latest ledger; process only new content/evidence or changed access satisfying each existing item's resume condition; do not repeat already notified bounded analysis",
+    "verification": "S0: source configuration, repository and Drive metadata reads; create and private peek readback; no independent worker or local trial run"
   }
 }

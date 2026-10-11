@@ -1,5 +1,9 @@
 # Current state
 
+## Cloud research automation takeover — 2026-10-11
+
+Human authorized Alice to move the hourly Dot-results analysis into a separate current chat. New task `6acb2ccc63c881919ad4f5f29f9747ad` is enabled with an Asia/Shanghai hourly schedule starting at 2026-10-11 15:00; old task `6ac7af46bcb8819182af5160b558dabd` is verified paused and was not resumed. Results go only to the new bound chat. The same Drive folder, Draft PR #1 and latest [analysis ledger](evidence/alice-dot-results-ledger.json) continue; all six partial items retain their completed bounded analysis, hashes, evidence sets and notification keys. Actual GPT-6 Astra / max configuration remains unknown because the automation tools expose no model/effort fields. No material was reanalysed and no local production trial was resumed or extended. See [takeover and execution rules](docs/ALICE_DOT_RESULTS_WATCH_20261008.md#2026-10-11-接管到独立自动化窗口). Earlier local-runtime paragraphs below describe their dated observations, not a renewed authorization.
+
 Status: listener restored; repair report/ZIP and16-version research report/evidence delivered_verified. Original db099a48 and waiting de670c1f independently observed delivered with exact receipt hashes; later queued materials remain pending. Single Human-authorized continuation completed without native error at 2026-10-10T08:13:25+00:00. Fixed trial expiry2026-10-10T13:11:50Z; Draft/Alice review_pending.
 
 
