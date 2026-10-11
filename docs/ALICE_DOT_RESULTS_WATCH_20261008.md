@@ -1,8 +1,8 @@
 # Alice 云端小点成果监听 — 2026-10-08
 
-状态：**已观察任务启用并完成首轮及 2026-10-10 增量有界分析；实际模型/推理元数据未知。五组材料保留 partial，见分析账本。**
+状态：**已观察任务启用并完成首轮及 2026-10-10 增量有界分析；实际模型/推理元数据未知。六组材料保留 partial，见分析账本。**
 
-本页下方“已建立的任务与配置缺口”“首轮待处理队列”“本轮验证范围”是创建时历史；由 [首轮分析](ALICE_DOT_RESULTS_ANALYSIS_20261008.md)、[2026-10-10 增量分析](ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md) 与当前账本更新其运行/处理状态，每轮处理规则继续适用。
+本页下方“已建立的任务与配置缺口”“首轮待处理队列”“本轮验证范围”是创建时历史；由 [首轮分析](ALICE_DOT_RESULTS_ANALYSIS_20261008.md)、[2026-10-10 增量分析](ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md)、[2026-10-11 收尾包增量](ALICE_DOT_RESULTS_CLOSEOUT_INCREMENT_ANALYSIS_20261011.md) 与当前账本更新其运行/处理状态，每轮处理规则继续适用。
 
 ## 授权、角色与对象
 
@@ -62,3 +62,8 @@
 ## 2026-10-10 增量结果
 
 本轮核对直接子项 200 件。新增小点调查/证据原字节哈希为 `e46cacbf…` / `a7ec1c43…`，内部清单 16 个版本、113,970B 自洽。爱丽丝直接复核固定 Trackio 源码和 Claude/Rex 官方材料后，结论仍为 partial：静态材料支持优先做 T07 数据丢失负例，AI 两原件与真实模型对照仍缺，Claude/Rex 只能提供通信状态/门控语义。详情见 [增量分析](ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261010.md)。同目录条件触发器恢复修复材料不纳入小点成果账本。
+
+
+## 2026-10-11 收尾包增量
+
+本轮直接子项增至 203 件。新增收尾报告/ZIP/回执完整原字节哈希为 `2b2aedea…` / `dcdd57e2…` / `e4e02b41…`；ZIP CRC、路径安全和 34/34 manifest 条目均通过。包内新增的 Library 失败调查将错误区分为模块导入、stdin JSON 和 tools-list/DNS，但两件 Library 原件及九个底层输入 blob仍未交付，模型实验和收益也未运行，故保持 partial。详情见 [分析](ALICE_DOT_RESULTS_CLOSEOUT_INCREMENT_ANALYSIS_20261011.md)。收尾监听/停机判断不纳入本研究账本。
