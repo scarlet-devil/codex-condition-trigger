@@ -422,3 +422,16 @@ Drive准确40_REPORTS父目录归属及shared=false读取通过，报告/ZIP精�
 
 本轮交付结果：GitHub未更新；Drive没有成功回执、远端状态仍待核对。报告10508B与证据ZIP16853B原字节保持，源代码7203734和171pass/1skip证据有效；本轮未重跑研究/测试。生产仍停止，真实登录仍按Human选择延后，业务ACK0，Alice review_pending。完整回执在runs/20261012T004512Z-three-fixes-acceptance/retry-publication/RETRY_RECEIPT.json；连接恢复后只续推冻结结果，先查远端新head和Drive重名。
 
+
+## 2026-10-12｜Windows验收报告与证据已交付Drive；继续同Draft源码同步
+
+Human通知服务维护后传输暂时恢复并明确要求上传。本轮先核对原40_REPORTS的项目父级、shared=false和两个准确名称，结果为空；随后报告与证据ZIP各上传一次。UTC2026-10-12T05:49:17.502786+00:00完整下载原字节核验通过：报告10508B/SHA e7681ed34137e7c97c8f7bd0e9f6e470e3771c21e3de54dadc85e7a5c5270beb；ZIP16853B/SHA 9cd75a0242d4668e96887f11dbe2c48abb3ef3887e391b75c1624332dd19984e。ZIP8成员/7负载清单SHA与CRC通过，包内报告与单独报告一致，准确父目录和shared=false均回读确认。
+
+报告：https://drive.google.com/file/d/1CXsf_pciXyLXEZjhNAkCD1wyOAVTDMSM/view?usp=drivesdk
+证据：https://drive.google.com/file/d/15QzhtYwAuV3nPe9uhkokZylmDdxxY2DA/view?usp=drivesdk
+持久回执：evidence/kelan-three-fixes-delivery-20261012.json。冻结材料内旧pending状态是其原时点记录，由此条和回执补充当前交付事实，不重写历史字节。171pass/1skip、9项Windows dry、7批副本迁移及4旧ACK保留证据未重跑。
+
+本轮材料交付已验证，Alice仍review_pending。代码候选7203734和本轮报告/证据沿同一Draft分支提交；实际远端提交和完整Git blob回读由发布回执另记。不合并、不Ready、不恢复生产，不提前启用Human延后的登录试验；原生自动采集/真实无人值守上传后端仍未验收，业务ACK0。
+
+此前同机两个项目也出现间歇MCP发送失败；普通Git认证及35626B包发出后未收到响应，原分支回查未变。PR评论曾因自动审批传输失败明确未执行。没有据此改凭据、证书、代理或Drive绑定。本轮能完成实际投送只证明该时点通道可用，服务维护的具体修复原因及长期稳定性由维护工作面另行取证。详见docs/KELAN_TRANSPORT_DIAGNOSIS_20261012.md。
+
