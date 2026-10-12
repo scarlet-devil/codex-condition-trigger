@@ -169,6 +169,37 @@ class UploadDriver:
 
 
 class OutboxTests(Fixture):
+    def test_freeze_in_nested_state_directory_with_legacy_windows_path_limit(self):
+        # Reproduce the observed MAX_PATH failure on every platform. Only the
+        # filesystem boundary is limited; freezing and reconciliation are real.
+        padding = max(16, 140 - len(str(self.root)) - 1)
+        self.config['state_dir'] = str(self.root / ('s' * padding))
+        self.reopen()
+        write = tr.atomic_write
+        def bounded_write(path, data):
+            self.assertLess(len(str(path.with_name(path.name + '.tmp'))), 260,
+                            'freezing needlessly exceeds the legacy Windows path limit')
+            return write(path, data)
+        with mock.patch.object(tr, 'atomic_write', bounded_write):
+            _, paths, job = self.make_job()
+        frozen = outbox.jobs(self.store)[0]
+        self.assertEqual({Path(a['path']).read_bytes() for a in frozen['artifacts']},
+                         {p.read_bytes() for p in paths})
+        self.assertEqual(outbox.resume(self.store, job, UploadDriver())['state'],
+                         'uploaded_verified')
+
+    def test_existing_frozen_blob_paths_remain_resumable(self):
+        _, _, job_id = self.make_job()
+        job = outbox.jobs(self.store)[0]
+        for i, item in enumerate(job['artifacts']):
+            legacy = self.root / (str(i) + '-' + item['sha256'] + '.blob')
+            Path(item['path']).rename(legacy)
+            item['path'] = str(legacy)
+        outbox.save(self.store, job)
+        self.reopen()
+        self.assertEqual(outbox.resume(self.store, job_id, UploadDriver())['state'],
+                         'uploaded_verified')
+
     def make_job(self):
         batch = self.ready()
         self.store.update(batch, 'ended', turn_id='native')

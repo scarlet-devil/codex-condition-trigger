@@ -61,7 +61,9 @@ def stage(store, batch_id, parent_id, paths):
         root = store.path / 'delivery-outbox' / job_id
         root.mkdir(parents=True, exist_ok=True)
         for i, (item, data) in enumerate(zip(artifacts, payloads)):
-            blob = root / (str(i) + '-' + item['sha256'] + '.blob')
+            # The job directory already binds the full descriptor hashes.
+            # Repeating a hash here can exceed legacy Windows MAX_PATH.
+            blob = root / (str(i) + '.blob')
             atomic_write(blob, data)
             item.update(path=str(blob), key=job_id + ':' + str(i), state='pending_upload', attempts=0)
         save(store, dict(descriptor, id=job_id, state='pending_upload'))
