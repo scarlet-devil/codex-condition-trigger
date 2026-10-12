@@ -391,3 +391,16 @@ README/current state now show the trial as ended instead of awaiting start/runni
 
 Kelan handoff is attached to this same Draft: validate Windows dry recovery, integrate exact native status collection, and implement/probe the existing authorized upload transport against the documented lookup/upload/readback contract. This is a reviewable candidate, not an assertion that those real-machine gates have passed. Full production reactivation remains outside this change.
 
+
+## 2026-10-12｜三项修复的 Windows 有界验收：路径修复完成，外部提交受阻
+
+红魔转交 Alice 的三项修复；固定接手 03e66a37ceabcc66d5c3c5f36120fc6cdba364f5。新隔离 checkout 复跑原版 170 项：164 通过、5 个 Outbox 冻结错误、1 跳过。独立探针复现 Windows 临时路径 261 字符写入失败；新增回归先在旧代码失败，再去掉 blob 文件名中重复 SHA。job/内容哈希与旧路径读取保持不变，本地代码提交 7203734d347d37ca6615b55b91cd3903d9efb5f9。修订版 172 项：171 通过、1 Windows symlink 权限测试跳过、零错误/失败。
+
+独立 Windows dry 进程 9 项检查通过：合成积压、真实进度、重复启动回执保护、强杀后30.004秒 stale、新实例保留队列、STOP退出及独立终止回执。第一轮监督脚本将 launcher PID 当 worker PID，后按真实 run_id 在新状态目录重跑；失败轮留存。复制原7批SQLite并用正常load_config规范化后迁移通过，旧字段/meta及4delivered ACK不变；原库未修改。新原生只读快照为notLoaded/latest turn completed，但该turn不匹配旧批次，未补写结果或ACK；历史failed/systemError精确关联已交付批次，改写请求在副本被拒绝。
+
+红魔明确“稍后安排，先提交本轮结果”：真实注销/登录延后，15分钟固定截止的dry脚本只做语法检查，未注册或启用。standalone原生结果采集器未接入；真实Drive上传器也未接入，可用工具缺持久创建幂等/在途核对能力，不能把空名称查询当safe_to_create。生产保持停止，原STOP/到期锁保留；最新原生检查相关进程0、旧生产任务对象缺失、新登录测试任务未登记，原timerPAUSED。未删除任务，不推断原任务消失原因。
+
+给Alice的报告、脱敏证据及patch在dot-results-monitor/runs/20261012T004512Z-three-fixes-acceptance。报告10508B；ZIP8成员/7负载manifest与CRC通过；精确长度/SHA见frozen-handoff.json。Drive父级/精确查重2次、GitHub head刷新1次均MCP发送失败；备用只读git ls-remote因自动审批网络断流明确未执行（不是不安全判定），未绕过。上传0、push0、远端成功ID0；prepared_pending_external_delivery，Alice review_pending。没有merge/Ready/安装/生产续期或新模型任务。
+
+完整报告见 docs/KELAN_THREE_FIXES_WINDOWS_ACCEPTANCE_20261012.md；验证摘要 evidence/kelan-three-fixes-windows-20261012.json。固定本地候选和资料已就绪，连接恢复时先核当前远端头与准确父级/重名，再只提交这一冻结材料；不要重新研究、恢复监听、改旧ACK或覆盖Alice的新提交。本轮S0自查，不宣称独立验收或全链生产可用。
+
