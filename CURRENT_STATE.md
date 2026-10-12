@@ -1,3 +1,11 @@
+## 2026-10-12｜再次推送未成功：远端仍03e66a3，保留冻结材料
+
+按红魔“再次尝试推送”，本轮17项治理和原冻结报告/ZIP SHA、CRC及7负载清单复核通过。GitHub初查open/Draft/unmerged、准确head03e66a3；Drive父目录属于原new-skill-merge且shared=false，报告/ZIP精确查重为空。随后报告上传在OpenAI file_uri传输阶段失败，无Drive ID；失败后查重也MCP发送错误，远端存在性未确认，未盲重传，ZIP未上传。
+
+本地631db58补齐同Draft用的脱敏ZIP及发布记录。第一次核对/推送组合命令exit128（schannel missing close_notify），未能区分其检查与推送阶段；再次只读确认远端03e66a3后，一次明确的HTTP/1.1命令级有界push返回exit1、curl52 Empty reply/sideband断流。尽管输出附Everything up-to-date，后续git ls-remote仍确认03e66a3，因此不得宣称推送成功。GitHub连接器后续读也失败，gh CLI不可用；没有修改全局网络/TLS/凭据，不继续无界重试。
+
+本轮交付结果：GitHub未更新；Drive没有成功回执、远端状态仍待核对。报告10508B与证据ZIP16853B原字节保持，源代码7203734和171pass/1skip证据有效；本轮未重跑研究/测试。生产仍停止，真实登录仍按Human选择延后，业务ACK0，Alice review_pending。完整回执在runs/20261012T004512Z-three-fixes-acceptance/retry-publication/RETRY_RECEIPT.json；连接恢复后只续推冻结结果，先查远端新head和Drive重名。
+
 ## 2026-10-12｜按红魔再次推送指示补交冻结证据
 
 准确 Draft 分支经 GitHub metadata 与原生 git ls-remote 两路只读核对仍为03e66a3，故本次按其正常后继提交交接，不强推、合并或改为Ready。代码7203734、报告与日志1aae311保持；本提交补入8成员脱敏ZIP及发布核对记录，文件CRC和7项manifest SHA均通过。冻结报告/ZIP中的“尚未交付”是上一轮时点记录，本条及publication JSON补充后续事实，不重写冻结字节。
