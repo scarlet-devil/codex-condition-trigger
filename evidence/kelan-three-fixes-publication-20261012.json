@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "prepared_at_utc": "2026-10-12T03:05:53.864901+00:00",
+  "human_request": "Retry publication of the frozen results",
+  "tested_code_commit": "7203734d347d37ca6615b55b91cd3903d9efb5f9",
+  "original_handoff_commit": "1aae311fe00a05c5b332c0b73b594984b20dfc69",
+  "remote_base_reconciled": "03e66a37ceabcc66d5c3c5f36120fc6cdba364f5",
+  "pr": 1,
+  "draft_required": true,
+  "report": {
+    "path": "docs/KELAN_THREE_FIXES_WINDOWS_ACCEPTANCE_20261012.md",
+    "bytes": 10508,
+    "sha256": "e7681ed34137e7c97c8f7bd0e9f6e470e3771c21e3de54dadc85e7a5c5270beb"
+  },
+  "zip": {
+    "path": "evidence/KELAN_THREE_FIXES_WINDOWS_EVIDENCE_20261012.zip",
+    "bytes": 16853,
+    "sha256": "9cd75a0242d4668e96887f11dbe2c48abb3ef3887e391b75c1624332dd19984e",
+    "members": 8,
+    "verified_payloads": 7,
+    "crc": "passed"
+  },
+  "drive": {
+    "status": "not_verified",
+    "parent_preflight": "matched expected project, shared=false",
+    "initial_exact_name_search": "empty",
+    "report_upload_calls_this_retry": 1,
+    "zip_upload_calls_this_retry": 0,
+    "success_file_ids": [],
+    "upload_failure_stage": "OpenAI file_uri transfer to backend-api/files; no Drive success receipt",
+    "post_failure_reconciliation": "MCP send failure; remote existence unconfirmed",
+    "blind_retry": false
+  },
+  "github": "This commit carries the review payload; final ref and raw Git blob verification are recorded by the publishing caller.",
+  "production": "stopped_expired",
+  "logon_test": "Human_deferred_not_armed",
+  "business_acks": 0,
+  "alice_review": "review_pending",
+  "historical_snapshot_notice": "The frozen report and ZIP retain earlier pending-publication observations. This record supplies the later retry status without altering their bytes."
+}

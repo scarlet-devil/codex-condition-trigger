@@ -1,3 +1,11 @@
+## 2026-10-12｜按红魔再次推送指示补交冻结证据
+
+准确 Draft 分支经 GitHub metadata 与原生 git ls-remote 两路只读核对仍为03e66a3，故本次按其正常后继提交交接，不强推、合并或改为Ready。代码7203734、报告与日志1aae311保持；本提交补入8成员脱敏ZIP及发布核对记录，文件CRC和7项manifest SHA均通过。冻结报告/ZIP中的“尚未交付”是上一轮时点记录，本条及publication JSON补充后续事实，不重写冻结字节。
+
+Drive准确40_REPORTS父目录归属及shared=false读取通过，报告/ZIP精确名称初查为空；随后报告上传在OpenAI文件引用传输阶段失败，无Drive文件ID。失败后查重又遇MCP发送错误，远端存在性仍未确认，因此不盲重传；本轮报告上传调用1次，ZIP上传0次。Drive保持pending_delivery。这里增加ZIP至同一已授权Draft，便于Alice直接审查完整材料；不能把GitHub材料发布当作Drive交付核验。
+
+实机结果仍为171通过/1跳过、9项dry检查、7批副本迁移保留4旧ACK。真实登录由Human选择稍后安排；native自动采集与真实上传幂等后端仍未验收，production停止、旧STOP/到期锁和原timerPAUSED保留。Alice review_pending。外部发布后的准确远端提交和Git blob完整回读由发布回执另存，不回填虚构成功。
+
 ## 2026-10-12｜三项修复的 Windows 有界验收：路径修复完成，外部提交受阻
 
 红魔转交 Alice 的三项修复；固定接手 03e66a37ceabcc66d5c3c5f36120fc6cdba364f5。新隔离 checkout 复跑原版 170 项：164 通过、5 个 Outbox 冻结错误、1 跳过。独立探针复现 Windows 临时路径 261 字符写入失败；新增回归先在旧代码失败，再去掉 blob 文件名中重复 SHA。job/内容哈希与旧路径读取保持不变，本地代码提交 7203734d347d37ca6615b55b91cd3903d9efb5f9。修订版 172 项：171 通过、1 Windows symlink 权限测试跳过、零错误/失败。
