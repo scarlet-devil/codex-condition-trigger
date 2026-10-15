@@ -1,0 +1,28 @@
+{
+  "deadline_local": "2026-10-16 00:49:42",
+  "armed_at_utc": "2026-10-15T16:34:43.1777077+00:00",
+  "logoff_calls": 0,
+  "task_scheduler_operational_log": "disabled_unmodified",
+  "manual_start_calls": 0,
+  "task": "Codex-ConditionTrigger-DryAcceptance-20261016",
+  "mode": "dry",
+  "deadline_utc": "2026-10-15T16:49:42.7193861+00:00",
+  "source_pins": {
+    "trial_limits.py": "985bf7078574cb1eeb53d9677548482c5830c308598dfdc56dfc1e03a2f1cf17",
+    "owner_loading.py": "f1f3c21c393f0ba8acfde5abcf5854037fcc8cb4f490fed699b5584e0aa63c32",
+    "trigger.py": "624ffabd694c1b7ee04e537f21ad63d057f2e5fcd9188a90f69348e0bc6e050a",
+    "worker_health.py": "c05d9737158da0b1aac751cf9a188076bfc0070c6ebfdbddc6bc9f9f67aa521a",
+    "native_collector.py": "d5cba75c1b75fa3ce1aa90cf677687085569c5fb02c7a0a610a0c088984f955b",
+    "chat_adapters.py": "cac5010d542dc7404eb8d7bc69b083c68860792b51cc505fc99e1dc075cc665e",
+    "desktop_ipc.py": "6ea5657e827861ac2831825a6e65b93ca53ecff0e0a6b4c43fe6b1745051af9b",
+    "logon_acceptance.py": "e63886860827f1302ac0d6b7d1c3db0b5d59aacc446938085b102ada5aab306e",
+    "delivery_outbox.py": "123aa0aa6fb06f70ab821cbe26737a002251da97a2334b1e67704d521ae93649",
+    "trial_worker.py": "c9f46e7a75a0e0dd72c8f56ee72b02f51e8f58e61ecb15625a691abc683fd0f6",
+    "execution_result.py": "14e4980cd375c34017efdcc6a3f5cc0f8c927f1f6831e3caa0fda2b65c5cf932"
+  },
+  "registered_state": "Ready",
+  "trigger_type": "MSFT_TaskLogonTrigger",
+  "execution_time_limit": "PT5M",
+  "worker_start_exists": false,
+  "real_login_observed": false
+}

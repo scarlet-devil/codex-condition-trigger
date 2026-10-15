@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "author_identity": "Kelan",
+  "environment": "local Windows",
+  "authorization": "Human explicitly approved minimal Hub install and live acceptance",
+  "recorded_at_utc": "2026-10-15T16:31:09.050176+00:00",
+  "state": "installed_live_canary_verified_login_pending",
+  "source": [
+    {
+      "path": "src/drive_exchange_local_hub/__init__.py",
+      "before_sha256": "d60a0e4dacf676166a985bf4e540ec37d5085d27d0a03cfa825e04f5123b89a1",
+      "after_sha256": "aedf80d9d902cbebde8f5ad8ef1e6a3e23c04a49b695adb7223106de7d63031b"
+    },
+    {
+      "path": "src/drive_exchange_local_hub/google_drive.py",
+      "before_sha256": "b97c54d281fdab0b4c11fbc7f18f3c611360cf728bbb06ef2f488048c38d2d91",
+      "after_sha256": "b9097e9d264ec31633222c331edf67f6eeb88882851ba242412016cbb0c055fa"
+    },
+    {
+      "path": "src/drive_exchange_local_hub/material_recovery.py",
+      "before_sha256": null,
+      "after_sha256": "b5568dc6fb9dec5bb40c11c28cabacbdd6a10983a044ae4a440cc231cd924f6d"
+    },
+    {
+      "path": "MATERIALS_SHA256.json",
+      "before_sha256": "fa010fce3c40ab8efcfb6a304178f4e2c992a32b38deb221753eb77b0413be2c",
+      "after_sha256": "c723d0c3e89a5508a25f5a96c16af27397dec2892e61184f74f20cab49bc87a6"
+    }
+  ],
+  "baseline_manifest_entries_verified": 72,
+  "new_manifest_entries": 73,
+  "old_hub_entry": "not_running_exclusive_first_instance_pipe_acquired",
+  "old_processes_terminated": 0,
+  "started_launcher_pid": 50592,
+  "observed_server_child_pid": 49628,
+  "original_table_count": 11,
+  "original_tables_unchanged": true,
+  "new_table": {
+    "rows": 1,
+    "sha256": "7c07b8515f8a5af0705fe7bfb79932816ed514d4fe2fd1cbdce714172d65a7a8"
+  },
+  "guarded_configuration_hashes_unchanged": true,
+  "credential_configuration_changed": false,
+  "canary": {
+    "id": "1v1auwzETb18D-MggC4KvTjo1Pg0TZCUm",
+    "name": "CONDITION_HUB_CANARY_20261016.txt",
+    "mime_type": "text/plain",
+    "size": 128,
+    "url": "https://drive.google.com/file/d/1v1auwzETb18D-MggC4KvTjo1Pg0TZCUm/view?usp=drivesdk",
+    "parent_ids": [
+      "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq"
+    ],
+    "shared": false,
+    "source_visibility_status": "permission_metadata_available",
+    "permission_types": [
+      {
+        "type": "user",
+        "role": "owner"
+      }
+    ]
+  },
+  "sha256": "d8bf98ac97ee845e975071033b74e3943ef0eb417d867afcee3518f76bf3f372",
+  "bytes": 128,
+  "upload_dispatch_attempts": 1,
+  "first_state": "upload_uncertain",
+  "recovered_state": "uploaded_verified",
+  "same_remote_id": true,
+  "fault_injection": "test client exits 23 after Hub returns found, before outbox receives the upload reply",
+  "real_server_process_kill": false,
+  "real_network_loss_injected": false,
+  "synthetic_server_process_kill_separately_passed": true,
+  "model_dispatches": 0,
+  "business_ack_writes": 0,
+  "old_artifact_uploads": 0,
+  "production_trial_resumed": false,
+  "login_armed": true,
+  "login_test": "pending Human actual Windows sign-out/sign-in",
+  "task_event_log": "disabled and unchanged; use Human attestation, changed logon SID, exact task and worker bindings",
+  "review": "local S1 engineering accepted; Alice whole integration review pending",
+  "login_arm_evidence": "kelan-logon-arm-20261016.json"
+}

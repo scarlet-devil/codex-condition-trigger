@@ -470,3 +470,38 @@ Hub适配器单文件8MiB（通用outbox20MiB不变）。原STOP/到期锁、PAU
 [准确回执与安装清单](docs/KELAN_INTEGRATION_RECEIPT_20261016.md) ·
 [Hub候选包](evidence/hub-material-recovery-candidate-20261016.zip) ·
 [验证摘要](evidence/kelan-native-hub-integration-20261016.json)。
+
+
+## 2026-10-16｜获具体批准后 Hub 已安装；真实上传恢复通过，下一步真实登录
+
+Human明确批准最小Hub安装和真实验收。备份前使用first-instance原管道独占门确认原入口未运行，
+故终止旧进程0；原72项材料manifest全部匹配，原源码/清单/SQLite一致备份保存后安装3运行文件和摘要清单。
+新73项摘要核验及原OAuth配置、拓扑/来源配置哈希保持；沿原Python/状态目录静默启动，
+launcher50592→实际server49628归属已实读。未改凭据/登录/route。
+
+经真正standalone outbox客户端→正式Hub→真实Drive，只新传1个128字节合成文件。
+首次Hub返回found后测试客户端exit23丢弃回执，outbox保持upload_uncertain；新客户端按持久同ID
+lookup/readback后uploaded_verified。完整原字节SHA d8bf98ac97ee845e975071033b74e3943ef0eb417d867afcee3518f76bf3f372一致，
+新表显示upload_attempts=1、verified，所有原表逐行摘要一致。故障注入是客户端交回执前，
+不声称真实网络断线或杀正式Hub；真实服务进程死亡另由隔离合成provider测试证明。
+独立Drive metadata确认准确父级、128字节、shared=false，无新增共享；模型0、业务ACK0、旧成果重传0。
+
+本轮原生采集实现/工程复核与真实已加载chat读取已完成，但原生产目标owner尚未加载；
+未把当前chat证据冒充原目标验收。旧生产STOP/到期锁和PAUSED未改，PR继续Draft。
+下一步独立dry真实Windows登录：15分钟固定触发窗口、最长5分钟、无模型/上传/ACK；
+不会自动注销或手动启动冒充登录。TaskScheduler Operational当前关闭，保持原设置，
+将用Human实际登录确认、前后logon SID变化、准确任务和worker源码/配置绑定取证；不伪称事件119证据。
+登录注册/触发结果将在后续回执追加，此条不预称已登录或已验收。
+
+[安装与真实验收](docs/KELAN_HUB_LIVE_ACCEPTANCE_20261016.md) ·
+[直接证据摘要](evidence/kelan-hub-live-acceptance-20261016.json)。
+
+
+### 登录验收已准备，尚未执行（本机 2026-10-16 00:49:42 截止）
+
+唯一任务 `Codex-ConditionTrigger-DryAcceptance-20261016` 已注册并回读为Ready，单一MSFT_TaskLogonTrigger，当前用户Interactive/Limited，
+执行上限PT5M，固定截止2026-10-15T16:49:42.7193861+00:00。实际worker尚未产生，手动启动0、自动注销0。
+等待Human保存工作后真实注销Windows并重新登录，再回复“已登录”；锁屏或仅重开Codex不等价。
+若错过窗口不自动续期。登录后先核对logon SID变化与准确源码/配置/worker，及时对该dry任务写STOP并禁用，
+保留所有回执；另读Hub状态，按已批准范围仅恢复原单实例，不重传已通过合成文件。
+[准确注册回执](evidence/kelan-logon-arm-20261016.json)。
