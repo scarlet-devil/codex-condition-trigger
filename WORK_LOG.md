@@ -505,3 +505,19 @@ lookup/readback后uploaded_verified。完整原字节SHA d8bf98ac97ee845e9750710
 若错过窗口不自动续期。登录后先核对logon SID变化与准确源码/配置/worker，及时对该dry任务写STOP并禁用，
 保留所有回执；另读Hub状态，按已批准范围仅恢复原单实例，不重传已通过合成文件。
 [准确注册回执](evidence/kelan-logon-arm-20261016.json)。
+
+### 2026-10-16 00:55 Asia/Shanghai｜Human授权调整独立登录验收截止
+
+Human明确表示错过原窗口，要求改为01:05前。旧窗口未触发：LastTaskResult=267011，LastRunTime保持未运行值，独立state无文件。已备份旧任务XML、配置和原回执，将同一任务的EndBoundary与config.trial_expires_at_utc一致调整为2026-10-16T01:05:00+08:00（2026-10-15T17:05:00Z）。完整XML比对仅EndBoundary变化；配置仅期限语义变化；源码pins不变，任务Ready/enabled，PT5M、Interactive/Limited、dry动作保持。
+
+手动启动0、自动注销0、模型/上传/ACK0；原生产STOP/到期/PAUSED未改。等待Human真实注销并重新登录；此项尚未验收，新窗口过期后不自动续期。原arm回执保留为历史证据。本地准确回执：logon-dry/deadline-adjustment-20261016-005519/receipt.json（相对condition-integration根）。Author Kelan，local Codex Desktop，执行角色，依据本轮Human明确授权；状态review_pending。此条为本地共用记录，待登录后随验收结果同步既有Draft #1，不先声称远端回写。
+
+
+## 2026-10-16｜真实重启后的独立dry登录验收通过，测试任务已关闭
+
+Human确认重启；实际boot00:57:39.500、AtLogOn00:57:58、worker00:58:08.570。不同logon SID、相同源码pins/准确配置与调整后的01:05期限核对通过。1个合成文件自动形成ready批次；01:00:06写独立STOP并禁用任务，worker/任务退出0，无残留。模型、上传、业务ACK均0，原生产STOP/到期/PAUSED未恢复。
+
+重启后原Hub未运行，按已批准收尾范围先确认无serve和原排他管道、验证73项材料，再恢复原单实例。真实IPC只读返回原new-skill-merge/standard为TOPOLOGY_ACTIVE；没有重装、自启动新增或canary重传。初次沙箱不可见不当作任务丢失，宿主视图和完整原件保留；TaskScheduler事件日志原关闭不改，不称事件119证明。
+
+独立dry登录缺口关闭；原生产目标owner缺失限制仍在，整体交Alice复核，PR保持Draft。
+[登录验收报告](docs/KELAN_REAL_LOGON_ACCEPTANCE_20261016.md) · [脱敏证据](evidence/kelan-real-logon-acceptance-20261016.json)。

@@ -1,4 +1,17 @@
-### 登录验收已准备，尚未执行（本机 2026-10-16 00:49:42 截止）
+## 2026-10-16｜真实重启后的独立dry登录验收通过，测试任务已关闭
+
+Human确认重启；实际boot00:57:39.500、AtLogOn00:57:58、worker00:58:08.570。不同logon SID、相同源码pins/准确配置与调整后的01:05期限核对通过。1个合成文件自动形成ready批次；01:00:06写独立STOP并禁用任务，worker/任务退出0，无残留。模型、上传、业务ACK均0，原生产STOP/到期/PAUSED未恢复。
+
+重启后原Hub未运行，按已批准收尾范围先确认无serve和原排他管道、验证73项材料，再恢复原单实例。真实IPC只读返回原new-skill-merge/standard为TOPOLOGY_ACTIVE；没有重装、自启动新增或canary重传。初次沙箱不可见不当作任务丢失，宿主视图和完整原件保留；TaskScheduler事件日志原关闭不改，不称事件119证明。
+
+独立dry登录缺口关闭；原生产目标owner缺失限制仍在，整体交Alice复核，PR保持Draft。
+[登录验收报告](docs/KELAN_REAL_LOGON_ACCEPTANCE_20261016.md) · [脱敏证据](evidence/kelan-real-logon-acceptance-20261016.json)。
+
+
+以下为历史阶段记录；以顶部最新增量为准。
+
+> 2026-10-16 00:55 Asia/Shanghai 更新：Human授权将独立dry登录验收截止延至今天01:05:00；任务与内部配置已一致回读。旧00:49:42窗口未触发，原回执保留。实际登录仍待验收，原生产STOP保持。具体见WORK_LOG最新增量；此变更暂为本地记录，待随登录结果同步。
+### 历史注册记录：原窗口截至本机 2026-10-16 00:49:42（已由顶部授权调整取代）
 
 唯一任务 `Codex-ConditionTrigger-DryAcceptance-20261016` 已注册并回读为Ready，单一MSFT_TaskLogonTrigger，当前用户Interactive/Limited，
 执行上限PT5M，固定截止2026-10-15T16:49:42.7193861+00:00。实际worker尚未产生，手动启动0、自动注销0。
