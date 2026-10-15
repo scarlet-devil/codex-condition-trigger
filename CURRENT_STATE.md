@@ -1,3 +1,27 @@
+## 2026-10-16｜Kelan 两项接入候选完成；共用 Hub 正式安装待具体批准
+
+Human要求继续至真实登录前。本轮在0d7f5761的隔离后继实现原生精确turn自动结果采集，
+以及原Hub边界内的预生成ID上传/回读恢复接口与outbox薄客户端。没有恢复原生产试验。
+条件套件185项184pass/1Windows symlink skip；本机可用Hub测试目录324pass（交付子集，非上游全仓）。
+原生两项独立工程发现、Hub两项P2均修正并复核；原生14项定点及9种overlay、Hub19独立场景通过。
+本机当前已加载chat的真实原生读取通过；原目标owner_unavailable，不能移用当前chat结果作为原目标验收。
+
+真实Windows命名管道/独立子进程：合成对象写入后服务exit23，outbox保持upload_uncertain；
+新服务/客户端恢复为uploaded_verified，原ID/32字节SHA一致，reserve1/create1，STOP与批次不变。
+这项provider为本地合成磁盘，网络0，不冒充真实Drive。沙箱管道/Windows junction限制及一次错误
+Python环境缺watchdog的失败材料保留；正确环境最终通过。旧成果未重传、旧ACK未修改、模型派发0。
+
+当前implementation_ready / review_pending。共用Hub需要3运行文件与摘要登记的正式覆盖及短时停启；
+已准备精确前后SHA、冻结包、独立复核与回退步骤，并向Human提出此项新增具体批准。
+真实Drive、原生产目标验收与真实登录尚未闭合，登录任务未注册/启动。默认关闭原生采集开关，
+Hub适配器单文件8MiB（通用outbox20MiB不变）。原STOP/到期锁、PAUSED和原生业务记录未改。
+同Draft更新源码、回执和共享入口，不更改PR原正文、不合并或Ready。后续外部提交与完整Git blob
+回读由发布回执记录，不能将本段本地写入先说成远端成功。
+
+[准确回执与安装清单](docs/KELAN_INTEGRATION_RECEIPT_20261016.md) ·
+[Hub候选包](evidence/hub-material-recovery-candidate-20261016.zip) ·
+[验证摘要](evidence/kelan-native-hub-integration-20261016.json)。
+
 ## 2026-10-15｜Alice复审完成：路径修正通过，整体验收仍待接入
 
 **准确业务候选97e84fa；APPROVE仅限Windows路径最小修正及已核验核心。三项整体integration_pending，生产停止决定保持。**

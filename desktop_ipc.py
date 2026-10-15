@@ -358,7 +358,7 @@ class IPCClient:
         reply = self.request('thread-owner-discovery', {'hostId': 'local', 'conversationId': thread_id})
         return protocol_id(reply.get('handledByClientId'), 'owner')
 
-    def current_state(self, thread_id, owner, expected_cwd):
+    def current_state(self, thread_id, owner, expected_cwd, *, turn_id=None):
         """One target, one revision-correlated snapshot; no patch replay/cache.
 
         The native history method requires an already resumed owner and returns
@@ -406,8 +406,12 @@ class IPCClient:
                 status = {'active': 'busy', 'idle': 'idle'}.get(status, 'unknown') if isinstance(status, str) else 'unknown'
                 if state.get('resumeState') != 'resumed':
                     status = 'unknown'
-                return dict(status=status, owner_id=owner, thread_id=thread_id, cwd=state['cwd'],
-                            revision=current_revision, requested_revision=revision, request_id=reply['requestId'])
+                result = dict(status=status, owner_id=owner, thread_id=thread_id, cwd=state['cwd'],
+                              revision=current_revision, requested_revision=revision, request_id=reply['requestId'])
+                if turn_id is not None:
+                    from native_collector import project_turn
+                    result['turn_result'] = project_turn(state, turn_id)
+                return result
         finally:
             try:
                 following(False, time.monotonic() + min(self.timeout, 1))

@@ -1,0 +1,132 @@
+{
+  "schema": 1,
+  "author_identity": "Kelan",
+  "environment": "local Windows",
+  "state": "implementation_ready",
+  "review_state": "review_pending_Alice",
+  "base_commit": "0d7f57616d0ca78e4b1d8ddf79deb238693328d9",
+  "source_sha256": {
+    "native_collector.py": "d5cba75c1b75fa3ce1aa90cf677687085569c5fb02c7a0a610a0c088984f955b",
+    "desktop_ipc.py": "6ea5657e827861ac2831825a6e65b93ca53ecff0e0a6b4c43fe6b1745051af9b",
+    "owner_loading.py": "f1f3c21c393f0ba8acfde5abcf5854037fcc8cb4f490fed699b5584e0aa63c32",
+    "trigger.py": "624ffabd694c1b7ee04e537f21ad63d057f2e5fcd9188a90f69348e0bc6e050a",
+    "hub_delivery_driver.py": "030bf22d59db6100215dee479dc6d7d02e8a12e964975c960b02cc28c4abb376",
+    "tests/test_native_collector.py": "0aa1baa5eb5a0a504f01282d53b6ccfff39a063d3ef6346a102f84d88a88e386",
+    "tests/test_hub_delivery_driver.py": "ef9f6b36343b774b3261067b3b92c8f346618f9413e35905f4393dc3b023cd18"
+  },
+  "condition_tests": {
+    "total": 185,
+    "passed": 184,
+    "skipped": 1
+  },
+  "hub_available_tests": {
+    "total": 324,
+    "passed": 324,
+    "upstream_full_repository": false
+  },
+  "hub_focused_tests": {
+    "total": 13,
+    "passed": 13
+  },
+  "outbox_hub_tests": {
+    "total": 3,
+    "passed": 3,
+    "included_in_condition": true
+  },
+  "native_review": {
+    "context": "S1",
+    "task": "/root/review_condition_native",
+    "focused_tests": 14,
+    "overlay_cases": 9
+  },
+  "hub_review": {
+    "context": "S1",
+    "method": "M1",
+    "task": "/root/review_condition_hub_recovery",
+    "independent_scenarios": 19
+  },
+  "process_probe": {
+    "schema": 1,
+    "passed": true,
+    "transport": "real Windows named pipe and separate processes",
+    "provider": "synthetic disk only",
+    "results": [
+      {
+        "state": "upload_uncertain",
+        "server_exit": 23
+      },
+      {
+        "state": "uploaded_verified",
+        "server_exit": 0
+      }
+    ],
+    "reservations": 1,
+    "creates": 1,
+    "receipt": {
+      "file_id": "reserved-process-file",
+      "name": "canary.txt",
+      "parent_id": "folder",
+      "sha256": "e3885a0c569a1a80bfff230023c265f6b28f0b47c5a84b8d5401d6217c68f200",
+      "size": 32,
+      "verified_at_utc": "2026-10-15T16:05:28.136789+00:00"
+    },
+    "stop_preserved": true,
+    "batch_unchanged": true,
+    "network_calls": 0
+  },
+  "live_native": {
+    "loaded_chat_projection": "completed_error_null",
+    "original_target": "owner_unavailable",
+    "current_chat_is_not_original_target": true,
+    "dispatch_calls": 0,
+    "resume_calls": 0,
+    "original_state_writes": 0
+  },
+  "installation": {
+    "schema": 1,
+    "status": "implementation_ready_not_installed",
+    "source_reference": "installed source-r2 exact file hashes",
+    "files": [
+      {
+        "path": "src/drive_exchange_local_hub/__init__.py",
+        "before_sha256": "d60a0e4dacf676166a985bf4e540ec37d5085d27d0a03cfa825e04f5123b89a1",
+        "after_sha256": "aedf80d9d902cbebde8f5ad8ef1e6a3e23c04a49b695adb7223106de7d63031b",
+        "after_bytes": 165721
+      },
+      {
+        "path": "src/drive_exchange_local_hub/google_drive.py",
+        "before_sha256": "b97c54d281fdab0b4c11fbc7f18f3c611360cf728bbb06ef2f488048c38d2d91",
+        "after_sha256": "b9097e9d264ec31633222c331edf67f6eeb88882851ba242412016cbb0c055fa",
+        "after_bytes": 56956
+      },
+      {
+        "path": "src/drive_exchange_local_hub/material_recovery.py",
+        "before_sha256": null,
+        "after_sha256": "b5568dc6fb9dec5bb40c11c28cabacbdd6a10983a044ae4a440cc231cd924f6d",
+        "after_bytes": 6115
+      }
+    ],
+    "unlisted_runtime_files": 0,
+    "formal_activation": false,
+    "credential_changes": false,
+    "max_file_bytes": 8388608,
+    "manifest_update": {
+      "path": "MATERIALS_SHA256.json",
+      "before_sha256": "fa010fce3c40ab8efcfb6a304178f4e2c992a32b38deb221753eb77b0413be2c",
+      "after_sha256": "c723d0c3e89a5508a25f5a96c16af27397dec2892e61184f74f20cab49bc87a6"
+    }
+  },
+  "package": {
+    "path": "hub-material-recovery-candidate-20261016.zip",
+    "bytes": 53770,
+    "sha256": "21f736228e18f430e537e4845e69ae9a2f0727145587d5d3642746b3417de14d",
+    "members": 16,
+    "payloads": 15
+  },
+  "live_drive_test": false,
+  "formal_hub_changed": false,
+  "login_task_armed": false,
+  "production_resumed": false,
+  "old_artifacts_reuploaded": false,
+  "business_ack_written": false
+}

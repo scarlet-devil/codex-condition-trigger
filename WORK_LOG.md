@@ -445,3 +445,28 @@ Alice 于2026-10-15直接核对固定候选97e84fa及相对03e66a3的11个变更
 结论：APPROVE限定于本次路径最小修正及已核验候选核心；本轮未确认新代码阻塞。三项功能整体仍integration_pending：真实登录按Human决定延期，standalone原生结果采集器、真实无人值守上传后端及真实失响应恢复尚未接入/验收。辅助上传成功不替代delivery-resume端到端通过，历史pending-publication由后续回执更新，不重写冻结原件。下一步围绕已有两项接入缺口制定实际接口方案，不新增生产续期或立即登录要求。
 
 本轮未发起本机/模型任务、修改源码/配置/ACK/研究账本/独立云端自动任务、重传、安装、恢复监听、合并或Ready。PR原正文保持，通过追加评论提供当前准确接续；本机尚未接单的下一步不写成已派发。首次材料校验因本地脚本cwd错误未找到manifest，纠正后完整通过，产品代码无改动。详见[docs/ALICE_WINDOWS_THREE_FIXES_REVIEW_20261015.md](./docs/ALICE_WINDOWS_THREE_FIXES_REVIEW_20261015.md)与[evidence/alice-windows-three-fixes-review-20261015.json](./evidence/alice-windows-three-fixes-review-20261015.json)。
+
+
+## 2026-10-16｜Kelan 两项接入候选完成；共用 Hub 正式安装待具体批准
+
+Human要求继续至真实登录前。本轮在0d7f5761的隔离后继实现原生精确turn自动结果采集，
+以及原Hub边界内的预生成ID上传/回读恢复接口与outbox薄客户端。没有恢复原生产试验。
+条件套件185项184pass/1Windows symlink skip；本机可用Hub测试目录324pass（交付子集，非上游全仓）。
+原生两项独立工程发现、Hub两项P2均修正并复核；原生14项定点及9种overlay、Hub19独立场景通过。
+本机当前已加载chat的真实原生读取通过；原目标owner_unavailable，不能移用当前chat结果作为原目标验收。
+
+真实Windows命名管道/独立子进程：合成对象写入后服务exit23，outbox保持upload_uncertain；
+新服务/客户端恢复为uploaded_verified，原ID/32字节SHA一致，reserve1/create1，STOP与批次不变。
+这项provider为本地合成磁盘，网络0，不冒充真实Drive。沙箱管道/Windows junction限制及一次错误
+Python环境缺watchdog的失败材料保留；正确环境最终通过。旧成果未重传、旧ACK未修改、模型派发0。
+
+当前implementation_ready / review_pending。共用Hub需要3运行文件与摘要登记的正式覆盖及短时停启；
+已准备精确前后SHA、冻结包、独立复核与回退步骤，并向Human提出此项新增具体批准。
+真实Drive、原生产目标验收与真实登录尚未闭合，登录任务未注册/启动。默认关闭原生采集开关，
+Hub适配器单文件8MiB（通用outbox20MiB不变）。原STOP/到期锁、PAUSED和原生业务记录未改。
+同Draft更新源码、回执和共享入口，不更改PR原正文、不合并或Ready。后续外部提交与完整Git blob
+回读由发布回执记录，不能将本段本地写入先说成远端成功。
+
+[准确回执与安装清单](docs/KELAN_INTEGRATION_RECEIPT_20261016.md) ·
+[Hub候选包](evidence/hub-material-recovery-candidate-20261016.zip) ·
+[验证摘要](evidence/kelan-native-hub-integration-20261016.json)。

@@ -635,6 +635,7 @@ def main():
     p = sub.add_parser("ack"); p.add_argument("batch_id"); p.add_argument("--evidence", required=True)
     p = sub.add_parser("defer-materials"); p.add_argument("batch_id"); p.add_argument("--evidence", required=True)
     p = sub.add_parser("record-outcome"); p.add_argument("batch_id"); p.add_argument("--evidence", required=True)
+    p = sub.add_parser("collect-outcomes"); p.add_argument("--batch-id")
     p = sub.add_parser("delivery-stage"); p.add_argument("batch_id"); p.add_argument("--parent-id", required=True); p.add_argument("files", nargs='+')
     p = sub.add_parser("delivery-resume"); p.add_argument("job_id")
     p = sub.add_parser("seed"); p.add_argument("manifest")
@@ -674,7 +675,7 @@ def main():
         finally:
             rpc.close()
         return
-    s = Store(c, worker=args.command not in ("status", "ack", "defer-materials", "record-outcome", "delivery-stage", "delivery-resume"))
+    s = Store(c, worker=args.command not in ("status", "ack", "defer-materials", "record-outcome", "collect-outcomes", "delivery-stage", "delivery-resume"))
     try:
         if args.command == "run":
             if args.live and not c["owner_verified"]:
@@ -707,6 +708,9 @@ def main():
             from execution_result import record_outcome
             record_outcome(s, args.batch_id, args.evidence)
             emit('execution_outcome_recorded', batch_id=args.batch_id, delivered=False)
+        elif args.command == "collect-outcomes":
+            from native_collector import collect_outcomes
+            emit('native_collection', results=collect_outcomes(s, args.batch_id), delivered=False)
         elif args.command == "delivery-stage":
             from delivery_outbox import stage
             emit('delivery_staged', job_id=stage(s, args.batch_id, args.parent_id, args.files))

@@ -257,6 +257,13 @@ class WindowCycles:
 def cycle_tick(store, backend=None, adapter_factory=None):
     """Serial cleanup-before-dispatch under the existing worker lock."""
     from trigger import dispatch_one
+    if store.paused():
+        return 'paused'
+    if store.c.get('native_result_collection') is True and store.c.get('chat_adapter') == 'desktop_ipc':
+        if not store.c['owner_verified']:
+            raise ValueError('owner_verified is false')
+        from native_collector import collect_outcomes
+        collect_outcomes(store)
     store.reconcile_material_waits()
     if not store.c.get('owner_loading_enabled', False):
         active = store.db.execute("SELECT v FROM meta WHERE k LIKE 'window_cycle:%'")
