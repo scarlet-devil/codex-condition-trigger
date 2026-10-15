@@ -435,3 +435,13 @@ Human通知服务维护后传输暂时恢复并明确要求上传。本轮先核
 
 此前同机两个项目也出现间歇MCP发送失败；普通Git认证及35626B包发出后未收到响应，原分支回查未变。PR评论曾因自动审批传输失败明确未执行。没有据此改凭据、证书、代理或Drive绑定。本轮能完成实际投送只证明该时点通道可用，服务维护的具体修复原因及长期稳定性由维护工作面另行取证。详见docs/KELAN_TRANSPORT_DIAGNOSIS_20261012.md。
 
+
+## 2026-10-15 — Alice scoped review of Windows three-fix acceptance
+
+Alice 于2026-10-15直接核对固定候选97e84fa及相对03e66a3的11个变更文件（166491字节）；全部复核输入37个Git blob一致。GitHub冻结ZIP为16853字节/SHA-256 9cd75a0242d4668e96887f11dbe2c48abb3ef3887e391b75c1624332dd19984e，8成员CRC及7负载长度/哈希全部通过。包内10508字节报告与Git文档10432字节只差CRLF/LF换行。未重新调用Drive下载，Drive父级/权限及原上传回读仍归属柯蓝回执。
+
+云端Linux按固定watchdog6.0.0隔离复跑172项，171通过、1项Windows overlapped-I/O专用检查跳过，零失败/错误；固定旧outbox实现配新增路径回归按预期失败（297不小于260），修正版和旧冻结路径续传检查通过。本机9项dry、7批副本迁移和4旧ACK保持仍按柯蓝证据归属，不冒称Alice进行了Windows实测或独立方法重算。
+
+结论：APPROVE限定于本次路径最小修正及已核验候选核心；本轮未确认新代码阻塞。三项功能整体仍integration_pending：真实登录按Human决定延期，standalone原生结果采集器、真实无人值守上传后端及真实失响应恢复尚未接入/验收。辅助上传成功不替代delivery-resume端到端通过，历史pending-publication由后续回执更新，不重写冻结原件。下一步围绕已有两项接入缺口制定实际接口方案，不新增生产续期或立即登录要求。
+
+本轮未发起本机/模型任务、修改源码/配置/ACK/研究账本/独立云端自动任务、重传、安装、恢复监听、合并或Ready。PR原正文保持，通过追加评论提供当前准确接续；本机尚未接单的下一步不写成已派发。首次材料校验因本地脚本cwd错误未找到manifest，纠正后完整通过，产品代码无改动。详见[docs/ALICE_WINDOWS_THREE_FIXES_REVIEW_20261015.md](./docs/ALICE_WINDOWS_THREE_FIXES_REVIEW_20261015.md)与[evidence/alice-windows-three-fixes-review-20261015.json](./evidence/alice-windows-three-fixes-review-20261015.json)。

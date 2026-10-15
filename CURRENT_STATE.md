@@ -1,3 +1,13 @@
+## 2026-10-15｜Alice复审完成：路径修正通过，整体验收仍待接入
+
+**准确业务候选97e84fa；APPROVE仅限Windows路径最小修正及已核验核心。三项整体integration_pending，生产停止决定保持。**
+
+Alice直接核验37份Git blob、全部11个变更文件166491字节及冻结ZIP的8成员/7负载。云端172项检查171通过、1项Windows专用检查跳过；旧实现路径反例失败，修正版与旧路径兼容通过。未直接复测Windows进程、真实登录、Drive上传或模型。柯蓝的本机测试/保全与原Drive交付继续保留执行者归属。
+
+当前剩余：真实登录按Human决定延后；standalone原生结果采集器、真实无人值守上传后端及响应丢失后的查回仍未验收。当前agent辅助交付已完成，不将它写成自动后端接通。本轮没有新代码阻塞，也没有恢复试验或追加登录要求。原生历史原件、旧STOP/期限、PAUSED约束、业务ACK与独立云端分析任务保持；当前本机实时状态本轮未查。
+
+[准确复审与接续](./docs/ALICE_WINDOWS_THREE_FIXES_REVIEW_20261015.md) · [验证摘要](./evidence/alice-windows-three-fixes-review-20261015.json)。下方是各历史时点记录；旧review_pending仅表示其当时状态，新的整体接入缺口仍有效。
+
 ## 2026-10-12｜Windows验收报告与证据已交付Drive；继续同Draft源码同步
 
 Human通知服务维护后传输暂时恢复并明确要求上传。本轮先核对原40_REPORTS的项目父级、shared=false和两个准确名称，结果为空；随后报告与证据ZIP各上传一次。UTC2026-10-12T05:49:17.502786+00:00完整下载原字节核验通过：报告10508B/SHA e7681ed34137e7c97c8f7bd0e9f6e470e3771c21e3de54dadc85e7a5c5270beb；ZIP16853B/SHA 9cd75a0242d4668e96887f11dbe2c48abb3ef3887e391b75c1624332dd19984e。ZIP8成员/7负载清单SHA与CRC通过，包内报告与单独报告一致，准确父目录和shared=false均回读确认。
