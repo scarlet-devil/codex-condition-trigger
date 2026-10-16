@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "date": "2026-10-04",
+  "actor": "Kelan",
+  "environment": "local Windows",
+  "handoff_commit": "678f6366b5f56e25f98e78a699420d2a89419090",
+  "workflow": "review_pending",
+  "desktop_package": "26.930.3930.0",
+  "archive_bytes": 549383582,
+  "archive_sha256": "af98213984ec4556778ef9276193d51460153fb9b30fded882d503637b84abba",
+  "actual": {
+    "pipe_server_signature": "Valid OpenAI",
+    "initialize": true,
+    "exact_target_owner": true,
+    "initial_idle_claim": "withdrawn",
+    "file_to_batch_seconds": 1.2189999999827705,
+    "fallback_scan_seconds": 60,
+    "input_files": 1,
+    "ready_batches": 1,
+    "start_turn_requests": 0,
+    "tool_results": 0,
+    "business_acks": 0,
+    "watcher_stopped": true,
+    "synthetic_state_paused": true,
+    "block": "unresolved historical overlapping lifecycle; native idle snapshot not implemented"
+  },
+  "tests": {
+    "total": 69,
+    "passed": 68,
+    "skipped": 1,
+    "skip_reason": "Windows symlink creation requires unavailable developer-mode privilege",
+    "seconds": 6.812,
+    "new_methods": 25,
+    "protocol_cases": "synthetic; not Desktop/model acceptance"
+  },
+  "controlled_review": {
+    "independence": "S1-M1 local technical review, not Alice/S2",
+    "initial_important": 3,
+    "closed": 3,
+    "independent_closure_tests": 3
+  },
+  "production_lines": {
+    "trigger.py": 526,
+    "chat_adapters.py": 188,
+    "desktop_ipc.py": 363
+  },
+  "new_third_party_runtime_dependencies": 0,
+  "private_protocol_methods": {
+    "initialize": 1,
+    "thread-owner-discovery": 1,
+    "thread-follower-start-turn": 2
+  },
+  "limitations": [
+    "No verified native idle snapshot",
+    "No atomic idle-to-start guard",
+    "64 MiB target-rollout observation limit",
+    "Cancellation drain latency outside normal RPC deadline",
+    "Effective settings/tools/Hooks/result/external delivery unverified",
+    "No future-version compatibility claim"
+  ],
+  "privacy": "Raw rollout, target IDs, private paths, local authorization/identity records and credentials excluded"
+}

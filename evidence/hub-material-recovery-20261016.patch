@@ -1,0 +1,219 @@
+--- a/src/drive_exchange_local_hub/__init__.py
++++ b/src/drive_exchange_local_hub/__init__.py
+@@ -2140,6 +2140,9 @@
+     def exchange(self, request_bytes: bytes, frame_bytes: bytes) -> dict:
+         with self._writer_lock:
+             schema = _request_schema(request_bytes)
++            if schema == 'drive-exchange-material-recovery-v1':
++                from .material_recovery import exchange
++                return exchange(self, request_bytes, frame_bytes)
+             if schema == "drive-exchange-bootstrap-request-v1":
+                 if frame_bytes != b"":
+                     raise HubError("BOOTSTRAP_REQUEST_INVALID")
+@@ -3501,6 +3504,12 @@
+         now = _utc_now()
+         try:
+             with self.store._connect() as connection:
++                # Claim atomically against the new recovery schema as well.
++                # Existing v1 receipts/ambiguous records retain their behavior.
++                connection.execute("BEGIN IMMEDIATE")
++                if connection.execute("SELECT 1 FROM sqlite_master WHERE type='table' AND name='material_recovery_v1'").fetchone():
++                    if connection.execute("SELECT 1 FROM material_recovery_v1 WHERE operation_id=?", (request["operation_id"],)).fetchone():
++                        raise HubError("OPERATION_ID_CONFLICT")
+                 connection.execute(
+                     "INSERT INTO operations VALUES (?, ?, ?, ?, 'DISPATCHING', 0, NULL, NULL, ?, NULL)",
+                     (
+--- a/src/drive_exchange_local_hub/google_drive.py
++++ b/src/drive_exchange_local_hub/google_drive.py
+@@ -101,8 +101,16 @@
+ 
+ 
+ def _default_http_request(
+-    *, method: str, url: str, headers: dict[str, str], body: bytes | None = None
++    *, method: str, url: str, headers: dict[str, str], body: bytes | None = None,
++    max_response_bytes: int | None = None,
+ ) -> _HttpResponse:
++    def bounded_read(stream):
++        if max_response_bytes is None:
++            return stream.read()
++        data = stream.read(max_response_bytes + 1)
++        if len(data) > max_response_bytes:
++            raise HubError('MATERIAL_READBACK_LIMIT')
++        return data
+     request = urllib.request.Request(url=url, data=body, headers=headers, method=method)
+     parsed = urllib.parse.urlsplit(url)
+     pure_read = method == "GET" and body is None and parsed.scheme == "https" and (
+@@ -119,13 +127,13 @@
+             with urllib.request.urlopen(request, timeout=60) as response:
+                 return _HttpResponse(
+                     status=response.status,
+-                    body=response.read(),
++                    body=bounded_read(response),
+                     headers=dict(response.headers.items()),
+                 )
+         except urllib.error.HTTPError as error:
+             return _HttpResponse(
+                 status=error.code,
+-                body=error.read(),
++                body=bounded_read(error),
+                 headers=dict(error.headers.items()) if error.headers else {},
+             )
+         except RemoteDisconnected:
+@@ -368,7 +376,55 @@
+             "can_list_children": True,
+         }
+ 
+-    def upload(
++    def reserve_material_id(self, expected_drive_identity: str) -> str:
++        credential = self._recovery_credential(expected_drive_identity)
++        value = self._authorized_json(credential,
++            _DRIVE_API + '/files/generateIds?count=1&space=drive&type=files', 'MATERIAL_RESERVATION_INVALID')
++        ids = value.get('ids')
++        if not isinstance(ids, list) or len(ids) != 1 or not isinstance(ids[0], str):
++            raise HubError('MATERIAL_RESERVATION_INVALID')
++        return ids[0]
++
++    def material_action(self, action, expected_drive_identity, remote_id, descriptor, body):
++        """Reserved-ID byte upload; only the Hub's validated recovery entry calls it."""
++        credential = self._recovery_credential(expected_drive_identity)
++        headers = {'Authorization': 'Bearer ' + credential['access_token']}
++        url = _DRIVE_API + '/files/' + urllib.parse.quote(remote_id, safe='')
++        fields = '?fields=id,name,parents,trashed,appProperties'
++        if action == 'upload':
++            # Always query this ID before create, including after response loss.
++            before = self._http_request(method='GET', url=url + fields, headers=headers, body=None)
++            if before.status == 404:
++                boundary = 'condition-' + uuid.uuid4().hex
++                metadata = canonical_json_bytes(dict(id=remote_id, name=descriptor['name'],
++                    parents=[descriptor['parent_id']], appProperties={
++                        'condition_key': descriptor['key'], 'source_sha256': descriptor['sha256']}))
++                multipart = (f'--{boundary}\r\nContent-Type: application/json; charset=UTF-8\r\n\r\n'.encode()
++                    + metadata + f'\r\n--{boundary}\r\nContent-Type: application/octet-stream\r\n\r\n'.encode()
++                    + body + f'\r\n--{boundary}--\r\n'.encode())
++                created = self._http_request(method='POST', url=_DRIVE_UPLOAD+'?uploadType=multipart&fields=id',
++                    headers={**headers,'Content-Type':'multipart/related; boundary='+boundary}, body=multipart)
++                if created.status not in (200,201,409):
++                    raise HubError('MATERIAL_CREATE_UNKNOWN')
++            elif before.status != 200:
++                raise HubError('MATERIAL_LOOKUP_UNKNOWN')
++        response = self._http_request(method='GET', url=url+fields, headers=headers, body=None)
++        if response.status == 404:
++            return None
++        if response.status != 200:
++            raise HubError('MATERIAL_LOOKUP_UNKNOWN')
++        result = self._response_json(response,'MATERIAL_LOOKUP_INVALID')
++        if action == 'readback':
++            response = self._http_request(method='GET', url=url+'?alt=media', headers=headers, body=None,
++                                          max_response_bytes=descriptor['size'])
++            if response.status != 200:
++                raise HubError('MATERIAL_READBACK_UNKNOWN')
++            if len(response.body)>descriptor['size']:
++                raise HubError('MATERIAL_READBACK_LIMIT')
++            result['content_base64'] = base64.b64encode(response.body).decode('ascii')
++        return result
++
++    def upload(
+         self,
+         *,
+         folder_id: str,
+--- /dev/null
++++ b/src/drive_exchange_local_hub/material_recovery.py
+@@ -0,0 +1,98 @@
++"""Versioned single-file recovery inside the authenticated Hub boundary.
++
++Legacy operations are never promoted or replayed. This module has no credential
++store, browser login, route registration, watcher or business ACK capability.
++"""
++import base64
++from contextlib import closing
++import hashlib
++import json
++from pathlib import PurePosixPath
++import re
++
++SCHEMA = 'drive-exchange-material-recovery-v1'
++MAX_FILE = 8 * 1024 * 1024  # base64 readback fits existing 16 MiB IPC response cap
++
++
++def exchange(hub, raw, frame):
++    from . import HubError, canonical_json_bytes as encode, _parse_request, _parse_frame
++    if len(frame)>MAX_FILE+65536:
++        raise HubError('MATERIAL_RECOVERY_LIMIT')
++    value=json.loads(raw)
++    if (not isinstance(value,dict) or set(value)!={'schema_version','action','request','descriptor'}
++            or encode(value)!=raw or value['schema_version']!=SCHEMA
++            or value['action'] not in ('lookup','upload','readback')):
++        raise HubError('MATERIAL_RECOVERY_INVALID')
++    request=_parse_request(encode(value['request']))
++    if request['mode']!='submit':raise HubError('MATERIAL_RECOVERY_INVALID')
++    project=hub.store.show_project(request['project_id'])
++    if project['enabled']!=1:raise HubError('HUB_UNBOUND')
++    if project['project_identity']!=request['project_identity']:raise HubError('PROJECT_ROOT_MISMATCH')
++    route=hub.store.show_route(request['project_id'],request['route_name'])
++    manifest,bodies=_parse_frame(request,frame)
++    if len(bodies)!=1 or len(bodies[0])>MAX_FILE:raise HubError('MULTI_ITEM_REQUEST')
++    d=value['descriptor']; item=manifest['files'][0]
++    if (not isinstance(d,dict) or set(d)!={'key','batch_id','manifest_sha256','parent_id','name','sha256','size'}
++            or not isinstance(d['key'],str) or re.fullmatch('[0-9a-f]{64}:[0-9]{1,2}',d['key']) is None
++            or any(not isinstance(d[k],str) or re.fullmatch('[0-9a-f]{64}',d[k]) is None for k in ('batch_id','manifest_sha256','sha256'))
++            or d['parent_id']!=route['folder_id'] or d['name']!=PurePosixPath(item['path']).name
++            or type(d['size']) is not int or d['size']!=item['byte_size'] or d['sha256']!=item['sha256']):
++        raise HubError('MATERIAL_RECOVERY_INVALID')
++    identity=route['verification']['drive_identity']
++    expected_operation='op_'+hashlib.sha256(encode([request['project_id'],request['project_identity'],request['route_name'],d['key']])).hexdigest()[:32]
++    if request['operation_id']!=expected_operation:raise HubError('OPERATION_ID_CONFLICT')
++    binding=encode(dict(request=request,descriptor=d,drive_identity=identity))
++    digest=hashlib.sha256(binding).hexdigest();operation=request['operation_id']
++    # SQLite serializes reservation even across independent Hub objects. Nothing
++    # can upload until the generated ID and complete binding have committed.
++    with closing(hub.store._connect()) as db, db:
++        db.execute('BEGIN IMMEDIATE')
++        db.execute('CREATE TABLE IF NOT EXISTS material_recovery_v1(operation_id TEXT PRIMARY KEY, '
++                   'request_sha256 TEXT NOT NULL,binding BLOB NOT NULL,remote_id TEXT NOT NULL,'
++                   'state TEXT NOT NULL,upload_attempts INTEGER NOT NULL DEFAULT 0)')
++        if db.execute('SELECT 1 FROM operations WHERE operation_id=?',(operation,)).fetchone():
++            raise HubError('LEGACY_OPERATION_NOT_REPLAYABLE')
++        row=db.execute('SELECT * FROM material_recovery_v1 WHERE operation_id=?',(operation,)).fetchone()
++        if row:
++            if row['request_sha256']!=digest:raise HubError('OPERATION_ID_CONFLICT')
++            remote_id=row['remote_id']
++        else:
++            # Reserving an ID alone creates no Drive file; interrupted uncommitted
++            # reservations may waste an unused ID, never duplicate an object.
++            try:
++                remote_id=hub.connector.reserve_material_id(identity)
++            except Exception:
++                raise HubError('MATERIAL_RESERVATION_UNKNOWN') from None
++            if not isinstance(remote_id,str) or re.fullmatch('[A-Za-z0-9_-]{1,256}',remote_id) is None:
++                raise HubError('MATERIAL_RESERVATION_INVALID')
++            db.execute('INSERT INTO material_recovery_v1 VALUES (?,?,?,?,?,0)',(operation,digest,binding,remote_id,'reserved'))
++    action=value['action']
++    reply=dict(schema=1,key=d['key'],status='unknown',file_id=remote_id)
++    if action=='upload':
++        with closing(hub.store._connect()) as db,db:
++            db.execute("UPDATE material_recovery_v1 SET state='upload_uncertain',upload_attempts=upload_attempts+1 WHERE operation_id=?",(operation,))
++    try:
++        found=hub.connector.material_action(action,identity,remote_id,d,bodies[0])
++        if found is None:
++            if action=='lookup':reply.update(status='absent',safe_to_create=True)
++            return reply
++        if (found.get('id')!=remote_id or found.get('parents')!=[d['parent_id']]
++                or found.get('name')!=d['name'] or found.get('trashed') is not False
++                or found.get('appProperties')!={'condition_key':d['key'],'source_sha256':d['sha256']}):
++            return reply
++        reply['status']='found'
++        if action=='readback':
++            encoded=found.get('content_base64')
++            if not isinstance(encoded,str) or len(encoded)>(MAX_FILE+2)//3*4:
++                raise ValueError('invalid readback')
++            content=base64.b64decode(encoded,validate=True)
++            if len(content)!=d['size'] or hashlib.sha256(content).hexdigest()!=d['sha256']:
++                raise ValueError('readback differs')
++            reply.update(parent_id=d['parent_id'],name=d['name'],content_base64=encoded)
++            with closing(hub.store._connect()) as db,db:
++                db.execute("UPDATE material_recovery_v1 SET state='verified' WHERE operation_id=?",(operation,))
++        return reply
++    except Exception:
++        # No raw provider text or secrets cross the IPC boundary. Unknown is
++        # reconciled using this same ID, never by issuing a new operation.
++        return dict(schema=1,key=d['key'],status='unknown',file_id=remote_id)

@@ -1,0 +1,261 @@
+{
+  "schema": "alice-owner-reuse-recovery-review-v1",
+  "date": "2026-10-08",
+  "timezone": "Asia/Shanghai",
+  "actor": "Alice",
+  "environment": {
+    "python": "3.12.14",
+    "system": "Linux",
+    "native_actions": 0,
+    "model_calls": 0,
+    "watchers_started": 0
+  },
+  "reviewed_head": "6c2589d7d100d135c1f5deb301268929d0b375c8",
+  "previous_review_head": "93e3f969e12861193d6974d2acb104c4162b2dc1",
+  "decision": "F1 accepted; supervised evidence retained; no unattended acceptance",
+  "scope": "Only pre-send reused-owner loss recovery and existing protection invariants",
+  "independence": {
+    "rerun_and_probe": "S2-M1: existing fixtures, not M2",
+    "own_records_and_integrity": "S0",
+    "native_evidence": "Retained prior bounded acceptance, not rerun"
+  },
+  "checks": {
+    "original_probe_before": {
+      "exit_code": 1,
+      "observations": {
+        "first_tick": "waiting_owner",
+        "before_restart": {
+          "batch_state": "ready",
+          "dispatch_text_is_none": true,
+          "dispatch_meta_is_none": true,
+          "cycle_phase": "reused",
+          "lease_is_none": true,
+          "open_calls": 0,
+          "send_calls": 0
+        },
+        "retry_deadline_bypassed_by_seconds": 60,
+        "ticks_after_restart": [
+          "waiting_owner",
+          "waiting_owner",
+          "waiting_owner"
+        ],
+        "tick_after_new_file": "waiting_owner",
+        "pending_batches": 2,
+        "final_open_calls": 0,
+        "final_send_calls": 0,
+        "final_cycle_phase": "reused",
+        "requirement": "Definite owner absence for a ready, never-dispatched, reused cycle with no lease or prior window action permits one durable open claim.",
+        "requirement_satisfied": false,
+        "native_actions": 0,
+        "model_calls": 0
+      },
+      "source": "2622fd6 runtime snapshot, unchanged by the documentation-only 93e3f96 review",
+      "command": "python evidence/alice-window-cycle-review-20261008/probe.py --repo <baseline-source>"
+    },
+    "original_probe_after": {
+      "exit_code": 0,
+      "observations": {
+        "first_tick": "waiting_owner",
+        "before_restart": {
+          "batch_state": "ready",
+          "dispatch_text_is_none": true,
+          "dispatch_meta_is_none": true,
+          "cycle_phase": "reused",
+          "lease_is_none": true,
+          "open_calls": 0,
+          "send_calls": 0
+        },
+        "retry_deadline_bypassed_by_seconds": 60,
+        "ticks_after_restart": [
+          "accepted",
+          "running",
+          "running"
+        ],
+        "tick_after_new_file": "running",
+        "pending_batches": 2,
+        "final_open_calls": 1,
+        "final_send_calls": 1,
+        "final_cycle_phase": "open",
+        "requirement": "Definite owner absence for a ready, never-dispatched, reused cycle with no lease or prior window action permits one durable open claim.",
+        "requirement_satisfied": true,
+        "native_actions": 0,
+        "model_calls": 0
+      },
+      "source": "6c2589d7d100d135c1f5deb301268929d0b375c8",
+      "command": "python evidence/alice-window-cycle-review-20261008/probe.py --repo ."
+    },
+    "focused_tests": {
+      "exit_code": 0,
+      "output": "test_initialize_errors_preserve_stage_and_fixed_category (test_owner_loading.NegativeReplyTests.test_initialize_errors_preserve_stage_and_fixed_category) ... ok\ntest_correlated_negative_without_method_keeps_fixed_reason (test_owner_loading.NegativeReplyTests.test_correlated_negative_without_method_keeps_fixed_reason) ... ok\ntest_unknown_remote_error_is_redacted_and_not_owner_missing (test_owner_loading.NegativeReplyTests.test_unknown_remote_error_is_redacted_and_not_owner_missing) ... ok\ntest_mismatched_negative_is_ignored (test_owner_loading.NegativeReplyTests.test_mismatched_negative_is_ignored) ... ok\ntest_success_still_requires_method_and_exact_target (test_owner_loading.NegativeReplyTests.test_success_still_requires_method_and_exact_target) ... ok\ntest_owner_wait_survives_restart_without_spending_connection_budget (test_owner_loading.OwnerLoadingTests.test_owner_wait_survives_restart_without_spending_connection_budget) ... ok\ntest_owner_lost_during_snapshot_also_waits_without_failure_budget (test_owner_loading.OwnerLoadingTests.test_owner_lost_during_snapshot_also_waits_without_failure_budget) ... ok\ntest_negative_start_reply_remains_uncertain_and_never_loads (test_owner_loading.OwnerLoadingTests.test_negative_start_reply_remains_uncertain_and_never_loads) ... ok\ntest_waiting_does_not_prevent_later_file_capture (test_owner_loading.OwnerLoadingTests.test_waiting_does_not_prevent_later_file_capture) ... ok\ntest_loader_disabled_by_default (test_owner_loading.OwnerLoadingTests.test_loader_disabled_by_default) ... ok\ntest_inspect_never_loads (test_owner_loading.OwnerLoadingTests.test_inspect_never_loads) ... ok\ntest_available_owner_reused_without_backend_or_window_action (test_owner_loading.OwnerLoadingTests.test_available_owner_reused_without_backend_or_window_action) ... ok\ntest_load_is_explicit_no_prompt_and_rechecks_owner (test_owner_loading.OwnerLoadingTests.test_load_is_explicit_no_prompt_and_rechecks_owner) ... ok\ntest_one_load_budget_is_durable_across_failures_and_new_batch (test_owner_loading.OwnerLoadingTests.test_one_load_budget_is_durable_across_failures_and_new_batch) ... ok\ntest_not_configured_does_not_spend_action_budget (test_owner_loading.OwnerLoadingTests.test_not_configured_does_not_spend_action_budget) ... ok\ntest_stop_and_every_sent_state_block_loading (test_owner_loading.OwnerLoadingTests.test_stop_and_every_sent_state_block_loading) ... ok\ntest_ready_with_prior_send_intent_cannot_load (test_owner_loading.OwnerLoadingTests.test_ready_with_prior_send_intent_cannot_load) ... ok\ntest_after_load_busy_is_not_ready (test_owner_loading.OwnerLoadingTests.test_after_load_busy_is_not_ready) ... ok\ntest_non_owner_error_cannot_trigger_loader (test_owner_loading.OwnerLoadingTests.test_non_owner_error_cannot_trigger_loader) ... ok\ntest_stop_appearing_after_owner_check_prevents_action (test_owner_loading.OwnerLoadingTests.test_stop_appearing_after_owner_check_prevents_action) ... ok\ntest_owner_presence_does_not_override_bad_thread_identity (test_owner_loading.OwnerLoadingTests.test_owner_presence_does_not_override_bad_thread_identity) ... ok\ntest_idle_reused_and_busy_waits_without_window_actions (test_window_cycle.CycleTests.test_idle_reused_and_busy_waits_without_window_actions) ... ok\ntest_two_batches_after_verified_close_have_separate_load_budget (test_window_cycle.CycleTests.test_two_batches_after_verified_close_have_separate_load_budget) ... ok\ntest_surviving_owner_reused_on_second_batch (test_window_cycle.CycleTests.test_surviving_owner_reused_on_second_batch) ... ok\ntest_open_timeout_survives_restart_and_new_batch (test_window_cycle.CycleTests.test_open_timeout_survives_restart_and_new_batch) ... ok\ntest_sent_batch_never_loads_after_owner_loss (test_window_cycle.CycleTests.test_sent_batch_never_loads_after_owner_loss) ... ok\ntest_completion_alone_does_not_close_or_ack (test_window_cycle.CycleTests.test_completion_alone_does_not_close_or_ack) ... ok\ntest_early_ack_does_not_close_active_turn (test_window_cycle.CycleTests.test_early_ack_does_not_close_active_turn) ... ok\ntest_close_failure_preserves_delivery_and_blocks_next_send (test_window_cycle.CycleTests.test_close_failure_preserves_delivery_and_blocks_next_send) ... ok\ntest_changed_window_identity_not_closed (test_window_cycle.CycleTests.test_changed_window_identity_not_closed) ... ok\ntest_busy_after_ack_delays_close (test_window_cycle.CycleTests.test_busy_after_ack_delays_close) ... ok\ntest_legacy_claim_not_silently_reset (test_window_cycle.CycleTests.test_legacy_claim_not_silently_reset) ... ok\ntest_unknown_owner_reply_never_opens (test_window_cycle.CycleTests.test_unknown_owner_reply_never_opens) ... ok\ntest_stop_during_open_preserves_lease_without_sending (test_window_cycle.CycleTests.test_stop_during_open_preserves_lease_without_sending) ... ok\ntest_no_files_no_window_or_ipc (test_window_cycle.CycleTests.test_no_files_no_window_or_ipc) ... ok\ntest_worker_lock_required_for_lifecycle (test_window_cycle.CycleTests.test_worker_lock_required_for_lifecycle) ... ok\ntest_ack_between_prepare_and_dispatch_cannot_send_next_batch (test_window_cycle.CycleTests.test_ack_between_prepare_and_dispatch_cannot_send_next_batch) ... ok\ntest_lost_acceptance_requires_correlation_before_cycle_ack (test_window_cycle.CycleTests.test_lost_acceptance_requires_correlation_before_cycle_ack) ... ok\ntest_disabling_loader_cannot_bypass_unclosed_cycle (test_window_cycle.CycleTests.test_disabling_loader_cannot_bypass_unclosed_cycle) ... ok\ntest_reused_owner_loss_recovers_same_batch_once_across_restart (test_window_cycle.CycleTests.test_reused_owner_loss_recovers_same_batch_once_across_restart) ... ok\ntest_reused_cycle_busy_or_unknown_never_promotes (test_window_cycle.CycleTests.test_reused_cycle_busy_or_unknown_never_promotes) ... ok\ntest_reused_promotion_rechecks_send_state_atomically (test_window_cycle.CycleTests.test_reused_promotion_rechecks_send_state_atomically) ... ok\ntest_reused_cycle_with_prior_open_history_or_lease_cannot_reopen (test_window_cycle.CycleTests.test_reused_cycle_with_prior_open_history_or_lease_cannot_reopen) ... ok\ntest_promoted_open_timeout_is_durable_across_restart (test_window_cycle.CycleTests.test_promoted_open_timeout_is_durable_across_restart) ... ok\ntest_reused_claim_cannot_overwrite_changed_cycle_snapshot (test_window_cycle.CycleTests.test_reused_claim_cannot_overwrite_changed_cycle_snapshot) ... ok\ntest_promoted_open_budget_not_reset_if_owner_disappears_again (test_window_cycle.CycleTests.test_promoted_open_budget_not_reset_if_owner_disappears_again) ... ok\n\n----------------------------------------------------------------------\nRan 46 tests in 0.180s\n\nOK\n",
+      "command": "PYTHONPATH=.:tests python -m unittest test_owner_loading test_window_cycle -v",
+      "counts": {
+        "run": 46,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "seconds": 0.18
+      }
+    }
+  },
+  "integrity": {
+    "head": "6c2589d7d100d135c1f5deb301268929d0b375c8",
+    "verified_files": [
+      {
+        "path": "docs/KELAN_WINDOW_CYCLE_20261008.md",
+        "git_blob": "f0fca964392f9ec06408aff58ada8bb3122a116e",
+        "sha256": "7a63fd75607b8ac439fd47c0bf96abf7d2b21005972cc4a5ab7a8c8bc226fc09"
+      },
+      {
+        "path": "evidence/window-cycle-20261008.json",
+        "git_blob": "a99cf7b211bf5fd14fc07eac28c7f769f605a444",
+        "sha256": "80303e8920bf07ba7da3800eed0662f23ce7eb6963f7e46267dfebb5314e5f8e"
+      },
+      {
+        "path": "windows_window_backend.ps1",
+        "git_blob": "030310782601c7c7bcdab5e6e7075394ac607416",
+        "sha256": "31de19805aeca7d58468305990346ed6555d533bbfba814272ddb71366348de7"
+      },
+      {
+        "path": "trigger.py",
+        "git_blob": "643ae4e66865fc1fdd5b175db287ac61e2a28f34",
+        "sha256": "99c2e4eee8ba26c43795a327ee1509d0cfadcc70a8c2c95e46a29d1ae77848f1"
+      },
+      {
+        "path": "tests/test_owner_loading.py",
+        "git_blob": "ed8d797f2af35e26ec9f84147388613cdf37405a",
+        "sha256": "35183fdf8510761274ab7052a4cd2a298bc03b2932830475d4f43f82b2106350"
+      },
+      {
+        "path": "evidence/window-cycle-supervisor-20261008.py",
+        "git_blob": "f55d40e50c5c89296d9041ae7a9a36c47dd008bd",
+        "sha256": "293478d7ae2a5c3769530bad0e98524ae905e20630766bfcac51585fff2b1071"
+      },
+      {
+        "path": "evidence/window-cycle-tests-20261008.txt",
+        "git_blob": "69bc5b41d2aec050a87df6730430097194080661",
+        "sha256": "ce27c748830f8768ac38fc1b481e74ae9d34e96c69eab6ae71fa11fa1b2a7f05"
+      },
+      {
+        "path": "example.windows.json",
+        "git_blob": "c60eddf8cd7ad9a395a13f210c8b963c62f6cadc",
+        "sha256": "6fee6125528199bc07362f80cf787bc74ef9a8b3782b5303cabaa1124f873e6e"
+      },
+      {
+        "path": "docs/WINDOW_CYCLE_PLAN_20261008.md",
+        "git_blob": "099878a483fd41be5b97737ba67a091cf41160ee",
+        "sha256": "d772ca3bee19460cc01c40df4731edf1f1dcd156b2d6e96f6478a6de36bd2a73"
+      },
+      {
+        "path": "desktop_ipc.py",
+        "git_blob": "542537d99f80cd8e924b97e46d94d983299edbb6",
+        "sha256": "5adbbc5770f3cf789e02e373a65b88387faa653b0450bdd2d1b6ef41df1ad30c"
+      },
+      {
+        "path": "chat_adapters.py",
+        "git_blob": "0b819832771472822c1eca3501a41d480e2752e2",
+        "sha256": "56c96d2f261e7f77c39b12b60951a53757ee2d4feff681c6f5f5e0ff5d705449"
+      },
+      {
+        "path": "tests/test_desktop_ipc.py",
+        "git_blob": "fbf67df62637a16cc3e751d0576743432d2ce07e",
+        "sha256": "891588607e582d3c560a81bad4ca7232f1d85571e98479e167dd1ed748508775"
+      },
+      {
+        "path": "tests/test_trigger.py",
+        "git_blob": "5aac9bc376042d1aa3bb6a8622fd968ce997ff58",
+        "sha256": "3b955c9f38608c5cc2432d7ca0542eac7ae63284251aa7bf5e5a5d6ee869b046"
+      },
+      {
+        "path": "tests/test_chat_adapters.py",
+        "git_blob": "d72ab120cec404ea23c505fb98908c311e44a528",
+        "sha256": "48cab584a16319465d81aad5d7467935d62f97dd26b41ae974dc07d91491ed6d"
+      },
+      {
+        "path": "tests/fake_owner.py",
+        "git_blob": "b492e0251842945a50afb8e8ce3d2011d1884498",
+        "sha256": "df5edb419844c1b20a8ad42b8427b6c6e498740167c80344f3907386b95c0c27"
+      },
+      {
+        "path": "requirements.txt",
+        "git_blob": "c6c52fb2787e8cbe2b5c1c261204d62697ae9c30",
+        "sha256": "0741e8d1875c6a936a622fd74adb5c825d57c4c416097365b0ef1e1a7cacc120"
+      },
+      {
+        "path": "owner_loading.py",
+        "git_blob": "b0f4f84e1c4bee0bb1f2b6086b245f34a283dd13",
+        "sha256": "c24aa844052c4b96623b05905cb50fe715db27213b8a4b7b77f4c0e53f447e8d"
+      },
+      {
+        "path": "tests/test_window_cycle.py",
+        "git_blob": "8780a2a9a94c2bfc2e2d5f8622274fbc5d7e5b0a",
+        "sha256": "90411a788b2a0650d17f83d40844354e3f6b318de199d485863ec63ba952b31d"
+      },
+      {
+        "path": "docs/KELAN_OWNER_REUSE_RECOVERY_20261008.md",
+        "git_blob": "ff22218a253c1c1ef204e6fdb170193a0ced6d50",
+        "sha256": "a478daa0cec37cd597addd32563f707c0dafcfc9f73b14b7378fe567fbd3f770"
+      },
+      {
+        "path": "evidence/owner-reuse-recovery-20261008.json",
+        "git_blob": "49551584f140d4225e3652797a48e18dc722c3dd",
+        "sha256": "5f06e754848eb20b6f5c4a3c91675c502308b3b8fca7b4c35b9fc82c56c2f0f6"
+      },
+      {
+        "path": "README.md",
+        "git_blob": "8cc5bde1b3a8ce198ab3598a3235bea85a2282ea",
+        "sha256": "70137289563a67fa5eedd1b1199b2ae32ee8092bc5991652575fd1a664fe3d81"
+      },
+      {
+        "path": "WORK_LOG.md",
+        "git_blob": "134c50b48897bb1933ffe2c8de0f11b5efaa3fcb",
+        "sha256": "3f58aea414434f3573b15e91cbeb5973cdf2a22871218c05348d1979632befaa"
+      },
+      {
+        "path": "evidence/SHA256SUMS.json",
+        "git_blob": "e3eb552c6469e636fd0cf459b69ac6a463676751",
+        "sha256": "98374f7228ffaec2ef0b802a3e47f23051bdf6f853013ea9a39cd9ad1a812e6a"
+      },
+      {
+        "path": "evidence/alice-window-cycle-review-20261008/probe.py",
+        "git_blob": "6e20f0a22eca0e7512984aab29fbfb234e656f07",
+        "sha256": "0e5380576ff5200aa1c755a346b4f22bd51cc13e953dded26eefd7a5a72b672a"
+      },
+      {
+        "path": "CURRENT_STATE.md",
+        "git_blob": "b4e5f6d6dc22e362756fd6d30ec5191f10aa797f",
+        "sha256": "4e174dd66b60f0992fd6dd24c948a05cf55aaf81073a735d12f4a688fac6ecf1"
+      }
+    ],
+    "sha256_entries_verified": 24,
+    "manifest_path_count": 72,
+    "tree_file_count": 73,
+    "manifest_path_set_matches_tree": true
+  },
+  "retained_git_blobs": {
+    "windows_window_backend.ps1": "030310782601c7c7bcdab5e6e7075394ac607416",
+    "desktop_ipc.py": "542537d99f80cd8e924b97e46d94d983299edbb6",
+    "trigger.py": "643ae4e66865fc1fdd5b175db287ac61e2a28f34",
+    "evidence/window-cycle-20261008.json": "a99cf7b211bf5fd14fc07eac28c7f769f605a444",
+    "evidence/window-cycle-supervisor-20261008.py": "f55d40e50c5c89296d9041ae7a9a36c47dd008bd",
+    "evidence/window-cycle-tests-20261008.txt": "69bc5b41d2aec050a87df6730430097194080661",
+    "docs/KELAN_WINDOW_CYCLE_20261008.md": "f0fca964392f9ec06408aff58ada8bb3122a116e"
+  },
+  "not_performed": [
+    "native UI or IPC",
+    "model calls",
+    "production watcher start",
+    "whole suite rerun",
+    "Drive copy or private Windows raw evidence reread"
+  ],
+  "runtime_code_modified_by_alice": false,
+  "subagents": 0,
+  "pr_state": "Draft",
+  "timer": "PAUSED; carried forward, not accessed",
+  "limits": [
+    "bounded no-navigation current-chat identity",
+    "foreground interruption and restoration latency",
+    "real owner-absence cold recovery",
+    "caller-verified business ACK",
+    "prior final deadline-gate live verification scope"
+  ]
+}

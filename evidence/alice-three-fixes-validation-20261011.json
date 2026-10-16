@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "actor": "Alice",
+  "review": "S0 self-review; no independent or native acceptance",
+  "input_head": "5f782e22eccdc434b26f338725ae7382567bbc79",
+  "publish_parent": "eac0ab297b0002c0d4f05d7e3ce6b9725fa773b3",
+  "runtime": {
+    "os": "Linux",
+    "python": "3.12.14",
+    "watchdog": "6.0.0"
+  },
+  "command": "python -m unittest discover -s tests -q",
+  "tests": 170,
+  "passed": 169,
+  "skipped": 1,
+  "skip_reason": "Windows overlapped-I/O contract",
+  "failures": 0,
+  "errors": 0,
+  "new_regressions": 16,
+  "stdout_stderr": "----------------------------------------------------------------------\nRan 170 tests in 5.826s\n\nOK (skipped=1)\n",
+  "files": {
+    "trigger.py": {
+      "bytes": 36863,
+      "sha256": "c2d9f135ea4eef67ca26c9d181f1cb93fcbfe45fb80207861114a27ce85d99e6"
+    },
+    "trial_worker.py": {
+      "bytes": 5921,
+      "sha256": "c9f46e7a75a0e0dd72c8f56ee72b02f51e8f58e61ecb15625a691abc683fd0f6"
+    },
+    "worker_health.py": {
+      "bytes": 2320,
+      "sha256": "c05d9737158da0b1aac751cf9a188076bfc0070c6ebfdbddc6bc9f9f67aa521a"
+    },
+    "desktop_ipc.py": {
+      "bytes": 28327,
+      "sha256": "533c7683cfa952dda58cce89881e27633308520d782704bb63329d202c61e059"
+    },
+    "chat_adapters.py": {
+      "bytes": 7785,
+      "sha256": "cac5010d542dc7404eb8d7bc69b083c68860792b51cc505fc99e1dc075cc665e"
+    },
+    "owner_loading.py": {
+      "bytes": 13073,
+      "sha256": "058716d8937a6330adbb807cb87dabb3e48a25d06976455057556aee10e20c3b"
+    },
+    "execution_result.py": {
+      "bytes": 2861,
+      "sha256": "14e4980cd375c34017efdcc6a3f5cc0f8c927f1f6831e3caa0fda2b65c5cf932"
+    },
+    "delivery_outbox.py": {
+      "bytes": 8689,
+      "sha256": "ac5d368a56a5001be0c2df47434aa3c9717b75a1cf960e08a27923fbc3808f05"
+    },
+    "tests/test_followup_fixes.py": {
+      "bytes": 11423,
+      "sha256": "c75c20d68ecc30ed64385a2c7cc093162a1b12276cc4bb106a56ef50e2c39b62"
+    },
+    "tests/test_material_wait.py": {
+      "bytes": 5565,
+      "sha256": "8b6f9d425c5e656bbecc583b257fef57223a36166e63808feea07079537a95bf"
+    },
+    "tests/test_desktop_ipc.py": {
+      "bytes": 16401,
+      "sha256": "81643a4a14a36e3269db0194b57517463f144b3b5a0b38af9cf412f8565a3fdc"
+    },
+    "tests/test_native_state.py": {
+      "bytes": 5336,
+      "sha256": "2ec90af443bea94fda008b8da753635266a793c9e1531bf2ee29f705cf3e9c3e"
+    },
+    "tests/test_window_cycle.py": {
+      "bytes": 16711,
+      "sha256": "ee819b859a1ef4306535ac74e69231c141cc18568156d2ebeba5dd9316399f92"
+    }
+  },
+  "native_model_turns": 0,
+  "native_windows_actions": 0,
+  "real_uploads": 0,
+  "production_activation": false,
+  "limitations": [
+    "No real Windows logon/recovery acceptance",
+    "Exact native outcome collector pending; caller-attested input only",
+    "No real upload backend bundled; transport integration and idempotency acceptance pending"
+  ],
+  "baseline_test_setup_notes": [
+    "Missing watchdog installed at pinned 6.0.0",
+    "Fixed inherited/imported fixture collection in test_material_wait; 154-test baseline-equivalent suite passed before 16 focused regressions"
+  ]
+}

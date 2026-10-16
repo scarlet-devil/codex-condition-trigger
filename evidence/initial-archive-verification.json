@@ -1,0 +1,10 @@
+{
+  "checked_date": "2026-10-03",
+  "baseline_commit": "9c658d6bffb16c53e8838f8432ac1e1319b6da6b",
+  "archive_name": "codex-condition-trigger-public-20261003.zip",
+  "size_bytes": 29661,
+  "sha256": "10f684385fc68e763ce9d9a5e547b89265c648e1c4cebd5abc8bf33aa1596460",
+  "crc_check": "passed",
+  "matched_git_blobs": 15,
+  "scope": "author-side check of the initial archive; not recipient readback; does not contain this correction"
+}

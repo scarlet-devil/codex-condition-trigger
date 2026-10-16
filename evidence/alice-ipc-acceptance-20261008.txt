@@ -1,0 +1,25 @@
+Alice cloud Linux/Python 3.12.14
+Exact review input: 5159d4f9ca395b90ee5c7f23e1a4b657024ff042
+Implementation: 087c228c791ff494b4c15ae9eeeabedf4e344cb2
+No Desktop/model call. Native Windows and watcher checks are not rerun.
+Selectors: ["test_native_state", "test_desktop_ipc.WireTests.test_non_object_json_frames_are_controlled_protocol_errors", "test_desktop_ipc.WireTests.test_malformed_initialize_results_are_controlled", "test_desktop_ipc.DesktopDispatchTests.test_malformed_written_receipt_is_uncertain_and_not_replayed", "test_desktop_ipc.RolloutTests.test_inherited_start_has_no_setting_overrides", "test_desktop_ipc.DesktopDispatchTests.test_native_acceptance_completion_and_ack_are_distinct", "test_desktop_ipc.DesktopDispatchTests.test_lost_ack_exact_new_turn_reconciles_without_resend", "test_desktop_ipc.DesktopDispatchTests.test_ack_wins_against_stale_ipc_result"]
+
+test_failed_second_readonly_query_is_proven_not_dispatched (test_native_state.HistoryGapTests.test_failed_second_readonly_query_is_proven_not_dispatched) ... ok
+test_old_gap_does_not_block_fresh_idle_send_or_native_receipt (test_native_state.HistoryGapTests.test_old_gap_does_not_block_fresh_idle_send_or_native_receipt) ... ok
+test_unknown_native_state_does_not_infer_idle_from_history (test_native_state.HistoryGapTests.test_unknown_native_state_does_not_infer_idle_from_history) ... ok
+test_busy_unknown_unresumed_and_wrong_identity_do_not_become_idle (test_native_state.SnapshotTests.test_busy_unknown_unresumed_and_wrong_identity_do_not_become_idle) ... ok
+test_current_status_is_bound_to_owner_target_cwd_and_revision (test_native_state.SnapshotTests.test_current_status_is_bound_to_owner_target_cwd_and_revision) ... ok
+test_malformed_runtime_type_cannot_escape_protocol_boundary (test_native_state.SnapshotTests.test_malformed_runtime_type_cannot_escape_protocol_boundary) ... ok
+test_old_revision_wrong_owner_or_targeted_client_is_not_evidence (test_native_state.SnapshotTests.test_old_revision_wrong_owner_or_targeted_client_is_not_evidence) ... ok
+test_non_object_json_frames_are_controlled_protocol_errors (test_desktop_ipc.WireTests.test_non_object_json_frames_are_controlled_protocol_errors) ... ok
+test_malformed_initialize_results_are_controlled (test_desktop_ipc.WireTests.test_malformed_initialize_results_are_controlled) ... ok
+test_malformed_written_receipt_is_uncertain_and_not_replayed (test_desktop_ipc.DesktopDispatchTests.test_malformed_written_receipt_is_uncertain_and_not_replayed) ... ok
+test_inherited_start_has_no_setting_overrides (test_desktop_ipc.RolloutTests.test_inherited_start_has_no_setting_overrides) ... ok
+test_native_acceptance_completion_and_ack_are_distinct (test_desktop_ipc.DesktopDispatchTests.test_native_acceptance_completion_and_ack_are_distinct) ... ok
+test_lost_ack_exact_new_turn_reconciles_without_resend (test_desktop_ipc.DesktopDispatchTests.test_lost_ack_exact_new_turn_reconciles_without_resend) ... ok
+test_ack_wins_against_stale_ipc_result (test_desktop_ipc.DesktopDispatchTests.test_ack_wins_against_stale_ipc_result) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.028s
+
+OK
