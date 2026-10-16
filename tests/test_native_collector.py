@@ -1,5 +1,6 @@
 """Native turn evidence must not become business acceptance."""
 import json
+import os
 from unittest import mock
 import unittest
 import desktop_ipc as ipc
@@ -103,11 +104,14 @@ class CollectorTests(Fixture):
             self.assertEqual(cycle_tick(self.store),'quiet')
             collect.assert_called_once()
 
-    def test_equivalent_windows_cwd_is_valid_after_native_verification(self):
+    def test_equivalent_cwd_is_valid_after_native_verification(self):
         from native_collector import collect_outcomes
         row=self.prepare();factory=self.client();original=factory.current_state
         def variant(client,*args,**kwargs):
-            value=original(client,*args,**kwargs);value['cwd']=value['cwd'].upper().replace('\\','/');return value
+            value=original(client,*args,**kwargs)
+            value['cwd']=(value['cwd'].upper().replace('\\','/') if os.name=='nt'
+                          else os.path.join(value['cwd'],'.'))
+            return value
         with mock.patch.object(factory,'current_state',variant):
             result=collect_outcomes(self.store,client_factory=factory)
         self.assertEqual(result[0]['status'],'recorded')

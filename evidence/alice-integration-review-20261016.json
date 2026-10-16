@@ -1,0 +1,291 @@
+{
+  "schema": 1,
+  "author": "Alice",
+  "deployment_environment": "cloud ChatGPT Work / Linux",
+  "recorded_at_utc": "2026-10-16T01:06:04.874713+00:00",
+  "input_head": "2711dbe4c68dd4cd3fe5cc99d28d943c79464760",
+  "baseline": "0d7f57616d0ca78e4b1d8ddf79deb238693328d9",
+  "pr": 1,
+  "branch": "draft/initial-prototype",
+  "decision": "APPROVE_SCOPED",
+  "overall_business_acceptance": "pending_original_target",
+  "verified_input_files": 55,
+  "changed_input_files": [
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 93919,
+      "git_blob": "c6f502e90d41a5cdc579cb4a6fc733fba4c34b52",
+      "sha256": "541c8b8ecf761d5cf9e319c712d1bbd08b5f27619f5d70995b1faa95e99fca3b"
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 29019,
+      "git_blob": "5b64e63117878b048e9a5d4c4d04c42bb26c649f",
+      "sha256": "d6163b033496fb7451b9184cc2fb122e89bcd8d9dee4ba913fefa97f0e452705"
+    },
+    {
+      "path": "docs/KELAN_REAL_LOGON_ACCEPTANCE_20261016.md",
+      "bytes": 5175,
+      "git_blob": "e3e8196570c0825e5c42adcebd6fee3a7671573f",
+      "sha256": "6ef3535ded478eac129501ea5e4cf7c408f176bd7832193d2889b5de09e04e03"
+    },
+    {
+      "path": "docs/HUB_RECOVERY_EXTENSION_20261015.md",
+      "bytes": 2711,
+      "git_blob": "aafa9c998f1dcf82e2bb73de8476258eedef3841",
+      "sha256": "aed7bdac55722edbc420e019e20e17d338342b21aa211f608135416776226179"
+    },
+    {
+      "path": "evidence/kelan-real-logon-acceptance-20261016.json",
+      "bytes": 4955,
+      "git_blob": "1e738e41489f474c00c6f23f7159764054816143",
+      "sha256": "f4e6a5c3aab93bfb53a6549213f22e8bcba9c1ac24838f6885942bef1c35324c"
+    },
+    {
+      "path": "docs/KELAN_HUB_LIVE_ACCEPTANCE_20261016.md",
+      "bytes": 5454,
+      "git_blob": "147408d9dbd1e5d18ab6abd15b1d39e47d14222a",
+      "sha256": "577bae4ae409ba5018b732dd2a289487bd94fbb475b181eeb63c6d4aa900ad56"
+    },
+    {
+      "path": "docs/KELAN_NATIVE_INITIAL_REVIEW.md",
+      "bytes": 8432,
+      "git_blob": "11bc50a8bb62b78544f21629c03fd84f2183e835",
+      "sha256": "da55a21af625d289f996381b49ad10ea211438a18916eab1e6ebb2f503cc2c6b"
+    },
+    {
+      "path": "owner_loading.py",
+      "bytes": 13409,
+      "git_blob": "cbee390b450048899edf43f0b5bb4184d11c625b",
+      "sha256": "f1f3c21c393f0ba8acfde5abcf5854037fcc8cb4f490fed699b5584e0aa63c32"
+    },
+    {
+      "path": "evidence/kelan-hub-live-acceptance-20261016.json",
+      "bytes": 3231,
+      "git_blob": "36c00bd251129a29038c1793d8f23c9903074342",
+      "sha256": "bdbb7803e08a7221158c6133c95e0a559d42d9256a91f1b9a758d51b0f42d89b"
+    },
+    {
+      "path": "tests/test_hub_delivery_driver.py",
+      "bytes": 4062,
+      "git_blob": "53cdb454abe90a8c07f397756c20b83689361193",
+      "sha256": "ef9f6b36343b774b3261067b3b92c8f346618f9413e35905f4393dc3b023cd18"
+    },
+    {
+      "path": "desktop_ipc.py",
+      "bytes": 28553,
+      "git_blob": "3c1187892b9209708d1996fe365fe93b6fcebcc9",
+      "sha256": "6ea5657e827861ac2831825a6e65b93ca53ecff0e0a6b4c43fe6b1745051af9b"
+    },
+    {
+      "path": "trigger.py",
+      "bytes": 37162,
+      "git_blob": "05201969d1c36c84da11b66d2dd3650d5cb5d8ef",
+      "sha256": "624ffabd694c1b7ee04e537f21ad63d057f2e5fcd9188a90f69348e0bc6e050a"
+    },
+    {
+      "path": "hub_delivery_driver.py",
+      "bytes": 3565,
+      "git_blob": "0abe173caf43fd492a91084b23d80f6e98b775f0",
+      "sha256": "030bf22d59db6100215dee479dc6d7d02e8a12e964975c960b02cc28c4abb376"
+    },
+    {
+      "path": "docs/KELAN_NATIVE_RECHECK.md",
+      "bytes": 5988,
+      "git_blob": "a597edb9a642d05010e24874b5d420a46415ade4",
+      "sha256": "368a156be5e9619099dfab17af63bbefd78fee5392b163ce597a59fc039230b3"
+    },
+    {
+      "path": "tests/test_native_collector.py",
+      "bytes": 6643,
+      "git_blob": "0571008a621bea7bd3ec4d775df99d1a2295be73",
+      "sha256": "0aa1baa5eb5a0a504f01282d53b6ccfff39a063d3ef6346a102f84d88a88e386"
+    },
+    {
+      "path": "evidence/login-harness-20261016.zip",
+      "bytes": 3237,
+      "git_blob": "759c78f172b994afced80389dd3305d7ff5b9358",
+      "sha256": "6f6e2330d494341e013f3d94bdab3af49955a6bd8f4f60fc97be5130e13e29c5"
+    },
+    {
+      "path": "docs/KELAN_INTEGRATION_RECEIPT_20261016.md",
+      "bytes": 9503,
+      "git_blob": "d79a4070d9b5ce072a57613e1f0492f878bd755a",
+      "sha256": "bda5c56d79066eba36c006879511af620b6b97a29660fa6dd1b643f67ea0d1fb"
+    },
+    {
+      "path": "evidence/hub-material-recovery-20261016.patch",
+      "bytes": 12764,
+      "git_blob": "79b44acf5f7314e972b1bc01f4157177f504bd93",
+      "sha256": "7cc62376dd3f427346a9572330a9d79c118514822f4548f0fdde823ccc235089"
+    },
+    {
+      "path": "evidence/kelan-logon-arm-20261016.json",
+      "bytes": 1547,
+      "git_blob": "e49a0cab4fc561439dc3fa4507862d46eeb4d430",
+      "sha256": "aa851f1747695ed4b4b16789657c3b43876329bdae1ef6daac688750eca07cd1"
+    },
+    {
+      "path": "docs/NATIVE_DELIVERY_INTEGRATION_20261015.md",
+      "bytes": 3377,
+      "git_blob": "740ca61e8dd49485e1591230eb3b56293acf225a",
+      "sha256": "569a62d40b7aa910b9869d18312508b5912c51ad846606074f29b70e1951b4c7"
+    },
+    {
+      "path": "native_collector.py",
+      "bytes": 5726,
+      "git_blob": "f79787facf58bc0226db5c31f252a80bb32ca038",
+      "sha256": "d5cba75c1b75fa3ce1aa90cf677687085569c5fb02c7a0a610a0c088984f955b"
+    },
+    {
+      "path": "evidence/kelan-native-hub-integration-20261016.json",
+      "bytes": 4489,
+      "git_blob": "f981b460606760efcc15d60ab2132ee55604aa60",
+      "sha256": "c530164ec570090265c937b71f3386d7fa4264506b2c0767717c583f4558363e"
+    },
+    {
+      "path": "evidence/hub-material-recovery-candidate-20261016.zip",
+      "bytes": 53770,
+      "git_blob": "04023a103ea2ecfb7a1f02b885d7ca27b3705c03",
+      "sha256": "21f736228e18f430e537e4845e69ae9a2f0727145587d5d3642746b3417de14d"
+    }
+  ],
+  "archives": [
+    {
+      "path": "evidence/hub-material-recovery-candidate-20261016.zip",
+      "bytes": 53770,
+      "sha256": "21f736228e18f430e537e4845e69ae9a2f0727145587d5d3642746b3417de14d",
+      "members": [
+        "HUB_INSTALL_MANIFEST.json",
+        "MANIFEST.json",
+        "MATERIALS_SHA256.json",
+        "evidence/condition-final-venv.txt",
+        "evidence/hub-final.txt",
+        "evidence/hub-review-green.txt",
+        "evidence/hub-review-red.txt",
+        "evidence/ipc-process-host.txt",
+        "evidence/ipc-process-result.json",
+        "evidence/review_followup_report.json",
+        "evidence/review_recheck_result.json",
+        "src/drive_exchange_local_hub/__init__.py",
+        "src/drive_exchange_local_hub/google_drive.py",
+        "src/drive_exchange_local_hub/material_recovery.py",
+        "tests/test_material_google_wire.py",
+        "tests/test_material_recovery.py"
+      ]
+    },
+    {
+      "path": "evidence/login-harness-20261016.zip",
+      "bytes": 3237,
+      "sha256": "6f6e2330d494341e013f3d94bdab3af49955a6bd8f4f60fc97be5130e13e29c5",
+      "members": [
+        "Prepare-LogonAcceptance.ps1",
+        "logon_acceptance.py",
+        "MANIFEST.json"
+      ]
+    }
+  ],
+  "evidence_bindings": {
+    "hub-candidate": 15,
+    "login-harness": 2,
+    "source_pins": 11,
+    "hub_live_install_files": 4
+  },
+  "login_evidence_review": {
+    "summary_checks": 26,
+    "all_summary_checks_true": true,
+    "private_originals_read_by_alice": false,
+    "native_windows_executor": "Kelan",
+    "source_pins_verified_by_alice": 11,
+    "accepted_scope": "independent bounded dry login; not full production chain"
+  },
+  "drive_readback": {
+    "file_id": "1v1auwzETb18D-MggC4KvTjo1Pg0TZCUm",
+    "bytes": 128,
+    "sha256": "d8bf98ac97ee845e975071033b74e3943ef0eb417d867afcee3518f76bf3f372",
+    "matches_kelan_receipt": true,
+    "method": "authenticated Drive raw-file download",
+    "parent_ids": [
+      "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq"
+    ],
+    "shared": false
+  },
+  "tests": {
+    "condition_original": {
+      "total": 185,
+      "passed": 183,
+      "failed": 1,
+      "skipped": 1,
+      "exit_code": 1,
+      "failure": "Windows case-insensitive path fixture applied to Linux",
+      "skip": "Windows overlapped I/O platform check"
+    },
+    "corrected_fixture": {
+      "total": 1,
+      "passed": 1,
+      "exit_code": 0,
+      "name": "test_equivalent_cwd_is_valid_after_native_verification"
+    },
+    "hub_recovery": {
+      "total": 7,
+      "passed": 7,
+      "exit_code": 0
+    },
+    "outbox_hub_cases_in_condition_total": 3,
+    "full_condition_suite_repeated_after_test_only_fix": false,
+    "full_hub_suite_rerun": false,
+    "google_wire_tests_rerun": false,
+    "google_wire_limit": "Frozen delta package omits existing ports.py/windows_credentials.py dependency files; no substitute module was used."
+  },
+  "alice_changes": {
+    "runtime_files": 0,
+    "test_file": "tests/test_native_collector.py",
+    "test_sha256_after": "7a24d0b184b47a6376bd263e978715048ea9d0056079c2bec9611a5d5288841e",
+    "reason": "Use a genuinely equivalent cwd variant on each operating system; retain original Windows variant."
+  },
+  "logs": {
+    "alice-condition-suite-original.log": {
+      "sha256": "9fec3fa915720d5e3765d2f215eb9ac3cc77cff3060d66a3b10e2f6fa9801b52",
+      "bytes": 27332
+    },
+    "alice-native-fixture-recheck.log": {
+      "sha256": "a1975564ae82a028be0e3fc7254c300c28d68eae1013b46e3ed28d98227c27d0",
+      "bytes": 253
+    },
+    "alice-hub-recovery-suite.log": {
+      "sha256": "06f880f409e57ef9e89ed3024eef873a23279c5e51848802f5c28ab59e169854",
+      "bytes": 1174
+    }
+  },
+  "independence": {
+    "new_review_subagents": 0,
+    "kelan_implementation_review": "Alice source/evidence inspection and Linux reruns",
+    "alice_test_fixture_change": "S0 self-review",
+    "windows_logon_and_installation": "Kelan evidence, no Alice native execution"
+  },
+  "actions_not_performed": {
+    "model_dispatch": 0,
+    "hub_or_runtime_install": 0,
+    "new_drive_upload": 0,
+    "business_ack": 0,
+    "production_resume": 0,
+    "merge": 0,
+    "ready_transition": 0,
+    "pr_body_replace": 0
+  },
+  "next_step": {
+    "status": "prepared_not_dispatched",
+    "scope": "Original target one bounded business canary after specific authorization",
+    "max_model_turns": 1,
+    "max_new_synthetic_uploads": 1,
+    "max_minutes": 15,
+    "old_stop_and_history_preserved": true,
+    "repeat_real_login_required": false
+  },
+  "limitations": [
+    "Original target owner/business chain remains unaccepted.",
+    "No current Windows runtime state fetched by Alice.",
+    "Hub auto-start is not implemented or accepted by the dry-login evidence.",
+    "Long-term unattended operation and permanent activation are outside this review."
+  ]
+}

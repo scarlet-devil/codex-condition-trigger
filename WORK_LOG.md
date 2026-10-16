@@ -521,3 +521,16 @@ Human确认重启；实际boot00:57:39.500、AtLogOn00:57:58、worker00:58:08.57
 
 独立dry登录缺口关闭；原生产目标owner缺失限制仍在，整体交Alice复核，PR保持Draft。
 [登录验收报告](docs/KELAN_REAL_LOGON_ACCEPTANCE_20261016.md) · [脱敏证据](evidence/kelan-real-logon-acceptance-20261016.json)。
+
+
+## 2026-10-16｜Alice 接入及真实登录复核：限定通过，原目标业务链路待验收
+
+固定接手2711dbe4（相对0d7f5761共3提交、23变更文件）。Alice云端直接核对55份当前树文件、两个冻结ZIP的CRC/17个清单载荷、登录11项源码pin及Hub安装回执4项文件摘要。26项登录摘要计数、脚本和时间顺序一致，接受柯蓝限定的独立dry真实登录结果；Windows SID/XML等私有原件未外发，Alice未冒称亲自实测。此前standalone原生采集与Hub恢复后端“尚未接入”的当前判断由本条更新，旧记录保留。
+
+Alice沿Drive连接器完整下载既有128字节canary，SHA-256 d8bf98ac97ee845e975071033b74e3943ef0eb417d867afcee3518f76bf3f372、父级及shared=false与柯蓝回执一致，未重传。真实客户端失响应恢复、合成provider进程死亡和dry登录是不同证据，不合写为原生产全链通过。Hub无新增自启动，本次重启后的Hub恢复仍是柯蓝的实际收尾动作。
+
+Linux固定输入185项检查：183通过、1失败、1平台跳过；唯一失败是Windows路径大小写测试错误套用于Linux。Alice仅修正测试夹具，使各平台输入确实等价，保留Windows原变体；原失败项定点复跑1项通过，未再跑全套。冻结Hub恢复7项通过，另3项outbox→Hub检查已包含在185项中。运行代码未改。未把柯蓝324项/真实Windows/Google wire测试计作Alice亲跑，完整既有Hub依赖不在本冻结增量包内。
+
+结论APPROVE限定本轮实现和已核验的有界证据；原目标owner/业务链路仍pending，默认原生开关和原生产STOP/期限/PAUSED不因审查改变。具体下一步已写为原目标最多1模型回合、1新合成回执上传、15分钟固定截止的独立验收方案，尚未授权启动/派发；不再要求重复登录。无生产恢复、安装、业务ACK、合并或Ready。PR正文保留。本轮测试夹具修正归Alice S0自查，其余按实际执行者和方法归属。
+
+[独立复核与具体接续](docs/ALICE_INTEGRATION_REVIEW_20261016.md) · [验证记录](evidence/alice-integration-review-20261016.json)。
