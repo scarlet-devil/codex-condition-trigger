@@ -35,8 +35,8 @@ https://developers.google.com/workspace/drive/api/guides/create-file#generate-id
 
 ## 当前依赖与限制
 
-隔离 checkout 在当前可写 recovery 子目录，旧候选只读；原生 worktree 工具绑定当前
-AI 通信仓库，因此用独立 clone，未把另一个项目写入 AI 通信工作日志。
+条件触发器候选在独立 clone 中实施，旧候选只读；本记录仅承载本项目的实现与接续范围。
+原实施工作目录来源保留于历史提交，不作为另一项目的任务入口或执行依据。
 Python/watchdog 复用现有隔离环境。正式服务、生产调度、安装与合并不在本轮启动范围。
 完整性 Active 27/27 于 2026-10-15T15:21:17Z 通过；固定治理 387c98a。
 

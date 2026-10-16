@@ -274,18 +274,22 @@
     "pr_body_replace": 0
   },
   "next_step": {
-    "status": "prepared_not_dispatched",
-    "scope": "Original target one bounded business canary after specific authorization",
-    "max_model_turns": 1,
-    "max_new_synthetic_uploads": 1,
-    "max_minutes": 15,
-    "old_stop_and_history_preserved": true,
-    "repeat_real_login_required": false
+    "status": "withdrawn_after_project_context_correction",
+    "dispatched": false,
+    "continuation_owner": "scarlet-devil/codex-condition-trigger project work surface",
+    "previous_proposal_commit": "1278dc36088e4472e4c7921d4fb19068734f2fca",
+    "new_action_authorized": false
   },
   "limitations": [
     "Original target owner/business chain remains unaccepted.",
     "No current Windows runtime state fetched by Alice.",
     "Hub auto-start is not implemented or accepted by the dry-login evidence.",
     "Long-term unattended operation and permanent activation are outside this review."
-  ]
+  ],
+  "context_correction": {
+    "date": "2026-10-16",
+    "source": "Human confirmed the handoff was pasted into another project and requested cleanup.",
+    "scope": "Retain actual technical results; withdraw the misplaced continuation proposal.",
+    "project": "scarlet-devil/codex-condition-trigger"
+  }
 }

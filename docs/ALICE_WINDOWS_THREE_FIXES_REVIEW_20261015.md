@@ -1,5 +1,7 @@
 # Alice 复审：Windows 路径修正与三项功能的当前边界
 
+> 2026-10-16归属更正：本报告及实际技术结果仅属于 `scarlet-devil/codex-condition-trigger`。当时交接误贴到另一项目窗口；历史实现建议不构成该窗口的当前执行任务。接续以本项目 `CURRENT_STATE.md` 为准。
+
 日期：2026-10-15（Asia/Shanghai）。审查者：云端 Alice。固定输入：Draft PR #1 / `97e84fad8fb948303572cbaa327e4ba9a25a29ce`；本机实际测试的代码提交：`7203734d347d37ca6615b55b91cd3903d9efb5f9`；原交接基线：`03e66a37ceabcc66d5c3c5f36120fc6cdba364f5`。
 
 **结论：APPROVE，仅针对本次 Windows 路径最小修正及下述候选核心范围。三项功能整体仍为 integration_pending，不构成生产恢复、合并或真实登录批准。** 本轮没有确认新的代码阻塞，也没有将未实现的接口登记为完成。
