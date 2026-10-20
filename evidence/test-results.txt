@@ -1,0 +1,49 @@
+test_ack_survives_stale_completed_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_completed_poll) ... ok
+test_ack_survives_stale_queued_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_queued_poll) ... ok
+test_ack_survives_stale_uncertain_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_uncertain_poll) ... ok
+test_ambiguous_identical_history_messages_remain_uncertain (test_review_regressions.HistoryReceiptTests.test_ambiguous_identical_history_messages_remain_uncertain) ... ok
+test_exact_sent_text_recovers_after_ack_loss_and_restart (test_review_regressions.HistoryReceiptTests.test_exact_sent_text_recovers_after_ack_loss_and_restart) ... ok
+test_legacy_pending_batch_is_not_given_invented_history_evidence (test_review_regressions.HistoryReceiptTests.test_legacy_pending_batch_is_not_given_invented_history_evidence) ... ok
+test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) ... ok
+test_unsent_user_reference_cannot_replace_first_dispatch (test_review_regressions.HistoryReceiptTests.test_unsent_user_reference_cannot_replace_first_dispatch) ... ok
+test_continuous_wrong_response_ids_obey_deadline (test_review_regressions.RPCDeadlineTests.test_continuous_wrong_response_ids_obey_deadline) ... ok
+test_matching_response_after_deadline_is_rejected (test_review_regressions.RPCDeadlineTests.test_matching_response_after_deadline_is_rejected) ... ok
+test_stop_after_wrong_id_flood_returns_from_live_watcher (test_review_regressions.WatcherDeadlineTests.test_stop_after_wrong_id_flood_returns_from_live_watcher) ... ok
+test_burst_is_one_batch (test_trigger.ConditionTests.test_burst_is_one_batch) ... ok
+test_captured_version_survives_overwrite (test_trigger.ConditionTests.test_captured_version_survives_overwrite) ... ok
+test_config_binding_prevents_silent_thread_switch (test_trigger.ConditionTests.test_config_binding_prevents_silent_thread_switch) ... ok
+test_deleted_input_root_does_not_erase_baseline (test_trigger.ConditionTests.test_deleted_input_root_does_not_erase_baseline) ... ok
+test_partial_zip_waits_then_valid_zip_works (test_trigger.ConditionTests.test_partial_zip_waits_then_valid_zip_works) ... ok
+test_quiet_never_opens_rpc (test_trigger.ConditionTests.test_quiet_never_opens_rpc) ... ok
+test_ready_file_is_a_batch_completeness_gate (test_trigger.ConditionTests.test_ready_file_is_a_batch_completeness_gate) ... ok
+test_restart_preserves_dedup_and_pending (test_trigger.ConditionTests.test_restart_preserves_dedup_and_pending) ... ok
+test_same_size_same_mtime_new_content_is_detected (test_trigger.ConditionTests.test_same_size_same_mtime_new_content_is_detected) ... ok
+test_seed_imports_only_attested_versions (test_trigger.ConditionTests.test_seed_imports_only_attested_versions) ... ok
+test_single_worker_but_ack_and_status_can_open (test_trigger.ConditionTests.test_single_worker_but_ack_and_status_can_open) ... ok
+test_source_change_before_capture_is_rejected (test_trigger.ConditionTests.test_source_change_before_capture_is_rejected) ... ok
+test_stop_blocks_planning_and_sending (test_trigger.ConditionTests.test_stop_blocks_planning_and_sending) ... ok
+test_symlink_input_is_not_followed (test_trigger.ConditionTests.test_symlink_input_is_not_followed) ... ok
+test_touch_copy_and_rename_are_deduplicated (test_trigger.ConditionTests.test_touch_copy_and_rename_are_deduplicated) ... ok
+test_writing_resets_stability (test_trigger.ConditionTests.test_writing_resets_stability) ... ok
+test_accepted_missing_from_queue_is_not_blindly_retried (test_trigger.DispatchTests.test_accepted_missing_from_queue_is_not_blindly_retried) ... ok
+test_ack_loss_reconciles_without_reenqueue_after_restart (test_trigger.DispatchTests.test_ack_loss_reconciles_without_reenqueue_after_restart) ... ok
+test_assistant_text_cannot_be_a_dispatch_receipt (test_trigger.DispatchTests.test_assistant_text_cannot_be_a_dispatch_receipt) ... ok
+test_busy_queues_without_steering_or_starting (test_trigger.DispatchTests.test_busy_queues_without_steering_or_starting) ... ok
+test_idle_enqueues_exact_thread_without_policy_overrides (test_trigger.DispatchTests.test_idle_enqueues_exact_thread_without_policy_overrides) ... ok
+test_interrupted_thread_is_left_for_owner (test_trigger.DispatchTests.test_interrupted_thread_is_left_for_owner) ... ok
+test_next_batch_waits_for_verified_delivery (test_trigger.DispatchTests.test_next_batch_waits_for_verified_delivery) ... ok
+test_opt_in_resume_has_only_thread_id (test_trigger.DispatchTests.test_opt_in_resume_has_only_thread_id) ... ok
+test_pre_send_offline_retries_are_bounded (test_trigger.DispatchTests.test_pre_send_offline_retries_are_bounded) ... ok
+test_recovery_marks_crashed_send_uncertain (test_trigger.DispatchTests.test_recovery_marks_crashed_send_uncertain) ... ok
+test_resume_does_not_start_foreign_pending_work (test_trigger.DispatchTests.test_resume_does_not_start_foreign_pending_work) ... ok
+test_running_and_completion_need_matching_user_message (test_trigger.DispatchTests.test_running_and_completion_need_matching_user_message) ... ok
+test_unloaded_waits_without_falsely_claiming_wake (test_trigger.DispatchTests.test_unloaded_waits_without_falsely_claiming_wake) ... ok
+test_unverified_owner_never_opens_proxy (test_trigger.DispatchTests.test_unverified_owner_never_opens_proxy) ... ok
+test_wrong_thread_or_cwd_never_gets_mutated (test_trigger.DispatchTests.test_wrong_thread_or_cwd_never_gets_mutated) ... ok
+test_real_jsonl_proxy_process_handshake_and_queue (test_trigger.ProtocolProcessTests.test_real_jsonl_proxy_process_handshake_and_queue) ... ok
+test_native_watcher_and_offline_restart_recovery (test_trigger.WatcherProcessTests.test_native_watcher_and_offline_restart_recovery) ... ok
+
+----------------------------------------------------------------------
+Ran 44 tests in 2.011s
+
+OK

@@ -1,0 +1,161 @@
+{
+  "review_input": "0f35dd3ae4a31bea9087f67e7d4b6c49fed713b2",
+  "file_checks": [
+    {
+      "path": "docs/KELAN_DEEPLINK_WINDOW_RESEARCH_20261008.md",
+      "bytes": 13632,
+      "sha256": "cbd246d353499a2a62e03b23cf1ae290a33b5cb5c0907c3cd477e60032ee2722",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "evidence/deeplink-window-research-20261008.json",
+      "bytes": 10802,
+      "sha256": "ebdaf89e751879ed5bbf89f98cef013f7ecb6f6a0f8be67fd1ab3cb0cf8ba488",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "docs/KELAN_OWNER_LOADER_20261008.md",
+      "bytes": 7062,
+      "sha256": "ad73ef9b0626e87f67031424ef3bef3c033fda1f0721b89c9c91cdc1f8498792",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "evidence/owner-loader-preparation-20261008.json",
+      "bytes": 6563,
+      "sha256": "6883a619429e06ae2f772ef2e0a4a324a202e115ab1c5537aeb08d6e79d067d1",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "desktop_ipc.py",
+      "bytes": 26540,
+      "sha256": "5adbbc5770f3cf789e02e373a65b88387faa653b0450bdd2d1b6ef41df1ad30c",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "owner_loading.py",
+      "bytes": 2995,
+      "sha256": "aadfb66b79c05a1edddcfdb3e914817c283e0afaa771c471c75fd0bd74659ae4",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "trigger.py",
+      "bytes": 24580,
+      "sha256": "9a37842b79974d75566502d1c2c89939bd49d80768ed9baa172c017c1bb4d6fe",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "chat_adapters.py",
+      "bytes": 7562,
+      "sha256": "56c96d2f261e7f77c39b12b60951a53757ee2d4feff681c6f5f5e0ff5d705449",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "tests/test_owner_loading.py",
+      "bytes": 9512,
+      "sha256": "94edb586efe0f3b1ac75f1defb0f109b24d3a0385f26022d0bf09f695138bb3b",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "tests/fake_owner.py",
+      "bytes": 1671,
+      "sha256": "df5edb419844c1b20a8ad42b8427b6c6e498740167c80344f3907386b95c0c27",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "tests/test_desktop_ipc.py",
+      "bytes": 16404,
+      "sha256": "891588607e582d3c560a81bad4ca7232f1d85571e98479e167dd1ed748508775",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "tests/test_native_state.py",
+      "bytes": 5339,
+      "sha256": "280ed0cc077156319403856529738e9a55cebabf432e2672bb52ddefaf23e3f3",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "tests/test_trigger.py",
+      "bytes": 15917,
+      "sha256": "3b955c9f38608c5cc2432d7ca0542eac7ae63284251aa7bf5e5a5d6ee869b046",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "example.windows.json",
+      "bytes": 579,
+      "sha256": "8971ad5c166cb922db9eb91a26bda5f06befabb43a80fe2761108906df5fa79e",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "evidence/SHA256SUMS.json",
+      "bytes": 5667,
+      "sha256": "6aeb6eeabe60ffd27dda60d5d0e3c4fd77e703cb67c5e203ca624860454c78c0",
+      "blob_match": true,
+      "manifest_match": null
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 4524,
+      "sha256": "08bb961e3f6131c1d415e1fddd442773e7cbeb84036e0b7b4c066299dd23a54f",
+      "blob_match": true,
+      "manifest_match": true
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 32731,
+      "sha256": "1f94806c63fd34594fc105bfee00092b72c069dcd6742c12a5513c10d87887aa",
+      "blob_match": true,
+      "manifest_match": true
+    }
+  ],
+  "manifest_paths_complete": true,
+  "manifest_entries": 54,
+  "drive_report_exact": true,
+  "drive_report_bytes": 13632,
+  "drive_evidence_exact": true,
+  "drive_evidence_bytes": 10802,
+  "drive_metadata_lengths_match": true,
+  "drive_parents_match": true,
+  "recorded_isolated_checks": 9,
+  "recorded_isolated_checks_all_pass": true,
+  "source_anchors": 16,
+  "source_anchor_hashes_consistent": true,
+  "loader_source_hashes_match": true,
+  "private_installed_bundles_read": false,
+  "local_windows_rerun": false,
+  "reviewer": "Alice, cloud",
+  "code_review": "S2-M1 for Kelan changes: source review plus same-method focused rerun",
+  "native_and_installed_source_review": "S2-M0 transferred evidence; source anchors are locators, not independently inspected installed code",
+  "own_record_checks": "S0",
+  "focused_rerun": {
+    "command": "python -m unittest discover -s tests -p test_owner_loading.py -v",
+    "python": "3.12.14",
+    "platform": "linux",
+    "tests": 21,
+    "passed": 21,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "reported_seconds": 0.049,
+    "source_unchanged": true,
+    "native_ipc_window_model_calls": 0
+  },
+  "local_101_test_suite_rerun": false,
+  "local_9_isolated_checks_rerun": false,
+  "review_decision": "accept the bounded research and disabled loader preparation; proceed to a single supervised window-backend probe, not unattended adoption",
+  "remaining_runtime_question": "same original chat in an exactly associated new window; minimize it; verify owner and main-window navigation; measure actual focus impact",
+  "probe_scope_clarification": "The live loader reuses a reachable owner. A separately explicit one-shot window-backend probe may inspect an already loaded target without altering that guard or forcing an unload; it proves window behavior only."
+}

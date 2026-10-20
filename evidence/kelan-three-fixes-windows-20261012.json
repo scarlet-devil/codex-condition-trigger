@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "author": "Kelan",
+  "environment": "local Windows",
+  "observed_at_utc": "2026-10-12T01:13:25.301485+00:00",
+  "base_commit": "03e66a37ceabcc66d5c3c5f36120fc6cdba364f5",
+  "tested_code_commit": "7203734d347d37ca6615b55b91cd3903d9efb5f9",
+  "review_type": "Self-review",
+  "context_independence": "S0",
+  "baseline": {
+    "tests": 170,
+    "passed": 164,
+    "errors": 5,
+    "failed": 0,
+    "skipped": 1,
+    "cause": "redundant hash in frozen artifact path; observed FileNotFoundError at length 261"
+  },
+  "candidate": {
+    "tests": 172,
+    "passed": 171,
+    "errors": 0,
+    "failed": 0,
+    "skipped": 1,
+    "seconds": 23.7,
+    "skip": "Windows symlink privilege requirement",
+    "platform": "win32",
+    "python": "3.12.14"
+  },
+  "red_regression": {
+    "failed_before_fix": true,
+    "observed_temp_path_chars": 297,
+    "limit": 260
+  },
+  "real_worker": {
+    "checks": {
+      "real_windows_loop_progress": true,
+      "synthetic_backlog_no_dispatch": true,
+      "duplicate_exit_zero": true,
+      "duplicate_preserves_owner_receipt": true,
+      "hard_kill_is_stale_not_alive": true,
+      "new_process_preserves_pending_batch": true,
+      "normal_stop_exit_zero": true,
+      "stop_reason_and_exit_receipt": true,
+      "separate_duplicate_and_normal_exit_records": true
+    },
+    "all_owned_children_exited": true,
+    "stale_after_seconds": 30.004,
+    "forced_exit_code": 1,
+    "stop_reason": "STOP",
+    "mode": "dry",
+    "production_inputs": 0,
+    "model_calls": 0
+  },
+  "migration_and_native": {
+    "migration": "passed",
+    "batch_count": 7,
+    "old_columns_and_meta_unchanged": true,
+    "all_migrated_outcomes": "unknown",
+    "old_delivered_count": 4,
+    "historical_failure": {
+      "native_status": "failed",
+      "runtime": "systemError",
+      "exact_original_batch_match": true,
+      "later_delivered_ack_preserved": true
+    },
+    "fresh_native_query": {
+      "runtime": "notLoaded",
+      "latest_turn_status": "completed",
+      "latest_turn_error_is_null": true,
+      "matches_original_batch_turn": false,
+      "unrelated_continuation_not_used_as_receipt": true
+    },
+    "native_interface": "agent-visible wait_threads only; no standalone watcher collector implemented",
+    "production_mutated": false,
+    "business_ack_calls": 0
+  },
+  "final_boundary": {
+    "native_probe_at": "2026-10-12T01:03:34.8417174+00:00",
+    "related_workers": 0,
+    "old_trial_task": "absent",
+    "new_login_test_task": "not_registered",
+    "old_STOP": true,
+    "old_expiry_latch": true,
+    "legacy_timer": "PAUSED"
+  },
+  "remaining": {
+    "actual_logon": "Human deferred; prepared script not armed",
+    "standalone_native_collector": "not_implemented",
+    "real_upload_backend": "not_integrated; no safe_to_create proof via available Drive upload API",
+    "actual_remote_response_loss_recovery": "not_run"
+  },
+  "publication": {
+    "drive_reads": 2,
+    "drive_uploads": 0,
+    "drive_read_result": "MCP transport send failure",
+    "github_head_refresh": "MCP transport send failure",
+    "git_ls_remote": "automatic approval review network failure; explicitly not executed",
+    "status": "prepared_pending_external_delivery",
+    "alice_review": "review_pending"
+  },
+  "changes": {
+    "delivery_outbox.py": {
+      "bytes": 8977,
+      "sha256": "a64be9c906e25271a1c0fee5540a7f1d2555007ee71d76b7a93506a76ef97d95"
+    },
+    "tests/test_followup_fixes.py": {
+      "bytes": 13330,
+      "sha256": "374415f7a48be88525d200f077e4ef9cbf446d34b2833f8e7cf97d805eeefc75"
+    }
+  },
+  "harness_corrections": [
+    "Initial default sandbox TEMP access failure; moved test TEMP into this acceptance run without changing product code.",
+    "First real-worker probe used launcher PID equality, but native Python worker PID differs under this Windows launcher. Repeated in a fresh state directory using run_id; retained failed attempt.",
+    "First migration probe skipped load_config normalization; binding check correctly refused it. Repeated with the normal configuration loader; never altered production binding."
+  ]
+}

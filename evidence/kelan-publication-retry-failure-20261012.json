@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "at_utc": "2026-10-12T03:17:40.342723+00:00",
+  "human_request": "再次尝试推送",
+  "result": "pending_external_delivery",
+  "drive": {
+    "parent_preflight_verified": true,
+    "initial_exact_names": "absent",
+    "report_upload_calls": 1,
+    "zip_upload_calls": 0,
+    "file_id": null,
+    "failure": "OpenAI file_uri upload transport error",
+    "post_upload_lookup": "MCP transport send error",
+    "remote_existence": "unconfirmed",
+    "blind_retry": false
+  },
+  "github": {
+    "attempted_head": "631db5880317200cc38a58c263f7a0e10771a8a5",
+    "verified_remote_head_after_attempts": "03e66a37ceabcc66d5c3c5f36120fc6cdba364f5",
+    "first_combined_check_push_command": {
+      "exit_code": 128,
+      "error": "schannel: server closed abruptly (missing close_notify)",
+      "push_invocation_stage_not_observable": true
+    },
+    "explicit_bounded_push": {
+      "exit_code": 1,
+      "error": "RPC failed; curl 52 Empty reply from server; unexpected disconnect while reading sideband packet",
+      "http_version": "HTTP/1.1 for this command only"
+    },
+    "success": false,
+    "force": false,
+    "remote_ref_not_updated": true,
+    "metadata_preflight": {
+      "draft": true,
+      "open": true,
+      "merged": false
+    },
+    "latest_connector_metadata": "send error"
+  },
+  "source_code_commit": "7203734d347d37ca6615b55b91cd3903d9efb5f9",
+  "production": "stopped_expired",
+  "logon_test": "Human_deferred_not_armed",
+  "business_ack_calls": 0,
+  "alice_review": "review_pending",
+  "frozen_report_and_zip_changed": false,
+  "next_step": "Reconcile exact remote ref and Drive filenames before retry; preserve latest local commits and frozen payload. No automatic watcher or upload retry."
+}

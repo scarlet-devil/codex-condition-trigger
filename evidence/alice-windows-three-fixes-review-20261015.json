@@ -1,0 +1,122 @@
+{
+  "schema": 1,
+  "author": "Alice",
+  "environment": "cloud Linux",
+  "reviewed_commit": "97e84fad8fb948303572cbaa327e4ba9a25a29ce",
+  "base_commit": "03e66a37ceabcc66d5c3c5f36120fc6cdba364f5",
+  "verdict": "APPROVE_scoped",
+  "overall_integration": "pending",
+  "changed_files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "sha": "7efc38220aa2c0171476855f807a57214ccf75a6",
+      "bytes": 20992
+    },
+    {
+      "path": "WORK_LOG.md",
+      "sha": "957019a32ce77e7328899b36b6afc4bafb74e654",
+      "bytes": 84609
+    },
+    {
+      "path": "delivery_outbox.py",
+      "sha": "0a31ca3d1774955224e4d6105271e3858bf5b1ec",
+      "bytes": 8812
+    },
+    {
+      "path": "docs/KELAN_THREE_FIXES_WINDOWS_ACCEPTANCE_20261012.md",
+      "sha": "63c415c1ec5c5f213e7c3d39639670bc6272c0e3",
+      "bytes": 10432
+    },
+    {
+      "path": "docs/KELAN_TRANSPORT_DIAGNOSIS_20261012.md",
+      "sha": "0023005da9c511c0db68e21dec3a82c93f3a85fa",
+      "bytes": 2313
+    },
+    {
+      "path": "evidence/KELAN_THREE_FIXES_WINDOWS_EVIDENCE_20261012.zip",
+      "sha": "38a7c9d6e3c4109383678069bbced17f07785221",
+      "bytes": 16853
+    },
+    {
+      "path": "evidence/kelan-publication-retry-failure-20261012.json",
+      "sha": "83d285e70676eb8a010b6024754cff9fde0159dc",
+      "bytes": 1737
+    },
+    {
+      "path": "evidence/kelan-three-fixes-delivery-20261012.json",
+      "sha": "40040bc36a82d5cd0626c10a0bd14e9f9f45eb59",
+      "bytes": 1827
+    },
+    {
+      "path": "evidence/kelan-three-fixes-publication-20261012.json",
+      "sha": "bd4fcd58d94881a8b86b661f4575d8dbe905c1c9",
+      "bytes": 1763
+    },
+    {
+      "path": "evidence/kelan-three-fixes-windows-20261012.json",
+      "sha": "f2d63035fc90fabe58ef61e8a9fff6a8e331b546",
+      "bytes": 4090
+    },
+    {
+      "path": "tests/test_followup_fixes.py",
+      "sha": "67874657801232a8453d9dacd7675b5e940bba5e",
+      "bytes": 13063
+    }
+  ],
+  "changed_files_bytes": 166491,
+  "verified_input_blobs": 37,
+  "archive": {
+    "source": "GitHub fixed commit",
+    "bytes": 16853,
+    "sha256": "9cd75a0242d4668e96887f11dbe2c48abb3ef3887e391b75c1624332dd19984e",
+    "members": 8,
+    "manifest_payloads": 7,
+    "crc": "passed",
+    "all_manifest_lengths_and_hashes": "passed",
+    "report_bytes": 10508,
+    "report_sha256": "e7681ed34137e7c97c8f7bd0e9f6e470e3771c21e3de54dadc85e7a5c5270beb",
+    "git_report_bytes": 10432,
+    "report_difference": "CRLF versus LF only",
+    "drive_readback_this_round": false
+  },
+  "tests": {
+    "command": "python -m unittest discover -s tests -q",
+    "dependency": "watchdog==6.0.0 in isolated target",
+    "total": 172,
+    "passed": 171,
+    "skipped": 1,
+    "failed": 0,
+    "errors": 0,
+    "seconds": 5.941,
+    "skip": "Windows overlapped-I/O contract",
+    "baseline_regression": {
+      "status": "expected_failure",
+      "test": "OutboxTests.test_freeze_in_nested_state_directory_with_legacy_windows_path_limit",
+      "assertion": "297 not less than 260"
+    },
+    "candidate_path_regression": "passed in full suite",
+    "legacy_frozen_path_regression": "passed in full suite"
+  },
+  "evidence_attribution": {
+    "tests": "Alice direct cloud rerun of supplied tests; no independent-method claim",
+    "windows_dry_nine_checks": "Kelan report and sanitized evidence only",
+    "seven_batch_migration_four_ack_preservation": "Kelan report and sanitized evidence only",
+    "actual_drive_delivery": "Kelan receipt; identical frozen ZIP independently read from GitHub"
+  },
+  "open_items": [
+    "Human-deferred actual logon test",
+    "standalone exact native result collector",
+    "real unattended upload backend and response-loss recovery"
+  ],
+  "cloud_harness_correction": "Initial archive check used wrong cwd; corrected before manifest verification; no source change",
+  "actions": {
+    "source_changes": 0,
+    "windows_runtime_calls": 0,
+    "model_tasks": 0,
+    "production_activation": 0,
+    "business_ack": 0,
+    "upload_retries": 0,
+    "merge": 0,
+    "ready_transition": 0
+  }
+}

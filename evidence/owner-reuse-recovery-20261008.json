@@ -1,0 +1,144 @@
+{
+  "schema": "kelan-owner-reuse-recovery-v1",
+  "date": "2026-10-08",
+  "timezone": "Asia/Shanghai",
+  "author_identity": "Kelan",
+  "deployment_environment": "local",
+  "acting_role": "Python recovery fix and isolated regression",
+  "input_commit": "93e3f969e12861193d6974d2acb104c4162b2dc1",
+  "input_review_comment": "https://github.com/scarlet-devil/codex-condition-trigger/pull/1#issuecomment-6058420064",
+  "scope": "F1 only; Python-only; no native IPC/UI/model/watcher activation",
+  "implementation": {
+    "runtime_files": [
+      "owner_loading.py"
+    ],
+    "tests_changed": [
+      "tests/test_window_cycle.py"
+    ],
+    "new_tests": 7,
+    "atomic_claim": "same cycle snapshot CAS plus same ready batch and SQL NULL send-intent predicates",
+    "preserved": "cycle history, lease/open budget, legacy claims, busy/unknown, uncertain sends and closes"
+  },
+  "source_hashes": {
+    "owner_loading.py": "c24aa844052c4b96623b05905cb50fe715db27213b8a4b7b77f4c0e53f447e8d",
+    "tests/test_window_cycle.py": "90411a788b2a0650d17f83d40844354e3f6b318de199d485863ec63ba952b31d"
+  },
+  "checks": [
+    {
+      "command": "python -X utf8 -B evidence/alice-window-cycle-review-20261008/probe.py --repo .",
+      "stage": "before-fix",
+      "exit_code": 1,
+      "trace": {
+        "first_tick": "waiting_owner",
+        "before_restart": {
+          "batch_state": "ready",
+          "dispatch_text_is_none": true,
+          "dispatch_meta_is_none": true,
+          "cycle_phase": "reused",
+          "lease_is_none": true,
+          "open_calls": 0,
+          "send_calls": 0
+        },
+        "retry_deadline_bypassed_by_seconds": 60,
+        "ticks_after_restart": [
+          "waiting_owner",
+          "waiting_owner",
+          "waiting_owner"
+        ],
+        "tick_after_new_file": "waiting_owner",
+        "pending_batches": 2,
+        "final_open_calls": 0,
+        "final_send_calls": 0,
+        "final_cycle_phase": "reused",
+        "requirement": "Definite owner absence for a ready, never-dispatched, reused cycle with no lease or prior window action permits one durable open claim.",
+        "requirement_satisfied": false,
+        "native_actions": 0,
+        "model_calls": 0
+      }
+    },
+    {
+      "command": "python -X utf8 -B -m unittest test_owner_loading test_window_cycle -v",
+      "env": {
+        "PYTHONPATH": ".;tests"
+      },
+      "stage": "before-fix-with-first-six-new-tests",
+      "exit_code": 1,
+      "tests": 45,
+      "failures": 3,
+      "output": "test_initialize_errors_preserve_stage_and_fixed_category (test_owner_loading.NegativeReplyTests.test_initialize_errors_preserve_stage_and_fixed_category) ... ok\ntest_correlated_negative_without_method_keeps_fixed_reason (test_owner_loading.NegativeReplyTests.test_correlated_negative_without_method_keeps_fixed_reason) ... ok\ntest_unknown_remote_error_is_redacted_and_not_owner_missing (test_owner_loading.NegativeReplyTests.test_unknown_remote_error_is_redacted_and_not_owner_missing) ... ok\ntest_mismatched_negative_is_ignored (test_owner_loading.NegativeReplyTests.test_mismatched_negative_is_ignored) ... ok\ntest_success_still_requires_method_and_exact_target (test_owner_loading.NegativeReplyTests.test_success_still_requires_method_and_exact_target) ... ok\ntest_owner_wait_survives_restart_without_spending_connection_budget (test_owner_loading.OwnerLoadingTests.test_owner_wait_survives_restart_without_spending_connection_budget) ... ok\ntest_owner_lost_during_snapshot_also_waits_without_failure_budget (test_owner_loading.OwnerLoadingTests.test_owner_lost_during_snapshot_also_waits_without_failure_budget) ... ok\ntest_negative_start_reply_remains_uncertain_and_never_loads (test_owner_loading.OwnerLoadingTests.test_negative_start_reply_remains_uncertain_and_never_loads) ... ok\ntest_waiting_does_not_prevent_later_file_capture (test_owner_loading.OwnerLoadingTests.test_waiting_does_not_prevent_later_file_capture) ... ok\ntest_loader_disabled_by_default (test_owner_loading.OwnerLoadingTests.test_loader_disabled_by_default) ... ok\ntest_inspect_never_loads (test_owner_loading.OwnerLoadingTests.test_inspect_never_loads) ... ok\ntest_available_owner_reused_without_backend_or_window_action (test_owner_loading.OwnerLoadingTests.test_available_owner_reused_without_backend_or_window_action) ... ok\ntest_load_is_explicit_no_prompt_and_rechecks_owner (test_owner_loading.OwnerLoadingTests.test_load_is_explicit_no_prompt_and_rechecks_owner) ... ok\ntest_one_load_budget_is_durable_across_failures_and_new_batch (test_owner_loading.OwnerLoadingTests.test_one_load_budget_is_durable_across_failures_and_new_batch) ... ok\ntest_not_configured_does_not_spend_action_budget (test_owner_loading.OwnerLoadingTests.test_not_configured_does_not_spend_action_budget) ... ok\ntest_stop_and_every_sent_state_block_loading (test_owner_loading.OwnerLoadingTests.test_stop_and_every_sent_state_block_loading) ... ok\ntest_ready_with_prior_send_intent_cannot_load (test_owner_loading.OwnerLoadingTests.test_ready_with_prior_send_intent_cannot_load) ... ok\ntest_after_load_busy_is_not_ready (test_owner_loading.OwnerLoadingTests.test_after_load_busy_is_not_ready) ... ok\ntest_non_owner_error_cannot_trigger_loader (test_owner_loading.OwnerLoadingTests.test_non_owner_error_cannot_trigger_loader) ... ok\ntest_stop_appearing_after_owner_check_prevents_action (test_owner_loading.OwnerLoadingTests.test_stop_appearing_after_owner_check_prevents_action) ... ok\ntest_owner_presence_does_not_override_bad_thread_identity (test_owner_loading.OwnerLoadingTests.test_owner_presence_does_not_override_bad_thread_identity) ... ok\ntest_idle_reused_and_busy_waits_without_window_actions (test_window_cycle.CycleTests.test_idle_reused_and_busy_waits_without_window_actions) ... ok\ntest_two_batches_after_verified_close_have_separate_load_budget (test_window_cycle.CycleTests.test_two_batches_after_verified_close_have_separate_load_budget) ... ok\ntest_surviving_owner_reused_on_second_batch (test_window_cycle.CycleTests.test_surviving_owner_reused_on_second_batch) ... ok\ntest_open_timeout_survives_restart_and_new_batch (test_window_cycle.CycleTests.test_open_timeout_survives_restart_and_new_batch) ... ok\ntest_sent_batch_never_loads_after_owner_loss (test_window_cycle.CycleTests.test_sent_batch_never_loads_after_owner_loss) ... ok\ntest_completion_alone_does_not_close_or_ack (test_window_cycle.CycleTests.test_completion_alone_does_not_close_or_ack) ... ok\ntest_early_ack_does_not_close_active_turn (test_window_cycle.CycleTests.test_early_ack_does_not_close_active_turn) ... ok\ntest_close_failure_preserves_delivery_and_blocks_next_send (test_window_cycle.CycleTests.test_close_failure_preserves_delivery_and_blocks_next_send) ... ok\ntest_changed_window_identity_not_closed (test_window_cycle.CycleTests.test_changed_window_identity_not_closed) ... ok\ntest_busy_after_ack_delays_close (test_window_cycle.CycleTests.test_busy_after_ack_delays_close) ... ok\ntest_legacy_claim_not_silently_reset (test_window_cycle.CycleTests.test_legacy_claim_not_silently_reset) ... ok\ntest_unknown_owner_reply_never_opens (test_window_cycle.CycleTests.test_unknown_owner_reply_never_opens) ... ok\ntest_stop_during_open_preserves_lease_without_sending (test_window_cycle.CycleTests.test_stop_during_open_preserves_lease_without_sending) ... ok\ntest_no_files_no_window_or_ipc (test_window_cycle.CycleTests.test_no_files_no_window_or_ipc) ... ok\ntest_worker_lock_required_for_lifecycle (test_window_cycle.CycleTests.test_worker_lock_required_for_lifecycle) ... ok\ntest_ack_between_prepare_and_dispatch_cannot_send_next_batch (test_window_cycle.CycleTests.test_ack_between_prepare_and_dispatch_cannot_send_next_batch) ... ok\ntest_lost_acceptance_requires_correlation_before_cycle_ack (test_window_cycle.CycleTests.test_lost_acceptance_requires_correlation_before_cycle_ack) ... ok\ntest_disabling_loader_cannot_bypass_unclosed_cycle (test_window_cycle.CycleTests.test_disabling_loader_cannot_bypass_unclosed_cycle) ... ok\ntest_reused_owner_loss_recovers_same_batch_once_across_restart (test_window_cycle.CycleTests.test_reused_owner_loss_recovers_same_batch_once_across_restart) ... FAIL\ntest_reused_cycle_busy_or_unknown_never_promotes (test_window_cycle.CycleTests.test_reused_cycle_busy_or_unknown_never_promotes) ... ok\ntest_reused_promotion_rechecks_send_state_atomically (test_window_cycle.CycleTests.test_reused_promotion_rechecks_send_state_atomically) ... ok\ntest_reused_cycle_with_prior_open_history_or_lease_cannot_reopen (test_window_cycle.CycleTests.test_reused_cycle_with_prior_open_history_or_lease_cannot_reopen) ... ok\ntest_promoted_open_timeout_is_durable_across_restart (test_window_cycle.CycleTests.test_promoted_open_timeout_is_durable_across_restart) ... FAIL\ntest_promoted_open_budget_not_reset_if_owner_disappears_again (test_window_cycle.CycleTests.test_promoted_open_budget_not_reset_if_owner_disappears_again) ... FAIL\n\n======================================================================\nFAIL: test_reused_owner_loss_recovers_same_batch_once_across_restart (test_window_cycle.CycleTests.test_reused_owner_loss_recovers_same_batch_once_across_restart)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<repository>\\tests\\test_window_cycle.py\", line 248, in test_reused_owner_loss_recovers_same_batch_once_across_restart\n    self.assertEqual(self.tick(), 'accepted')\nAssertionError: 'waiting_owner' != 'accepted'\n- waiting_owner\n+ accepted\n\n\n======================================================================\nFAIL: test_promoted_open_timeout_is_durable_across_restart (test_window_cycle.CycleTests.test_promoted_open_timeout_is_durable_across_restart)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<repository>\\tests\\test_window_cycle.py\", line 317, in test_promoted_open_timeout_is_durable_across_restart\n    self.assertEqual(self.tick(), 'window_open_unknown')\nAssertionError: 'waiting_owner' != 'window_open_unknown'\n- waiting_owner\n+ window_open_unknown\n\n\n======================================================================\nFAIL: test_promoted_open_budget_not_reset_if_owner_disappears_again (test_window_cycle.CycleTests.test_promoted_open_budget_not_reset_if_owner_disappears_again)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"<repository>\\tests\\test_window_cycle.py\", line 337, in test_promoted_open_budget_not_reset_if_owner_disappears_again\n    self.assertEqual(self.actions, ['open'])\nAssertionError: Lists differ: [] != ['open']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n'open'\n\n- []\n+ ['open']\n\n----------------------------------------------------------------------\nRan 45 tests in 5.726s\n\nFAILED (failures=3)\n"
+    },
+    {
+      "command": "python -X utf8 -B evidence/alice-window-cycle-review-20261008/probe.py --repo .",
+      "stage": "after-fix",
+      "exit_code": 0,
+      "trace": {
+        "first_tick": "waiting_owner",
+        "before_restart": {
+          "batch_state": "ready",
+          "dispatch_text_is_none": true,
+          "dispatch_meta_is_none": true,
+          "cycle_phase": "reused",
+          "lease_is_none": true,
+          "open_calls": 0,
+          "send_calls": 0
+        },
+        "retry_deadline_bypassed_by_seconds": 60,
+        "ticks_after_restart": [
+          "accepted",
+          "running",
+          "running"
+        ],
+        "tick_after_new_file": "running",
+        "pending_batches": 2,
+        "final_open_calls": 1,
+        "final_send_calls": 1,
+        "final_cycle_phase": "open",
+        "requirement": "Definite owner absence for a ready, never-dispatched, reused cycle with no lease or prior window action permits one durable open claim.",
+        "requirement_satisfied": true,
+        "native_actions": 0,
+        "model_calls": 0
+      }
+    },
+    {
+      "command": "python -X utf8 -B -m unittest test_owner_loading test_window_cycle -v",
+      "env": {
+        "PYTHONPATH": ".;tests"
+      },
+      "stage": "final-seven-new-tests",
+      "exit_code": 0,
+      "tests": 46,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "output": "test_initialize_errors_preserve_stage_and_fixed_category (test_owner_loading.NegativeReplyTests.test_initialize_errors_preserve_stage_and_fixed_category) ... ok\ntest_correlated_negative_without_method_keeps_fixed_reason (test_owner_loading.NegativeReplyTests.test_correlated_negative_without_method_keeps_fixed_reason) ... ok\ntest_unknown_remote_error_is_redacted_and_not_owner_missing (test_owner_loading.NegativeReplyTests.test_unknown_remote_error_is_redacted_and_not_owner_missing) ... ok\ntest_mismatched_negative_is_ignored (test_owner_loading.NegativeReplyTests.test_mismatched_negative_is_ignored) ... ok\ntest_success_still_requires_method_and_exact_target (test_owner_loading.NegativeReplyTests.test_success_still_requires_method_and_exact_target) ... ok\ntest_owner_wait_survives_restart_without_spending_connection_budget (test_owner_loading.OwnerLoadingTests.test_owner_wait_survives_restart_without_spending_connection_budget) ... ok\ntest_owner_lost_during_snapshot_also_waits_without_failure_budget (test_owner_loading.OwnerLoadingTests.test_owner_lost_during_snapshot_also_waits_without_failure_budget) ... ok\ntest_negative_start_reply_remains_uncertain_and_never_loads (test_owner_loading.OwnerLoadingTests.test_negative_start_reply_remains_uncertain_and_never_loads) ... ok\ntest_waiting_does_not_prevent_later_file_capture (test_owner_loading.OwnerLoadingTests.test_waiting_does_not_prevent_later_file_capture) ... ok\ntest_loader_disabled_by_default (test_owner_loading.OwnerLoadingTests.test_loader_disabled_by_default) ... ok\ntest_inspect_never_loads (test_owner_loading.OwnerLoadingTests.test_inspect_never_loads) ... ok\ntest_available_owner_reused_without_backend_or_window_action (test_owner_loading.OwnerLoadingTests.test_available_owner_reused_without_backend_or_window_action) ... ok\ntest_load_is_explicit_no_prompt_and_rechecks_owner (test_owner_loading.OwnerLoadingTests.test_load_is_explicit_no_prompt_and_rechecks_owner) ... ok\ntest_one_load_budget_is_durable_across_failures_and_new_batch (test_owner_loading.OwnerLoadingTests.test_one_load_budget_is_durable_across_failures_and_new_batch) ... ok\ntest_not_configured_does_not_spend_action_budget (test_owner_loading.OwnerLoadingTests.test_not_configured_does_not_spend_action_budget) ... ok\ntest_stop_and_every_sent_state_block_loading (test_owner_loading.OwnerLoadingTests.test_stop_and_every_sent_state_block_loading) ... ok\ntest_ready_with_prior_send_intent_cannot_load (test_owner_loading.OwnerLoadingTests.test_ready_with_prior_send_intent_cannot_load) ... ok\ntest_after_load_busy_is_not_ready (test_owner_loading.OwnerLoadingTests.test_after_load_busy_is_not_ready) ... ok\ntest_non_owner_error_cannot_trigger_loader (test_owner_loading.OwnerLoadingTests.test_non_owner_error_cannot_trigger_loader) ... ok\ntest_stop_appearing_after_owner_check_prevents_action (test_owner_loading.OwnerLoadingTests.test_stop_appearing_after_owner_check_prevents_action) ... ok\ntest_owner_presence_does_not_override_bad_thread_identity (test_owner_loading.OwnerLoadingTests.test_owner_presence_does_not_override_bad_thread_identity) ... ok\ntest_idle_reused_and_busy_waits_without_window_actions (test_window_cycle.CycleTests.test_idle_reused_and_busy_waits_without_window_actions) ... ok\ntest_two_batches_after_verified_close_have_separate_load_budget (test_window_cycle.CycleTests.test_two_batches_after_verified_close_have_separate_load_budget) ... ok\ntest_surviving_owner_reused_on_second_batch (test_window_cycle.CycleTests.test_surviving_owner_reused_on_second_batch) ... ok\ntest_open_timeout_survives_restart_and_new_batch (test_window_cycle.CycleTests.test_open_timeout_survives_restart_and_new_batch) ... ok\ntest_sent_batch_never_loads_after_owner_loss (test_window_cycle.CycleTests.test_sent_batch_never_loads_after_owner_loss) ... ok\ntest_completion_alone_does_not_close_or_ack (test_window_cycle.CycleTests.test_completion_alone_does_not_close_or_ack) ... ok\ntest_early_ack_does_not_close_active_turn (test_window_cycle.CycleTests.test_early_ack_does_not_close_active_turn) ... ok\ntest_close_failure_preserves_delivery_and_blocks_next_send (test_window_cycle.CycleTests.test_close_failure_preserves_delivery_and_blocks_next_send) ... ok\ntest_changed_window_identity_not_closed (test_window_cycle.CycleTests.test_changed_window_identity_not_closed) ... ok\ntest_busy_after_ack_delays_close (test_window_cycle.CycleTests.test_busy_after_ack_delays_close) ... ok\ntest_legacy_claim_not_silently_reset (test_window_cycle.CycleTests.test_legacy_claim_not_silently_reset) ... ok\ntest_unknown_owner_reply_never_opens (test_window_cycle.CycleTests.test_unknown_owner_reply_never_opens) ... ok\ntest_stop_during_open_preserves_lease_without_sending (test_window_cycle.CycleTests.test_stop_during_open_preserves_lease_without_sending) ... ok\ntest_no_files_no_window_or_ipc (test_window_cycle.CycleTests.test_no_files_no_window_or_ipc) ... ok\ntest_worker_lock_required_for_lifecycle (test_window_cycle.CycleTests.test_worker_lock_required_for_lifecycle) ... ok\ntest_ack_between_prepare_and_dispatch_cannot_send_next_batch (test_window_cycle.CycleTests.test_ack_between_prepare_and_dispatch_cannot_send_next_batch) ... ok\ntest_lost_acceptance_requires_correlation_before_cycle_ack (test_window_cycle.CycleTests.test_lost_acceptance_requires_correlation_before_cycle_ack) ... ok\ntest_disabling_loader_cannot_bypass_unclosed_cycle (test_window_cycle.CycleTests.test_disabling_loader_cannot_bypass_unclosed_cycle) ... ok\ntest_reused_owner_loss_recovers_same_batch_once_across_restart (test_window_cycle.CycleTests.test_reused_owner_loss_recovers_same_batch_once_across_restart) ... ok\ntest_reused_cycle_busy_or_unknown_never_promotes (test_window_cycle.CycleTests.test_reused_cycle_busy_or_unknown_never_promotes) ... ok\ntest_reused_promotion_rechecks_send_state_atomically (test_window_cycle.CycleTests.test_reused_promotion_rechecks_send_state_atomically) ... ok\ntest_reused_cycle_with_prior_open_history_or_lease_cannot_reopen (test_window_cycle.CycleTests.test_reused_cycle_with_prior_open_history_or_lease_cannot_reopen) ... ok\ntest_promoted_open_timeout_is_durable_across_restart (test_window_cycle.CycleTests.test_promoted_open_timeout_is_durable_across_restart) ... ok\ntest_reused_claim_cannot_overwrite_changed_cycle_snapshot (test_window_cycle.CycleTests.test_reused_claim_cannot_overwrite_changed_cycle_snapshot) ... ok\ntest_promoted_open_budget_not_reset_if_owner_disappears_again (test_window_cycle.CycleTests.test_promoted_open_budget_not_reset_if_owner_disappears_again) ... ok\n\n----------------------------------------------------------------------\nRan 46 tests in 5.814s\n\nOK\n"
+    }
+  ],
+  "test_sequence": "First six tests before fix: three relevant recovery failures and three preservation checks pass. Seventh stale-cycle CAS preservation test added afterward; final 46 pass. No claim all seven were initially red.",
+  "unchanged_evidence": {
+    "window_backend": {
+      "bytes": 13193,
+      "sha256": "31de19805aeca7d58468305990346ed6555d533bbfba814272ddb71366348de7"
+    },
+    "native_evidence": {
+      "bytes": 9148,
+      "sha256": "80303e8920bf07ba7da3800eed0662f23ce7eb6963f7e46267dfebb5314e5f8e"
+    }
+  },
+  "runtime": "Windows Python 3.12.14, existing isolated environment, temporary synthetic files/SQLite/adapters",
+  "native_actions": 0,
+  "model_calls": 0,
+  "production_watchers_started": 0,
+  "not_rerun": [
+    "whole application suite",
+    "Windows two-batch trial"
+  ],
+  "limits": [
+    "synthetic owner recovery only, not real cold recovery",
+    "current route remains supervision dependent",
+    "prior focus and final deadline-gate evidence retain their original limits"
+  ],
+  "review_type": "Kelan self-review S0; Alice follow-up pending",
+  "alice_review": "review_pending",
+  "pr_state": "Draft",
+  "timer": "PAUSED"
+}

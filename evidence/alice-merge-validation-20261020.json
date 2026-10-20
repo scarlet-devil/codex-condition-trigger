@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-10-20T13:04:26.684542+00:00",
+  "author": "Alice",
+  "deployment_environment": "cloud Linux",
+  "review_type": "Self-review (S0)",
+  "repository": "scarlet-devil/codex-condition-trigger",
+  "input_commit": "95a6e9f7765bea2e308a99308c7d9488e4b477e0",
+  "scope": "Merge-readiness regression followed by documentation-only closeout; no runtime edits.",
+  "environment": {
+    "python": "3.12.14",
+    "platform": "Linux",
+    "watchdog": "6.0.0"
+  },
+  "runtime_and_test_git_blobs_verified": {
+    "chat_adapters.py": "010096669cafbc920fd13cffe8e04d8ffca25dbd",
+    "delivery_outbox.py": "0a31ca3d1774955224e4d6105271e3858bf5b1ec",
+    "desktop_ipc.py": "3c1187892b9209708d1996fe365fe93b6fcebcc9",
+    "example.linux.json": "c3312a0c6bed5fb9591e2c9dcd6d6bfbd7362642",
+    "example.windows-ipc.json": "35327488932b1e674de9860fe4b5e35292078edf",
+    "example.windows.json": "c60eddf8cd7ad9a395a13f210c8b963c62f6cadc",
+    "execution_result.py": "d2ad397e38613a54e0dc34520389b0396735286c",
+    "hub_delivery_driver.py": "0abe173caf43fd492a91084b23d80f6e98b775f0",
+    "install_trial_task.ps1": "3dfb2cfeb4f6a240eed27c5cc6687608d2897001",
+    "native_collector.py": "f79787facf58bc0226db5c31f252a80bb32ca038",
+    "owner_loading.py": "cbee390b450048899edf43f0b5bb4184d11c625b",
+    "requirements.txt": "c6c52fb2787e8cbe2b5c1c261204d62697ae9c30",
+    "tests/fake_owner.py": "b492e0251842945a50afb8e8ce3d2011d1884498",
+    "tests/test_chat_adapters.py": "d72ab120cec404ea23c505fb98908c311e44a528",
+    "tests/test_desktop_ipc.py": "4c6bf7d0c7bd045dfabcdb4692e1c4aa676bfb26",
+    "tests/test_followup_fixes.py": "67874657801232a8453d9dacd7675b5e940bba5e",
+    "tests/test_hub_delivery_driver.py": "53cdb454abe90a8c07f397756c20b83689361193",
+    "tests/test_material_wait.py": "bdb96d1f7c4b6f0013f3b7d931e74370bc26a7cc",
+    "tests/test_native_collector.py": "5d78e0c21e3a0b3bd04dd96012ae54fcebd0c2e5",
+    "tests/test_native_state.py": "c709fc7fe55fe06ccb0c366185efa7ca7f4dfa70",
+    "tests/test_owner_loading.py": "ed8d797f2af35e26ec9f84147388613cdf37405a",
+    "tests/test_recovery_worker.py": "78580be80f8b02019df2b5a5ee116842314b8108",
+    "tests/test_review_regressions.py": "fb724a8964e3802a1e21501c8ff44a0d11ef879a",
+    "tests/test_trial_deadline.py": "e5289912b1da3c884d53b70da8cdc42da7c2a4ad",
+    "tests/test_trigger.py": "5aac9bc376042d1aa3bb6a8622fd968ce997ff58",
+    "tests/test_window_cycle.py": "d1c41ece6dd2448affeb226187020f983915604f",
+    "trial_limits.py": "3b20139e6c940cb4b3610faf6b5274b1392a1855",
+    "trial_worker.py": "cef2d80ec09100ba8ad7291af74bc4ebba199d7b",
+    "trigger.py": "05201969d1c36c84da11b66d2dd3650d5cb5d8ef",
+    "windows_window_backend.ps1": "030310782601c7c7bcdab5e6e7075394ac607416",
+    "worker_health.py": "8d1bbc5a233802c3d0efb9eac4efd3df4684269b"
+  },
+  "full_regression": {
+    "command": "PYTHONPATH=\"$PWD/.review-deps:$PWD/hub/src:$PWD\" python -m unittest discover -s tests -v",
+    "tests": 185,
+    "passed": 184,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 1,
+    "duration_seconds": 8.896,
+    "exit_code": 0,
+    "skip_reason": "Windows overlapped-I/O contract",
+    "skipped_test": "test_desktop_ipc.WireTests.test_interrupt_cancels_and_drains_before_freeing_storage",
+    "optional_hub_tests_executed": 3,
+    "log": "evidence/alice-merge-tests-20261020.txt",
+    "log_sha256": "f631b058cb76ac8f8ed5326f48a2c257c7010ac7cbd140ddf528d6d259df42da"
+  },
+  "hub_fixture": {
+    "archive": "evidence/hub-material-recovery-candidate-20261016.zip",
+    "size_bytes": 53770,
+    "sha256": "21f736228e18f430e537e4845e69ae9a2f0727145587d5d3642746b3417de14d",
+    "verified_in_preceding_readonly_review": "CRC, safe paths, all 15 payload manifest entries",
+    "provider": "synthetic; no production Hub or network upload in this run"
+  },
+  "documentation_checks": {
+    "relative_links_checked": 43,
+    "broken_links": 0,
+    "markdown_fences_balanced": true,
+    "commands": [
+      {
+        "command": "scan",
+        "exit_code": 0
+      },
+      {
+        "command": "status",
+        "exit_code": 0
+      },
+      {
+        "command": "scan",
+        "exit_code": 0
+      },
+      {
+        "command": "status",
+        "exit_code": 0
+      },
+      {
+        "command": "stop",
+        "exit_code": 0
+      },
+      {
+        "command": "status",
+        "exit_code": 0
+      },
+      {
+        "command": "unpause",
+        "exit_code": 0
+      },
+      {
+        "command": "status",
+        "exit_code": 0
+      }
+    ],
+    "dry_watcher_exit_code": 0,
+    "one_ready_batch": true,
+    "unchanged_bytes_no_duplicate": true,
+    "stop_persisted": true,
+    "unpause_of_unexpired_demo_verified": true,
+    "demo_paths": "isolated temporary replacement for README demo paths",
+    "windows_powershell_steps": "reviewed; not executed on Windows"
+  },
+  "not_established": [
+    "GitHub CI status",
+    "current local Windows process state",
+    "new real model or Drive execution",
+    "original target end-to-end business acceptance",
+    "long-term unattended operation"
+  ],
+  "merge_outcome": "Recorded separately in PR #1 after the authorized merge; this file is pre-merge evidence."
+}

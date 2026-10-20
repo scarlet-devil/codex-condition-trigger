@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+local*.json
+production*.json
+state/
+runtime/
+*.sqlite
+*.sqlite-*
+*.log
+.env
+.env.*

@@ -1,0 +1,124 @@
+Baseline trigger.py: 9c658d6bffb16c53e8838f8432ac1e1319b6da6b
+Current regression tests against the unchanged baseline implementation.
+Workspace prefixes normalized in tracebacks.
+
+test_ack_survives_stale_completed_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_completed_poll) ... FAIL
+test_ack_survives_stale_queued_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_queued_poll) ... FAIL
+test_ack_survives_stale_uncertain_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_uncertain_poll) ... FAIL
+test_continuous_wrong_response_ids_obey_deadline (test_review_regressions.RPCDeadlineTests.test_continuous_wrong_response_ids_obey_deadline) ... FAIL
+test_matching_response_after_deadline_is_rejected (test_review_regressions.RPCDeadlineTests.test_matching_response_after_deadline_is_rejected) ... FAIL
+test_unsent_user_reference_cannot_replace_first_dispatch (test_review_regressions.HistoryReceiptTests.test_unsent_user_reference_cannot_replace_first_dispatch) ... FAIL
+test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) ... 
+  test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) (reference='Explain batch_id=0f0dd075b9908') ... FAIL
+  test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) (reference='> File condition batch_id=0f0d') ... FAIL
+  test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) (reference='File condition batch_id=0f0dd0') ... FAIL
+
+======================================================================
+FAIL: test_ack_survives_stale_completed_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_completed_poll)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 84, in test_ack_survives_stale_completed_poll
+    self.check_stale_poll("completed")
+  File "tests/test_review_regressions.py", line 75, in check_stale_poll
+    self.assertEqual(current["state"], "delivered")
+AssertionError: 'completed' != 'delivered'
+- completed
++ delivered
+
+
+======================================================================
+FAIL: test_ack_survives_stale_queued_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_queued_poll)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 87, in test_ack_survives_stale_queued_poll
+    self.check_stale_poll("queued")
+  File "tests/test_review_regressions.py", line 75, in check_stale_poll
+    self.assertEqual(current["state"], "delivered")
+AssertionError: 'queued' != 'delivered'
+- queued
++ delivered
+
+
+======================================================================
+FAIL: test_ack_survives_stale_uncertain_poll (test_review_regressions.AckRaceTests.test_ack_survives_stale_uncertain_poll)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 90, in test_ack_survives_stale_uncertain_poll
+    self.check_stale_poll("uncertain")
+  File "tests/test_review_regressions.py", line 75, in check_stale_poll
+    self.assertEqual(current["state"], "delivered")
+AssertionError: 'uncertain' != 'delivered'
+- uncertain
++ delivered
+
+
+======================================================================
+FAIL: test_continuous_wrong_response_ids_obey_deadline (test_review_regressions.RPCDeadlineTests.test_continuous_wrong_response_ids_obey_deadline)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 116, in test_continuous_wrong_response_ids_obey_deadline
+    self.client(inbox).request("thread/read", {})
+  File "trigger.py", line 334, in request
+    item = self.inbox.get(timeout=max(0.001, end - time.monotonic()))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "tests/test_review_regressions.py", line 110, in get
+    raise AssertionError("wrong-ID stream bypassed the RPC deadline")
+AssertionError: wrong-ID stream bypassed the RPC deadline
+
+======================================================================
+FAIL: test_matching_response_after_deadline_is_rejected (test_review_regressions.RPCDeadlineTests.test_matching_response_after_deadline_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 129, in test_matching_response_after_deadline_is_rejected
+    with self.assertRaises(TimeoutError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: TimeoutError not raised
+
+======================================================================
+FAIL: test_unsent_user_reference_cannot_replace_first_dispatch (test_review_regressions.HistoryReceiptTests.test_unsent_user_reference_cannot_replace_first_dispatch)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 148, in test_unsent_user_reference_cannot_replace_first_dispatch
+    self.assertEqual(self.send(), "queued")
+AssertionError: 'completed' != 'queued'
+- completed
++ queued
+
+
+======================================================================
+FAIL: test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) (reference='Explain batch_id=0f0dd075b9908')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 159, in test_queued_user_references_cannot_become_receipts
+    self.assertEqual(self.send(), "uncertain")
+AssertionError: 'completed' != 'uncertain'
+- completed
++ uncertain
+
+
+======================================================================
+FAIL: test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) (reference='> File condition batch_id=0f0d')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 159, in test_queued_user_references_cannot_become_receipts
+    self.assertEqual(self.send(), "uncertain")
+AssertionError: 'completed' != 'uncertain'
+- completed
++ uncertain
+
+
+======================================================================
+FAIL: test_queued_user_references_cannot_become_receipts (test_review_regressions.HistoryReceiptTests.test_queued_user_references_cannot_become_receipts) (reference='File condition batch_id=0f0dd0')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "tests/test_review_regressions.py", line 159, in test_queued_user_references_cannot_become_receipts
+    self.assertEqual(self.send(), "uncertain")
+AssertionError: 'completed' != 'uncertain'
+- completed
++ uncertain
+
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.017s
+
+FAILED (failures=9)

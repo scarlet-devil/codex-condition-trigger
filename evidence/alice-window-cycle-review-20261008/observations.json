@@ -1,0 +1,203 @@
+{
+  "input_commit": "2622fd65ae37c122cf4d563d5758757a560e569b",
+  "author": "Alice",
+  "deployment": "cloud",
+  "role": "independent review of Kelan input; self-review of authored evidence",
+  "task_class": "C",
+  "profile": "enhanced",
+  "rules_pin": "387c98a45b8fcc4409647c5bdc3363d614542859",
+  "decision": "REQUEST CHANGES",
+  "required_finding": "F1 pre-send reused owner disappearance",
+  "native_evidence": "Accepted only within transferred supervised loaded-target scope, S2-M0",
+  "focused_tests": {
+    "command": "PYTHONPATH=.:tests python -m unittest test_owner_loading test_window_cycle -v",
+    "python": "3.12.14",
+    "platform": "linux",
+    "run": 39,
+    "passed": 39,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0,
+    "seconds": 0.155,
+    "independence": "S2-M1",
+    "watchdog_distribution_metadata_available": false,
+    "native_watcher_run": false
+  },
+  "probe_command": "python evidence/alice-window-cycle-review-20261008/probe.py --repo .",
+  "probe_exit_code": 1,
+  "probe_independence": "S2-M1; uses existing synthetic fixture, not method-independent M2",
+  "probe": {
+    "first_tick": "waiting_owner",
+    "before_restart": {
+      "batch_state": "ready",
+      "dispatch_text_is_none": true,
+      "dispatch_meta_is_none": true,
+      "cycle_phase": "reused",
+      "lease_is_none": true,
+      "open_calls": 0,
+      "send_calls": 0
+    },
+    "retry_deadline_bypassed_by_seconds": 60,
+    "ticks_after_restart": [
+      "waiting_owner",
+      "waiting_owner",
+      "waiting_owner"
+    ],
+    "tick_after_new_file": "waiting_owner",
+    "pending_batches": 2,
+    "final_open_calls": 0,
+    "final_send_calls": 0,
+    "final_cycle_phase": "reused",
+    "requirement": "Definite owner absence for a ready, never-dispatched, reused cycle with no lease or prior window action permits one durable open claim.",
+    "requirement_satisfied": false,
+    "native_actions": 0,
+    "model_calls": 0
+  },
+  "integrity": {
+    "git_blobs_verified": 22,
+    "manifest_hashes_verified": 21,
+    "manifest_paths": 66,
+    "tree_files": 67,
+    "recorded_native_assertions": 42,
+    "final_runtime_byte_domains": {
+      "trigger.py": [
+        "LF"
+      ],
+      "owner_loading.py": [
+        "LF"
+      ],
+      "windows_window_backend.ps1": [
+        "LF"
+      ],
+      "desktop_ipc.py": [
+        "CRLF"
+      ],
+      "chat_adapters.py": [
+        "CRLF"
+      ]
+    },
+    "files": [
+      {
+        "path": "CURRENT_STATE.md",
+        "git_blob": "5ee83b6e5d222c7a9400e78740093fbc12cefeec",
+        "sha256": "9f3717b979719d448544051de18aa7bab6432858c5b4c9c8e405c40770cf1e2c"
+      },
+      {
+        "path": "docs/KELAN_WINDOW_CYCLE_20261008.md",
+        "git_blob": "f0fca964392f9ec06408aff58ada8bb3122a116e",
+        "sha256": "7a63fd75607b8ac439fd47c0bf96abf7d2b21005972cc4a5ab7a8c8bc226fc09"
+      },
+      {
+        "path": "evidence/window-cycle-20261008.json",
+        "git_blob": "a99cf7b211bf5fd14fc07eac28c7f769f605a444",
+        "sha256": "80303e8920bf07ba7da3800eed0662f23ce7eb6963f7e46267dfebb5314e5f8e"
+      },
+      {
+        "path": "owner_loading.py",
+        "git_blob": "150d9306a4317f319c9eda93e510eaa283e2cb60",
+        "sha256": "fa369bce24deba4e1503afa13e8bcd71a346c85173b77d50d42a9a519cb1785e"
+      },
+      {
+        "path": "windows_window_backend.ps1",
+        "git_blob": "030310782601c7c7bcdab5e6e7075394ac607416",
+        "sha256": "31de19805aeca7d58468305990346ed6555d533bbfba814272ddb71366348de7"
+      },
+      {
+        "path": "trigger.py",
+        "git_blob": "643ae4e66865fc1fdd5b175db287ac61e2a28f34",
+        "sha256": "99c2e4eee8ba26c43795a327ee1509d0cfadcc70a8c2c95e46a29d1ae77848f1"
+      },
+      {
+        "path": "tests/test_window_cycle.py",
+        "git_blob": "d85aec96e2985e3b3f5d0cc3ef79885a74f0f3b3",
+        "sha256": "b823a2795746abbea3a66563d6975edba21217c28b8912d260d8b2f8feeb8e07"
+      },
+      {
+        "path": "tests/test_owner_loading.py",
+        "git_blob": "ed8d797f2af35e26ec9f84147388613cdf37405a",
+        "sha256": "35183fdf8510761274ab7052a4cd2a298bc03b2932830475d4f43f82b2106350"
+      },
+      {
+        "path": "evidence/window-cycle-supervisor-20261008.py",
+        "git_blob": "f55d40e50c5c89296d9041ae7a9a36c47dd008bd",
+        "sha256": "293478d7ae2a5c3769530bad0e98524ae905e20630766bfcac51585fff2b1071"
+      },
+      {
+        "path": "evidence/window-cycle-tests-20261008.txt",
+        "git_blob": "69bc5b41d2aec050a87df6730430097194080661",
+        "sha256": "ce27c748830f8768ac38fc1b481e74ae9d34e96c69eab6ae71fa11fa1b2a7f05"
+      },
+      {
+        "path": "evidence/SHA256SUMS.json",
+        "git_blob": "5f42baa68374f30257f9f8827be6378671907f8f",
+        "sha256": "ba8822df6219123fbddd7a22c50f9fd9d23a67d99064d5c9fd83c14a110157f3"
+      },
+      {
+        "path": "WORK_LOG.md",
+        "git_blob": "fe3e4aac570be6d8870beb9ccfbdfac683f305d8",
+        "sha256": "d7ff615e9ff1aeb161de01c307d01cdfb5f45986cbc7464474a84a4e16a9ff88"
+      },
+      {
+        "path": "README.md",
+        "git_blob": "6f8a2857f8ed03eeacd5bdcd1d5bc2fc73440801",
+        "sha256": "eea6ea39b2127969513b4d7c9b041ba44287546c7c2dc55cf4f654d5590d3250"
+      },
+      {
+        "path": "example.windows.json",
+        "git_blob": "c60eddf8cd7ad9a395a13f210c8b963c62f6cadc",
+        "sha256": "6fee6125528199bc07362f80cf787bc74ef9a8b3782b5303cabaa1124f873e6e"
+      },
+      {
+        "path": "docs/WINDOW_CYCLE_PLAN_20261008.md",
+        "git_blob": "099878a483fd41be5b97737ba67a091cf41160ee",
+        "sha256": "d772ca3bee19460cc01c40df4731edf1f1dcd156b2d6e96f6478a6de36bd2a73"
+      },
+      {
+        "path": "desktop_ipc.py",
+        "git_blob": "542537d99f80cd8e924b97e46d94d983299edbb6",
+        "sha256": "5adbbc5770f3cf789e02e373a65b88387faa653b0450bdd2d1b6ef41df1ad30c"
+      },
+      {
+        "path": "chat_adapters.py",
+        "git_blob": "0b819832771472822c1eca3501a41d480e2752e2",
+        "sha256": "56c96d2f261e7f77c39b12b60951a53757ee2d4feff681c6f5f5e0ff5d705449"
+      },
+      {
+        "path": "tests/test_desktop_ipc.py",
+        "git_blob": "fbf67df62637a16cc3e751d0576743432d2ce07e",
+        "sha256": "891588607e582d3c560a81bad4ca7232f1d85571e98479e167dd1ed748508775"
+      },
+      {
+        "path": "tests/test_trigger.py",
+        "git_blob": "5aac9bc376042d1aa3bb6a8622fd968ce997ff58",
+        "sha256": "3b955c9f38608c5cc2432d7ca0542eac7ae63284251aa7bf5e5a5d6ee869b046"
+      },
+      {
+        "path": "tests/test_chat_adapters.py",
+        "git_blob": "d72ab120cec404ea23c505fb98908c311e44a528",
+        "sha256": "48cab584a16319465d81aad5d7467935d62f97dd26b41ae974dc07d91491ed6d"
+      },
+      {
+        "path": "tests/fake_owner.py",
+        "git_blob": "b492e0251842945a50afb8e8ce3d2011d1884498",
+        "sha256": "df5edb419844c1b20a8ad42b8427b6c6e498740167c80344f3907386b95c0c27"
+      },
+      {
+        "path": "requirements.txt",
+        "git_blob": "c6c52fb2787e8cbe2b5c1c261204d62697ae9c30",
+        "sha256": "0741e8d1875c6a936a622fd74adb5c825d57c4c416097365b0ef1e1a7cacc120"
+      }
+    ]
+  },
+  "limits": {
+    "full_suite_rerun": false,
+    "native_actions": 0,
+    "model_calls": 0,
+    "drive_copies_read": false,
+    "private_native_bytes_reread": false,
+    "final_deadline_gate_native_replay": false,
+    "unattended_accepted": false
+  },
+  "live_source_reconstruction_note": "Only published final source was obtained. A simple LF/CRLF reconstruction did not reproduce the two old live hashes for trigger.py and windows_window_backend.ps1; it is not proof of a semantic mismatch and is not used as independent verification of the original live bytes. Local reported semantic scope/normalization remain transferred evidence.",
+  "probe_timing": "The synthetic clock advances 60 seconds beyond next_try after restart; the failure is not normal retry backoff."
+}

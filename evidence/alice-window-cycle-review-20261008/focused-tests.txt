@@ -1,0 +1,44 @@
+test_initialize_errors_preserve_stage_and_fixed_category (test_owner_loading.NegativeReplyTests.test_initialize_errors_preserve_stage_and_fixed_category) ... ok
+test_correlated_negative_without_method_keeps_fixed_reason (test_owner_loading.NegativeReplyTests.test_correlated_negative_without_method_keeps_fixed_reason) ... ok
+test_unknown_remote_error_is_redacted_and_not_owner_missing (test_owner_loading.NegativeReplyTests.test_unknown_remote_error_is_redacted_and_not_owner_missing) ... ok
+test_mismatched_negative_is_ignored (test_owner_loading.NegativeReplyTests.test_mismatched_negative_is_ignored) ... ok
+test_success_still_requires_method_and_exact_target (test_owner_loading.NegativeReplyTests.test_success_still_requires_method_and_exact_target) ... ok
+test_owner_wait_survives_restart_without_spending_connection_budget (test_owner_loading.OwnerLoadingTests.test_owner_wait_survives_restart_without_spending_connection_budget) ... ok
+test_owner_lost_during_snapshot_also_waits_without_failure_budget (test_owner_loading.OwnerLoadingTests.test_owner_lost_during_snapshot_also_waits_without_failure_budget) ... ok
+test_negative_start_reply_remains_uncertain_and_never_loads (test_owner_loading.OwnerLoadingTests.test_negative_start_reply_remains_uncertain_and_never_loads) ... ok
+test_waiting_does_not_prevent_later_file_capture (test_owner_loading.OwnerLoadingTests.test_waiting_does_not_prevent_later_file_capture) ... ok
+test_loader_disabled_by_default (test_owner_loading.OwnerLoadingTests.test_loader_disabled_by_default) ... ok
+test_inspect_never_loads (test_owner_loading.OwnerLoadingTests.test_inspect_never_loads) ... ok
+test_available_owner_reused_without_backend_or_window_action (test_owner_loading.OwnerLoadingTests.test_available_owner_reused_without_backend_or_window_action) ... ok
+test_load_is_explicit_no_prompt_and_rechecks_owner (test_owner_loading.OwnerLoadingTests.test_load_is_explicit_no_prompt_and_rechecks_owner) ... ok
+test_one_load_budget_is_durable_across_failures_and_new_batch (test_owner_loading.OwnerLoadingTests.test_one_load_budget_is_durable_across_failures_and_new_batch) ... ok
+test_not_configured_does_not_spend_action_budget (test_owner_loading.OwnerLoadingTests.test_not_configured_does_not_spend_action_budget) ... ok
+test_stop_and_every_sent_state_block_loading (test_owner_loading.OwnerLoadingTests.test_stop_and_every_sent_state_block_loading) ... ok
+test_ready_with_prior_send_intent_cannot_load (test_owner_loading.OwnerLoadingTests.test_ready_with_prior_send_intent_cannot_load) ... ok
+test_after_load_busy_is_not_ready (test_owner_loading.OwnerLoadingTests.test_after_load_busy_is_not_ready) ... ok
+test_non_owner_error_cannot_trigger_loader (test_owner_loading.OwnerLoadingTests.test_non_owner_error_cannot_trigger_loader) ... ok
+test_stop_appearing_after_owner_check_prevents_action (test_owner_loading.OwnerLoadingTests.test_stop_appearing_after_owner_check_prevents_action) ... ok
+test_owner_presence_does_not_override_bad_thread_identity (test_owner_loading.OwnerLoadingTests.test_owner_presence_does_not_override_bad_thread_identity) ... ok
+test_idle_reused_and_busy_waits_without_window_actions (test_window_cycle.CycleTests.test_idle_reused_and_busy_waits_without_window_actions) ... ok
+test_two_batches_after_verified_close_have_separate_load_budget (test_window_cycle.CycleTests.test_two_batches_after_verified_close_have_separate_load_budget) ... ok
+test_surviving_owner_reused_on_second_batch (test_window_cycle.CycleTests.test_surviving_owner_reused_on_second_batch) ... ok
+test_open_timeout_survives_restart_and_new_batch (test_window_cycle.CycleTests.test_open_timeout_survives_restart_and_new_batch) ... ok
+test_sent_batch_never_loads_after_owner_loss (test_window_cycle.CycleTests.test_sent_batch_never_loads_after_owner_loss) ... ok
+test_completion_alone_does_not_close_or_ack (test_window_cycle.CycleTests.test_completion_alone_does_not_close_or_ack) ... ok
+test_early_ack_does_not_close_active_turn (test_window_cycle.CycleTests.test_early_ack_does_not_close_active_turn) ... ok
+test_close_failure_preserves_delivery_and_blocks_next_send (test_window_cycle.CycleTests.test_close_failure_preserves_delivery_and_blocks_next_send) ... ok
+test_changed_window_identity_not_closed (test_window_cycle.CycleTests.test_changed_window_identity_not_closed) ... ok
+test_busy_after_ack_delays_close (test_window_cycle.CycleTests.test_busy_after_ack_delays_close) ... ok
+test_legacy_claim_not_silently_reset (test_window_cycle.CycleTests.test_legacy_claim_not_silently_reset) ... ok
+test_unknown_owner_reply_never_opens (test_window_cycle.CycleTests.test_unknown_owner_reply_never_opens) ... ok
+test_stop_during_open_preserves_lease_without_sending (test_window_cycle.CycleTests.test_stop_during_open_preserves_lease_without_sending) ... ok
+test_no_files_no_window_or_ipc (test_window_cycle.CycleTests.test_no_files_no_window_or_ipc) ... ok
+test_worker_lock_required_for_lifecycle (test_window_cycle.CycleTests.test_worker_lock_required_for_lifecycle) ... ok
+test_ack_between_prepare_and_dispatch_cannot_send_next_batch (test_window_cycle.CycleTests.test_ack_between_prepare_and_dispatch_cannot_send_next_batch) ... ok
+test_lost_acceptance_requires_correlation_before_cycle_ack (test_window_cycle.CycleTests.test_lost_acceptance_requires_correlation_before_cycle_ack) ... ok
+test_disabling_loader_cannot_bypass_unclosed_cycle (test_window_cycle.CycleTests.test_disabling_loader_cannot_bypass_unclosed_cycle) ... ok
+
+----------------------------------------------------------------------
+Ran 39 tests in 0.155s
+
+OK
