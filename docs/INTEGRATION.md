@@ -1,6 +1,6 @@
 # 本机接入与交付回执
 
-> 本文描述 `886755e` 的现有 JSONL/queue 实现。2026-10-03 已选择 [独立聊天适配器与 Desktop IPC 小试](IPC_ADAPTER_TRIAL_20261003.md) 作为下一步；新后端尚未实现/验收，不可把 IPC start-turn 直接当成本文的 queue/add。现有安全状态与业务 ACK 边界继续保留。
+> 本文主要描述 JSONL/queue 的接入与业务回执。Windows Desktop IPC 已实现并有限定验收，见 [IPC 说明](IPC_ADAPTER.md)；两者的 queue/add 与 start-turn 语义不同。原生结果采集和可选 Hub 上传恢复也已接入，最新验收范围及停止状态见 [CURRENT_STATE](../CURRENT_STATE.md)。
 
 ## 配置真实目标
 
@@ -54,7 +54,7 @@ python trigger.py --config local-production.json seed local-delivered.json
 python trigger.py --config local-production.json ack BATCH_ID --evidence /absolute/path/verified-receipt.json
 ```
 
-Windows 使用对应的绝对证据路径。ack 可以与 watcher 并行，记录证据文件哈希和调用者的核验声明。程序不独立联系外部交付系统。模型回合 completed 不会自动成为 delivered。
+Windows 使用对应的绝对证据路径。ack 可以与 watcher 并行，记录证据文件哈希和调用者的核验声明。`ack` 记录调用者的核验声明，不替代外部交付核验。可选 Hub 上传恢复可以独立回读远端字节，但不会自动 ACK；模型回合 completed 也不会自动成为 delivered。
 
 delivered 是终态：SQL 更新原子排除该状态，旧轮询不能覆盖状态或原交付证据。重复 ACK 会报错并保留第一次证据，不表示发生新的交付。
 
@@ -64,7 +64,7 @@ delivered 是终态：SQL 更新原子排除该状态，旧轮询不能覆盖状
 | sending | 外部请求前已写意图 | 重启后转 uncertain |
 | queued | 队列已接受 | 查询已有队列/回合，不重复提交 |
 | running | 本地有发送意图，历史中唯一的完整投递文本匹配，回合未结束 | 等待回合结果 |
-| completed / failed | 对应回合已经结束 | 等待业务核验或处置 |
+| ended / failed（旧记录可能为 completed） | 生命周期结束；原生 execution_outcome 另记，未知不能视为成功 | 等待业务核验或处置 |
 | uncertain | 发送结果或后续证据不明确 | 不自动重发 |
 | blocked | 投递前连接失败达到上限 | 修复后显式 retry-connect |
 | delivered | 调用者登记已核验交付 | 允许推进下一批次 |
@@ -100,3 +100,4 @@ STOP 会阻止新的投递并结束 watcher；目标宿主已接受/开始的工
 先验证真实链路：文件变化、稳定批次、准确 thread 实际开始、目标结果、业务核验、ack。再验证无变化不产生回合、重复字节不重复处理、busy 串行、重启补偿、STOP 边界。协议替身测试不能代替此步骤。
 
 真实链路或工具继承失败时，保持已有机制。外部任务 ID、开机自启与部署方式由实际项目管理；本程序不自动安装、停用或替换这些任务。
+
