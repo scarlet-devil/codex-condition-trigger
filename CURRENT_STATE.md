@@ -6,7 +6,11 @@ Updated 2026-10-23 · Project: `scarlet-devil/codex-condition-trigger`
 
 Human requested a design for choosing only a folder, a condition and a target conversation, then said “嗯可以，开始设计吧” in the current project conversation on 2026-10-23. Alice prepared the [three-field setup design](docs/SIMPLE_SETUP_DESIGN.md): a local form, automatic conversation binding, and a new ordinary notification mode that can advance without a business ACK. These are proposed behaviors, not implemented features.
 
-**Design draft prepared; review pending.** This documentation branch does not change runtime code, existing strict-delivery semantics, configurations or operational state. The next feasibility gate is read-only conversation discovery and exact owner binding on a real Windows Desktop version; no local executor has been assigned or notified in this turn. Implementation, new live trials and merge are outside this design-only action.
+**Design retained; G0 remains incomplete.** On 2026-10-23 Human relayed Kelan's local read-only intake: 181 unarchived project records with two duplicate-name groups; catalog/rollout identity correspondence; no available owner for the original results chat; and an advertised 34,956,277-byte IPC frame while querying a loaded control chat, exceeding the 32 MiB cap. Tkinter import and Tcl initialization succeeded, but GUI operation was not tested. These are relayed observations: the local report and diagnostic originals have not been published or read back by Alice.
+
+Alice directly checked the fixed source: `IPCClient.current_state` subscribes to snapshots and requests complete history before returning a small projection. `read_frame` rejects the advertised oversized length before reading the body; it cannot identify the rejected frame's method or target from the length alone. The next G0 step is to establish a bounded current-state observation path, preserving owner/thread/cwd/freshness checks, before scheduling or form implementation. See the G0 follow-up in the [design](docs/SIMPLE_SETUP_DESIGN.md).
+
+This branch still changes documentation only. No runtime fix, frame-limit increase, live trial, task dispatch to another window or merge occurred in Alice's review turn. Old production configuration, STOP/deadline and ACK state remain outside this work.
 
 ## Accepted implementation baseline
 
@@ -56,4 +60,4 @@ Six unresearched input versions and two missing Library originals belong to the 
 - AI/contributors: [AGENTS.md](AGENTS.md).
 - Decisions and full incremental history: [WORK_LOG.md](WORK_LOG.md).
 - The previous long status snapshot is preserved at [the exact pre-merge input](https://github.com/scarlet-devil/codex-condition-trigger/blob/95a6e9f7765bea2e308a99308c7d9488e4b477e0/CURRENT_STATE.md). Read it for provenance, not fresh execution authority.
-- Actor attribution: Alice performed the 2026-10-20 cloud documentation/merge closeout and Linux checks, and prepared the 2026-10-23 design/documentation draft. Kelan's local Windows/Hub actions retain their original report attribution. This design turn adds no Windows observation, runtime test result or independent review.
+- Actor attribution: Alice performed the 2026-10-20 cloud documentation/merge closeout and Linux checks, and prepared/revised the 2026-10-23 design. Kelan's latest G0 observations are attributed to the Human-relayed report until original evidence is available. Alice adds source-level review and documentation only, with no new Windows observation or runtime test result.
