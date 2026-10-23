@@ -666,3 +666,18 @@ New loading evidence: installed chrome.dll has unique v1 fuse wire 010011001; em
 
 Report: [copy candidate](docs/KELAN_THIN_STATE_COPY_CANDIDATE_20261023.md); [code/tests](experimental/thin_state/README.md); [evidence](evidence/kelan-thin-state-candidate-20261023.json). Candidate code is implementation_ready / review_pending; live loading needs an explicit trust-path decision, G0 is still blocked. Do not repeat the completed endpoint investigation or move to G1/G2 before original-host and other G0 evidence exists. PR remains Draft/unmerged; Alice review_pending.
 
+
+
+## 2026-10-23｜Alice 限定接受副本候选；先核对加载修改与恢复集合
+
+来源：红魔转交柯蓝 `ec2fb862050384385b66ed9dc0e0bfff7156a2e4` 候选及评论 #6363911334，交 Alice 判断加载信任路线。云端 Alice 复审 13 个增量文件及 AGENTS、运行 IPC、设计与前轮方案，共 17 个 Git blob 完整匹配；候选清单 12 项长度/SHA-256/blob 全部一致，前轮 118,854 B 日志前缀哈希及 11 个 CRLF 核对通过。
+
+本轮直接执行公开候选检查：Node v24.19.0 的 JS 33/33、Python 3.12.14 的 14/14，退出码均 0，无失败/跳过；完整输出见[云端复核证据](evidence/alice-thin-state-review-20261023.json)。另核对 6 处补丁锚点摘要、3 个模块长度增量和固定 Electron fuse 索引 4/5。私有模块的 18 项抽取、36 项旧回归、3 份真实副本回退及签名观察仍归属柯蓝，本轮未冒称重跑。S1 为本地报告归属，未提供子任务全文；同方法复跑不声称方法独立性，Alice 文档改动为 S0。
+
+结论：接受隔离副本候选，公开范围未发现阻止该限定接受的新必改项；不接受原宿主加载、G0 或生产启用。官方 Electron 机制支持“重打 ASAR 还需匹配内嵌头摘要”的条件推断。fuse 在 chrome.dll 不证明摘要资源也在那里；资源实际持有文件、原头字节匹配、包签名层与可靠恢复单位尚缺。数字签名与可重算哈希分开，不能把本机另签说成保留原厂签名。
+
+[行动方案第 6 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#6-当前接续接受副本候选核对加载改动集合)给出当前最小接续：只读检查已识别 EXE/DLL 的具名资源、核对原 ASAR 头、实际包/签名及恢复来源，交回一张最小修改/恢复表或具体不可行证据。保留校验，不自动关闭 fuse、重签、改权限/证书、替换安装、重启或另起服务；无需真实失败启动。需要新签名/包身份等实际取舍时，以准确方案交红魔决定。没有重复旧端点调查，也没有派发本地任务。
+
+清理 CURRENT_STATE 中“候选已实现”与旧“尚未实现”的同时有效表述；历史条目保留。同步设计入口、候选 README 和接续方案，不修改候选源码或旧报告/清单。本条按字节追加，保留输入日志全部 121,206 B 和 11 个 CRLF；文档检查、发布提交及全文回读以原 PR 本轮交付为准。
+
+整体 Draft / review_pending，G0 blocked；Windows 运行、真实 IPC、模型、窗口、安装、生产配置、ACK、Ready、合并均未执行。当前持续监听健康未检查，原持续授权与历史停止边界保持。规范固定输入沿用已读版本；本轮审查/方案为 Class C / enhanced，自身文档 S0。

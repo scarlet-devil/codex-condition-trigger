@@ -78,5 +78,8 @@ The eventual verifier must bind the original signed baseline, reviewed patched
 hashes, exact process/service/owner and the approved loading method. No current
 production verification rule is relaxed by this package.
 
-State: candidate code ready for review; live loading blocked pending trust-path
-decision; G0 remains unaccepted; Alice review_pending.
+State: Alice accepted the copy-only scope at ec2fb862 and reran 33 JS + 14 Python
+tests. Live loading and G0 remain unaccepted. See the [current loading-inventory
+scope](../../docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#6-当前接续接受副本候选核对加载改动集合)
+and [cloud review evidence](../../evidence/alice-thin-state-review-20261023.json).
+This updates review status, not the experimental runtime or its default-off behavior.
