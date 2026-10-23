@@ -778,3 +778,15 @@ See [Chinese report](docs/KELAN_STATE_DIAGNOSTIC_20261023.md), [sanitized eviden
 [当前行动第 10 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#10-当前接续复验受限-cwd-修复)要求隔离副本包含新增模块，复核后沿同一专用目标只读采一次、零模型/初始化/重试；旧额度不续用，已接受 Tk 烟测不重做。当前状态成功后仍需后续代表性任务体量、busy/普通追问及 turn 关联；表单与普通 notify 调度未实现。候选为 Alice Self-review/S0、Draft/review_pending；材料审阅完成但未合并/安装/启用。
 
 保留输入日志全部 143,192 B、11 CRLF；未修改部署副本、安装、生产配置、持续授权、历史 STOP/到期/PAUSED、账本或 ACK，未查当前监听健康。本轮没有本机 IPC、模型、窗口动作，也未通过通信工具或评论派发。固定输出及完整远端回读以 PR 正文为准。
+
+## 2026-10-24｜Kelan 复验受限 cwd 修复，真实状态子项通过
+
+来源：红魔转交Alice d55c62d2第10节；本地Windows柯蓝执行Class C/enhanced有界验证，自查S0。固定完整输入 `d55c62d204ba8193974b5434b19898dd65776a43`，185文件CRC/长度/Git blob核验，8模块实际导入/摘要一致，候选源码未改。部署/配置/ACK、持续授权和历史STOP/到期/PAUSED保持，未查监听健康。
+
+同一专用目标创建回执/当前只读目录/rollout首行绑定一致；仅一次真实IPC，snapshot_query_completed=true、idle、revision/requested_revision=6/6、最终owner一致。RX29,373B，最大8,972B；验证/IPC/总计约0.906/0.032/0.938秒。32MiB/128MiB/10秒预算与安装pin保持；can_send=false、模型/初始化/重试/窗口/Tk重做均0，单次600秒窗口已闭合。没有旧traceback观察器。
+
+34实验通过；55相关回归初次39个PermissionError错误事件来自sandbox TEMP夹具，保留原日志；最小本轮临时目录检查通过后仅调整测试运行器tempdir，55全部通过/0skip，候选不变。选定5文件Ruff通过；另11条既有native_state测试提示保留，未重跑云端40条基线比较及完整历史套件。
+
+[报告](docs/KELAN_CWD_REVALIDATION_20261024.md)、[证据](evidence/kelan-cwd-revalidation-20261024.json)、[清单](evidence/kelan-cwd-revalidation-manifest-20261024.json)；保留本输入WORK_LOG全部146,038B及11CRLF前缀。输出提交/回读与交接结果由本批PR回执补齐，不提前认定交付或Alice接受。
+
+本轮通过当前状态子项；G0总体仍未通过，代表性任务后体量、busy/普通追问turn关联、完整表单/notify待续。原完整历史路径和每次安装哈希成本未解决为高频轮询方案；不回溯旧generic错误。Alice review_pending，PR Draft/unmerged；请审阅本次范围后确定下一次最小联合试验，不自动重开额度或进入G1–G3。
