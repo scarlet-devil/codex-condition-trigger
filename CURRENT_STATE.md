@@ -6,11 +6,13 @@ Updated 2026-10-23 · Project: `scarlet-devil/codex-condition-trigger`
 
 Human requested a design for choosing only a folder, a condition and a target conversation, then said “嗯可以，开始设计吧” in the current project conversation on 2026-10-23. Alice prepared the [three-field setup design](docs/SIMPLE_SETUP_DESIGN.md): a local form, automatic conversation binding, and a new ordinary notification mode that can advance without a business ACK. These are proposed behaviors, not implemented features.
 
-**Design retained; G0 remains incomplete.** On 2026-10-23 Human relayed Kelan's local read-only intake: 181 unarchived project records with two duplicate-name groups; catalog/rollout identity correspondence; no available owner for the original results chat; and an advertised 34,956,277-byte IPC frame while querying a loaded control chat, exceeding the 32 MiB cap. Tkinter import and Tcl initialization succeeded, but GUI operation was not tested. These are relayed observations: the local report and diagnostic originals have not been published or read back by Alice.
+**Design retained; G0 remains incomplete.** Kelan's local intake is now supplied in a [sanitized report](docs/KELAN_PR2_G0_INTAKE_20261023.md) and [historical frame diagnostic](evidence/kelan-g0-ipc-frame-20261023.json). The original private report remains local with its hash; Alice's earlier relayed-summary review remains historical and does not count as acceptance of this new package.
 
-Alice directly checked the fixed source: `IPCClient.current_state` subscribes to snapshots and requests complete history before returning a small projection. `read_frame` rejects the advertised oversized length before reading the body; it cannot identify the rejected frame's method or target from the length alone. The next G0 step is to establish a bounded current-state observation path, preserving owner/thread/cwd/freshness checks, before scheduling or form implementation. See the G0 follow-up in the [design](docs/SIMPLE_SETUP_DESIGN.md).
+The [installed-source follow-up](docs/KELAN_LIGHT_STATE_FOLLOWUP_20261023.md) confirms that following alone sends a conversation snapshot; removing complete-history is insufficient. A narrower read-model-settings request returned resumed from the loaded owner using 2,059 received IPC bytes in 0.015 seconds, but supplies no runtime status/cwd/revision. The original results target returned owner_unavailable (1,245 bytes; 0.016 seconds). Both remain unknown for sending. Total observation times including local installation verification were 0.890/0.860 seconds; archive hashing is a separate substantial setup cost.
 
-This branch still changes documentation only. No runtime fix, frame-limit increase, live trial, task dispatch to another window or merge occurred in Alice's review turn. Old production configuration, STOP/deadline and ACK state remain outside this work.
+The internal and documented thread/read(includeTurns=false) is a promising summary path, but an external route bound to the original Desktop server is unproven. No independent app-server was started. The next decision is that narrow original-host bridge investigation, with exact binding and freshness, before G1/G2. The 34,956,277-byte historical rejected frame still has unknown message/target attribution.
+
+This branch adds documentation and isolated diagnostic evidence only; production runtime sources/configuration, frame cap, ACKs and operating tasks were not changed. This follow-up made two bounded read-only IPC observations, zero model sends and zero window actions. PR remains Draft and Alice review is pending. See the G0 follow-up in the [design](docs/SIMPLE_SETUP_DESIGN.md).
 
 ## Accepted implementation baseline
 
@@ -18,7 +20,7 @@ Human approved preparing the human README and AI entry files, then merging [PR #
 
 **Implementation accepted and merged.** PR #1 merged on 2026-10-20 as `5c1882c7b78fc023d0588953e6e43db55ebe216d`; its [final receipt](https://github.com/scarlet-devil/codex-condition-trigger/pull/1#issuecomment-6291604544) records that closeout. Deployment is a separate state. Historical Draft labels for PR #1 are not current; the new design is a separate Draft change.
 
-Runtime/test baseline: `95a6e9f7765bea2e308a99308c7d9488e4b477e0`. The 2026-10-20 closeout changed documentation and evidence only. Runtime files remain unchanged from the reviewed integration implementation; the later test fixture repair is included. The present design branch changes documentation only.
+Runtime/test baseline: `95a6e9f7765bea2e308a99308c7d9488e4b477e0`. The 2026-10-20 closeout changed documentation and evidence only. Runtime files remain unchanged from the reviewed integration implementation; the later test fixture repair is included. The present design branch changes documentation and isolated diagnostic evidence; production runtime sources are unchanged.
 
 ## Accepted scope
 
@@ -60,4 +62,4 @@ Six unresearched input versions and two missing Library originals belong to the 
 - AI/contributors: [AGENTS.md](AGENTS.md).
 - Decisions and full incremental history: [WORK_LOG.md](WORK_LOG.md).
 - The previous long status snapshot is preserved at [the exact pre-merge input](https://github.com/scarlet-devil/codex-condition-trigger/blob/95a6e9f7765bea2e308a99308c7d9488e4b477e0/CURRENT_STATE.md). Read it for provenance, not fresh execution authority.
-- Actor attribution: Alice performed the 2026-10-20 cloud documentation/merge closeout and Linux checks, and prepared/revised the 2026-10-23 design. Kelan's latest G0 observations are attributed to the Human-relayed report until original evidence is available. Alice adds source-level review and documentation only, with no new Windows observation or runtime test result.
+- Actor attribution: Alice performed the 2026-10-20 cloud documentation/merge closeout and Linux checks, and prepared/revised the 2026-10-23 design. Kelan supplied the sanitized G0 intake and performed the subsequent Windows partial-state probe; Alice's source-level review remains attributed to Alice, without claiming she reran Windows observations or accepted the new package.

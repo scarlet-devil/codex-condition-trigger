@@ -1,0 +1,514 @@
+{
+  "at_utc": "2026-10-23T08:48:11.263612+00:00",
+  "archive_bytes": 625947531,
+  "model_sends": 0,
+  "window_actions": 0,
+  "ipc_calls": 0,
+  "files": [
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "bytes": 292827,
+      "sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "matches_char_offsets": {
+        "thread-stream-following-changed": [
+          277046
+        ]
+      }
+    },
+    {
+      "path": ".vite/build/main-CT5a1yCd.js",
+      "bytes": 4080823,
+      "sha256": "cdac659a830908ec5202a887e5a37b302074bfc9e9ab0f52fed3e8abbdb9e713",
+      "matches_char_offsets": {
+        "thread-stream-following-changed": [
+          737473
+        ],
+        "thread/read": [
+          1152103,
+          1481912,
+          2697475,
+          2824618,
+          3320917,
+          3324526,
+          3326329
+        ],
+        "thread/status/changed": [
+          216816,
+          1954910
+        ]
+      }
+    },
+    {
+      "path": ".vite/build/src-CSKkIr_z.js",
+      "bytes": 207355,
+      "sha256": "4a939ae29c4f4010a62a7890797813363d4d2300afb43df4101872246cc7f0d6",
+      "matches_char_offsets": {
+        "thread/read": [
+          33011,
+          34286,
+          34620,
+          34634,
+          102389
+        ],
+        "thread/status/changed": [
+          107339
+        ]
+      }
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "bytes": 1664092,
+      "sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "matches_char_offsets": {
+        "thread-owner-discovery": [
+          8031,
+          1591911,
+          1592371,
+          1593844
+        ],
+        "thread-follower-load-complete-history": [
+          8089,
+          530698,
+          536673,
+          1038438,
+          1593994
+        ],
+        "thread-stream-following-changed": [
+          7853,
+          1590658,
+          1595660
+        ],
+        "threadRuntimeStatus": [
+          257003,
+          259026,
+          259048,
+          260227,
+          260769,
+          388478,
+          388500,
+          389612,
+          389634,
+          390520,
+          390542,
+          400833,
+          412665,
+          412750,
+          412787,
+          438127,
+          441797,
+          442755,
+          444006,
+          446054,
+          446076,
+          450196,
+          450979,
+          451040,
+          451999,
+          452391,
+          470731,
+          470765,
+          478945,
+          481571,
+          492756,
+          497904,
+          533707,
+          534969,
+          560490,
+          562044,
+          566458,
+          598246,
+          688323,
+          693569,
+          710210,
+          715508,
+          851678,
+          851745,
+          851916,
+          851946,
+          873782,
+          874314,
+          875675,
+          876219,
+          876248,
+          878504,
+          878692,
+          879068,
+          879250,
+          879592,
+          888591,
+          1043497,
+          1043835
+        ],
+        "thread/read": [
+          476521,
+          476640,
+          476695,
+          902856,
+          1181593,
+          1183256,
+          1261281,
+          1261324,
+          1307527
+        ],
+        "thread/loaded/list": [
+          1181572
+        ],
+        "thread/status/changed": [
+          349202,
+          553517,
+          597852,
+          597943,
+          611924
+        ]
+      }
+    },
+    {
+      "path": ".vite/build/worker.js",
+      "bytes": 2503121,
+      "sha256": "6d233b3cdc282a638a4253d8a4f7866f181284f3b3e745f2ff1b995c7c061ef3",
+      "matches_char_offsets": {
+        "thread-stream-following-changed": [
+          2207377
+        ],
+        "thread/read": [
+          992730
+        ],
+        "thread/status/changed": [
+          997680
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/app-initial-ad16eaadf81f.js",
+      "bytes": 14606938,
+      "sha256": "84d1c97245fec7be606fd1d263459d9a4c841836751c6ba5e9b348b69687332f",
+      "matches_char_offsets": {
+        "thread-follower-load-complete-history": [
+          2458351,
+          2464522,
+          2915006
+        ],
+        "thread-stream-following-changed": [
+          2990601,
+          11876964
+        ],
+        "threadRuntimeStatus": [
+          2195978,
+          2196008,
+          2207029,
+          2209125,
+          2209147,
+          2210426,
+          2210968,
+          2312967,
+          2312989,
+          2314146,
+          2314168,
+          2315061,
+          2315083,
+          2325749,
+          2337951,
+          2338036,
+          2338073,
+          2364156,
+          2368026,
+          2368984,
+          2370231,
+          2373257,
+          2373279,
+          2377402,
+          2378185,
+          2378246,
+          2379206,
+          2379598,
+          2397941,
+          2397975,
+          2406135,
+          2408755,
+          2419930,
+          2424525,
+          2461458,
+          2462720,
+          2489207,
+          2490763,
+          2495249,
+          2528344,
+          2616831,
+          2622393,
+          2639053,
+          2644378,
+          2723553,
+          2723620,
+          2723791,
+          2723821,
+          2746996,
+          2747524,
+          2748885,
+          2749431,
+          2749459,
+          2751720,
+          2751908,
+          2752283,
+          2752464,
+          2752804,
+          2762209,
+          2920197,
+          2920537,
+          3103199,
+          3126873,
+          3126958,
+          3126995,
+          3216804,
+          3216826,
+          3449618,
+          3789044,
+          3789185,
+          3792829,
+          3793867,
+          5442791,
+          5443166,
+          5443326,
+          5443391,
+          5443426,
+          5446891,
+          5448251,
+          5448274,
+          5468210,
+          6494019,
+          6494053,
+          7381764,
+          7381913,
+          7381978,
+          7382013,
+          10401516,
+          10402102,
+          10424451,
+          10424501,
+          10424528
+        ],
+        "thread/read": [
+          2169667,
+          2403723,
+          2403842,
+          2403897,
+          2777215,
+          12461905
+        ],
+        "thread/loaded/list": [
+          2169220
+        ],
+        "thread/status/changed": [
+          2300328,
+          2482228,
+          2527952,
+          2528043,
+          2542501,
+          3447695,
+          3447816,
+          3447921,
+          3448747,
+          3672710
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/app-primary-3e00728c2a4c.js",
+      "bytes": 2483376,
+      "sha256": "c61df07674363782ea42c4b34fabaa306e75832359a455a64bd064594b450a82",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          1130923,
+          1130962,
+          1138831,
+          1138884,
+          1138913,
+          1144687,
+          1144709
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/app-shared-2feb3d4c6fcc.js",
+      "bytes": 5899319,
+      "sha256": "d73051468be4c5521d4e53b4ac53a0d1cd52ddede37035183871a1845b4e1dc3",
+      "matches_char_offsets": {
+        "thread/read": [
+          1644194
+        ],
+        "thread/status/changed": [
+          1649144
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/avatar-overlay-native-page-27a8f39c1997.js",
+      "bytes": 344024,
+      "sha256": "4238377fa98768da6a967d6e057b59f8f9982cd2473438aadf8f0a9b5e801a43",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          95434,
+          99835
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/content-c1838eb6e937.js",
+      "bytes": 1168875,
+      "sha256": "9c26a68f61ee5321ea9ff3196b889fbdfd4139060a10404956a3315621f95aa2",
+      "matches_char_offsets": {
+        "thread/status/changed": [
+          700091,
+          700509
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/device-storage-91f490b9c301.js",
+      "bytes": 28262,
+      "sha256": "0a7dc9a051378bd6f5d54e5177655ecfe91710db0dcc3a3ebf229660d30c3053",
+      "matches_char_offsets": {
+        "thread/read": [
+          1853,
+          3651
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/execution-7cfc92a1d71b.js",
+      "bytes": 124303,
+      "sha256": "33fc7d4feee9d5eb9f50cf0b2e4dc43b4aa09de94c7dcfb4086e1bcb415928ec",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          38952
+        ],
+        "thread/status/changed": [
+          69489
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/local-conversation-thread-632d930bbfe2.js",
+      "bytes": 345615,
+      "sha256": "658efd0f4b436e0c0d2a98df5e4452d8292123fc50be06b8568ecbc8d68671d2",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          50302,
+          50332
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/page-bootstrap-display.worker-ec8f64006ef0.js",
+      "bytes": 538124,
+      "sha256": "3cd7bd7a795318c59a2a687304ea6e2a6a35f031a62a080c5c0e3bc2f818637d",
+      "matches_char_offsets": {
+        "thread/read": [
+          450322
+        ],
+        "thread/status/changed": [
+          455272
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/panel-610eb3f00ef9.js",
+      "bytes": 256212,
+      "sha256": "21fcbedde98b3228fd04dd3a0bfa1f870d71cc6b3fbd162716b2eebd7d693fe1",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          71020
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/registered-aa9913776a42.js",
+      "bytes": 2268,
+      "sha256": "ba6ac54fb93c79e5655f8c1c0b116f0826972eb5a6ba696dbf8289455263f226",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          1576
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/session-f056f35f015e.js",
+      "bytes": 4249,
+      "sha256": "56e132be79a5496300e39becb45589a3bae59b7592bc37f9e6233b4288035422",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          999,
+          2189
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/settings-c2fddca9a1ec.js",
+      "bytes": 60524,
+      "sha256": "3c1c939abc7f7fc17c4ef3c169325fa5a9bbfbbe562e876c1a0ca488b076572a",
+      "matches_char_offsets": {
+        "thread/read": [
+          38125
+        ],
+        "thread/loaded/list": [
+          38032
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/sites-end-resource-27c4a4bdef80.js",
+      "bytes": 417720,
+      "sha256": "8022b9dfd613952bbeaba9e8a3a385654624722ebc971f953a193d7e889987dc",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          27700,
+          27724
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/state-62d1b2b1cb7d.js",
+      "bytes": 3042,
+      "sha256": "21cf1e8206fb9ea1700c433d80ec67a8fd1e024d162354fecb2b0dedba15ccfc",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          1248,
+          1272
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/widget-99db50d86406.js",
+      "bytes": 107067,
+      "sha256": "a06f51d453589f879274d2bafd8cdc0c7df52fee6b5f44a89462b6b777b6dc32",
+      "matches_char_offsets": {
+        "threadRuntimeStatus": [
+          22291,
+          23507
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/workflow-b5bdbbf3e098.js",
+      "bytes": 28758,
+      "sha256": "7db45c23412475a1b06fe8c8e5707f600b9ff09446bb96e9a4d1a2a7cf731cd9",
+      "matches_char_offsets": {
+        "thread/read": [
+          27943
+        ]
+      }
+    },
+    {
+      "path": "webview/assets/worktrees-settings-page-3794bb2944a2.js",
+      "bytes": 32798,
+      "sha256": "00d0c939a7516cf6f14d0648f58307cfc235efaa78e3a723b01b3c80e4dbe36a",
+      "matches_char_offsets": {
+        "thread/read": [
+          17108,
+          18170
+        ]
+      }
+    }
+  ],
+  "skipped_large_js": [],
+  "archive_sha256": "a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49"
+}

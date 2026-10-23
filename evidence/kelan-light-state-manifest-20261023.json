@@ -1,0 +1,59 @@
+{
+  "files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 7949,
+      "sha256": "19ec7d402fb042e13d1116645547c6e1703f4442702e441486761820f381cbbb",
+      "git_blob": "8ec0c8326404553dd57d834cc54e4f51880ade22"
+    },
+    {
+      "path": "docs/KELAN_LIGHT_STATE_FOLLOWUP_20261023.md",
+      "bytes": 8888,
+      "sha256": "4dc20a990de998cb9b9ad16185e75577c913f145398687cb0604bfd5f404b451",
+      "git_blob": "d35ed8f5347a231e2ea2cb9845c7db7276ac11f2"
+    },
+    {
+      "path": "docs/KELAN_PR2_G0_INTAKE_20261023.md",
+      "bytes": 5377,
+      "sha256": "f5cee4e323da56e578380a25db9504b4e9294ed2b92e895a9549da5db43b26c9",
+      "git_blob": "8e894468c3ba18e033b290117c4f3fa2492f7d37"
+    },
+    {
+      "path": "evidence/kelan-g0-ipc-frame-20261023.json",
+      "bytes": 1055,
+      "sha256": "a43dedd32f3ca42b970965e7f784eafaf89c5a6b7586bfa6cb8696d6c75cb23c",
+      "git_blob": "79a31270e60fab1ed70d8f768b645d22b0a5fce8"
+    },
+    {
+      "path": "evidence/kelan-light-state-preflight-20261023.json",
+      "bytes": 119,
+      "sha256": "58ee81b40518a23f7e3b1c9188fbbb7a96727530ab12adc383f341dea069f002",
+      "git_blob": "fe07210c08eb9ad8a67cd9b284a8a96fc7afe527"
+    },
+    {
+      "path": "evidence/kelan-light-state-probe-20261023.py",
+      "bytes": 9196,
+      "sha256": "0df0a86c2514b49a6a24cebfd3ac5d05c53caf9c14cf0f630364af06c77bbe82",
+      "git_blob": "1e9300c7a56e3fd69dfc46fda426e3e7548645d8"
+    },
+    {
+      "path": "evidence/kelan-light-state-results-20261023.json",
+      "bytes": 6794,
+      "sha256": "ccb768e7b89f1b0304eab632ffe491bda04b7403da979543147b977c7e217187",
+      "git_blob": "a6597384b75f15af7c39ddb3daa789d2d7a5c662"
+    },
+    {
+      "path": "evidence/kelan-light-state-static-index-20261023.json",
+      "bytes": 12396,
+      "sha256": "70df862d708e5d5854ebcd409760668e853f2eacf7c279e630b471d03c3367ba",
+      "git_blob": "0a5ca1f2aca0416827b71aeb409e17488a669776"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 109419,
+      "sha256": "ea51ad8725fd5e6ba5b08b9955c78ab9109960bcd25071d85961c91ab8dfbf69",
+      "git_blob": "e5a0e06673ce5d4ca8ed85de2452692a9352bd1d"
+    }
+  ],
+  "excludes_self": true
+}

@@ -1,0 +1,220 @@
+{
+  "frame_cap_bytes": 65536,
+  "cumulative_rx_cap_bytes_per_target": 1048576,
+  "ipc_deadline_seconds_per_target": 10,
+  "retries": 0,
+  "probe_kind": "partial_state_only",
+  "results": [
+    {
+      "target": "loaded_control",
+      "at_utc": "2026-10-23T08:52:23.239095+00:00",
+      "runtime_status": "unknown",
+      "can_send": false,
+      "model_sends": 0,
+      "window_actions": 0,
+      "binding": {
+        "catalog_exact_id_cwd": true,
+        "rollout_exact_id_cwd": true,
+        "header_bytes": 22980,
+        "header_sha256": "e78f911155eead88dac6e2fadf3c51441eec6a72aae7ca066016ca7cacd707a2",
+        "native_cwd_proof": false
+      },
+      "installation": {
+        "archive_bytes": 625947531,
+        "archive_sha256": "a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49",
+        "protocol_sources": [
+          {
+            "path": ".vite/build/src-CsH31EEu.js",
+            "sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db"
+          }
+        ]
+      },
+      "signature_status": "Valid",
+      "owner_discovered": true,
+      "settings_keys": [
+        "daybreakEnabled",
+        "mode",
+        "model",
+        "modelProvider",
+        "reasoningEffort",
+        "resumeState",
+        "threadSource"
+      ],
+      "resume_state": "resumed",
+      "freshness": "unique request correlated to discovered owner; partial settings only; no runtime revision",
+      "missing_state_fields": [
+        "id",
+        "cwd",
+        "threadRuntimeStatus",
+        "revision"
+      ],
+      "result": "partial_only_not_G0_pass",
+      "wire_rx_bytes": 2059,
+      "wire_tx_bytes": 804,
+      "total_seconds": 0.89,
+      "ipc_seconds": 0.015,
+      "rx_bytes": 2059,
+      "tx_bytes": 804,
+      "frames": [
+        {
+          "stage": "initialize",
+          "declared_bytes": 235,
+          "body_read": true,
+          "type": "response",
+          "method": "initialize"
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 291,
+          "body_read": true,
+          "type": "broadcast",
+          "method": "thread-stream-following-changed"
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 291,
+          "body_read": true,
+          "type": "broadcast",
+          "method": "thread-stream-following-changed"
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 291,
+          "body_read": true,
+          "type": "broadcast",
+          "method": "thread-stream-following-changed"
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 314,
+          "body_read": true,
+          "type": "client-discovery-request",
+          "method": null
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 230,
+          "body_read": true,
+          "type": "response",
+          "method": "thread-owner-discovery"
+        },
+        {
+          "stage": "partial_state",
+          "declared_bytes": 379,
+          "body_read": true,
+          "type": "response",
+          "method": "thread-follower-read-model-settings"
+        }
+      ],
+      "sent_methods": [
+        "initialize",
+        "thread-owner-discovery",
+        "thread-follower-read-model-settings"
+      ],
+      "correlations": [
+        {
+          "method": "initialize",
+          "request_id_matched": true,
+          "owner_matched": false,
+          "request_id_sha256": "b96d73360a7c1d08948eeafb15271b68ad8790d4ce2ceaa7a5e31122ef8d6890"
+        },
+        {
+          "method": "thread-owner-discovery",
+          "request_id_matched": true,
+          "owner_matched": false,
+          "request_id_sha256": "a34bfa8a5fefb3cea05f0c123eb68e416982a66451deb10e0a2281fde734ffac"
+        },
+        {
+          "method": "thread-follower-read-model-settings",
+          "request_id_matched": true,
+          "owner_matched": true,
+          "request_id_sha256": "f57706d4a89298c4cce0597cf42e4f69349e438c9fcef5c61159eb3d02710fde"
+        }
+      ]
+    },
+    {
+      "target": "original_results",
+      "at_utc": "2026-10-23T08:52:24.135009+00:00",
+      "runtime_status": "unknown",
+      "can_send": false,
+      "model_sends": 0,
+      "window_actions": 0,
+      "binding": {
+        "catalog_exact_id_cwd": true,
+        "rollout_exact_id_cwd": true,
+        "header_bytes": 22744,
+        "header_sha256": "d03a49b2e5a0c87dfe2a11bab23bf117dd69271a721a25c0ae8b904a1df50dab",
+        "native_cwd_proof": false
+      },
+      "installation": {
+        "archive_bytes": 625947531,
+        "archive_sha256": "a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49",
+        "protocol_sources": [
+          {
+            "path": ".vite/build/src-CsH31EEu.js",
+            "sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db"
+          }
+        ]
+      },
+      "signature_status": "Valid",
+      "result": "unavailable_or_blocked",
+      "error_type": "IPCFailure",
+      "error_category": "owner_discovery:owner_unavailable",
+      "wire_rx_bytes": 1245,
+      "wire_tx_bytes": 476,
+      "total_seconds": 0.86,
+      "ipc_seconds": 0.016,
+      "rx_bytes": 1245,
+      "tx_bytes": 476,
+      "frames": [
+        {
+          "stage": "initialize",
+          "declared_bytes": 235,
+          "body_read": true,
+          "type": "response",
+          "method": "initialize"
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 291,
+          "body_read": true,
+          "type": "broadcast",
+          "method": "thread-stream-following-changed"
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 291,
+          "body_read": true,
+          "type": "broadcast",
+          "method": "thread-stream-following-changed"
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 291,
+          "body_read": true,
+          "type": "broadcast",
+          "method": "thread-stream-following-changed"
+        },
+        {
+          "stage": "owner_discovery",
+          "declared_bytes": 117,
+          "body_read": true,
+          "type": "response",
+          "method": null
+        }
+      ],
+      "sent_methods": [
+        "initialize",
+        "thread-owner-discovery"
+      ],
+      "correlations": [
+        {
+          "method": "initialize",
+          "request_id_matched": true,
+          "owner_matched": false,
+          "request_id_sha256": "20a992d4ff9d66f9fbb34f48b1168a6b7ae0d1613ebd351dabc8ebf66a7231eb"
+        }
+      ]
+    }
+  ]
+}

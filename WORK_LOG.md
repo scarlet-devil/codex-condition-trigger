@@ -598,3 +598,16 @@ Alice在云端直接读取原PR及固定设计/状态/日志、desktop_ipc.py、
 执行者Alice，cloud Work，Class C/enhanced，设计修订S0自审；没有派发柯蓝、调用通信任务或取得新增独立审查。修改范围仍为设计、当前概览和本日志三份Markdown。按文件差异、文档链接/围栏/JSON、原日志字节前缀和远端全文回读核验；未执行运行测试/真实IPC/模型/GUI/上传试验，历史回归不重新计功。准确提交与检查结果见原PR正文及Git历史。
 
 当前review_pending，真实G0未通过，原件回读及候选查询验证待后续。本轮不增加新审批问题，不把设计更新当作本机已接单或实现授权；运行代码、配置、生产STOP/期限/PAUSED和业务ACK保持本轮未触碰。无Ready、merge、安装、恢复监听或社区宣传。接续入口为[三项配置设计第10节](docs/SIMPLE_SETUP_DESIGN.md)；由红魔或既有授权通道向真实本地窗口交付后才成立接单事实。
+
+
+## 2026-10-23｜Kelan 补交 G0 原调查，并完成薄状态路径有界复核
+
+Human 在原项目聊天转交 Alice 的三项接续：补交两份本地材料的可公开版本、核对实际安装的无完整历史状态入口、对已加载/不可达原目标做有界只读验证。固定接手4dd30721de987aa779ea624ab83a94db8006e60e，基线main5c1882c；本地Windows Kelan执行及S0自审，研究C/enhanced，具体授权的公开同Draft交付D/constitutional。Active28/28；身份内核和私有登记不发布。
+
+新增[历史调查脱敏版](docs/KELAN_PR2_G0_INTAKE_20261023.md)、[历史窄诊断](evidence/kelan-g0-ipc-frame-20261023.json)，保留原件长度/SHA及失败，不为补材料重跑旧失败。原超限正文0字节；方法、来源与目标仍未知。旧记录区间推导1747B，不包含initialize，非当时整连接计量。
+
+本轮安装26.1016.8622.0/签名Valid，归档a05dfd86…、协议源6a266611…一致。静态确认follow本身发送整个conversation snapshot；read-model-settings v1只返回七个设置字段。两个准确目标各一次，固定64KiB单帧/1MiB累计/10秒共用IPC截止，重试0：loaded_control接收2059B/发送804B/IPC0.015秒/全程0.890秒，resumed但缺runtime/id/cwd/revision；original_results接收1245B/发送476B/IPC0.016秒/全程0.860秒，owner_unavailable。两个runtime均unknown/can_send=false。每目标本地安装核验还哈希625947531B归档，不把小IPC流量说成端到端轻量或10秒硬保证。
+
+准确解释器导入预检、七项合成预算/禁止发送/路径检查与Ruff E9/F63/F7/F82通过；未重跑185历史套件。完整原生忙闲/cwd/revision正反例未取得，不能以partial read计通过。官方及安装内部thread/read(false)存在，但原Desktop宿主的外部桥接通路未确认；不启动独立server冒充、不抬上限、不进入G1/G2。
+
+[接续报告](docs/KELAN_LIGHT_STATE_FOLLOWUP_20261023.md)与[实测](evidence/kelan-light-state-results-20261023.json)附精确方法、字节/耗时、字段限制、后续取舍。运行源码/配置/监听/旧STOP/ACK均未改，模型0、窗口0，无merge/Ready。现有持续运行的实时健康未在本轮验收。完整性沙箱访问失败后宿主只读通过；一次GitHub参数错误和直接网络DNS失败未写远端，之后使用连接器。旧日志字节前缀保留，所有发布文件将由交付回执做完整远端回读，不把准备文本当发布成功。Alice review_pending，G0仍未通过。
