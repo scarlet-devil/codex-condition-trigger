@@ -681,3 +681,18 @@ Report: [copy candidate](docs/KELAN_THIN_STATE_COPY_CANDIDATE_20261023.md); [cod
 清理 CURRENT_STATE 中“候选已实现”与旧“尚未实现”的同时有效表述；历史条目保留。同步设计入口、候选 README 和接续方案，不修改候选源码或旧报告/清单。本条按字节追加，保留输入日志全部 121,206 B 和 11 个 CRLF；文档检查、发布提交及全文回读以原 PR 本轮交付为准。
 
 整体 Draft / review_pending，G0 blocked；Windows 运行、真实 IPC、模型、窗口、安装、生产配置、ACK、Ready、合并均未执行。当前持续监听健康未检查，原持续授权与历史停止边界保持。规范固定输入沿用已读版本；本轮审查/方案为 Class C / enhanced，自身文档 S0。
+
+
+## 2026-10-23 — Read-only protected-load inventory (Kelan)
+
+Human relayed Alice's 04bd74fc section 6. The bounded task is complete: the unique ASAR header digest resource is INTEGRITY/ELECTRONASAR in ChatGPT.exe, not chrome.dll. Its 122 bytes at file offset 4765376 encode SHA256 4a73080a...fabbd7; this matches the exact original ASAR JSON header (offset 16, 5898329 bytes). Static PE parsing and Windows data-only resource mapping agree. No executable entrypoints were invoked. Three whole-file hashes match the prior candidate inputs.
+
+Current EXE/DLL Authenticode and CodeIntegrity.cat signatures report Valid. This installation is a Store/Ok registered package, not a development package. All 14658 relevant 64-KiB block hashes and three extension FileHash values match. PKCX CMS cryptographic signature checks, but no full original MSIX container/trust-chain verification or CAT member-coverage claim is made. The minimal content change set is app.asar plus ChatGPT.exe's signed resource; chrome.dll fuses stay untouched. Package blockmap/signature/catalog consistency and identity/update/data binding require a separate concrete transaction.
+
+The inspected scope contains readable installed originals and three historical module copies/restores, but no verified same-version reinstallable recovery unit. A historical test temporary directory was inaccessible; this is a bounded negative result, not a claim about the entire disk. Original module round trips do not establish package restoration. The report lists exact changes, signature effects, restart, validation and recovery requirements; controlled loading remains blocked pending a trustworthy recovery unit and an explicit signer/package-identity choice.
+
+Two initial helper classification errors (algorithm-name case and FileHash counted as Block) were corrected after inspecting actual fields; initial output is preserved. Sandbox-only governance/package reads were denied; approved native read-only calls succeeded, with no permissions changed. Static inventory completed in 1.392 seconds on this run, not a polling benchmark. Actual signature/resource/block evidence is local Kelan observation; no new independent review is claimed. The earlier 33 JS/14 Python acceptance remains Alice's scoped result, not rerun here.
+
+See [loading inventory and transaction table](docs/KELAN_PROTECTED_LOAD_INVENTORY_20261023.md), [structured evidence](evidence/kelan-load-inventory-20261023.json) and the dated manifest. Existing log bytes are preserved as an exact prefix; current-state interpretation is updated without rewriting historical evidence. Public delivery is limited to sanitized evidence/checker sources; full proprietary header/source, private chat identities and credentials remain local. Publish/readback details are recorded in this PR's delivery receipt.
+
+G0 blocked; prior copy-only acceptance retained, this new inventory review_pending, PR Draft. No package edit/repack/signing, certificate/ACL/registration change, restart, IPC/model/window action, production change, ACK, endpoint rescan or new service. Current listener health is not inspected; existing continuous authority and historical STOP/PAUSED scopes remain. Next step is Alice/Human's concrete loading/recovery choice, not automatic installation.
