@@ -22,6 +22,31 @@ METHODS = {'initialize': 1, 'thread-owner-discovery': 1, 'thread-follower-start-
            'thread-stream-following-changed': 1, 'thread-stream-state-changed': 11,
            'thread-follower-load-complete-history': 1}
 
+PROTOCOL_REASONS = frozenset((
+    'frame_not_object', 'history_result_not_object', 'history_revision_invalid',
+    'snapshot_params_not_object', 'snapshot_change_not_object', 'snapshot_state_not_object',
+    'snapshot_thread_mismatch', 'snapshot_cwd_invalid', 'snapshot_cwd_mismatch',
+    'response_method_mismatch', 'response_owner_mismatch', 'response_not_success',
+))
+
+
+class ProtocolCheckError(RPCError, ValueError):
+    """Local validation label; contains no peer values or exception text.
+
+    Both bases preserve the existing RPCError/ValueError catch boundaries.
+    This refines diagnostics only; it does not make a rejected state usable.
+    """
+    def __init__(self, reason):
+        self.reason = reason if reason in PROTOCOL_REASONS else 'protocol_unclassified'
+        super().__init__(self.reason)
+
+
+def protocol_reason(error):
+    """Export only labels assigned by this module, never parse error strings."""
+    if type(error) is ProtocolCheckError and error.reason in PROTOCOL_REASONS:
+        return error.reason
+    return 'protocol_unclassified'
+
 
 class IPCFailure(RPCError):
     """Fixed diagnostic fields only; never retain arbitrary remote error text."""
@@ -47,6 +72,12 @@ def sha(data):
 
 def protocol_object(value, where):
     if not isinstance(value, dict):
+        reason = {'frame': 'frame_not_object', 'history.result': 'history_result_not_object',
+                  'snapshot.params': 'snapshot_params_not_object',
+                  'snapshot.change': 'snapshot_change_not_object',
+                  'snapshot.state': 'snapshot_state_not_object'}.get(where)
+        if reason:
+            raise ProtocolCheckError(reason)
         raise RPCError('expected protocol object: ' + where)
     return value
 
@@ -348,10 +379,12 @@ class IPCClient:
                 category = ('owner_unavailable' if item.get('error') == 'no-client-found'
                             else 'remote_rejected')
                 raise IPCFailure(stage, category)
-            if item.get('method') != method or (target and item.get('handledByClientId') != target):
-                raise ValueError('IPC response method or owner mismatch')
+            if item.get('method') != method:
+                raise ProtocolCheckError('response_method_mismatch')
+            if target and item.get('handledByClientId') != target:
+                raise ProtocolCheckError('response_owner_mismatch')
             if item.get('resultType') != 'success':
-                raise RPCError('IPC request was not acknowledged as successful')
+                raise ProtocolCheckError('response_not_success')
             return item
 
     def owner(self, thread_id):
@@ -368,6 +401,8 @@ class IPCClient:
         this function. Disconnect also removes the temporary follower.
         """
         deadline = time.monotonic() + self.timeout
+        failed = False
+        self.current_state_cleanup_failure = None
         def following(value, until):
             self.write_frame(dict(type='broadcast', method='thread-stream-following-changed',
                 version=METHODS['thread-stream-following-changed'], sourceClientId=self.client_id,
@@ -378,7 +413,7 @@ class IPCClient:
                                  target=owner, deadline=deadline)
             revision = protocol_object(reply.get('result'), 'history.result').get('revision')
             if type(revision) is not int or revision < 0:
-                raise RPCError('missing current stream revision')
+                raise ProtocolCheckError('history_revision_invalid')
             following(True, deadline)
             while True:
                 item = self.read_frame(deadline)
@@ -398,9 +433,12 @@ class IPCClient:
                     continue
                 state = protocol_object(change.get('conversationState'), 'snapshot.state')
                 norm = lambda p: os.path.normcase(os.path.normpath(p))
-                if (state.get('id') != thread_id or not isinstance(state.get('cwd'), str)
-                        or norm(state['cwd']) != norm(expected_cwd)):
-                    raise RPCError('native snapshot identity or cwd mismatch')
+                if state.get('id') != thread_id:
+                    raise ProtocolCheckError('snapshot_thread_mismatch')
+                if not isinstance(state.get('cwd'), str):
+                    raise ProtocolCheckError('snapshot_cwd_invalid')
+                if norm(state['cwd']) != norm(expected_cwd):
+                    raise ProtocolCheckError('snapshot_cwd_mismatch')
                 runtime = state.get('threadRuntimeStatus')
                 status = runtime.get('type') if isinstance(runtime, dict) else None
                 status = {'active': 'busy', 'idle': 'idle'}.get(status, 'unknown') if isinstance(status, str) else 'unknown'
@@ -412,11 +450,20 @@ class IPCClient:
                     from native_collector import project_turn
                     result['turn_result'] = project_turn(state, turn_id)
                 return result
+        except BaseException:
+            failed = True
+            raise
         finally:
             try:
                 following(False, time.monotonic() + min(self.timeout, 1))
-            except (OSError, TimeoutError, EOFError):
-                pass  # Adapter.close disconnects; do not mask the primary result.
+            except (OSError, EOFError, ValueError, RPCError, TypeError, KeyError, RecursionError) as error:
+                self.current_state_cleanup_failure = {
+                    'category': ipc_failure(error, 'current_state').category,
+                    'reason': protocol_reason(error), 'primary_failed': failed}
+                # Retain the primary rejection even if unsubscribe also fails.
+                # Transport cleanup still uses the existing disconnect fallback.
+                if not failed and not isinstance(error, (OSError, EOFError)):
+                    raise
 
     def close(self):
         self.pipe.close()

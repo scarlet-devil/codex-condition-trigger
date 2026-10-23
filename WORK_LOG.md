@@ -737,3 +737,16 @@ The isolated catalog helper excludes archived/subagent/guardian records and spaw
 Tk window and chooser entry were recorded, but selected directory did not match; Computer Use screenshot/window mismatch and activation error prevented verified success. Chooser/close actor is not established. Tk remains incomplete. See [report](docs/KELAN_DEDICATED_SNAPSHOT_TRIAL_20261023.md), [sanitized evidence](evidence/kelan-dedicated-snapshot-20261023.json) and dated manifest. Original log prefix (133,519 B, 11 CRLFs) preserved. Actual interpreter/import, sandbox DB denial and approved read-only fallback, initial test/lint failures, Tk launch evidence gap, and generic protocol failure are retained locally; no installation or permission repair claimed.
 
 Current task is evidence delivery/review_pending; G0 not passed, G1–G3 not started. Suggest bounded redacted reason codes plus synthetic counterexamples before any new live allowance; do not retry this closed trial. No installation/package/endpoint work, production changes, ACK, listener-health claim or alteration of continuous authority/historical STOP/expiry/PAUSED. PR remains Draft/unmerged; Alice acceptance pending.
+
+
+## 2026-10-23 — Accept bounded trial evidence and add precise failure diagnostics (Alice)
+
+红魔转交柯蓝 `f10faeb1276c3dab10479f81e00b11d1670c7b1f` 的专用新对话首轮结果，沿此前“按照这个思路解决”继续复审并修复诊断缺口。Alice 云端完整核对 29 份公开输入/依赖的 Git blob、6 项交付清单及历史 133,519 B 前缀；接受该初始化样本体量较小及目录 helper 修正的限定证据。8,972 B 最大正文、28,810 B 累计接收与 current_state/protocol 未通过同时成立；不能回溯猜定 cwd 根因，不接受原生 idle、长期体量或 G0 通过。Windows 实测及本地 S1 仍归属柯蓝报告。
+
+本轮修改 Draft 的共享 desktop_ipc 校验器和只读计量器：在原拒绝点产生有限白名单原因码，不解析/外发远端异常文本；新增 error_reason 与单列 unsubscribe_failure，保留主错误，清理异常不再遮盖它。路径比较、owner/thread/cwd/revision 的通过条件、状态映射和发送契约未放宽；原 Desktop 安装及正在部署的触发器副本未修改。新增 9 项合成测试覆盖结构/revision/身份拒绝、脱敏、旧/错归属帧、扩展路径不自动放行、清理异常与中断。
+
+原 25 项实验检查先复跑通过；最终 34 项实验检查全部通过，46 项相关 IPC/状态/适配器/采集回归为 45 通过、1 Windows 专属跳过。初跑缺公开 example 夹具造成 25 errors；补齐后缺 watchdog 造成 2 errors；取得固定原件并安装 requirements 的 watchdog 6.0.0 到临时测试目录后，最终相关回归通过。Ruff 初次新增 B023 已修正；实验文件通过，desktop_ipc 与输入相比零新增诊断、9 项既有提示保留。完整 185 项、47 项补丁副本与真实 Windows 未重跑。检查和归属见[机器可读核验](evidence/alice-snapshot-diagnostics-review-20261023.json)。
+
+[当前接续第 9 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#9-当前接续定位状态校验失败)已替代结束的第 8 节：同一已创建目标只读采一次，零模型、零初始化、无自动重试，并独立补 Tk 正确选择。静态绑定有进展；当前原生身份/状态、Tk、真实 busy/同对话追问、任务后增长及 notify 调度仍未闭合。没有向柯蓝发送通信或 PR 评论，也没有本机查询、窗口动作、生产配置或业务 ACK 修改。源码补丁为 Alice Self-review/S0，整体 Draft/review_pending；本轮材料审阅完成，G0 not passed。
+
+本次日志完整保留输入 136,768 B 和 11 CRLF；历史原件/失败记录保留。部署副本、持续运行授权、历史 STOP/到期/PAUSED 各维持原状态，当前监听健康未检查。固定输出提交和全字节回读结果以本轮 PR 正文交付记录为准。

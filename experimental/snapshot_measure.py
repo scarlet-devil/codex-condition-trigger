@@ -2,7 +2,8 @@
 
 No CLI, pipe discovery, model requests, installation changes or production hooks.
 The Windows caller supplies one accurately bound target and owns the experiment.
-Only aggregate sizes/timings and a small state projection leave this function.
+Only aggregate sizes/timings, fixed diagnostic codes and a small state projection
+leave this function.
 """
 import json
 import struct
@@ -18,10 +19,30 @@ ARCHIVE_SHA256 = 'a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b
 REQUESTS = frozenset(('initialize', 'thread-owner-discovery',
                       'thread-follower-load-complete-history'))
 FOLLOW = 'thread-stream-following-changed'
+PROBE_REASONS = frozenset((
+    'callback_not_supported', 'method_not_allowed', 'wrong_request_target',
+    'invalid_subscription', 'request_too_large', 'cumulative_receive_limit',
+    'single_frame_limit', 'installation_changed', 'owner_changed', 'frame_json_invalid',
+))
 
 
 class ProbeFailure(ValueError):
     """Codes are generated locally; remote error text is never exported."""
+    def __init__(self, reason):
+        self.reason = reason if reason in PROBE_REASONS else 'probe_unclassified'
+        super().__init__(self.reason)
+
+
+def failure_reason(error):
+    if type(error) is ProbeFailure:
+        return str(error)
+    if isinstance(error, (TimeoutError, subprocess.TimeoutExpired)):
+        return 'deadline_exceeded'
+    if isinstance(error, (OSError, EOFError, subprocess.SubprocessError)):
+        return 'transport_failed'
+    if type(error) is ipc.IPCFailure:
+        return error.category
+    return ipc.protocol_reason(error)
 
 
 class SnapshotMeter(ipc.IPCClient):
@@ -102,7 +123,11 @@ class SnapshotMeter(ipc.IPCClient):
             raise ProbeFailure('single_frame_limit')
         raw = self.read_exact(size, deadline)
         self.metrics['complete_bodies'] += 1
-        item = ipc.protocol_object(json.loads(raw), 'frame')
+        try:
+            decoded = json.loads(raw)
+        except (json.JSONDecodeError, UnicodeDecodeError):
+            raise ProbeFailure('frame_json_invalid') from None
+        item = ipc.protocol_object(decoded, 'frame')
         params = item.get('params')
         if (item.get('type') == 'broadcast' and item.get('method') == 'thread-stream-state-changed'
                 and isinstance(params, dict) and params.get('conversationId') == self.thread_id
@@ -124,7 +149,7 @@ def measure_snapshot(pipe, thread_id, expected_cwd, *, verifier=ipc.verify_insta
     existing signature/hash work is NOT a strict 10-second end-to-end guarantee.
     """
     result = {'snapshot_query_completed': False, 'runtime_status': 'unknown',
-              'can_send': False, 'model_sends': 0, 'frame_cap_bytes': FRAME_CAP,
+              'can_send': False, 'model_sends': 0, 'diagnostic_schema': 1, 'frame_cap_bytes': FRAME_CAP,
               'cumulative_receive_cap_bytes': RX_CAP, 'ipc_budget_seconds': IPC_SECONDS}
     began = time.monotonic()
     client = None
@@ -155,6 +180,10 @@ def measure_snapshot(pipe, thread_id, expected_cwd, *, verifier=ipc.verify_insta
         result['error_stage'] = stage
         result['error_category'] = (str(error) if type(error) is ProbeFailure
                                     else ipc.ipc_failure(error, stage).category)
+        result['error_reason'] = failure_reason(error)
+        cleanup = getattr(client, 'current_state_cleanup_failure', None)
+        if stage == 'current_state' and cleanup and not cleanup['primary_failed']:
+            result['error_stage'] = 'current_state_cleanup'
     finally:
         try:
             pipe.close()
@@ -163,6 +192,13 @@ def measure_snapshot(pipe, thread_id, expected_cwd, *, verifier=ipc.verify_insta
                           cleanup_failed=True)
         finally:
             if client is not None and hasattr(client, 'metrics'):
+                cleanup = getattr(client, 'current_state_cleanup_failure', None)
+                if cleanup:
+                    result['unsubscribe_failure'] = dict(cleanup)
+                    result.update(snapshot_query_completed=False, runtime_status='unknown')
+                    if 'error_stage' not in result:
+                        result.update(error_stage='current_state_cleanup',
+                                      error_category=cleanup['category'], error_reason=cleanup['reason'])
                 result['measurements'] = dict(client.metrics)
                 result['ipc_seconds'] = time.monotonic() - client.started
             result['total_seconds'] = time.monotonic() - began
