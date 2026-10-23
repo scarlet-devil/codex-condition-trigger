@@ -79,7 +79,8 @@ hashes, exact process/service/owner and the approved loading method. No current
 production verification rule is relaxed by this package.
 
 State: Alice accepted the copy-only scope at ec2fb862 and reran 33 JS + 14 Python
-tests. Live loading and G0 remain unaccepted. See the [current loading-inventory
-scope](../../docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#6-当前接续接受副本候选核对加载改动集合)
+tests. Alice also accepted the bounded read-only loading inventory at 9a863af5;
+the digest resource is in ChatGPT.exe, and package trust/recovery remain unresolved.
+Live loading and G0 remain unaccepted. See the [inventory review and route recommendation](../../docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#7-清点审阅与接入路线选择)
 and [cloud review evidence](../../evidence/alice-thin-state-review-20261023.json).
 This updates review status, not the experimental runtime or its default-off behavior.

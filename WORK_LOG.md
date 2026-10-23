@@ -696,3 +696,18 @@ Two initial helper classification errors (algorithm-name case and FileHash count
 See [loading inventory and transaction table](docs/KELAN_PROTECTED_LOAD_INVENTORY_20261023.md), [structured evidence](evidence/kelan-load-inventory-20261023.json) and the dated manifest. Existing log bytes are preserved as an exact prefix; current-state interpretation is updated without rewriting historical evidence. Public delivery is limited to sanitized evidence/checker sources; full proprietary header/source, private chat identities and credentials remain local. Publish/readback details are recorded in this PR's delivery receipt.
 
 G0 blocked; prior copy-only acceptance retained, this new inventory review_pending, PR Draft. No package edit/repack/signing, certificate/ACL/registration change, restart, IPC/model/window action, production change, ACK, endpoint rescan or new service. Current listener health is not inspected; existing continuous authority and historical STOP/PAUSED scopes remain. Next step is Alice/Human's concrete loading/recovery choice, not automatic installation.
+
+
+## 2026-10-23 — Alice accepts loading inventory and recommends a product route decision
+
+红魔转交柯蓝 `9a863af5b419743fac21b40ac7b8f0257b543d56` 的只读加载清点，请接续既有审查/方案工作。本轮执行者为云端 Alice，Linux Work；按已授权原 Draft PR #2 更新当前状态、既有方案、设计入口和候选说明，不派发本地任务。审阅结论：接受限定清点交付；副本候选既有接受保留，原宿主加载及 G0 仍 blocked。
+
+独立核对 12 个输入/相关 Git blob、6 项清单的长度/SHA-256/blob、输入提交相对 04bd74fc 的 7 个变更及 161 个不变 blob。前次日志 124,002 B 的摘要/blob 与 11 个 CRLF 完整前缀一致。两份检查器通过 Python AST 解析并检查读取方式；公开资源 JSON 重建为相同 122 B/摘要，与报告所记原 ASAR 头一致，资源区间在证书表前。按文件长度复算 74+5,032+9,552=14,658 块、三个文件共 960,516,587 B。以上为公开字节和证据内部一致性核对，私有 Windows 文件、原始块、签名、登记及原生资源结果均归属柯蓝，未声称云端重跑。Microsoft 文档确认数据资源映射和 CheckSignature(true) 的限定语义；CMS 数学签名不等于完整容器/证书链/CAT 成员验证。
+
+本轮没有新代码必改项。实际耦合已确定为 ASAR、EXE 资源及包级信任/恢复；无需为本候选修改 DLL 或关闭校验。没有验证到同版本恢复包是限定检查结果，并非证明无法恢复。Alice 建议不把改造 Store 安装作为三字段产品默认前提，优先考虑未修改 Desktop 的专用对话有限兼容验证；它仍读完整快照，有体量和成本限制，不能解决大型历史。此为建议，尚未获得红魔的路线选择，现行 G0、32 MiB 旧通道单帧边界及薄状态无回退契约未改变。
+
+[行动方案第 7 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#7-清点审阅与接入路线选择)给出已选择路线后的一次最小验证范围：准确专用对话绑定、有界只读状态与成本观测、单独授权的真实新用户回合、超限保留批次并停止投递。旧第 6 节标记已完成，不继续循环清点。若红魔选择原包实验，需以明确签名/身份/数据/更新策略和可靠恢复单位形成具体事务；本轮没有自动追加恢复搜索或改包任务。
+
+候选源码和生产源码均未改，复用此前 33 JS + 14 Python 云端直接测试证据，本轮不重跑 47 项或历史 185 项。文档、链接、历史字节和提交回读为本轮相关检查；结果与输出提交见 PR 本轮交付记录。保留本次输入日志全部 127,292 B 和 11 个 CRLF，历史报告、清单和 review_pending 原始字段不回写。自身文档修改为 S0，未发起子任务或声称独立代理复核。
+
+无安装、重签、证书/ACL/注册修改、重启、真实 IPC/模型/窗口动作、生产配置或 ACK 修改；当前监听健康未查。既有持续运行授权与历史 STOP/到期/PAUSED 边界保持。原 PR 保持 Draft/unmerged，整体设计 review_pending；这轮清点审查已完成，下一项是产品路线选择。
