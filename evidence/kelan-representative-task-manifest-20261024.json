@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "input_commit": "09e36beafeb293b3b6263b7b856cb841ff3cc605",
+  "files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 9910,
+      "sha256": "905ac338eda525701909815b961746dc38b5e0dbacd65b7efa725378674641e3",
+      "git_blob": "c0c4b1a9d52e1906ab7dec210c7256d5460f2274"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 152992,
+      "sha256": "3d2d9b276c1f0cf844aaf407dd6441d1b326f5fe9616e06fb724bcca6032c81a",
+      "git_blob": "e7eb4edf6851b0fa7bbe6232f27ef46054f8698b"
+    },
+    {
+      "path": "docs/KELAN_REPRESENTATIVE_TASK_20261024.md",
+      "bytes": 9877,
+      "sha256": "8467151af1fb3c0ac5c70231716fb950544bd03cc30db64b9a344ac02f45d29a",
+      "git_blob": "9218c36d20bcd597a89c7bf2288d95cfc26936b6"
+    },
+    {
+      "path": "evidence/kelan-representative-task-20261024.json",
+      "bytes": 15010,
+      "sha256": "c07c681ed2908c3d7866cc02c969cbceaff1d6188ee44962537c060639d0265a",
+      "git_blob": "640d465ede73b140d06c824ef82998ecadf067ad"
+    }
+  ],
+  "manifest_self_excluded": true,
+  "private_material_excluded": true
+}

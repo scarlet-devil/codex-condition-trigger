@@ -803,3 +803,15 @@ See [Chinese report](docs/KELAN_STATE_DIAGNOSTIC_20261023.md), [sanitized eviden
 更新 CURRENT_STATE、设计稿和[行动方案第11节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#11-当前接续代表性任务后的体量与回合关联)：cwd 状态及独立 Tk 子项关闭；G0 尚需选择证据收口和代表性任务后测量。G1规则/notify、G2完整表单、G3两批真实通知不混入 G0 前置要求。下一轮方案为同一目标最多1次 start/1模型回合、最多3次计量采样、10分钟窗口，保留发送路径额外读检查的真实计数；任务太快未捕获busy不补发。已关闭第8–10节额度不续用；未派发或执行下一轮。
 
 本轮只修改四份既有文档，核对相对链接、锚点和阶段/数字一致性；实际推送与回读结果在本批 PR 正文及用户交付中补齐。PR保持Draft，未合并/安装/启用；生产配置、业务ACK、持续授权及历史STOP/到期/PAUSED未改，监听健康未查。已完成的是本次材料复审，不能把它写成整体G0或产品验收通过。
+
+## 2026-10-24｜Kelan 第11节单次代表性任务：idle/busy/idle与准确turn通过，交回G0审阅
+
+Human转交09e36bea第11节；固定完整188文件与7模块实际导入pin，运行源码未改，34+55历史测试不重跑。沿用专用目标/创建回执，当前目录唯一候选及rollout身份一致；引用原12项目录过滤测试。新隔离账本北京时间01:10:11至01:14:07，236.156秒关闭；1start/1模型、3计量，适配器额外2history，合计5history/4initialize握手/8owner；无未知写入。Tk/新建/初始化回合/窗口/重采0。
+
+真实样本idle/busy/idle，revision8/14/16均满足请求下界与最终owner；最大目标快照8972/18018/53036B，RX29075/56214/161566B，任务后差44064/132491B。安装0.921/1.078/1.016s、IPC0.219/0.344/0.140s，含安装总计1.140/1.422/1.156s；保持32MiB/128MiB/10s，仍全历史路径和每次安装哈希。准确意图/receipt-turn/isSteering:false/继承设置与完整投递原文关联通过；24次只读文件观察得到task_complete/ended，native execution_outcome仍unknown，业务ACK=false。
+
+合成材料34289B/SHA 5cc5433657424bea202100b3c5d096d1288d2e5765d67221e69eefc8cc70a4af；122记录/120唯一，输出446B/SHA 62a6baa4dc67e4837570dae39d025811a716a80bd460d31ae150390cc77f4491，五字段正确。目标四次工具退出0/0/1/0：WindowsApps Python别名启动ResourceUnavailable后，同回合用PowerShell计算并写入/回读成功。控制器固定Python和IPC路径不变，无额外start；“更改执行工具”边界是否涵盖此偏差交Alice判断，不隐去失败，不重跑取理想结果。样本增长含失败工具记录，不作正常任务通用基准。
+
+临时辅助器7序列、5截止、3文本检查最终15通过；保留7失败、3失败2通过、2失败1通过红测。S1/M0独立本地源码审查关闭外层截止/STOP延迟发现问题；仅辅助器修正，6冻结文件/188候选实测后不变，基础Ruff通过。安装hash自身不是进程硬超时，宿主已接受任务不由本地STOP取消；本轮正常闭合。
+
+[报告](docs/KELAN_REPRESENTATIVE_TASK_20261024.md)、[证据](evidence/kelan-representative-task-20261024.json)、[清单](evidence/kelan-representative-task-manifest-20261024.json)。原WORK_LOG 150413B/11CRLF字节前缀完整保留。G0 evidence_ready/review_pending，前轮cwd/Tk接受有效；G1通知/G2表单/G3两批是后续阶段而非G0前置。未改生产安装/配置/ACK/连续授权与旧STOP/PAUSED，未查监听健康；PR Draft不合并，公开交付以回执为准。
