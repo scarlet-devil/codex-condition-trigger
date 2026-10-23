@@ -790,3 +790,16 @@ See [Chinese report](docs/KELAN_STATE_DIAGNOSTIC_20261023.md), [sanitized eviden
 [报告](docs/KELAN_CWD_REVALIDATION_20261024.md)、[证据](evidence/kelan-cwd-revalidation-20261024.json)、[清单](evidence/kelan-cwd-revalidation-manifest-20261024.json)；保留本输入WORK_LOG全部146,038B及11CRLF前缀。输出提交/回读与交接结果由本批PR回执补齐，不提前认定交付或Alice接受。
 
 本轮通过当前状态子项；G0总体仍未通过，代表性任务后体量、busy/普通追问turn关联、完整表单/notify待续。原完整历史路径和每次安装哈希成本未解决为高频轮询方案；不回溯旧generic错误。Alice review_pending，PR Draft/unmerged；请审阅本次范围后确定下一次最小联合试验，不自动重开额度或进入G1–G3。
+
+
+## 2026-10-24 — Alice accepts bounded cwd revalidation and scopes the next trial
+
+来源：红魔转交柯蓝 [77ef0c0f2e9399338ee7e5e1939b40426347f16c](https://github.com/scarlet-devil/codex-condition-trigger/commit/77ef0c0f2e9399338ee7e5e1939b40426347f16c) 及[交接](https://github.com/scarlet-devil/codex-condition-trigger/pull/2#issuecomment-6369537540)。执行者为云端 Alice；本轮为公开证据/源码关联复审和既有文档接续，Self-review/S0，无独立子任务、Windows 实测或模型发送。
+
+完整读取五份交付及相关入口；四项清单长度/SHA-256/Git blob、八项实际导入源码 pin 相符；与 d55c62d2 比较仅五份文档/证据改变，183 个既有 blob 未变。146,038 B/11 CRLF 原日志前缀与上次云端候选一致；本次追加保留输入 147,988 B 全部字节。公开摘要/哈希核对不冒称重新验证私有 Windows 原始日志、完整候选 ZIP 或本地绑定。
+
+接受本次当前状态子项：同一专用目标，idle、revision/requested_revision=6/6、最终 owner 一致；最大 8,972 B、RX 29,373 B，验证/IPC/总计约 0.906/0.032/0.938 秒。只读 can_send=false 合乎契约。34 实验+55 相关回归通过（0skip）归属柯蓝，初次39个 TEMP 权限错误事件和测试夹具目录修正保留；源码未改，不为文档复审重复测试。既有11条 Ruff 提示及完整历史套件未重跑的限制保留。
+
+更新 CURRENT_STATE、设计稿和[行动方案第11节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#11-当前接续代表性任务后的体量与回合关联)：cwd 状态及独立 Tk 子项关闭；G0 尚需选择证据收口和代表性任务后测量。G1规则/notify、G2完整表单、G3两批真实通知不混入 G0 前置要求。下一轮方案为同一目标最多1次 start/1模型回合、最多3次计量采样、10分钟窗口，保留发送路径额外读检查的真实计数；任务太快未捕获busy不补发。已关闭第8–10节额度不续用；未派发或执行下一轮。
+
+本轮只修改四份既有文档，核对相对链接、锚点和阶段/数字一致性；实际推送与回读结果在本批 PR 正文及用户交付中补齐。PR保持Draft，未合并/安装/启用；生产配置、业务ACK、持续授权及历史STOP/到期/PAUSED未改，监听健康未查。已完成的是本次材料复审，不能把它写成整体G0或产品验收通过。
