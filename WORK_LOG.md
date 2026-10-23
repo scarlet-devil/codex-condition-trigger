@@ -654,3 +654,15 @@ Human 在原项目聊天转交 Alice 的三项接续：补交两份本地材料�
 文档检查通过：77 处相对链接、1 个 JSON 示例及代码围栏；人工核对当前状态与接续方案一致。输入 WORK_LOG 的全部 115,710 B 前缀和 11 个历史 CRLF 按字节保留。最终提交、远端全文回读及变更范围核对结果见本 PR 本轮交付记录。不修改历史报告/证据，不重跑 185 项运行套件冒充本轮实现验收。
 
 G0 blocked；方案已整理，PR Draft / review_pending。运行补丁、安装、窗口、模型发送、业务 ACK、生产配置、Ready 和合并均为 0；当前持续监听健康未检查，既有持续运行与旧 STOP/到期/PAUSED 边界保持。此条是当前后续范围，不声称柯蓝已接单或执行。
+
+
+## 2026-10-23 — Thin-state copy candidate and protected loading gate (Kelan)
+
+Human relayed Alice's fixed e3f479f plan. Candidate-only implementation adds one summary follower method, a narrow existing-native-connection bridge, an isolated default-off caller, and exact hash-bound byte transforms. Six anchors across three copied modules preserve old APIs; no production adapter/config edits. The private call reads one thread/read(includeTurns:false), checks owner and original connection generations, rejects queued expiry, returns scalar native identity/status, and bounds response encoding/caller traffic. No real pipe factory or send capability is enabled.
+
+33 JS + 14 Python candidate tests pass; 18 real-source extraction checks (including six full syntax parses) pass; 36 related old IPC/native/adapter tests pass. Three copy apply/revert cycles restore exact bytes; wrong originals/tampering are rejected. Ruff/ESLint pass. S1 local subtask review found and closed two P1 protocol/API wiring errors and two P2 delayed-request/redaction gaps. It independently reran candidate/source checks; this is not Alice acceptance. Initial failures and environment corrections remain in evidence; full 185-test suite was not rerun.
+
+New loading evidence: installed chrome.dll has unique v1 fuse wire 010011001; embedded ASAR integrity and ASAR-only loading are enabled, its signature is Valid, and all three archive entries carry SHA256 integrity metadata. A copy module test cannot establish protected full-package loading. No ASAR repack, PE edit, fuse disable, re-signing, install/restart, injection, alternate service, real state query, model/window action, production change or ACK occurred. Archive a05dfd86... remains unchanged. Existing continuous authorization and historical STOP/PAUSED scopes are retained; current production health was not inspected.
+
+Report: [copy candidate](docs/KELAN_THIN_STATE_COPY_CANDIDATE_20261023.md); [code/tests](experimental/thin_state/README.md); [evidence](evidence/kelan-thin-state-candidate-20261023.json). Candidate code is implementation_ready / review_pending; live loading needs an explicit trust-path decision, G0 is still blocked. Do not repeat the completed endpoint investigation or move to G1/G2 before original-host and other G0 evidence exists. PR remains Draft/unmerged; Alice review_pending.
+

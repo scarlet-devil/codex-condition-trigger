@@ -1,3 +1,9 @@
+## 2026-10-23 — Copy candidate ready; protected loading unresolved
+
+The thin-state candidate from e3f479f is implemented only on exact source copies. [Report](docs/KELAN_THIN_STATE_COPY_CANDIDATE_20261023.md) and [isolated package](experimental/thin_state/README.md) record 33 JS, 14 Python, 18 source-extraction checks and 36 related legacy tests passing, plus exact three-module rollback. Four S1 findings were fixed; Alice review_pending.
+
+Installed chrome.dll enables embedded ASAR integrity and ASAR-only loading and has a Valid signature. Module-level VM success does not establish actual protected-host loading; no archive repack/install/restart/IPC/model/window/production/ACK action occurred. Choose a supported or explicitly reviewed loading/trust route before any original-host probe. G0 remains blocked; G1–G3 not started. Production continuous authorization and historical pause scopes are unchanged; runtime health not inspected.
+
 # Current state
 
 Updated 2026-10-23 · Project: `scarlet-devil/codex-condition-trigger`
