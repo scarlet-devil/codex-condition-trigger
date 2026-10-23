@@ -1,0 +1,210 @@
+{
+  "schema": 1,
+  "date": "2026-10-23",
+  "author_identity": "Kelan",
+  "deployment_environment": "local",
+  "acting_role": "bounded Windows diagnostic implementer",
+  "input_commit": "60be8e0f1925a4d26f59e0ee4e65cdaf5edb401a",
+  "assignment": "Human relayed Alice section 9; Human approved Tk no-concurrent-input interval",
+  "workflow_state": "review_pending",
+  "G0": "not_passed",
+  "observation": {
+    "sample": {
+      "snapshot_query_completed": false,
+      "runtime_status": "unknown",
+      "can_send": false,
+      "model_sends": 0,
+      "diagnostic_schema": 1,
+      "frame_cap_bytes": 33554432,
+      "cumulative_receive_cap_bytes": 134217728,
+      "ipc_budget_seconds": 10,
+      "installation_verified": true,
+      "verification_seconds": 0.8290000000270084,
+      "error_stage": "current_state",
+      "error_category": "protocol",
+      "error_reason": "snapshot_cwd_mismatch",
+      "measurements": {
+        "read_budget_debited_bytes": 29139,
+        "completed_read_bytes": 29139,
+        "completed_write_bytes": 1691,
+        "frame_headers": 11,
+        "complete_bodies": 11,
+        "max_declared_body_bytes": 8972,
+        "target_snapshot_bodies": 3,
+        "max_target_snapshot_body_bytes": 8972,
+        "incomplete_io": false
+      },
+      "ipc_seconds": 0.030999999959021807,
+      "total_seconds": 0.8599999999860302,
+      "binding_checks_passed": true,
+      "source_pins_verified": true
+    },
+    "cwd_comparison": {
+      "captured_from_same_query": true,
+      "expected_matches_catalog_exactly": true,
+      "native_matches_expected_exactly": false,
+      "legacy_normalized_equal": false,
+      "expected_extended_drive": true,
+      "native_extended_drive": false,
+      "both_supported_catalog_form": true,
+      "catalog_normalized_equal": true
+    },
+    "window": {
+      "start_utc": "2026-10-23T14:54:24.076199+00:00",
+      "window_seconds": 600,
+      "reserved_queries": 1,
+      "model_sends": 0,
+      "no_retry": true,
+      "state": "closed_after_one_query",
+      "elapsed_seconds": 0.875,
+      "end_utc": "2026-10-23T14:54:24.945589+00:00"
+    }
+  },
+  "source_preflight": {
+    "input_commit": "60be8e0f1925a4d26f59e0ee4e65cdaf5edb401a",
+    "imports": [
+      {
+        "path": "desktop_ipc.py",
+        "sha256": "7ed8f13aa3e7d6fc3d74c8cfa5e77bd1a4c47ec50b7932b0944b967857e382dc"
+      },
+      {
+        "path": "experimental/snapshot_measure.py",
+        "sha256": "0a819e956ba2d84df400b8c3a3ace06a09a3442d5934f81b86a1aee7bee049bb"
+      }
+    ],
+    "source_files": [
+      {
+        "path": "desktop_ipc.py",
+        "bytes": 30787,
+        "sha256": "7ed8f13aa3e7d6fc3d74c8cfa5e77bd1a4c47ec50b7932b0944b967857e382dc",
+        "git_blob": "fcc9657865c8c6609e46452a09cad75cca20448f"
+      },
+      {
+        "path": "experimental/snapshot_measure.py",
+        "bytes": 10124,
+        "sha256": "0a819e956ba2d84df400b8c3a3ace06a09a3442d5934f81b86a1aee7bee049bb",
+        "git_blob": "7f9e43854be9544d2323e55c2e3c468bbe5baddd"
+      },
+      {
+        "path": "experimental/tests/test_snapshot_measure.py",
+        "bytes": 9427,
+        "sha256": "6fd51feb4f76311cfe07946fc4adf24eb24dee210726dad74b58f8be0f39d6c8",
+        "git_blob": "d073f72bc0199c10dc1b381fe5bb00e46201dd70"
+      },
+      {
+        "path": "experimental/tests/test_snapshot_diagnostics.py",
+        "bytes": 7865,
+        "sha256": "89dac896fd6255d3d2be4998a0733a533134864cd629898912e7c1aa60ecf35b",
+        "git_blob": "4a2570c36f32b45a792046977ebf7e5225add98c"
+      },
+      {
+        "path": "experimental/conversation_catalog.py",
+        "bytes": 2608,
+        "sha256": "4ad4af638b5488c4499d5b671c17d77d4ab1c04caec2bd40329b40c75daa0d12",
+        "git_blob": "c164c797705448ec0f6461f1a3c0867d04d35b18"
+      },
+      {
+        "path": "experimental/tests/test_conversation_catalog.py",
+        "bytes": 3725,
+        "sha256": "372a667d5abbefe16b45f76b069ec695e2f9d0eda9c16097fe8b27b9990523ac",
+        "git_blob": "6b62f025c566d785233bd7b3e7ad300eb732eefb"
+      },
+      {
+        "path": "chat_adapters.py",
+        "bytes": 7785,
+        "sha256": "cac5010d542dc7404eb8d7bc69b083c68860792b51cc505fc99e1dc075cc665e",
+        "git_blob": "010096669cafbc920fd13cffe8e04d8ffca25dbd"
+      },
+      {
+        "path": "AGENTS.md",
+        "bytes": 5827,
+        "sha256": "e95d6f81334245f5a308c13b653d531bba104b68b6583ba0c99ae246851158d2",
+        "git_blob": "a06fd682a05d34bc66a2c7ffc6978d3d5236b4ce"
+      }
+    ]
+  },
+  "installation": {
+    "archive_sha256": "a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49",
+    "verified": true,
+    "modified": false
+  },
+  "target": {
+    "reused_existing_dedicated_chat": true,
+    "creation_id_equals_catalog": true,
+    "catalog_rollout_header_binding_passed": true,
+    "prior_cwd_rollout_path_exact_match": true,
+    "original_business_binding_changed": false,
+    "native_state_accepted": false,
+    "native_freshness_and_final_owner_recheck_completed": false
+  },
+  "instrumentation": {
+    "on_disk_fixed_sources_unchanged": true,
+    "in_memory_failure_reason_wrapper": true,
+    "exact_local_exception_type_and_reason_and_code_object": true,
+    "private_projection_fields": [
+      "expected_cwd",
+      "native_cwd"
+    ],
+    "full_traceback_or_frame_serialized": false,
+    "original_reason_preserved": true,
+    "observer_restored_in_finally": true,
+    "private_values_written_after_ipc": true,
+    "production_dependency": false,
+    "supports_filesystem_identity": false
+  },
+  "tk": {
+    "tk_window_created": true,
+    "chooser_opened": true,
+    "selection_matches": true,
+    "timed_out": false,
+    "closed": true,
+    "exit_code": 0,
+    "screenshot_identity_verified": true,
+    "observed_result": "Directory check: True",
+    "unexpected_action": "indexed confirm click observed parent directory navigation",
+    "cause": "not_established",
+    "bounded_recovery": "fresh screenshot; enter input; confirm; verify; close",
+    "actor": "Kelan via Computer Use with Human-coordinated no-input interval",
+    "native_codex_ui_operated": false,
+    "full_three_field_form_tested": false
+  },
+  "checks": {
+    "experimental_passed": 34,
+    "observer_methods": 3,
+    "observer_passed": 3,
+    "observer_red_failed": 1,
+    "ruff_selected_experimental_files": "passed",
+    "alice_45_pass_1_skip": "historical_cloud_only_not_rerun",
+    "full_185_suite": "not_rerun",
+    "copy_47_suite": "not_rerun",
+    "initial_source_prepare": "KeyError path; no IPC",
+    "initial_test_start": "start directory is not importable; no tests executed",
+    "governance_active": "28/28",
+    "review_type": "Self-review",
+    "context_independence": "S0"
+  },
+  "limits": [
+    "current sample cause is not retrospective proof of prior sample",
+    "lexical path equality is not filesystem object identity",
+    "small initial frames do not prove task growth",
+    "no real busy or follow-up turn association",
+    "current listener health not checked"
+  ],
+  "unchanged": [
+    "production code/config",
+    "Desktop installation",
+    "business ACK/ledger",
+    "continuous authority",
+    "historical STOP/expiry/PAUSED"
+  ],
+  "redacted": [
+    "private thread/turn/owner IDs",
+    "actual cwd pair",
+    "rollout body",
+    "UI screenshots/window lists",
+    "identity files",
+    "credentials",
+    "installed source"
+  ],
+  "next": "strict path-equivalence candidate with counterexamples for review; no automatic live retry"
+}

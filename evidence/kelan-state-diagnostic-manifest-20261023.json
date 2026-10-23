@@ -1,0 +1,49 @@
+{
+  "input_commit": "60be8e0f1925a4d26f59e0ee4e65cdaf5edb401a",
+  "files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 9594,
+      "sha256": "136a39033403e0c0047eb76e95928827bde6a23757d88e769f5d6acf168e75b6",
+      "git_blob": "bbe4cf0e809b14d5d70c3263590516c77d257b8d"
+    },
+    {
+      "path": "docs/KELAN_STATE_DIAGNOSTIC_20261023.md",
+      "bytes": 9210,
+      "sha256": "eaf309cd47cef22703c65421bad8eb2f1d78ff3126e322a68939237375946e0a",
+      "git_blob": "620285da09f19d2eaee8fc89f68004ced7391958"
+    },
+    {
+      "path": "evidence/kelan-state-diagnostic-20261023.json",
+      "bytes": 7446,
+      "sha256": "c47dd3b597e2782c87c53664415906ec2543800e5150aa377fe86b984aec199f",
+      "git_blob": "ebf705c93bc6ed7bfef59a4dfdc7d650fc3483b9"
+    },
+    {
+      "path": "evidence/support/cwd_observation.py",
+      "bytes": 745,
+      "sha256": "9e2fc22a2cb8707f34f1fa0c600bfd2bdbdf3ae4c79b552ca63af29ebb67e172",
+      "git_blob": "990713138e72a5d3c1303865fbd8746914694796"
+    },
+    {
+      "path": "evidence/support/test_cwd_observation.py",
+      "bytes": 1847,
+      "sha256": "995aa01ef085c2d0f1ac6225424c0722ef6811fb7cfd361c3643464b9a55c278",
+      "git_blob": "92f9d7d2eb293b23bd9d81f6d405b9ec4d4502c7"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 143192,
+      "sha256": "50196e88e1100a285b18a37f34926df820b3cebc3dcff97cf3857d06b3155ae3",
+      "git_blob": "5c2071c553c58b597b784984d148c138823311fe"
+    }
+  ],
+  "prior_log": {
+    "bytes": 139580,
+    "sha256": "874d166c7030c12e5c7d7d8424d2468681581aced8953f1797450cd3354cf660",
+    "git_blob": "b9197ed4d7f02fa468cf1653e3c9c5060a9ba36e",
+    "crlf": 11,
+    "exact_prefix_preserved": true
+  },
+  "scope": "this increment; manifest excludes itself"
+}
