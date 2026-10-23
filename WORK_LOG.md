@@ -640,3 +640,17 @@ Human 在原项目聊天转交 Alice 的三项接续：补交两份本地材料�
 +
 +Final local-to-Git-blob verification found that the initial be49f92 transport preparation used text newline normalization: 11 historical CRLF line endings in WORK_LOG became LF. Text readback matched the normalized payload, but the original byte prefix and published manifest entry did not match that intermediate commit. No wording or runtime behavior changed. The follow-up restores the prepared original bytes and uses read_bytes().decode('utf-8') for transport; full Git blob/length/SHA-256 and remote content are checked before final completion. The initial commit and its erroneous byte-preservation claim remain traceable; the final receipt identifies the correcting commit. This is a delivery-preparation error, not a GitHub transport or Desktop endpoint failure.
 +
+
+## 2026-10-23｜Alice 接受限定入口调查，整理三项决定与最小补丁接续
+
+来源：红魔在本项目讨论专用触发对话、小探针与忙时延后、快照及接口修改后，明确要求“写好work_Log以及让柯蓝下一步行动的方案”。云端 Alice 以原 Draft #2 的 `e83da5506a7b25f27ac90477926c0e4180ff6a0a` 接手；本轮为方案与文档工作，Class C / enhanced，设计自审 S0。未通过通信工具向柯蓝或其他 agent 派发任务。
+
+实际复核：完整回读 e83da55 的 5 个增量文件和 AGENTS/设计，共 7 个 Git blob 匹配；该提交清单 4 项长度、SHA-256、blob 一致。接受公开材料作为“当前安装及已检查通道未找到原服务现成摘要入口”的限定依据。原调查 12 分 24 秒及 Windows/安装源码观测仍归属柯蓝；Alice 没有独立实机复现。调查接续已完成，不重复派发第 11.3 节的 60 分钟任务。历史报告的 pending 为当时状态，当前审阅结论在本条与 CURRENT_STATE 更新，不改写原报告/清单。
+
+三项决定：（1）首轮用用户指定的专用 Desktop 对话，维护与自动化分开；以准确 thread/cwd/rollout/当前 owner 绑定，同对话新用户回合保持 isSteering:false。（2）日常采用只读忙闲查询，真实小消息只作有界验收；现有 busy 测试并未证明宿主原子拒绝。直接试发后延迟仅为待验证候选，须证明未接收/未入队/未 steering；超时或失回执继续 uncertain，不盲重发。（3）优先准备独立只读摘要接口的小补丁，复用现有 IPC 和原服务连接，保留原完整快照。材料路径不改变状态返回协议，被拒 34,956,277 B 帧的内容和归属仍未知，不能归因为已读到的聊天正文。
+
+新增[给柯蓝的下一步方案](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md)，同步 CURRENT_STATE 和设计第 12 节。下一交付是副本上的最小补丁、调用端、相关隔离测试及加载/完整性/回退方案；定位 owner/摘要处理器、IPC 注册和调用端，实际文件数与安装耦合待证明。普通副本修改不需另造审批流程；原安装替换/重启必须先有具体可审阅候选，本次没有实施。候选成立后再验原服务查询、补齐目录/Tk，按 G1/G2/G3 推进。原生 idle/start 非原子限制保留，不把讨论结果或 fake adapter 通过写成 G0 通过。
+
+文档检查通过：77 处相对链接、1 个 JSON 示例及代码围栏；人工核对当前状态与接续方案一致。输入 WORK_LOG 的全部 115,710 B 前缀和 11 个历史 CRLF 按字节保留。最终提交、远端全文回读及变更范围核对结果见本 PR 本轮交付记录。不修改历史报告/证据，不重跑 185 项运行套件冒充本轮实现验收。
+
+G0 blocked；方案已整理，PR Draft / review_pending。运行补丁、安装、窗口、模型发送、业务 ACK、生产配置、Ready 和合并均为 0；当前持续监听健康未检查，既有持续运行与旧 STOP/到期/PAUSED 边界保持。此条是当前后续范围，不声称柯蓝已接单或执行。
