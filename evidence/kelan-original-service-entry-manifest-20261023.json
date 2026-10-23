@@ -1,18 +1,18 @@
 {
   "input_commit": "95c6519dfefd70654dd10dddf79dac1a4b647563",
-  "scope": "this commit only; later CURRENT_STATE/WORK_LOG edits invalidate their entries",
+  "scope": "correcting delivery commit only; the intermediate be49f92 WORK_LOG did not match its manifest",
   "files": [
     {
       "path": "CURRENT_STATE.md",
-      "bytes": 9703,
-      "sha256": "723050e8b52b2ef162bd59d941141fbed4e8e70f1769855ca96cccf83707ada2",
-      "git_blob_sha1": "4027522bf3f4b475f08f43e4aa5cc9b1a82d2ffa"
+      "bytes": 10065,
+      "sha256": "c17e61bdf1902912556bdde2babad55c9a7f58e21416ce20946ec8904ef7dab3",
+      "git_blob_sha1": "0273c6fd9b14d4128b8d8acb040c2d231f0eea4b"
     },
     {
       "path": "docs/KELAN_ORIGINAL_SERVICE_ENTRY_20261023.md",
-      "bytes": 11076,
-      "sha256": "b5f20a85a15dc35aee8c339aee82140b80860fca7796d8e0425d6ae9533866f6",
-      "git_blob_sha1": "cacc17e2dc07865917ca3b0e7e502ffee46ff61f"
+      "bytes": 11458,
+      "sha256": "9dbb7780f83f35b0f97ba8ab9ccb539cc763f1487d9d3ad192046b5d8a31fc9b",
+      "git_blob_sha1": "4d62c0d281b922917bc794177122d01587760e2b"
     },
     {
       "path": "evidence/kelan-original-service-entry-20261023.json",
@@ -22,9 +22,9 @@
     },
     {
       "path": "WORK_LOG.md",
-      "bytes": 114888,
-      "sha256": "9bfcb618cbe6d56640f6fe3c9c582690e8c566615c87320926cf1d41642532f9",
-      "git_blob_sha1": "767759b71e3729ab2a588cc68698febae5c3e8aa"
+      "bytes": 115710,
+      "sha256": "da22adf5c506eddd074797987daa14add07ef2a94e279fdb40ecaac90c2f668e",
+      "git_blob_sha1": "eb5092b3bd476efbf3a48a9fd6c753ae6e3f769f"
     }
   ]
 }

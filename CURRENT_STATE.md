@@ -16,6 +16,8 @@ Freshness must be proved according to the actual protocol. Keep revision checks 
 
 Installation cost was measured separately: one successful check took 0.775323 seconds, including 0.482104 seconds for signature verification and 0.248328 seconds for the 625,947,531-byte archive SHA-256. This is one warm-machine observation, not a recurring or cold-cache benchmark. An initial signature subprocess/decoding failure is preserved; two metadata-only pipe opens occurred, with zero protocol messages or model/window actions. No cache was implemented. The next step is an explicit product-boundary choice: retain limited experimental integration, seek a supported original-service bridge, or separately consider tool-owned service/chats. No change of that boundary is implied.
 
+Final byte verification caught an initial delivery-preparation newline error in be49f92: 11 historical WORK_LOG CRLF endings were normalized to LF. The corrective delivery restores the original bytes and validates Git blobs/lengths/SHA-256; see the log correction and final receipt. The intermediate commit is not a valid match for its WORK_LOG manifest entry.
+
 The three-field design remains proposed. This evidence review is complete within its documented scope; overall PR remains Draft / review_pending, with G0 blocked and G1/G2 not started. The current increment adds the bounded entry report/evidence and updates current-state/log documents. Production sources, probe artifacts, configuration and operating tasks are unchanged. Current listener health was not inspected.
 
 ## Accepted implementation baseline
