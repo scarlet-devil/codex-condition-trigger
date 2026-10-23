@@ -1,27 +1,10 @@
 """Bounded local metadata selection; no model sends or runtime-state inference."""
 import json
-import ntpath
-import re
+
+from cwd_paths import normalize_windows_cwd as normalize_local_path
 
 MAX_RECORDS = 500
 MAX_METADATA_BYTES = 1024 * 1024
-
-
-def normalize_local_path(value):
-    if not isinstance(value, str) or not value or len(value) > 32767 or '\0' in value:
-        raise ValueError('invalid_local_path')
-    extended = value.startswith('\\\\?\\')
-    if extended:
-        value = value[4:]
-        if '/' in value or any(p in ('.', '..') for p in value.split('\\')):
-            raise ValueError('unsupported_extended_path_component')
-    else:
-        value = value.replace('/', '\\')
-    if not re.match(r'^[A-Za-z]:\\', value):
-        raise ValueError('unsupported_local_path')
-    if any(p.endswith((' ', '.')) for p in value[3:].split('\\') if p not in ('.', '..')):
-        raise ValueError('ambiguous_path_component')
-    return ntpath.normcase(ntpath.normpath(value))
 
 
 def select_candidates(rows, project_cwd, child_ids=()):

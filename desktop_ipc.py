@@ -15,6 +15,7 @@ import time
 import uuid
 
 from chat_adapters import NotDispatched, RPCError
+from cwd_paths import cwd_matches
 
 MAX_FRAME = 32 * 1024 * 1024
 MAX_ROLLOUT = 64 * 1024 * 1024
@@ -117,8 +118,7 @@ def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=Tru
     meta = rows[0]
     if meta.get('type') != 'session_meta' or meta.get('payload', {}).get('id') != thread_id:
         raise ValueError('wrong target rollout identity')
-    norm = lambda p: os.path.normcase(os.path.normpath(p))
-    if norm(meta['payload'].get('cwd', '')) != norm(expected_cwd):
+    if not cwd_matches(meta['payload'].get('cwd', ''), expected_cwd):
         raise ValueError('wrong target cwd')
     offset = len(lines[0])
     if baseline and (before.st_ino != baseline['inode'] or len(data) < baseline['bytes']
@@ -131,7 +131,7 @@ def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=Tru
         offset += len(line)
         kind, p = row.get('type'), protocol_object(row.get('payload', {}), 'rollout payload')
         if kind == 'turn_context':
-            if p.get('cwd') and norm(p['cwd']) != norm(expected_cwd):
+            if p.get('cwd') and not cwd_matches(p['cwd'], expected_cwd):
                 raise ValueError('turn context cwd changed')
             settings = {k: p[k] for k in ('model', 'effort', 'approval_policy', 'sandbox_policy', 'cwd') if k in p}
         if not lifecycle or not after_baseline:
@@ -432,12 +432,11 @@ class IPCClient:
                         or current_revision < revision):
                     continue
                 state = protocol_object(change.get('conversationState'), 'snapshot.state')
-                norm = lambda p: os.path.normcase(os.path.normpath(p))
                 if state.get('id') != thread_id:
                     raise ProtocolCheckError('snapshot_thread_mismatch')
                 if not isinstance(state.get('cwd'), str):
                     raise ProtocolCheckError('snapshot_cwd_invalid')
-                if norm(state['cwd']) != norm(expected_cwd):
+                if not cwd_matches(state['cwd'], expected_cwd):
                     raise ProtocolCheckError('snapshot_cwd_mismatch')
                 runtime = state.get('threadRuntimeStatus')
                 status = runtime.get('type') if isinstance(runtime, dict) else None

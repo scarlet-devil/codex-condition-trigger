@@ -1,10 +1,13 @@
 """Synthetic transport tests: no Windows host, model, filesystem or GUI actions."""
 import json
+import os
 import struct
 import unittest
 from unittest import mock
 
 from experimental import snapshot_measure as sm
+
+WORK_CWD = r'D:\private-work' if os.name == 'nt' else '/private-work'
 
 
 class Pipe:
@@ -33,7 +36,7 @@ class Pipe:
                     'sourceClientId': 'private-owner', 'targetClientIds': ['private-client'],
                     'params': {'hostId': 'local', 'conversationId': 'private-thread', 'change': {
                         'type': 'snapshot', 'revision': 12, 'conversationState': {
-                            'id': 'private-thread', 'cwd': '/wrong' if self.wrong_cwd else '/private-work',
+                            'id': 'private-thread', 'cwd': '/wrong' if self.wrong_cwd else WORK_CWD,
                             'resumeState': 'resumed', 'threadRuntimeStatus': {'type': self.status},
                             'turns': [{'private': 'DO_NOT_EXPORT_HISTORY'}]}}}})
             return
@@ -74,7 +77,7 @@ def verified(_):
 
 class MeasurementTests(unittest.TestCase):
     def measure(self, pipe, **kwargs):
-        return sm.measure_snapshot(pipe, 'private-thread', '/private-work', verifier=verified, **kwargs)
+        return sm.measure_snapshot(pipe, 'private-thread', WORK_CWD, verifier=verified, **kwargs)
 
     def test_full_query_counts_all_bytes_and_exports_only_projection(self):
         p = Pipe()
@@ -89,8 +92,8 @@ class MeasurementTests(unittest.TestCase):
         self.assertTrue(r['owner_same_after'])
         self.assertTrue(p.closed)
         exported = json.dumps(r)
-        for secret in ('private-thread', 'private-owner', 'private-client', '/private-work', 'DO_NOT_EXPORT'):
-            self.assertNotIn(secret, exported)
+        for secret in ('private-thread', 'private-owner', 'private-client', WORK_CWD, 'DO_NOT_EXPORT'):
+            self.assertNotIn(json.dumps(secret)[1:-1], exported)
         self.assertEqual({x['method'] for x in p.sent}, sm.REQUESTS | {sm.FOLLOW})
 
     def test_busy_and_unknown_are_not_send_permission(self):
@@ -169,7 +172,7 @@ class MeasurementTests(unittest.TestCase):
         p = Pipe()
         def fail(_):
             raise ValueError('DO_NOT_EXPORT_PRIVATE_PATH')
-        r = sm.measure_snapshot(p, 'private-thread', '/private-work', verifier=fail)
+        r = sm.measure_snapshot(p, 'private-thread', WORK_CWD, verifier=fail)
         self.assertFalse(r['snapshot_query_completed'])
         self.assertEqual(p.sent, [])
         self.assertNotIn('DO_NOT_EXPORT', json.dumps(r))
@@ -177,7 +180,7 @@ class MeasurementTests(unittest.TestCase):
 
     def test_other_installation_never_sends_initialize(self):
         p = Pipe()
-        r = sm.measure_snapshot(p, 'private-thread', '/private-work', verifier=lambda _: {'archive_sha256': 'other'})
+        r = sm.measure_snapshot(p, 'private-thread', WORK_CWD, verifier=lambda _: {'archive_sha256': 'other'})
         self.assertEqual(r['error_category'], 'installation_changed')
         self.assertEqual(p.sent, [])
 

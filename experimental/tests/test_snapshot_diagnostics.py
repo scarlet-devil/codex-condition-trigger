@@ -3,10 +3,12 @@ import json
 import ntpath
 import struct
 import unittest
+from types import SimpleNamespace
 from unittest import mock
 
+import cwd_paths
 from experimental import snapshot_measure as sm
-from experimental.tests.test_snapshot_measure import Pipe, verified
+from experimental.tests.test_snapshot_measure import WORK_CWD, Pipe, verified
 
 HISTORY = 'thread-follower-load-complete-history'
 
@@ -57,13 +59,13 @@ def snapshot_change(part, value):
 
 class DiagnosticTests(unittest.TestCase):
     def measure(self, pipe):
-        result = sm.measure_snapshot(pipe, 'private-thread', '/private-work', verifier=verified)
+        result = sm.measure_snapshot(pipe, 'private-thread', WORK_CWD, verifier=verified)
         self.assertFalse(result['can_send'])
         self.assertEqual(result['model_sends'], 0)
         self.assertTrue(pipe.closed)
         exported = json.dumps(result)
-        for secret in ('private-thread', 'private-owner', 'private-client', '/private-work', 'DO_NOT_EXPORT'):
-            self.assertNotIn(secret, exported)
+        for secret in ('private-thread', 'private-owner', 'private-client', WORK_CWD, 'DO_NOT_EXPORT'):
+            self.assertNotIn(json.dumps(secret)[1:-1], exported)
         self.assertTrue(all(x['method'] in sm.REQUESTS | {sm.FOLLOW} for x in pipe.sent))
         return result
 
@@ -149,12 +151,19 @@ class DiagnosticTests(unittest.TestCase):
             with self.subTest(fields=fields, revision=revision):
                 self.assert_rejected(self.measure(ChangedPipe(change)), 'transport_failed')
 
-    def test_extended_path_equivalence_is_not_silently_enabled(self):
-        p = ChangedPipe(snapshot_change('cwd', r'\\?\D:\project'))
-        with mock.patch.object(sm.ipc.os, 'path', ntpath):
-            r = sm.measure_snapshot(p, 'private-thread', r'D:\project', verifier=verified)
-        self.assert_rejected(r, 'snapshot_cwd_mismatch')
-        self.assertNotIn('project', json.dumps(r))
+    def test_clean_drive_forms_are_accepted_without_send_permission(self):
+        ordinary, extended = r'D:\project', r'\\?\D:\project'
+        for native, expected in ((ordinary, extended), (extended, ordinary)):
+            p = ChangedPipe(snapshot_change('cwd', native))
+            with self.subTest(native=native), mock.patch.object(sm.ipc.os, 'path', ntpath), \
+                    mock.patch.object(cwd_paths, 'os', SimpleNamespace(name='nt', path=ntpath)):
+                r = sm.measure_snapshot(p, 'private-thread', expected, verifier=verified)
+            self.assertTrue(r['snapshot_query_completed'])
+            self.assertEqual(r['runtime_status'], 'idle')
+            self.assertTrue(r['owner_same_after'])
+            self.assertFalse(r['can_send'])
+            self.assertEqual(r['model_sends'], 0)
+            self.assertNotIn('project', json.dumps(r))
 
     def test_cancellation_survives_secondary_cleanup_error(self):
         def cancel(item):

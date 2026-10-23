@@ -765,3 +765,16 @@ On-disk fixed source was untouched; execution used an explicit temporary failure
 Human coordinated a short no-keyboard/mouse interval. Own Tk window and correct screenshot verified; chooser opened. An indexed confirm click unexpectedly navigated to the parent directory. Fresh screenshot recovery entered input and clicked its visible confirmation, then observed Directory check: True and closed the test window. Receipt selection_matches/closed true, timed_out false, process exit 0. Root cause of the misdirected indexed click is unestablished. This closes the independent chooser check only, not the full form or reliable unattended UI automation. No Codex UI operation.
 
 See [Chinese report](docs/KELAN_STATE_DIAGNOSTIC_20261023.md), [sanitized evidence](evidence/kelan-state-diagnostic-20261023.json) and dated manifest. Exact prior WORK_LOG byte prefix and existing CRLFs preserved. Recommend a narrowly specified native path-equivalence candidate with same-path/different-path and unsupported-form counterexamples, then review before another bounded live step. Current state acceptance, task growth, real busy/follow-up/turn association and G1-G3 remain pending. No production/config/install/ACK/authority/STOP/PAUSED changes or listener-health claim. Draft/unmerged, Alice review_pending.
+
+
+## 2026-10-23 — Accept cwd diagnosis and implement restricted drive-path comparison (Alice)
+
+红魔转交固定 `38a20a7dbae2777a0ee36b4d17022b043f2fcabe`；沿既定专用对话路线复审并完成最小候选。Alice 云端核对 36 份公开输入/依赖 blob、6 项清单、8 份执行来源 pin 和历史 139,580 B 前缀。接受本次 cwd 表示差异拒绝点定位及独立 Tk 正确选择/关闭；真实查询、私有两路径与截图仍归属柯蓝，公开观察器 3 项已直接复跑。不能回溯确定此前 generic protocol 根因或声称文件系统对象身份相同；G0 仍未通过。
+
+新增 cwd_paths.py，将目录筛选、native snapshot、rollout 首行/turn_context 及结果采集的 cwd 比较统一到受限 Windows 词法规则。干净扩展盘符和普通绝对盘符可匹配；不同目录、相对/UNC/设备空间、扩展点段/斜杠/重复分隔符、尾点/尾空格和设备/流组件拒绝，先验证再规范化。保留原始 cwd 证据与非 Windows 规则；不调用文件系统解析、不改 thread/owner/revision、状态映射或发送/ACK 契约。AGENTS 代码导航及设计/当前方案已更新；历史报告和原始失败材料保留。
+
+接线前 4 项反例检查为 3 failures/1 error；修复后通过。另以 Windows 路径语义复现两处旧 POSIX 夹具误用（1 failure/1 error），改为平台对应的合成 cwd，未放宽生产规则。最终：34 项实验通过；55 项相关路径/IPC/状态/适配器/采集回归为 54 通过、1 Windows 专属跳过；42 项额外 Windows 路径语义模拟和 3 项观察器通过。5 份选定文件 Ruff 零告警；4 份既有文件保留 40 条原有提示，无新增。第一次 lint 差异对照把既有 C408 所在行的 cwd 字面量改为常量误标为新增；对照固定输入后已更正，不压制规则。未重跑完整历史套件、副本补丁或真实 Windows。检查与源 pin 见[复核记录](evidence/alice-cwd-fix-review-20261023.json)。
+
+[当前行动第 10 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#10-当前接续复验受限-cwd-修复)要求隔离副本包含新增模块，复核后沿同一专用目标只读采一次、零模型/初始化/重试；旧额度不续用，已接受 Tk 烟测不重做。当前状态成功后仍需后续代表性任务体量、busy/普通追问及 turn 关联；表单与普通 notify 调度未实现。候选为 Alice Self-review/S0、Draft/review_pending；材料审阅完成但未合并/安装/启用。
+
+保留输入日志全部 143,192 B、11 CRLF；未修改部署副本、安装、生产配置、持续授权、历史 STOP/到期/PAUSED、账本或 ACK，未查当前监听健康。本轮没有本机 IPC、模型、窗口动作，也未通过通信工具或评论派发。固定输出及完整远端回读以 PR 正文为准。

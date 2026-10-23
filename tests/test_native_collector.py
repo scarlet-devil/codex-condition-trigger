@@ -1,12 +1,15 @@
 """Native turn evidence must not become business acceptance."""
 import json
 import os
+import ntpath
+from types import SimpleNamespace
 from unittest import mock
 import unittest
 import desktop_ipc as ipc
 import trigger as tr
 from test_trigger import Fixture
 import test_native_state
+import cwd_paths
 
 
 class ProjectionTests(unittest.TestCase):
@@ -15,7 +18,7 @@ class ProjectionTests(unittest.TestCase):
         state = dict(turns=[dict(turnId='exact', status='failed', error={'message':'private error'})])
         state.update(changes)
         client = fixture.client(state)
-        return client.current_state('target', 'owner', '/work', turn_id='exact')
+        return client.current_state('target', 'owner', test_native_state.WORK_CWD, turn_id='exact')
 
     def test_exact_failure_survives_thread_idle_without_error_body(self):
         result = self.observe()
@@ -115,6 +118,27 @@ class CollectorTests(Fixture):
         with mock.patch.object(factory,'current_state',variant):
             result=collect_outcomes(self.store,client_factory=factory)
         self.assertEqual(result[0]['status'],'recorded')
+
+    def test_clean_drive_forms_match_without_accepting_different_paths(self):
+        from native_collector import collect_outcomes
+        self.prepare()
+        self.config['expected_cwd'] = r'\\?\D:\project'
+        factory = self.client()
+        original = factory.current_state
+        for native, expected in ((r'E:\project', 'unknown'),
+                                 (r'D:\project-other', 'unknown'),
+                                 (r'\\?\D:\base\..\project', 'unknown'),
+                                 (r'D:\project', 'recorded')):
+            def variant(client, *args, native=native, **kwargs):
+                value = original(client, *args, **kwargs)
+                value['cwd'] = native
+                return value
+            with self.subTest(native=native), mock.patch.object(factory, 'current_state', variant), \
+                    mock.patch.object(cwd_paths, 'os', SimpleNamespace(name='nt', path=ntpath)):
+                result = collect_outcomes(self.store, client_factory=factory)
+            self.assertEqual(result[0]['status'], expected)
+        self.assertEqual(self.store.rows()[0]['turn_id'], 'exact')
+        self.assertFalse(self.store.db.execute("SELECT v FROM meta WHERE k LIKE 'ack:%'").fetchall())
 
     def test_paused_cycle_does_not_collect_or_dispatch(self):
         from owner_loading import cycle_tick

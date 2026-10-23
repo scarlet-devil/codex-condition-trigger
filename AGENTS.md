@@ -16,7 +16,7 @@ Read the current user's request before continuing any old task. A clone, merge o
 | Area | Files |
 | --- | --- |
 | Configuration, file scanning, immutable batches, SQLite, CLI | `trigger.py`, `tests/test_trigger.py`, `tests/test_review_regressions.py` |
-| Chat adapters and native IPC | `chat_adapters.py`, `desktop_ipc.py`, `tests/test_chat_adapters.py`, `tests/test_desktop_ipc.py`, `tests/test_native_state.py` |
+| Chat adapters, cwd comparison and native IPC | `chat_adapters.py`, `desktop_ipc.py`, `cwd_paths.py`, `tests/test_chat_adapters.py`, `tests/test_desktop_ipc.py`, `tests/test_native_state.py`, `tests/test_cwd_paths.py` |
 | Batch/window lifecycle | `owner_loading.py`, `windows_window_backend.ps1`, `tests/test_owner_loading.py`, `tests/test_window_cycle.py` |
 | Trial deadline, bounded worker, login entry, health | `trial_limits.py`, `trial_worker.py`, `install_trial_task.ps1`, `worker_health.py`, `tests/test_trial_deadline.py`, `tests/test_recovery_worker.py` |
 | Native execution outcome | `execution_result.py`, `native_collector.py`, `tests/test_native_collector.py`, `tests/test_followup_fixes.py` |

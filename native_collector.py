@@ -1,8 +1,9 @@
 """Read native outcomes for existing turns; never dispatch, authorize or ACK."""
 from datetime import datetime, timezone
 import json
-import os
 import subprocess
+
+from cwd_paths import cwd_matches
 
 
 def project_turn(state, turn_id):
@@ -70,8 +71,7 @@ def collect_outcomes(store, batch_id=None, client_factory=None):
             turn = snapshot.get('turn_result')
             if not turn:
                 results.append(dict(batch_id=row['id'],status='unknown')); continue
-            norm=lambda p:os.path.normcase(os.path.normpath(p))
-            if (snapshot['thread_id'] != store.c['thread_id'] or norm(snapshot['cwd']) != norm(store.c['expected_cwd'])
+            if (snapshot['thread_id'] != store.c['thread_id'] or not cwd_matches(snapshot['cwd'], store.c['expected_cwd'])
                     or turn['turn_id'] != row['turn_id']):
                 raise ValueError('native binding mismatch')
             outcome = {'completed':'succeeded','failed':'failed','interrupted':'interrupted'}[turn['status']]
