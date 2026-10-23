@@ -1,14 +1,20 @@
 # Current state
 
-Updated 2026-10-20 · Project: `scarlet-devil/codex-condition-trigger`
+Updated 2026-10-23 · Project: `scarlet-devil/codex-condition-trigger`
 
 ## Active decision
 
+Human requested a design for choosing only a folder, a condition and a target conversation, then said “嗯可以，开始设计吧” in the current project conversation on 2026-10-23. Alice prepared the [three-field setup design](docs/SIMPLE_SETUP_DESIGN.md): a local form, automatic conversation binding, and a new ordinary notification mode that can advance without a business ACK. These are proposed behaviors, not implemented features.
+
+**Design draft prepared; review pending.** This documentation branch does not change runtime code, existing strict-delivery semantics, configurations or operational state. The next feasibility gate is read-only conversation discovery and exact owner binding on a real Windows Desktop version; no local executor has been assigned or notified in this turn. Implementation, new live trials and merge are outside this design-only action.
+
+## Accepted implementation baseline
+
 Human approved preparing the human README and AI entry files, then merging [PR #1](https://github.com/scarlet-devil/codex-condition-trigger/pull/1), on 2026-10-20 at 20:50 Asia/Shanghai. Alice's preceding assessment supports merging the implemented version while retaining its operational limits.
 
-**Implementation accepted; merge authorized.** GitHub PR #1 records the actual merge status and merge SHA. The final PR receipt complements this source-tree checkpoint; deployment is a separate state. When working from main, use its merge history and the linked receipt rather than treating an old Draft label in historical reports as current.
+**Implementation accepted and merged.** PR #1 merged on 2026-10-20 as `5c1882c7b78fc023d0588953e6e43db55ebe216d`; its [final receipt](https://github.com/scarlet-devil/codex-condition-trigger/pull/1#issuecomment-6291604544) records that closeout. Deployment is a separate state. Historical Draft labels for PR #1 are not current; the new design is a separate Draft change.
 
-Runtime/test baseline: `95a6e9f7765bea2e308a99308c7d9488e4b477e0`. This closeout changes documentation and evidence only. Runtime files are unchanged from the reviewed integration implementation; the later test fixture repair is included.
+Runtime/test baseline: `95a6e9f7765bea2e308a99308c7d9488e4b477e0`. The 2026-10-20 closeout changed documentation and evidence only. Runtime files remain unchanged from the reviewed integration implementation; the later test fixture repair is included. The present design branch changes documentation only.
 
 ## Accepted scope
 
@@ -34,6 +40,8 @@ Runtime/test baseline: `95a6e9f7765bea2e308a99308c7d9488e4b477e0`. This closeout
 
 ## Follow-up scope
 
+The current authorized design is [SIMPLE_SETUP_DESIGN.md](docs/SIMPLE_SETUP_DESIGN.md), with proposed defaults, compatibility rules, acceptance cases and G0–G3 stages. The three-field interface and ordinary notification mode are not yet available. The following earlier deployment/community choices remain separate:
+
 1. If requested, bind and validate the original target's complete business workflow.
 2. If continuous unattended operation is requested, determine and validate Hub startup/recovery with the rest of the chain.
 3. For community reuse, the maintainer still needs to choose a project license. No project LICENSE exists at this checkpoint.
@@ -48,5 +56,4 @@ Six unresearched input versions and two missing Library originals belong to the 
 - AI/contributors: [AGENTS.md](AGENTS.md).
 - Decisions and full incremental history: [WORK_LOG.md](WORK_LOG.md).
 - The previous long status snapshot is preserved at [the exact pre-merge input](https://github.com/scarlet-devil/codex-condition-trigger/blob/95a6e9f7765bea2e308a99308c7d9488e4b477e0/CURRENT_STATE.md). Read it for provenance, not fresh execution authority.
-- Actor attribution: Alice performs this cloud documentation/merge closeout and Linux checks. Kelan's local Windows/Hub actions retain their original report attribution. No new local observation or independent reviewer is claimed by this closeout.
-
+- Actor attribution: Alice performed the 2026-10-20 cloud documentation/merge closeout and Linux checks, and prepared the 2026-10-23 design/documentation draft. Kelan's local Windows/Hub actions retain their original report attribution. This design turn adds no Windows observation, runtime test result or independent review.
