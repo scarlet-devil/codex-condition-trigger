@@ -1,0 +1,49 @@
+{
+  "input_commit": "bd299ae3c886381f43096a92a89f7ff00134170c",
+  "files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 9312,
+      "sha256": "b612ce29ea5a9c88dcb0684f92d36389fb6be0aff99b2259bc2751412602f2b3",
+      "git_blob": "6ffc752371a89b826c1d2dec46b9ba7aa4f12142"
+    },
+    {
+      "path": "docs/KELAN_DEDICATED_SNAPSHOT_TRIAL_20261023.md",
+      "bytes": 8434,
+      "sha256": "156197f5bcfac2e94308c443dcdfc462ce42ec760fedaaa4df915ff48377f318",
+      "git_blob": "a30f708c6d26955c680e05a0d6c9f8134358bb3a"
+    },
+    {
+      "path": "evidence/kelan-dedicated-snapshot-20261023.json",
+      "bytes": 5635,
+      "sha256": "05b6072312f594df43e42ed988b91123fcaa94d299f1f63530cc8b3a1f6af2a0",
+      "git_blob": "2e99220261790bd98858fb53b61c00918bb6828d"
+    },
+    {
+      "path": "experimental/conversation_catalog.py",
+      "bytes": 2608,
+      "sha256": "4ad4af638b5488c4499d5b671c17d77d4ab1c04caec2bd40329b40c75daa0d12",
+      "git_blob": "c164c797705448ec0f6461f1a3c0867d04d35b18"
+    },
+    {
+      "path": "experimental/tests/test_conversation_catalog.py",
+      "bytes": 3725,
+      "sha256": "372a667d5abbefe16b45f76b069ec695e2f9d0eda9c16097fe8b27b9990523ac",
+      "git_blob": "6b62f025c566d785233bd7b3e7ad300eb732eefb"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 136768,
+      "sha256": "b6466c9ecb5c822ed01c78ee4f1148779e984b02df8cebe5429fff64c8585605",
+      "git_blob": "0cdb4c1271a271008ff67b812a2fca567abb838f"
+    }
+  ],
+  "prior_log": {
+    "bytes": 133519,
+    "sha256": "b90149b3a7d9155c24f70499221c4dc627a9fdde1ae4b5c4d69e84750653a476",
+    "git_blob": "9ad9a6f5408026594e98f23f3abc62b449a2d078",
+    "crlf": 11,
+    "exact_prefix_preserved": true
+  },
+  "scope": "this increment; manifest excludes itself"
+}
