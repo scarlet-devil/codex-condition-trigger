@@ -81,6 +81,8 @@ production verification rule is relaxed by this package.
 State: Alice accepted the copy-only scope at ec2fb862 and reran 33 JS + 14 Python
 tests. Alice also accepted the bounded read-only loading inventory at 9a863af5;
 the digest resource is in ChatGPT.exe, and package trust/recovery remain unresolved.
-Live loading and G0 remain unaccepted. See the [inventory review and route recommendation](../../docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#7-清点审阅与接入路线选择)
+Live loading remains unaccepted. The human has selected a separate unmodified-Desktop
+snapshot-reduction experiment; loading this patch is not its prerequisite.
+See the [current dedicated-conversation plan](../../docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#8-当前执行专用新对话减量验证)
 and [cloud review evidence](../../evidence/alice-thin-state-review-20261023.json).
 This updates review status, not the experimental runtime or its default-off behavior.
