@@ -843,3 +843,16 @@ Human转交09e36bea第11节；固定完整188文件与7模块实际导入pin，�
 本地S1/M0独立审查发现混合模式互斥和暂停初始化竞态，均复现、修复；独立指定3项复核全通过，关闭两项，非Alice验收。自查ACK覆盖、fresh idle持久证据及指令绑定反例已修正；初期夹具/异常文本/期限字段错误与TEMP权限失败保留归属，不把全部红测算产品缺陷。
 
 [实现与复现报告](docs/KELAN_G1_NOTIFY_IMPLEMENTATION_20261024.md)、[证据](evidence/kelan-g1-notify-20261024.json)、[材料清单](evidence/kelan-g1-notify-manifest-20261024.json)。G1 implementation_ready/review_pending；请Alice复审后决定G2/G3。当前规则不支持就地编辑，需暂停后新建独立状态且保留旧批次；历史二进制/外部发送不受新锁约束，idle/start竞态和完整历史成本仍保留。PR保持Draft；推送与逐文件回读结果以本次交付回执/评论为准，不据本日志预先声称远端完成。
+
+
+## 2026-10-24 — Alice accepts G1 and designs the G2 form tests
+
+来源：红魔明确“验收吧，如果没问题就直接开始下一轮G2测试的设计”。云端Alice固定审阅88dc1756d08a9f8a353628816a72ec7169f7718a，读取原PR、交接、源码与新测试。G1 accepted，接受范围为实现与合成验证；未发现阻止本阶段接受的问题，不据此合并、安装或批准真实两批试验。
+
+直接核对17文件376,659B，16项payload完整字节/长度/SHA-256/Git blob，清单自身blob；185个原有blob未变，旧原版trigger夹具来源一致。柯蓝日志保留的155,823B/11CRLF前缀与Alice前次输出一致，本轮追加继续保留输入158,248B全部原字节。私有Windows完整日志与本地S1/M0原件未在云端独立重读。
+
+Alice在Linux/Python3.12.14独立执行新增36项unittest，36通过、0失败/错误/跳过；原fake双批演示notify2/strict1、A运行时均1、ACK=false、delivered=0；Ruff0.17.1对9个相关文件E9/F63/F7/F82零诊断。柯蓝Windows全套229通过/1符号链接权限跳过及34实验回归按已绑定源码复用，未重跑，不把两轮数字相加；默认Ruff新旧风格诊断仍保留。无新依赖或适用Lean目标。
+
+更新CURRENT_STATE、SIMPLE_SETUP_DESIGN和[行动方案第13节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#13-当前接续g1-验收与-g2-表单测试设计)，新增[验收证据](evidence/alice-g1-review-20261024.json)。G2 design_ready / implementation_not_started：三字段Tk、受限只读目录来源、准确选择、异步预览和受管worker接线；enabled与实际监听分开，暂停/关闭/重启和状态真实性列入测试。首版沿用两预设/所有普通文件/120秒/固定READY及现有可选项，暂不提供自定义glob、READY路径或就地编辑；默认任务说明与G1实际简短审查文案一致，不声称自动推断项目工作流。
+
+本轮仅验收与设计，运行源码未改；文档按链接、锚点、阶段、范围和历史字节核对，检查结果见证据。本轮文档Self-review/S0，未派发agent/柯蓝任务。真实IPC、模型、GUI动作、生产安装/恢复、ACK修改均0；未检查生产健康。G2需候选实现与fake界面测试后另行复审，G3额度未设；旧第8–11节窗口、STOP/到期/PAUSED及连续授权不变。原Draft PR内提交与回读结果在本批交付记录补齐。
