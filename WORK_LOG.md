@@ -869,3 +869,16 @@ First actual GUI smoke failed because the new fake returned baseline.bytes=0;A s
 Actual catalog readonly probe:7project-matching rows,4firstline identities matched,3missingrollouts;0.031s,nohistory/IPC. It predates final metadata-error propagation fix and retains its exact source hash. Local S1/M1 reviewer verified209frozen files,ran24G2+36G1 checks,independently reproduced invalid-ZIP initialization manifest mismatch and verified repair1case;later4thread-cleanup and2catalog-boundary checks passed,overlapping. Not Alice/S2. Windows progress contention,failure recovery,second-form ownership,completed-thread retention and budget error propagation fixes/evidence preserved.
 
 State: G2 implementation_ready / Alice review_pending; G3 not executed,PR2 remainsDraft/unmerged. Existing production configuration,ACK,STOP,expiry,PAUSED and continuous authorization untouched; production health not checked. Scope ends at candidate handoff. Raw logs/DBs/private metadata/screenshots stay local; selected public source/report/evidence only. Governance Active28/28 samebc77e24 pin; no identity/governance modifications. External delivery state belongs to the final verified receipt/comment, not this local log entry.
+
+
+## 2026-10-24 — Alice accepts G2 within the simulated transport scope
+
+来源：红魔交回6c92f873c714697b423e5dcb8036f2fa57737a01，请Alice复审G2，并更正d153f0b0旧交接中的“G2尚未实现”。Alice固定审阅最新候选的目录、控制器、Tk界面、fake与四个共用模块及测试。G2 accepted，接受实现与模拟传输流程，没有发现本阶段阻止接受的问题；G3未执行。
+
+直接核对16交付文件342,418 B，15项payload及清单Git blob、长度、SHA-256和十个代码/测试pin一致；197个其他原有blob未变。输入日志保留d153f0b0的160,662 B/11CRLF前缀，本轮追加保留6c92f873输入163,536 B全部原字节。Alice在Linux/Python3.12.14复跑27项G2＋36项受影响G1测试，63通过、0失败/错误/跳过，退出0，8.846秒；十份相关Python关键Ruff规则零诊断。没有打开Tk或重跑Windows完整套件。
+
+柯蓝Windows257方法（256通过/1符号链接权限跳过）、最终真实Tk＋fake双批/暂停/恢复/最小化/关闭结果和本地S1/M1审查按原来源保留。私有完整日志、DB、截图未在云端重读，不能称Alice亲测Windows。首轮fake回执错误与不确定批次保留，修正后用新隔离目录通过；默认Ruff共用模块30→32诊断保留。配置71.640秒启动，86.687秒写A前已监听；全流程193.312秒，非真人学习成本。独立GUI重开未实测；保存规则重载按控制器/只读回读与界面接线接受。真实目录探针早于最后传播修复，最终合成边界验证与原探针分别归属。
+
+更新CURRENT_STATE、SIMPLE_SETUP_DESIGN及[行动方案第14节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#14-当前接续g2-验收与-g3-准备边界)，新增[验收证据](evidence/alice-g2-review-20261024.json)。修正当前入口中残留的“G2尚未实现”，原第13节和历史日志保留时间语境。下一步准备G3固定候选/目标/配置、完整查询及发送预算、停止条件和两批准确证据；本次不新增真实试验额度，也不要求重复G2实现。
+
+运行源码未改；文档自审S0，未另派agent或向柯蓝发任务。真实IPC、模型、GUI操作、生产安装/恢复、ACK变更均0；未检查生产健康。旧G0实机/34实验回归和Windows全套按不变源码范围复用，不重复累计测试数量。无新依赖或适用Lean目标。PR保持Draft；历史STOP/到期/PAUSED及连续授权不变。文档检查与同PR发布/完整回读结果由本次证据和交付记录补齐。
