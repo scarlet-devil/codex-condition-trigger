@@ -9,6 +9,7 @@ import sys
 import tempfile
 import time
 import unittest
+from unittest import mock
 import zipfile
 
 import trigger as tr
@@ -18,6 +19,10 @@ class Fixture(unittest.TestCase):
     def setUp(self):
         self.tmp = tempfile.TemporaryDirectory()
         self.root = Path(self.tmp.name)
+        # Registry is per-user and shared by subprocess workers. Keep it isolated too.
+        environment=mock.patch.dict(os.environ,{'LOCALAPPDATA':str(self.root/'appdata'), 'XDG_DATA_HOME':str(self.root/'appdata')})
+        environment.start()
+        self.addCleanup(environment.stop)
         self.input = self.root / "input"
         self.input.mkdir()
         self.config = json.loads((Path(__file__).parents[1] / "example.windows.json").read_text())

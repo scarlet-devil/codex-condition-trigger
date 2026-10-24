@@ -830,3 +830,16 @@ Human转交09e36bea第11节；固定完整188文件与7模块实际导入pin，�
 更新CURRENT_STATE、设计稿和[行动方案第12节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#12-当前接续g0-限定接受与-g1-实现)。下一步G1为隔离规则编译/初始基线/notify推进、证据与业务ACK分离、跨规则同目标互斥及必要恢复兼容测试；fake adapter完成双批自动推进，旧strict继续等待真实交付。G1尚未实施/派发；G2表单、G3真实两批后续，旧第8–11节额度全部关闭。正常任务结果未知与终止证据未知分开处理，不用超时/假ACK放行。
 
 本轮四份既有文档，按文档范围核对链接、锚点、阶段/数字和源码接线；没有新增运行测试或形式证明。推送/全文回读及准确输出head在本批PR记录和交付中补齐。上轮柯蓝覆盖PR正文被自动审查以本批五份材料的授权范围拒绝之事实保留；本轮是红魔新的结论/方案请求，不回溯改写该拒绝。PR保持Draft，不合并/安装/启用；原ACK、连续授权、历史STOP/到期/PAUSED未变，监听实时健康未查。
+
+
+## 2026-10-24 — Kelan implements isolated G1 ordinary notifications
+
+红魔转交 Alice 的 db69330f9a893093a52d4dc2812626be52c649ea 第12节后，本地柯蓝完成 G1 候选（Class C/enhanced；执行与S0自查）。固定输入191个blob完整核验。G0 limited_accepted 沿用，无实机重跑；原目标/安装/生产配置/ACK/历史STOP及授权未改，监听健康未查。
+
+新增 notify_state / rule_service，通过现有 Store、dispatch_one、DesktopAdapter、cycle_tick 接线；默认严格交付模式不变。初始ignore独立原子baseline，native acceptance/准确终止/fresh idle释放三类证据独立于业务ACK；每批绑定规则revision，条件和指令不能静默变更。普通通知丢失回执不按全文回退补造接受；失败/中断/unknown真终止可推进但原结果保留。同目标当前版本worker共享锁和持久notify占用，暂停epoch防止初始化覆盖已成功暂停。100未释放批次/1GiB默认限制，不清历史。旧原版trigger实际拒写notify状态，DB字节未变。
+
+最终全项目230方法：229通过、1符号链接权限跳过；34实验回归通过。新增36方法已含于230。冻结Hub子集16成员CRC、15项manifest/hash通过，无生产Hub安装。fake双批演示notify发送2次/strict1次，A运行期间均1次，delivered=0/ACK=false；真实IPC/模型/窗口均0。基础Ruff规则零诊断；默认规则保留基线/新风格差异，未宣称全绿。无依赖升级/新Lean证明。
+
+本地S1/M0独立审查发现混合模式互斥和暂停初始化竞态，均复现、修复；独立指定3项复核全通过，关闭两项，非Alice验收。自查ACK覆盖、fresh idle持久证据及指令绑定反例已修正；初期夹具/异常文本/期限字段错误与TEMP权限失败保留归属，不把全部红测算产品缺陷。
+
+[实现与复现报告](docs/KELAN_G1_NOTIFY_IMPLEMENTATION_20261024.md)、[证据](evidence/kelan-g1-notify-20261024.json)、[材料清单](evidence/kelan-g1-notify-manifest-20261024.json)。G1 implementation_ready/review_pending；请Alice复审后决定G2/G3。当前规则不支持就地编辑，需暂停后新建独立状态且保留旧批次；历史二进制/外部发送不受新锁约束，idle/start竞态和完整历史成本仍保留。PR保持Draft；推送与逐文件回读结果以本次交付回执/评论为准，不据本日志预先声称远端完成。

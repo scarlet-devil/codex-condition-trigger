@@ -259,6 +259,8 @@ def cycle_tick(store, backend=None, adapter_factory=None):
     from trigger import dispatch_one
     if store.paused():
         return 'paused'
+    if store.notify:
+        return dispatch_one(store, adapter_factory=adapter_factory)
     if store.c.get('native_result_collection') is True and store.c.get('chat_adapter') == 'desktop_ipc':
         if not store.c['owner_verified']:
             raise ValueError('owner_verified is false')

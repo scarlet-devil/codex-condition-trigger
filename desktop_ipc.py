@@ -493,7 +493,10 @@ class DesktopAdapter:
             if failure.stage in ('owner_discovery', 'current_state') and failure.category == 'owner_unavailable':
                 return {'can_send': False, 'reason': 'waiting_owner'}
             raise failure from None
-        return {'can_send': self.native['status'] == 'idle', 'reason': 'waiting_owner_' + self.native['status']}
+        result = {'can_send': self.native['status'] == 'idle', 'reason': 'waiting_owner_' + self.native['status']}
+        if self.c.get('dispatch_mode') == 'notify':
+            result['fresh_state'] = self.native
+        return result
 
     def observe(self, row):
         if row['state'] == 'ready' or not row.get('dispatch_meta') or not row.get('dispatch_text'):
@@ -505,9 +508,21 @@ class DesktopAdapter:
         if row.get('turn_id'):
             turn = candidates.get(row['turn_id'])
             if turn:
-                return dict(state=turn['state'], execution_outcome=turn.get('execution_outcome', 'unknown'),
+                receipt = dict(state=turn['state'], execution_outcome=turn.get('execution_outcome', 'unknown'),
                             turn_id=row['turn_id'], detail='target rollout lifecycle; task_complete does not prove success')
+                if self.c.get('dispatch_mode') == 'notify' and turn['state'] in ('ended','failed'):
+                    matches = [r for r in turn['records'] if r.get('type') == 'response_item'
+                        and r.get('payload',{}).get('type') == 'message' and r['payload'].get('role') == 'user'
+                        and len(r['payload'].get('content',[])) == 1
+                        and r['payload']['content'][0].get('type') == 'input_text'
+                        and r['payload']['content'][0].get('text') == row['dispatch_text']]
+                    if len(matches) != 1:
+                        return None
+                    receipt['notify_evidence'] = self.notification_evidence(row, meta, row['turn_id'], 'terminal')
+                return receipt
             return dict(state='accepted', turn_id=row['turn_id'], detail='native acceptance retained; lifecycle not visible yet')
+        if self.c.get('dispatch_mode') == 'notify':
+            return None  # unauthenticated text fallback cannot confer native acceptance
         matches = []
         for key, turn in candidates.items():
             for record in turn['records']:
@@ -549,7 +564,7 @@ class DesktopAdapter:
             raise NotDispatched('paused')
         from trial_limits import trial_deadline
         expires_at = trial_deadline(self.c)
-        request_options = {}
+        request_options = {'before_write': self.paused} if self.c.get('dispatch_mode') == 'notify' else {}
         if expires_at is not None:
             remaining = expires_at - time.time()
             if remaining <= 0:
@@ -564,7 +579,17 @@ class DesktopAdapter:
         result = protocol_object(protocol_object(reply, 'start.reply').get('result'), 'start.result')
         native = protocol_object(result.get('result'), 'start.native')
         turn_id = protocol_id(protocol_object(native.get('turn'), 'start.turn').get('id'), 'turn.id')
-        return dict(state='accepted', turn_id=turn_id, detail='native IPC accepted; lifecycle and business delivery pending')
+        receipt = dict(state='accepted', turn_id=turn_id, detail='native IPC accepted; lifecycle and business delivery pending')
+        if self.c.get('dispatch_mode') == 'notify':
+            receipt['notify_evidence'] = self.notification_evidence(dict(row,dispatch_text=text),metadata,turn_id,'accepted')
+        return receipt
+
+    def notification_evidence(self, row, metadata, turn_id, phase):
+        return dict(phase=phase, source='native_ipc' if phase == 'accepted' else 'native_turn_rollout',
+                    thread_id=self.c['thread_id'], cwd=self.c['expected_cwd'], batch_id=row['id'],
+                    manifest_sha256=sha((row['manifest']+'\n').encode()), request_id=metadata['request_id'],
+                    client_id=row['client_id'], turn_id=turn_id, baseline=metadata['baseline'],
+                    text_sha256=sha(row['dispatch_text'].encode()),exact_text=True,post_intent=True)
 
     def close(self):
         if self.client is not None:
