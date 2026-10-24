@@ -1,0 +1,49 @@
+{
+  "input_commit": "04bd74fc1490fb06d06414d3cebfd554499a3a16",
+  "files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 9371,
+      "sha256": "808d84987aff4c9d52efc6c163ed40539206180e539e4c96fe0a6caa5174b4d7",
+      "git_blob": "19ca551a94c4559bc3c13b20e332c2285be76f32"
+    },
+    {
+      "path": "docs/KELAN_PROTECTED_LOAD_INVENTORY_20261023.md",
+      "bytes": 13664,
+      "sha256": "dd51353ad7e617f88e837b38d7cbdde85a91dbd6962b3ba4cef4c6329dc15056",
+      "git_blob": "b52f529f9d43c4856020db4bdbbf54b1cf9d0df5"
+    },
+    {
+      "path": "evidence/kelan-load-inventory-20261023.json",
+      "bytes": 10321,
+      "sha256": "3eff09b90a5ab70523418eee7a72c8e6ea38c59dc540ece30462a21a53fd6436",
+      "git_blob": "a735502bda5b03db695cf8f82342bdd7534b402a"
+    },
+    {
+      "path": "evidence/load-inventory-20261023/crosscheck_resources.py",
+      "bytes": 2680,
+      "sha256": "c8b6ea17ee2501a737e9c14db786b3b5e49684c5cbd9b1db9d51504a303e3108",
+      "git_blob": "80f869888ebab0dd9d0c0a923f36e737885c0e7d"
+    },
+    {
+      "path": "evidence/load-inventory-20261023/inspect_load.py",
+      "bytes": 8801,
+      "sha256": "85d4cb5aa324fd230783a54d18614f43e1a182d7477d1f6f006bd39edcfe7fa3",
+      "git_blob": "7d64845f38009245a37ac2eb87f35f042e95f1d2"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 127292,
+      "sha256": "96ed0b0ff747e353c04c28732b3f525925b96698920e0f5c67c474a3523137e8",
+      "git_blob": "dbbba26acbaedd1c3062e1cb252b92c4b697352f"
+    }
+  ],
+  "prior_log": {
+    "bytes": 124002,
+    "sha256": "3ec3570fecd7b195f612373a35ce6778d452b876ed259e68a289da15c10ba65c",
+    "git_blob": "8dcbfe1606a183e1a1cc9c2e98c4660b11ea7fd8",
+    "crlf": 11,
+    "exact_prefix_preserved": true
+  },
+  "scope": "this prepared increment only; manifest excludes itself"
+}

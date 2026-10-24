@@ -5,12 +5,16 @@ import os
 from pathlib import Path
 import time
 import uuid
+import threading
+
+_progress_lock=threading.RLock()
+
 
 
 class Progress:
-    def __init__(self, store, live):
+    def __init__(self, store, live, *, run_id=None):
         self.path = store.path / 'watcher-progress.json'
-        self.record = dict(schema=1, run_id=uuid.uuid4().hex, pid=os.getpid(),
+        self.record = dict(schema=1, run_id=run_id or uuid.uuid4().hex, pid=os.getpid(),
                            mode='live' if live else 'dry', started_at_utc=self.utc(),
                            state='running')
         self.last_write = float('-inf')
@@ -27,7 +31,17 @@ class Progress:
         if phase is not None:
             self.record['phase'] = phase
         self.record.update(values, progress_at_utc=self.utc())
-        atomic_write(self.path, (encode(self.record) + '\n').encode())
+        with _progress_lock:
+            # A short-lived reader in another Windows process may deny replace.
+            # Retry only this local progress receipt, for at most 250 ms. Business
+            # writes, sends and initialization are not retried here.
+            for attempt in range(6):
+                try:
+                    atomic_write(self.path, (encode(self.record) + '\n').encode())
+                    break
+                except PermissionError:
+                    if attempt==5:raise
+                    time.sleep(.05)
         self.last_write = time.monotonic()
 
     def finish(self, state, reason):
@@ -37,7 +51,11 @@ class Progress:
 def read_health(path, now=None):
     now = time.time() if now is None else now
     try:
-        record = json.loads((Path(path) / 'watcher-progress.json').read_text(encoding='utf-8'))
+        with _progress_lock:
+            with (Path(path)/'watcher-progress.json').open('rb') as source:
+                raw=source.read(65537)
+        if len(raw)>65536:raise ValueError('progress record exceeds limit')
+        record = json.loads(raw)
         if record['schema'] != 1 or record['state'] not in ('running', 'stopped', 'failed'):
             raise ValueError('unrecognized progress record')
         age = now - datetime.fromisoformat(record['progress_at_utc']).timestamp()

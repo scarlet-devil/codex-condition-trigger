@@ -1,0 +1,81 @@
+{
+  "input_commit": "e3f479fbaf4e1e4135bec01f3c11339137bd677a",
+  "files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 12028,
+      "sha256": "c5752705e5394690fc13720a8565edbecf2d3fb66df9c5f6fcabf3ba01d4ffcf",
+      "git_blob_sha1": "61acb366dd1d022f7b269c6e714824a05368d6e0"
+    },
+    {
+      "path": "docs/KELAN_THIN_STATE_COPY_CANDIDATE_20261023.md",
+      "bytes": 11215,
+      "sha256": "9f5a14774baea1996d5570b5f13c610939b31b982108627213978903ad1a5beb",
+      "git_blob_sha1": "838dca1892f6e4bdbce6f0284fba710449a332d2"
+    },
+    {
+      "path": "evidence/kelan-thin-state-candidate-20261023.json",
+      "bytes": 11226,
+      "sha256": "bb18fea67421c0b14ff9a2088c38f465e812c2a974b2d24c3b5e19d76f398bb7",
+      "git_blob_sha1": "9f55c985f5e300a0d07b3848b4a16f1f46cf3d09"
+    },
+    {
+      "path": "experimental/thin_state/patch_copy.py",
+      "bytes": 3085,
+      "sha256": "2c117c718e7520e2737b22853f927ae7e2945f00747ef2b4f552017804388acb",
+      "git_blob_sha1": "35cac667acab1027de9dbdfb05e29dc8518d1f29"
+    },
+    {
+      "path": "experimental/thin_state/README.md",
+      "bytes": 4242,
+      "sha256": "7f6ac074dee5193dd7161f40f35722a96c8d0afac3b032f3b7d6bdd6292c793e",
+      "git_blob_sha1": "e96a8293e2e170b270b01689e0baaf6111af1bf0"
+    },
+    {
+      "path": "experimental/thin_state/tests/check_installed_copies.cjs",
+      "bytes": 7393,
+      "sha256": "bb16cb5c061d221eca649130fc1a0c13fa1531e370cfbc7a74e7bfe3e319e780",
+      "git_blob_sha1": "5a7debbaf3ba1e789ff14eb8d353e2d714c5646a"
+    },
+    {
+      "path": "experimental/thin_state/tests/test_bridge.cjs",
+      "bytes": 7985,
+      "sha256": "aa72885480aee0d23e3495753de245fcaeb1ce2f47832b9ef60e11bf5ef9d309",
+      "git_blob_sha1": "1029a481299d164cb7a5c36d50e4828e7484a8d8"
+    },
+    {
+      "path": "experimental/thin_state/tests/test_client.py",
+      "bytes": 5269,
+      "sha256": "4c830798bb317fde49331c8fb05ec4bffcc0a0d57aae40bf777ea942e62aeb48",
+      "git_blob_sha1": "a4cd52fb3176ba967b6ce2ae990aa3e974977f65"
+    },
+    {
+      "path": "experimental/thin_state/tests/test_patch.py",
+      "bytes": 538,
+      "sha256": "c3dd1f9f57b2a559586c6b47ee27b1a3fbeab7a7fb75e4771c842678739c3854",
+      "git_blob_sha1": "12ddd4d0eb2fece97e8baa4fe4d8da26a857f868"
+    },
+    {
+      "path": "experimental/thin_state/thin_bridge.js",
+      "bytes": 6186,
+      "sha256": "13c7af5cc6b22fcc87eec5435c0eb3974aad3e98455b8badf95082b9c3f3f9e4",
+      "git_blob_sha1": "2a1150079cc5df297a7944a69ceca4fa5d8815ae"
+    },
+    {
+      "path": "experimental/thin_state/thin_client.py",
+      "bytes": 4998,
+      "sha256": "ed207b1d12a205d5c6ecc285dbffd695781051f5bfb813502814ec84d3d57610",
+      "git_blob_sha1": "0663064327235424e649b8e24c79769a1ccdeebe"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 121206,
+      "sha256": "55fefc0972ad6d1701d6e055d4f06ca019a8b8f82889472800b2212bace2193a",
+      "git_blob_sha1": "76f2c740f3a0d27fae7967840860672208cfabc0"
+    }
+  ],
+  "prior_work_log_bytes": 118854,
+  "prior_work_log_sha256": "acf6858dfb9c318674b15ec4c53df6b4b77e66e81ccf8eee3945b0a98a0d8139",
+  "prior_prefix_exact": true,
+  "preserved_historical_crlf_count": 11
+}

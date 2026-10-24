@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "input_commit": "d55c62d204ba8193974b5434b19898dd65776a43",
+  "files": [
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 9601,
+      "sha256": "e058e05c3b04474dfdc171a3c4da9c1fd2feb78190d5803c68fe29c557dd70a7",
+      "git_blob": "99ba611b5a173dc5db7c0f6c0db73e076b428158"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 147988,
+      "sha256": "9245ed3c64276c2f0b9e727c643dcdd1287548aa2cd10744dfc0644f9a0b9cb9",
+      "git_blob": "b900ba4f4c9d0428f20c9fd76b8f414ee59e1f1c"
+    },
+    {
+      "path": "docs/KELAN_CWD_REVALIDATION_20261024.md",
+      "bytes": 8062,
+      "sha256": "eed9b6505e63b0de2ad6e33241dfbb6cff115e27540a2c93e8fcaaf1e07c0662",
+      "git_blob": "2b1a290d51112e1f876e1a6b6de2ee0d6c583b8c"
+    },
+    {
+      "path": "evidence/kelan-cwd-revalidation-20261024.json",
+      "bytes": 7511,
+      "sha256": "54a9efbd43612c0ed27090bf213e23df857c8544c0ac947b05db981eb95feca9",
+      "git_blob": "97075d58b509f199a079af0a75cd5644ca763167"
+    }
+  ],
+  "manifest_self_excluded": true,
+  "private_material_excluded": true
+}

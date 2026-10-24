@@ -1,0 +1,40 @@
+{
+  "source_name": "IPC_FRAME_DIAGNOSTIC.json",
+  "source_bytes": 457,
+  "source_sha256": "2f80ff1e37e79c93c802486ad5e7dc4b9706809b638778942af9b557c2202c26",
+  "original_measurement": {
+    "at_utc": "2026-10-23T07:55:44.577570+00:00",
+    "frame_limit_bytes": 33554432,
+    "model_requests": 0,
+    "window_actions": 0,
+    "limit_changed": false,
+    "frame_lengths": [
+      291,
+      291,
+      291,
+      291,
+      325,
+      230,
+      34956277
+    ],
+    "stage": "current_state",
+    "owner_discovered": true,
+    "error": {
+      "type": "ValueError",
+      "message": "invalid IPC frame size"
+    },
+    "oversized_headers": [
+      34956277
+    ]
+  },
+  "interpretation": {
+    "oversized_body_read_bytes": 0,
+    "message_type": "unknown",
+    "method": "unknown",
+    "owner_target_attribution": "unknown",
+    "logged_interval_excludes_initialize": true,
+    "logged_interval_received_bytes_derived_from_code_and_headers": 1747,
+    "total_connection_bytes": null,
+    "elapsed_seconds": null
+  }
+}

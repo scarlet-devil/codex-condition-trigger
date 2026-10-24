@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "input_commit": "d153f0b0ff950568d17ff04573819f77c29429b5",
+  "payload_files": [
+    {
+      "path": "simple_catalog.py",
+      "bytes": 4524,
+      "sha256": "aa522041a926c3777cbaf2b7b823ac301c0f7011cec4898dc4c91718f9ffe290",
+      "git_blob": "d970f09e8edbc1d5d338c753d5dd30a7dc654e48"
+    },
+    {
+      "path": "simple_controller.py",
+      "bytes": 19623,
+      "sha256": "5f82d345c398d7ccb1adf8fdc5997ed58e2ff942cc7651efc2f08662f1da74fe",
+      "git_blob": "818d3b68fd0eb3e72186a5779346fbc141253c0d"
+    },
+    {
+      "path": "simple_setup.py",
+      "bytes": 22030,
+      "sha256": "fa7463c49b06fe4ce258f68f1088f3d1675acd9cba598f07e233deda95e1b8df",
+      "git_blob": "37e129bc6458a375a4bea0e89850158f8307c5e0"
+    },
+    {
+      "path": "experimental/simple_form_fake.py",
+      "bytes": 5683,
+      "sha256": "ab3d04d7ddfa4cf99016f25e3097c639c1a2d7e2d44b16f99f59329dc7ec8a70",
+      "git_blob": "7177616f435525aece99f87f946378a4ea586759"
+    },
+    {
+      "path": "tests/test_simple_catalog.py",
+      "bytes": 5363,
+      "sha256": "24c402f800104c3ddfcfd5dd919c9228d1f8ff2e99a9176e923b02d17b41142a",
+      "git_blob": "73d3227f21f2fe7e4027776054e0d436ab0b88a1"
+    },
+    {
+      "path": "tests/test_simple_controller.py",
+      "bytes": 16828,
+      "sha256": "70cb00c087c45d5ae5a9a8281cdcbad2f94e2e11988b570543c3555c43ca6281",
+      "git_blob": "da940b6f28b4ed662650cd7db0ccc5bae659f282"
+    },
+    {
+      "path": "rule_service.py",
+      "bytes": 3941,
+      "sha256": "a8b779ccbdf1f5de121a6d60101dff9127ada34de07a5a11d76c6bef7f80aece",
+      "git_blob": "5aae4e9d64f0348c533c69835d76fb72f8635928"
+    },
+    {
+      "path": "notify_state.py",
+      "bytes": 14036,
+      "sha256": "38f78d642ba7389fd037f3febc1ba784de50cc32e90feb3f8a84a30d7ccea9f7",
+      "git_blob": "901c47049b5695c498c2673b114a549c12111797"
+    },
+    {
+      "path": "worker_health.py",
+      "bytes": 3028,
+      "sha256": "c37facc98be24537bb361612797d6edda1f020b97b514de2f786d9444f88179b",
+      "git_blob": "a107a9e62e3f4b2c8ce64daf6e434f941791eb94"
+    },
+    {
+      "path": "trigger.py",
+      "bytes": 41302,
+      "sha256": "77a618be9f98a01cd164937a6155a73cdbcc72216db0beae0c27b585406240a3",
+      "git_blob": "706a52a05195cad3f905e66e6f31e1fd3ce3175d"
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 11416,
+      "sha256": "138d1d13ff83a241146902e4a94e7fdc95a3bdd368f64eaa9453313672878276",
+      "git_blob": "3187f4e4b46003677457e000ee44cc8e32f9b158"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 163536,
+      "sha256": "c7baa11b263402933a61c460dc7f49bd7f66e573224ec12fe20d8f46debdcb0e",
+      "git_blob": "1a564b2e102657b2509e87fff730f97c3135b399"
+    },
+    {
+      "path": "docs/KELAN_G2_FORM_20261024.md",
+      "bytes": 10996,
+      "sha256": "8d75ec53f9d59951da04a3ea6fdbc235dc7ae78a8410062f0e06e1737b080b18",
+      "git_blob": "9a42f7b89b3521252129a0afcb1e836812ae39f4"
+    },
+    {
+      "path": "docs/SIMPLE_SETUP_G2.md",
+      "bytes": 2336,
+      "sha256": "437fc459bf843cbe97910c88178bc8e39ecd172c3f4381f08d82908f1032c9bd",
+      "git_blob": "4cf681572ee6394cccbb2eb0c7103c21557f8254"
+    },
+    {
+      "path": "evidence/kelan-g2-form-20261024.json",
+      "bytes": 14136,
+      "sha256": "ed9e8c6da9717799a6ba7c7057471ba0407c35aaccad7efc3f457e45b1929401",
+      "git_blob": "895e82bce11283a2239b60c28be37f6008dae1ae"
+    }
+  ],
+  "work_log_preserved_prefix": {
+    "bytes": 160662,
+    "sha256": "bdadf3191785323122182520affa6f0519bad6f50c2bc74fb387c57cf7274a95",
+    "crlf_count": 11
+  },
+  "scope": "G2 candidate only; Alice review_pending; Draft; no merge/install/G3/production"
+}

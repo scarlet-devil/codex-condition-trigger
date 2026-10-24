@@ -1,0 +1,336 @@
+{
+  "schema": "kelan-bounded-entry-investigation-v1",
+  "author": "Kelan",
+  "deployment_environment": "local Windows",
+  "review_type": "Self-review S0",
+  "input_commit": "95c6519dfefd70654dd10dddf79dac1a4b647563",
+  "started_at_utc": "2026-10-23T09:33:51Z",
+  "investigation_ended_at_utc": "2026-10-23T09:46:15Z",
+  "investigation_seconds": 744,
+  "deadline_utc": "2026-10-23T10:33:51Z",
+  "decision": "existing_original_summary_endpoint_not_found_in_reviewed_routes",
+  "gate": "G0_blocked",
+  "alice_review": "review_pending",
+  "installed_version": "26.1016.8622.0",
+  "archive_bytes": 625947531,
+  "archive_sha256": "a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49",
+  "archive_stat_stable": true,
+  "signature_valid_openai": true,
+  "original_service_binding": {
+    "pipe_server_is_desktop_main": true,
+    "direct_app_server_children": 1,
+    "original_child_listen_argument": "not_specified",
+    "inferred_transport": "stdio",
+    "basis": [
+      "installed spawn/factory source",
+      "direct parent-child process relationship",
+      "default protocol documentation"
+    ],
+    "full_command_lines_saved": false,
+    "environment_read": false,
+    "other_app_servers_excluded": true
+  },
+  "tcp_observation": {
+    "at_utc": "2026-10-23T09:43:46.4186628+00:00",
+    "command_succeeded": true,
+    "all_listener_row_count": 41,
+    "selected_process_matches": 0,
+    "port_connections_attempted": 0
+  },
+  "installation_timing_seconds": {
+    "pipe_metadata": 0.006275700055994093,
+    "signature": 0.48210449994076043,
+    "source_read_and_match": 0.038409900036640465,
+    "archive_sha256": 0.24832819995936006,
+    "total": 0.7753234000410885
+  },
+  "measurement_limit": "One warm-machine observation, no cold-cache or recurring cost claim.",
+  "setup_failure": {
+    "attempts": 2,
+    "failed_first_stage": "signature subprocess nonzero; stderr UTF-8 decode failed",
+    "underlying_powershell_error": "not_recovered",
+    "correction": "explicit Security module import and UTF-8 console output",
+    "second_attempt": "passed",
+    "no_protocol_retries": true,
+    "archive_full_hash_passes": 1
+  },
+  "counters": {
+    "pipe_metadata_connections": 2,
+    "protocol_reads": 0,
+    "protocol_writes": 0,
+    "protocol_initializations": 0,
+    "target_state_queries": 0,
+    "model_sends": 0,
+    "window_actions": 0,
+    "installed_package_writes": 0,
+    "host_restarts": 0,
+    "alternate_app_servers_launched": 0,
+    "production_changes": 0,
+    "business_acks": 0
+  },
+  "target_query_status": [
+    {
+      "target": "loaded_control",
+      "status": "not_attempted_no_verified_endpoint",
+      "runtime": "unknown"
+    },
+    {
+      "target": "original_results",
+      "status": "not_attempted_no_verified_endpoint",
+      "runtime": "unknown"
+    }
+  ],
+  "conditional_rpc_budget": {
+    "message_bytes": 65536,
+    "cumulative_received_bytes_per_target": 1048576,
+    "initialize_to_result_seconds": 10,
+    "attempts_per_target": 1,
+    "retries": 0,
+    "exercised_this_run": false
+  },
+  "sources": [
+    {
+      "path": ".vite/build/main-CT5a1yCd.js",
+      "bytes": 4080823,
+      "sha256": "cdac659a830908ec5202a887e5a37b302074bfc9e9ab0f52fed3e8abbdb9e713",
+      "prior_copy_exact_match": true
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "bytes": 1664092,
+      "sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "prior_copy_exact_match": true
+    },
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "bytes": 292827,
+      "sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "prior_copy_exact_match": true
+    }
+  ],
+  "source_citations": [
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 475896,
+      "end_char_exclusive": 477150,
+      "utf8_span_sha256": "d55e5815f3ec2c4d72a3c9b46d565f7f1c5f3532d44fc32645e15e750d472db9",
+      "finding": "manager readThread delegates to requestClient; default includeTurns false"
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 992091,
+      "end_char_exclusive": 992331,
+      "utf8_span_sha256": "34666bc135204f75dc70df5d8552c00207e99b3c85452d5b8f657da542af17e8",
+      "finding": "manager requestClient supplied by constructor"
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 1261250,
+      "end_char_exclusive": 1261520,
+      "utf8_span_sha256": "72ff19128bca1948c688348e9f68966ea472439a6643cbccdda6e42ae9e72006",
+      "finding": "native readThread constructs thread/read request"
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 1263313,
+      "end_char_exclusive": 1264890,
+      "utf8_span_sha256": "142361b8614730997dff7ea24f1181aadc7735ec0ce1b5d788db8ef95794244e",
+      "finding": "catalog/internal request to messageDelivery"
+    },
+    {
+      "path": ".vite/build/main-CT5a1yCd.js",
+      "source_sha256": "cdac659a830908ec5202a887e5a37b302074bfc9e9ab0f52fed3e8abbdb9e713",
+      "start_char_inclusive": 3632900,
+      "end_char_exclusive": 3635700,
+      "utf8_span_sha256": "e8396385e4816c463cdc594cfb0789ca181332006cd853ded1a50b54cb9bfab0",
+      "finding": "local app-server connection factory"
+    },
+    {
+      "path": ".vite/build/main-CT5a1yCd.js",
+      "source_sha256": "cdac659a830908ec5202a887e5a37b302074bfc9e9ab0f52fed3e8abbdb9e713",
+      "start_char_inclusive": 3525245,
+      "end_char_exclusive": 3527350,
+      "utf8_span_sha256": "ab31777dba30440b9bc68e41e9dffd13278d1a047d5cf453c360f28aecf991ac",
+      "finding": "L5 transport selection"
+    },
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "source_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "start_char_inclusive": 262700,
+      "end_char_exclusive": 263880,
+      "utf8_span_sha256": "5173458cb3b8579e39e51a0d3e0dc15bc03e52170c9c1ec0b256e429a28cb469",
+      "finding": "Ks Windows stdio/default and non-Windows daemon condition"
+    },
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "source_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "start_char_inclusive": 256333,
+      "end_char_exclusive": 257900,
+      "utf8_span_sha256": "5d642a4bd6570138ceb8213153a1de3c5eb074523607e4710c8e936826eb1dd4",
+      "finding": "Gs JSONL connection and stdin writes"
+    },
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "source_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "start_char_inclusive": 258540,
+      "end_char_exclusive": 259500,
+      "utf8_span_sha256": "d4f3a6c76e003b3149be5b7935c5888a1d610917ded80372418227890e1b25b5",
+      "finding": "spawnProcess pipe ownership"
+    },
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "source_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "start_char_inclusive": 264082,
+      "end_char_exclusive": 265760,
+      "utf8_span_sha256": "2ac8d8b56cd5b4285229a43e6fe89089351d6cb3ab186bb46b326fd486470e63",
+      "finding": "Js executable/config construction"
+    },
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "source_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "start_char_inclusive": 267855,
+      "end_char_exclusive": 269060,
+      "utf8_span_sha256": "7a2512e494d533601538ab1b70efff0f5b764d5e2e05199ad6a1ccfb50578028",
+      "finding": "tc/rc default app-server argv"
+    },
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "source_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "start_char_inclusive": 287780,
+      "end_char_exclusive": 287930,
+      "utf8_span_sha256": "ad1004c6fbdb5ca578aad0af387a8b3580bddfd80eb5715038ad1d8a464320e9",
+      "finding": "export underscore maps Ks"
+    },
+    {
+      "path": ".vite/build/application-network-startup-BG13czUt.js",
+      "source_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+      "start_char_inclusive": 225568,
+      "end_char_exclusive": 225800,
+      "utf8_span_sha256": "3df443b369759b603df2b316f500d664af14d3dc7267965ff19d1e08a9e0d41e",
+      "finding": "optional websocket configuration, not listener creation"
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 1593600,
+      "end_char_exclusive": 1595140,
+      "utf8_span_sha256": "085b38eed7d01b7b00792c8a5bbb84874cc63b8edfc7281dce4ab794586c8ce9",
+      "finding": "T0 follower request registration"
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 7853,
+      "end_char_exclusive": 8900,
+      "utf8_span_sha256": "5e47fa97ff7b70d11eb5bf067a3039fd0ed62af0730b103fcd29fc182e41e180",
+      "finding": "IPC version table, no generic thread/read"
+    },
+    {
+      "path": ".vite/build/main-CT5a1yCd.js",
+      "source_sha256": "cdac659a830908ec5202a887e5a37b302074bfc9e9ab0f52fed3e8abbdb9e713",
+      "start_char_inclusive": 3500678,
+      "end_char_exclusive": 3503330,
+      "utf8_span_sha256": "5d6854ed17d29c1849a5caa32570ee3a1728abbc54ed12dd6d68a2a7352bf9a2",
+      "finding": "authenticated loopback MCP and SSH forwarding factory"
+    },
+    {
+      "path": ".vite/build/main-CT5a1yCd.js",
+      "source_sha256": "cdac659a830908ec5202a887e5a37b302074bfc9e9ab0f52fed3e8abbdb9e713",
+      "start_char_inclusive": 3506540,
+      "end_char_exclusive": 3507530,
+      "utf8_span_sha256": "d45367161f5369426ea89d87330172d4b67fdcaa05118c2402097a8661692aea",
+      "finding": "SSH transport calls desktop MCP factory"
+    },
+    {
+      "path": ".vite/build/main-CT5a1yCd.js",
+      "source_sha256": "cdac659a830908ec5202a887e5a37b302074bfc9e9ab0f52fed3e8abbdb9e713",
+      "start_char_inclusive": 166376,
+      "end_char_exclusive": 168326,
+      "utf8_span_sha256": "a139b7458c62cbaf071b462ed86ef12075a853b0142b1a8aa3c66571b5419e9b",
+      "finding": "Computer Use pipe server"
+    },
+    {
+      "path": ".vite/build/main-CT5a1yCd.js",
+      "source_sha256": "cdac659a830908ec5202a887e5a37b302074bfc9e9ab0f52fed3e8abbdb9e713",
+      "start_char_inclusive": 298822,
+      "end_char_exclusive": 300772,
+      "utf8_span_sha256": "1e98894ea627f02df86553d319a33ced7e05aeecb2b6635c5827ad4bb2e7a08d",
+      "finding": "browser native pipe server"
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 1215951,
+      "end_char_exclusive": 1217901,
+      "utf8_span_sha256": "51b40ae64cc68cf84e8d7e4c3a30c1395db7cf1342ed5075d497d294d051f59c",
+      "finding": "SSH callback and tunnel readiness checks"
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 1218163,
+      "end_char_exclusive": 1220113,
+      "utf8_span_sha256": "154c0b628c5d2865245b89e542d6151833b3cf208874e0479adcfe983024d59e",
+      "finding": "SSH tunnel temporary port allocator"
+    },
+    {
+      "path": ".vite/build/src-CsH31EEu.js",
+      "source_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+      "start_char_inclusive": 1581397,
+      "end_char_exclusive": 1583347,
+      "utf8_span_sha256": "8d5035122f61ca174005b2924b516f719450f0da744f68e7c593386580875d9b",
+      "finding": "existing IPC router server"
+    }
+  ],
+  "offset_semantics": "zero-based decoded Unicode character offsets; end exclusive; spans hashed after UTF-8 encoding",
+  "official_reference": {
+    "url": "https://learn.chatgpt.com/docs/app-server",
+    "accessed_date": "2026-10-23",
+    "use": "default transport and summary method semantics only; not proof of current Desktop external endpoint"
+  },
+  "not_executed": [
+    "native summary positive/negative tests",
+    "185-test runtime regression",
+    "GUI/scheduler implementation",
+    "cache implementation",
+    "model delivery",
+    "window trial",
+    "current watcher health inspection"
+  ],
+  "redactions": [
+    "private targets",
+    "private paths",
+    "process ids",
+    "full command lines",
+    "environment",
+    "credentials",
+    "session content",
+    "governance identity files"
+  ],
+  "private_evidence_hashes": [
+    {
+      "file": "PROCESS_METADATA.private.json",
+      "bytes": 13243,
+      "sha256": "144d183d27819e7dc3e03930e91e7e977ec2b64245325b0e8c79510f1849d138"
+    },
+    {
+      "file": "TCP_CONFIRMATION.private.json",
+      "bytes": 297,
+      "sha256": "32b2aaf3ba691413317e41d3100798fc8a604413146a413e4588daa8a29439ca"
+    },
+    {
+      "file": "INSTALLATION_VERIFICATION.private.json",
+      "bytes": 1847,
+      "sha256": "cd7c056460d9888289a744b57aa5b3f4ba8f78934eae0e9ab8267025479607d4"
+    },
+    {
+      "file": "SETUP_ATTEMPT_1.private.json",
+      "bytes": 1863,
+      "sha256": "2618eab737c0a5e92f5a152f5f473d15336b371d4e98326e3c6836e0dfa66afd"
+    }
+  ]
+}

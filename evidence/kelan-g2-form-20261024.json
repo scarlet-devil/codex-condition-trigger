@@ -1,0 +1,468 @@
+{
+  "schema": 1,
+  "date": "2026-10-24",
+  "author": "local Kelan",
+  "receiver_review": "Alice review_pending",
+  "input_commit": "d153f0b0ff950568d17ff04573819f77c29429b5",
+  "input_verified_blobs": 203,
+  "source_code_pins": [
+    {
+      "path": "simple_catalog.py",
+      "bytes": 4524,
+      "sha256": "aa522041a926c3777cbaf2b7b823ac301c0f7011cec4898dc4c91718f9ffe290"
+    },
+    {
+      "path": "simple_controller.py",
+      "bytes": 19623,
+      "sha256": "5f82d345c398d7ccb1adf8fdc5997ed58e2ff942cc7651efc2f08662f1da74fe"
+    },
+    {
+      "path": "simple_setup.py",
+      "bytes": 22030,
+      "sha256": "fa7463c49b06fe4ce258f68f1088f3d1675acd9cba598f07e233deda95e1b8df"
+    },
+    {
+      "path": "experimental/simple_form_fake.py",
+      "bytes": 5683,
+      "sha256": "ab3d04d7ddfa4cf99016f25e3097c639c1a2d7e2d44b16f99f59329dc7ec8a70"
+    },
+    {
+      "path": "tests/test_simple_catalog.py",
+      "bytes": 5363,
+      "sha256": "24c402f800104c3ddfcfd5dd919c9228d1f8ff2e99a9176e923b02d17b41142a"
+    },
+    {
+      "path": "tests/test_simple_controller.py",
+      "bytes": 16828,
+      "sha256": "70cb00c087c45d5ae5a9a8281cdcbad2f94e2e11988b570543c3555c43ca6281"
+    },
+    {
+      "path": "rule_service.py",
+      "bytes": 3941,
+      "sha256": "a8b779ccbdf1f5de121a6d60101dff9127ada34de07a5a11d76c6bef7f80aece"
+    },
+    {
+      "path": "notify_state.py",
+      "bytes": 14036,
+      "sha256": "38f78d642ba7389fd037f3febc1ba784de50cc32e90feb3f8a84a30d7ccea9f7"
+    },
+    {
+      "path": "worker_health.py",
+      "bytes": 3028,
+      "sha256": "c37facc98be24537bb361612797d6edda1f020b97b514de2f786d9444f88179b"
+    },
+    {
+      "path": "trigger.py",
+      "bytes": 41302,
+      "sha256": "77a618be9f98a01cd164937a6155a73cdbcc72216db0beae0c27b585406240a3"
+    }
+  ],
+  "suite": {
+    "methods": 257,
+    "failures": 0,
+    "errors": 0,
+    "skips": 1,
+    "native_exit_code": 0,
+    "elapsed_seconds": 47.79700000002049,
+    "source_pins_unchanged": true,
+    "scope": "full tests directory, frozen Hub source present; no experimental G0 rerun"
+  },
+  "new_tests_included": 27,
+  "frozen_hub": {
+    "zip_sha256": "21f736228e18f430e537e4845e69ae9a2f0727145587d5d3642746b3417de14d",
+    "zip_members": 16,
+    "manifest_payloads": 15,
+    "crc_and_hashes": "passed",
+    "integration_tests_run": 3
+  },
+  "lint": {
+    "new_default": {
+      "exit_code": 0,
+      "diagnostics": 0,
+      "codes": {}
+    },
+    "common_default_before": {
+      "exit_code": 1,
+      "diagnostics": 30,
+      "codes": {
+        "I001": 7,
+        "C408": 13,
+        "F401": 2,
+        "TRY004": 3,
+        "BLE001": 1,
+        "UP017": 3,
+        "SIM102": 1
+      }
+    },
+    "common_default_after": {
+      "exit_code": 1,
+      "diagnostics": 32,
+      "codes": {
+        "I001": 7,
+        "C408": 13,
+        "F401": 2,
+        "TRY004": 3,
+        "BLE001": 2,
+        "UP017": 3,
+        "SIM102": 1,
+        "SIM117": 1
+      }
+    },
+    "all_critical": {
+      "exit_code": 0,
+      "diagnostics": 0,
+      "codes": {}
+    },
+    "new_format": {
+      "exit_code": 0
+    }
+  },
+  "native_catalog": {
+    "schema": 1,
+    "query_scope": "current project metadata, substring filter",
+    "row_count": 7,
+    "identity_results": [
+      "matched",
+      "matched",
+      "matched",
+      "matched",
+      "FileNotFoundError",
+      "FileNotFoundError",
+      "FileNotFoundError"
+    ],
+    "elapsed_seconds": 0.030999999959021807,
+    "history_read": false,
+    "real_native_ipc_calls": 0,
+    "model_tasks": 0,
+    "metadata_source_sha256": "e407d24795c8d37cff3c84d73cd55fbcb9804c029ba1781cce4204b546955581",
+    "raw_cwd_representation_count": 2
+  },
+  "gui_first": {
+    "result": "failed_fake_baseline_contract",
+    "elapsed_seconds": 224.10999999998603,
+    "fake_sends": 1,
+    "old_evidence_preserved": true,
+    "closeout": {
+      "schema": 1,
+      "scope": "first failed fake GUI smoke closeout",
+      "selected_second_duplicate_target": true,
+      "state_lock_reacquired": true,
+      "target_lock_reacquired": true,
+      "enabled": "false",
+      "initialized": "true",
+      "batch_states": [
+        "uncertain"
+      ],
+      "input_and_state_hashes_unchanged": true,
+      "files_checked": 15
+    }
+  },
+  "gui_second": {
+    "schema": 1,
+    "simulation": true,
+    "selected_second_duplicate_target": true,
+    "settle_seconds": 1.0,
+    "initial_files": 1,
+    "fake_sends": 2,
+    "unique_batches": 2,
+    "both_released": true,
+    "business_ack": false,
+    "business_delivered": false,
+    "execution_outcome": "unknown",
+    "backlog": 0,
+    "enabled_after_close": false,
+    "process_exit_code": 0,
+    "workers_released": true,
+    "locks_reacquired": true,
+    "reload_validation": "passed_without_start",
+    "files_unchanged_during_closeout": true,
+    "source_pins_unchanged": true,
+    "minimized_progress_state": "running",
+    "minimized_progress_time": "2026-10-24T09:14:39.790104+00:00",
+    "elapsed_seconds": 193.31200000003446,
+    "events": [
+      {
+        "event": "folder_picker",
+        "chosen": true,
+        "elapsed": 27.859000000054948
+      },
+      {
+        "event": "preview",
+        "elapsed": 67.21799999999348
+      },
+      {
+        "event": "baseline_committed",
+        "elapsed": 71.64000000001397
+      },
+      {
+        "event": "worker_started",
+        "elapsed": 71.64000000001397
+      },
+      {
+        "event": "synthetic_write",
+        "name": "A",
+        "elapsed": 86.68700000003446
+      },
+      {
+        "event": "synthetic_write",
+        "name": "B",
+        "elapsed": 100.45299999997951
+      },
+      {
+        "event": "pause_persisted",
+        "elapsed": 130.51500000001397
+      },
+      {
+        "event": "worker_exited",
+        "elapsed": 130.51500000001397
+      },
+      {
+        "event": "worker_started",
+        "elapsed": 141.3279999999795
+      },
+      {
+        "event": "close_requested",
+        "elapsed": 193.2029999999795
+      },
+      {
+        "event": "pause_persisted",
+        "elapsed": 193.31200000003446
+      },
+      {
+        "event": "worker_exited",
+        "elapsed": 193.31200000003446
+      }
+    ],
+    "dispatch_sequence": [
+      {
+        "event": "watching",
+        "state": null,
+        "batch": null
+      },
+      {
+        "event": "batch_ready",
+        "state": null,
+        "batch": "A"
+      },
+      {
+        "event": "dispatch_accepted",
+        "state": "accepted",
+        "batch": "A"
+      },
+      {
+        "event": "batch_ready",
+        "state": null,
+        "batch": "B"
+      },
+      {
+        "event": "cycle_tick",
+        "state": "ended",
+        "batch": null
+      },
+      {
+        "event": "cycle_tick",
+        "state": "notification_released",
+        "batch": null
+      },
+      {
+        "event": "dispatch_accepted",
+        "state": "accepted",
+        "batch": "B"
+      },
+      {
+        "event": "cycle_tick",
+        "state": "ended",
+        "batch": null
+      },
+      {
+        "event": "cycle_tick",
+        "state": "notification_released",
+        "batch": null
+      },
+      {
+        "event": "watcher_stopped",
+        "state": null,
+        "batch": null
+      },
+      {
+        "event": "watching",
+        "state": null,
+        "batch": null
+      },
+      {
+        "event": "watcher_stopped",
+        "state": null,
+        "batch": null
+      }
+    ],
+    "real_desktop_ipc_calls": 0,
+    "desktop_model_tasks": 0,
+    "zero_native_basis": "explicit fake dependency injection and call path; no OS-wide traffic meter"
+  },
+  "review": {
+    "task": "/root/g2_final_review",
+    "identity": "local Kelan controlled-context reviewer",
+    "context": "S1",
+    "method": "M1",
+    "frozen_files_verified": 209,
+    "frozen_g2_tests_passed": 24,
+    "frozen_g1_tests_passed": 36,
+    "active_initialization_repair_tests_passed": 1,
+    "active_thread_retention_tests_passed": 4,
+    "active_catalog_boundary_tests_passed": 2,
+    "counts_overlap": true,
+    "alice_acceptance": false,
+    "final_gui_and_combined_suite_owner": "parent Kelan",
+    "governance_evidence": "attributed to parent; not independently reverified by reviewer"
+  },
+  "boundaries": {
+    "real_desktop_ipc_calls": 0,
+    "desktop_model_tasks": 0,
+    "g3_executed": false,
+    "installation": false,
+    "merge": false,
+    "production_restart": false,
+    "production_health_checked": false,
+    "business_ack": false,
+    "stop_deadline_paused_changed": false
+  },
+  "source_history_read": false,
+  "raw_artifact_manifest": [
+    {
+      "local_run_relative_path": "evidence/input-manifest.json",
+      "bytes": 46558,
+      "sha256": "f54e82cefe7194639f34b010076865935cf0c7f12110851bc1c2c2194caca28c"
+    },
+    {
+      "local_run_relative_path": "evidence/catalog-schema.json",
+      "bytes": 4022,
+      "sha256": "a5f4891d41a86cf3e4f4d59936fc1f324fed0f16a310501a3a670c5d4f1b410f"
+    },
+    {
+      "local_run_relative_path": "evidence/native-catalog-probe.json",
+      "bytes": 531,
+      "sha256": "13fcca60a3af210cc369bdee41ee8f04f98c6910dfff3293d1b30a216632444b"
+    },
+    {
+      "local_run_relative_path": "evidence/final-suite.stdout",
+      "bytes": 13359,
+      "sha256": "83d3b2384a11a46dfbe21968ffb7e8a005cf9718d0d6bac2ca64594c38ea74dd"
+    },
+    {
+      "local_run_relative_path": "evidence/final-suite.stderr",
+      "bytes": 37549,
+      "sha256": "48c34f045a8c70aa75aa33b332727a0cb4dbf659eccd7df63b8a10bd74af18df"
+    },
+    {
+      "local_run_relative_path": "evidence/final-suite-result.json",
+      "bytes": 261,
+      "sha256": "63c73f63ff3a09d59bb55e8b0236728789b5ecb8cd4fe8f4d28c9dc1a0a9461e"
+    },
+    {
+      "local_run_relative_path": "evidence/lint-summary.json",
+      "bytes": 716,
+      "sha256": "6c9d5ed7d79423031930b3c9f0825d8dd91ad0b900c43b6b06b057bd816f027e"
+    },
+    {
+      "local_run_relative_path": "evidence/gui-first-diagnosis.json",
+      "bytes": 540,
+      "sha256": "1f9247574b7f48cb7c09031415593b751bf3b6c9bf3273915cff17bc29841a7b"
+    },
+    {
+      "local_run_relative_path": "evidence/gui-first-closeout.json",
+      "bytes": 347,
+      "sha256": "d5fa16f5b608d0af848e0c8d22bcd810ea12053f50fa9bce6d64e785ab5d944d"
+    },
+    {
+      "local_run_relative_path": "gui-smoke-2/ui-evidence.json",
+      "bytes": 10163,
+      "sha256": "d3844a29efc4a5cd98df08fdac7a5447f1e960168d1caec53920a00fa8b9fc55"
+    },
+    {
+      "local_run_relative_path": "gui-smoke-3/ui-evidence.json",
+      "bytes": 17418,
+      "sha256": "b139a8b6926241e8de60deb8de8e387e46c031fa974265bd5d02548069589833"
+    },
+    {
+      "local_run_relative_path": "evidence/gui-second.stdout",
+      "bytes": 37904,
+      "sha256": "f17bbd94726b7d684071ed01f455d0819d26998d583b798c82f0cc47fb35b988"
+    },
+    {
+      "local_run_relative_path": "evidence/gui-second.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "local_run_relative_path": "evidence/gui-second-verified.json",
+      "bytes": 3142,
+      "sha256": "d9fd0f5300a0461e0dc3a06c415e902b03186504bd6e8e403e81090603dada41"
+    },
+    {
+      "local_run_relative_path": "evidence/gui-second-minimized-progress.json",
+      "bytes": 387,
+      "sha256": "0547d67d89391431434a70643c56dd72d3c9d461708e840543755752c67b54cb"
+    },
+    {
+      "local_run_relative_path": "evidence/controller-diagnosis.txt",
+      "bytes": 12696,
+      "sha256": "39c6c051e8754ae42aac516869b31164844e3e9b4aa37e1a70d7cdce819ec80c"
+    },
+    {
+      "local_run_relative_path": "evidence/controller-user-permission.txt",
+      "bytes": 13837,
+      "sha256": "c54aee93cc5bc0649c3dac1d6af7181f17b4dbf9b1179437ab49e78e28c0c39e"
+    },
+    {
+      "local_run_relative_path": "evidence/gui-fake-red.txt",
+      "bytes": 15419,
+      "sha256": "1c073cb103fc682eb299bc624134907763a4019cceccc80df664b2dcd271a260"
+    },
+    {
+      "local_run_relative_path": "evidence/controller-review-fix.txt",
+      "bytes": 8813,
+      "sha256": "ae8b4372d01273225ab1658896d0c720ab5aa118f4ef14c59bd55d139ecb7a41"
+    },
+    {
+      "local_run_relative_path": "evidence/thread-retention-red.txt",
+      "bytes": 9700,
+      "sha256": "f0e4c1a71006eef81501a10b7cff1ae662f3bf1b05c28cd9179495158212d648"
+    },
+    {
+      "local_run_relative_path": "evidence/thread-retention-green.txt",
+      "bytes": 9047,
+      "sha256": "a33b11a966bee92326f1564822fe0de18abb192b5abc3f8ac12762dcd60d5b05"
+    },
+    {
+      "local_run_relative_path": "evidence/catalog-boundary-red.txt",
+      "bytes": 1920,
+      "sha256": "12e6106c9abf42f891941677f19a4fc56a8ff002fe038aeb4bc39551ff669488"
+    },
+    {
+      "local_run_relative_path": "evidence/catalog-boundary-green.txt",
+      "bytes": 1206,
+      "sha256": "396d57e5c14191d02fdee084af3d7dd413c31dfe2cf81e7bb028db9e6b7fcbc8"
+    },
+    {
+      "local_run_relative_path": "review/manifest.json",
+      "bytes": 30885,
+      "sha256": "b66fd0987c7141a9eaf4f871f9486d37b1ca71daf764b06dba0129174fee7999"
+    },
+    {
+      "local_run_relative_path": "review/findings/REVIEW.md",
+      "bytes": 11009,
+      "sha256": "54b4a2520e9cb709f1c364f1b767717671129e4843f6c6c175bffa66bb160dc2"
+    },
+    {
+      "local_run_relative_path": "review/findings/THREAD_RETENTION_ADDENDUM.md",
+      "bytes": 3340,
+      "sha256": "23e37353236749dd5093de89d76f0d98b674d12f3513afe7a96a437cde59fa0d"
+    },
+    {
+      "local_run_relative_path": "review/findings/CATALOG_BOUNDARY_ADDENDUM.md",
+      "bytes": 2830,
+      "sha256": "fb4790e9869a67c7018dc1e0811859cf44a0a63228ef8831b5b48ceaff8d4ea1"
+    }
+  ],
+  "privacy": "No private conversation IDs, actual metadata rows, screenshots, credentials, identity documents or raw local logs included."
+}

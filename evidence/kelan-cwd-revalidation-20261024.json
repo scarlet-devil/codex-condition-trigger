@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "date_local": "2026-10-24",
+  "timezone": "Asia/Shanghai",
+  "author": "Kelan",
+  "deployment_environment": "local Windows",
+  "acting_role": "bounded candidate validator and evidence author",
+  "task_source": "Human relayed Alice section 10 at d55c62d2; same-project evidence handoff",
+  "input_commit": "d55c62d204ba8193974b5434b19898dd65776a43",
+  "input_tree": "82d488ff78ec73b776c38d90efe03c82cc72d6c4",
+  "candidate_intake": {
+    "files": 185,
+    "all_git_blobs_and_lengths_match": true,
+    "zip_crc_passed": true,
+    "zip_bytes": 720902,
+    "zip_sha256": "f067166fbcfe02f5ecfc45a6faeb32dc9bf2d4b184a2fc85e62778bce488d8bb",
+    "full_local_manifest_sha256": "181709d29c74f9e8c2478fb2ca6bc2f1482d696d92357437281dadf775d0814f",
+    "after_checks_source_hashes_unchanged": true
+  },
+  "imports": {
+    "input_commit": "d55c62d204ba8193974b5434b19898dd65776a43",
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "imports": [
+      {
+        "module": "cwd_paths",
+        "path": "cwd_paths.py",
+        "sha256": "6abcf3a9856674b267fb1eafa1936565deb46fdbfd4e0126ef47f81b01d83909",
+        "git_blob": "e749a9f86402d03e0ce7e9b4caa14ee9b3b349c9"
+      },
+      {
+        "module": "chat_adapters",
+        "path": "chat_adapters.py",
+        "sha256": "cac5010d542dc7404eb8d7bc69b083c68860792b51cc505fc99e1dc075cc665e",
+        "git_blob": "010096669cafbc920fd13cffe8e04d8ffca25dbd"
+      },
+      {
+        "module": "desktop_ipc",
+        "path": "desktop_ipc.py",
+        "sha256": "73d01271141887465d5c3fcaf2646fd7a01827433a5de93149eef19eabaf384d",
+        "git_blob": "a2303d7588c7bede8789e1ac2762d0f795c72bf8"
+      },
+      {
+        "module": "experimental.conversation_catalog",
+        "path": "experimental/conversation_catalog.py",
+        "sha256": "cc8d82267b816af43c6442946f77b4c6a8260404f8fb70666de140f2ff88a9aa",
+        "git_blob": "a21fd1f85312f933a5d083bea73d9b855f125c2c"
+      },
+      {
+        "module": "experimental.snapshot_measure",
+        "path": "experimental/snapshot_measure.py",
+        "sha256": "0a819e956ba2d84df400b8c3a3ace06a09a3442d5934f81b86a1aee7bee049bb",
+        "git_blob": "7f9e43854be9544d2323e55c2e3c468bbe5baddd"
+      },
+      {
+        "module": "native_collector",
+        "path": "native_collector.py",
+        "sha256": "03b4ae3ba8720566c62115b61921f0a6f8ca3e0d7425a294d004b04950d8b431",
+        "git_blob": "8d38a8b54862c5afbc049b8fc3f5dfc0c495918c"
+      },
+      {
+        "module": "execution_result",
+        "path": "execution_result.py",
+        "sha256": "14e4980cd375c34017efdcc6a3f5cc0f8c927f1f6831e3caa0fda2b65c5cf932",
+        "git_blob": "d2ad397e38613a54e0dc34520389b0396735286c"
+      },
+      {
+        "module": "trigger",
+        "path": "trigger.py",
+        "sha256": "624ffabd694c1b7ee04e537f21ad63d057f2e5fcd9188a90f69348e0bc6e050a",
+        "git_blob": "05201969d1c36c84da11b66d2dd3650d5cb5d8ef"
+      }
+    ],
+    "traceback_observer_imported": false
+  },
+  "binding": {
+    "same_original_created_target": true,
+    "unique_current_catalog_candidate": true,
+    "same_stored_cwd_and_rollout": true,
+    "rollout_first_line_id_cwd_match": true,
+    "readonly_database": true,
+    "private_values_omitted": true
+  },
+  "single_observation": {
+    "sample": {
+      "snapshot_query_completed": true,
+      "runtime_status": "idle",
+      "can_send": false,
+      "model_sends": 0,
+      "diagnostic_schema": 1,
+      "frame_cap_bytes": 33554432,
+      "cumulative_receive_cap_bytes": 134217728,
+      "ipc_budget_seconds": 10,
+      "installation_verified": true,
+      "verification_seconds": 0.9059999999590218,
+      "revision": 6,
+      "requested_revision": 6,
+      "owner_same_after": true,
+      "measurements": {
+        "read_budget_debited_bytes": 29373,
+        "completed_read_bytes": 29373,
+        "completed_write_bytes": 1968,
+        "frame_headers": 12,
+        "complete_bodies": 12,
+        "max_declared_body_bytes": 8972,
+        "target_snapshot_bodies": 3,
+        "max_target_snapshot_body_bytes": 8972,
+        "incomplete_io": false
+      },
+      "ipc_seconds": 0.03200000000651926,
+      "total_seconds": 0.9379999999655411,
+      "binding_checks_passed": true,
+      "source_pins_verified": true,
+      "traceback_observer_imported": false
+    },
+    "window": {
+      "start_utc": "2026-10-23T16:14:07.799339+00:00",
+      "window_seconds": 600,
+      "reserved_queries": 1,
+      "model_sends": 0,
+      "no_retry": true,
+      "state": "closed_after_one_attempt",
+      "elapsed_seconds": 0.9529999999795109,
+      "end_utc": "2026-10-23T16:14:08.738612+00:00"
+    }
+  },
+  "checks": {
+    "experimental": {
+      "label": "experimental",
+      "run": 34,
+      "failed_events": 0,
+      "errors": 0,
+      "skipped": 0,
+      "skip_reasons": [],
+      "success": true,
+      "log_sha256": "641cf772767bdb4a6893ce72c321cc91e09d656050554bd5aa958ee93154c906"
+    },
+    "affected_workspace_temp": {
+      "run": 55,
+      "failure_events": 0,
+      "error_events": 0,
+      "skipped": 0,
+      "success": true,
+      "temp_scope": "run-local test_tmp",
+      "log_sha256": "7c430e52dc5372740ee5601e727db6ab12297f2ee59cb2c6523bab203df4e9a4"
+    },
+    "initial_affected_attempt": {
+      "label": "affected",
+      "run": 55,
+      "failed_events": 0,
+      "errors": 39,
+      "skipped": 0,
+      "skip_reasons": [],
+      "success": false,
+      "log_sha256": "1b89cce5e11d18d186cea286dfc84fd18cb9b74442f43f32c99d6fc1fb6ffcc5"
+    },
+    "initial_errors_explained": "39 error events in 55 methods; only PermissionError exception types. Sandbox TEMP fixtures could not be written/cleaned. Do not infer passed-method count from error events.",
+    "correction": "Set tempfile.tempdir only in test runner to run-local writable directory; minimal write/read/cleanup passed; reran affected 55 methods only; candidate code unchanged.",
+    "ruff_clean": [
+      "cwd_paths.py",
+      "experimental/conversation_catalog.py",
+      "experimental/tests/test_snapshot_diagnostics.py",
+      "experimental/tests/test_snapshot_measure.py",
+      "tests/test_cwd_paths.py"
+    ],
+    "ruff_existing_diagnostics": {
+      "tests/test_native_state.py": 11
+    },
+    "ruff_limit": "11 observed baseline diagnostics retained; Alice four-file 40-diagnostic comparison not independently repeated."
+  },
+  "scope": {
+    "real_readonly_samples": 1,
+    "retry": 0,
+    "models": 0,
+    "initialization_turns": 0,
+    "window_actions": 0,
+    "tk_retests": 0,
+    "production_mutations": 0,
+    "observer_instrumentation": false,
+    "installation_hashing_each_sample": true
+  },
+  "work_log_input": {
+    "bytes": 146038,
+    "sha256": "c2d78be5cf6cadee7f916047161e52d4eb790fdf0488ea1340dc60c073e18ce6",
+    "crlf": 11
+  },
+  "review": {
+    "type": "Kelan Self-review",
+    "context_independence": "S0",
+    "alice": "review_pending"
+  },
+  "state": {
+    "current_state_subcheck": "passed_this_sample",
+    "G0": "not_passed",
+    "PR": "Draft/unmerged"
+  },
+  "limits": [
+    "One idle sample; no busy/follow-up/post-task growth evidence",
+    "Full history path remains; small dedicated-chat snapshot is not a thin-state API or long-term bounded cost",
+    "Installation verification cost is included separately, not optimized",
+    "No filesystem object, alias or case-sensitive-directory identity proof",
+    "No live listener health check or production adoption",
+    "Historical generic protocol failure not retrospectively attributed"
+  ]
+}
