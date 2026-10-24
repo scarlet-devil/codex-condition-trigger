@@ -630,9 +630,9 @@ def dispatch_one(store, rpc_factory=StdioRPC, now=None, adapter_factory=None, ex
             adapter.close()
 
 
-def run(store, live=False, stop_event=None):
+def run(store, live=False, stop_event=None, *, adapter_factory=None, run_id=None, dispatch_interval=10):
     from worker_health import Progress
-    progress = Progress(store, live)
+    progress = Progress(store, live, run_id=run_id)
     observer = None
     try:
         if store.paused():
@@ -676,22 +676,25 @@ def run(store, live=False, stop_event=None):
             if live and now >= next_dispatch:
                 from owner_loading import cycle_tick
                 progress.write('checking_dispatch')
-                result = cycle_tick(store)
+                result = cycle_tick(store,adapter_factory=adapter_factory)
                 emit("cycle_tick", state=result)
                 progress.write('waiting', last_dispatch_check_at_utc=progress.utc(), dispatch_result=result)
-                next_dispatch = now + 10
+                next_dispatch = now + dispatch_interval
             stop_event.wait(0.1)
         reason = ('trial_expired' if (store.path / 'TRIAL_EXPIRED.json').exists() else
                   'STOP' if (store.path / 'STOP').exists() else 'stop_event')
         progress.finish('stopped', reason)
     except BaseException as error:
-        progress.finish('failed', type(error).__name__)
+        try:progress.finish('failed', type(error).__name__)
+        except Exception as progress_error:emit('progress_write_failed',reason=type(progress_error).__name__)
         raise
     finally:
         if observer is not None:
             observer.stop()
             if observer.is_alive():
-                observer.join(timeout=5)
+                # The GUI remains responsive on its own thread. Keep state/target
+                # locks until the observer is actually gone, never claim early close.
+                observer.join()
         emit("watcher_stopped")
 
 

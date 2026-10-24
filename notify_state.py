@@ -105,16 +105,16 @@ def validate_files(c, files):
             raise ValueError('baseline source changed')
 
 
-def initialize(store, expected_pause_epoch=None):
+def initialize(store, expected_pause_epoch=None, *, cancelled=lambda: False):
     from trigger import snapshot
     if store.db.execute("SELECT 1 FROM meta WHERE k='notify_initialized'").fetchone():
         return  # a restart must never reset an existing baseline or pause
     expected_pause_epoch=pause_epoch(store) if expected_pause_epoch is None else expected_pause_epoch
-    if guard(store):
+    if guard(store) or cancelled():
         raise ValueError('paused or expired')
-    files = snapshot(store.c, lambda: guard(store), require_ready=False)
+    files = snapshot(store.c, lambda: guard(store) or cancelled(), require_ready=False)
     validate_files(store.c, files)
-    if files != snapshot(store.c, lambda: guard(store), require_ready=False):
+    if files != snapshot(store.c, lambda: guard(store) or cancelled(), require_ready=False):
         raise ValueError('initial collection changed')
     if resource_reason(store, reserve=65536):
         raise ValueError('state_capacity')
@@ -126,9 +126,11 @@ def initialize(store, expected_pause_epoch=None):
             if store.c['initial_files'] == 'ignore':
                 store.db.executemany('INSERT INTO baseline_versions VALUES (?, ?, ?)',
                     [(x['sha256'], x['size'], 'initial_ignore') for x in {f['sha256']: f for f in files}.values()])
-            if guard(store) or pause_epoch(store) != expected_pause_epoch:
+            if guard(store) or cancelled() or pause_epoch(store) != expected_pause_epoch:
                 raise ValueError('paused during initialization')
             store.db.execute("INSERT INTO meta VALUES ('notify_initialized','true')")
+            store.db.execute("INSERT INTO meta VALUES ('notify_initial_file_count',?)",(str(len(files)),))
+            store.db.execute("INSERT INTO meta VALUES ('notify_initial_bytes',?)",(str(sum(f['size'] for f in files)),))
             store.db.execute("UPDATE meta SET v='true' WHERE k='notify_enabled'")
     finally:
         store.db.execute('DETACH DATABASE rule_registry')

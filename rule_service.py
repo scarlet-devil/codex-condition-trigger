@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import uuid
 
-from desktop_ipc import rollout_state
+from simple_catalog import verify_selection
 from notify_state import initialize, pause_epoch, set_active, status as notification_status, validate_files
 import trigger as tr
 
@@ -19,7 +19,7 @@ def preview(folder, condition, selection, *, state_dir=None, instruction=None, *
     if set(advanced)-allowed:
         raise ValueError('unsupported rule override')
     identity = str(uuid.UUID(selection['id']))
-    rollout_state(selection['rollout_path'],identity,selection['cwd'],lifecycle=False)
+    verify_selection(selection)
     rule_id = uuid.uuid4().hex
     c=json.loads((Path(__file__).parent/'example.windows.json').read_text(encoding='utf-8'))
     c.update(input_dir=folder,state_dir=state_dir or str(tr.target_registry_root()/'rules'/rule_id),
@@ -38,27 +38,32 @@ def preview(folder, condition, selection, *, state_dir=None, instruction=None, *
                 connection_status='not_queried',rule_revision=1)
 
 
-def enable(config, *, adapter_factory=None):
+def enable(config, *, adapter_factory=None, cancelled=lambda: False, _store=None):
     """Explicit action. Real callers perform a read-only native capability probe first."""
     c=tr.validate_config(copy.deepcopy(config))
-    store=tr.Store(c)
+    if cancelled(): raise ValueError('enable_cancelled')
+    store=_store if _store is not None else tr.Store(c)
     try:
+        if store.c != c: raise ValueError('enable store binding mismatch')
         expected_pause_epoch=pause_epoch(store)
         if store.db.execute("SELECT 1 FROM meta WHERE k='notify_initialized'").fetchone():
             raise ValueError('already initialized; use resume')
-        adapter=(adapter_factory or (lambda c, paused: tr.make_adapter(c,paused)))(c,lambda:False)
+        adapter=(adapter_factory or (lambda c, paused: tr.make_adapter(c,paused)))(c,cancelled)
         try:
             checked=adapter.inspect(dict(state='ready'))
             if not checked['can_send']:
                 raise ValueError('initial target capability/idle check did not pass')
         finally:
             adapter.close()
+        if cancelled(): raise ValueError('enable_cancelled')
         c['owner_verified']=True
-        tr.atomic_write(store.path/'rule.json',(tr.encode(c)+'\n').encode())
-        initialize(store,expected_pause_epoch)
+        # A controller supplying its own Store owns the config + marker pair.
+        # Do not replace just one half before initialization can still fail.
+        if _store is None:tr.atomic_write(store.path/'rule.json',(tr.encode(c)+'\n').encode())
+        initialize(store,expected_pause_epoch,cancelled=cancelled)
         return c
     finally:
-        store.close()
+        if _store is None: store.close()
 
 
 def pause(config):
