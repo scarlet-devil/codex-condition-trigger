@@ -902,3 +902,18 @@ Alice Linux/Python3.12.14在最终候选隔离副本复跑115相关测试：114�
 更新CURRENT_STATE及[行动方案第15节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#15-当前接续g3-owner-不可用调查与最小复验)，新增[Alice证据](evidence/alice-g3-review-20261026.json)。下一步先明确打开原专用对话，再一次有界只读查询；仍失败才另定已加载目标对照。新真实窗口/额度尚未执行，旧试验不重启。Drive需求另记于设计第13节，尚未实施。
 
 本轮公开变更仅文档/证据；自审S0，没有另派agent、向本机投递任务或发送评论消息。云端真实IPC、模型、Windows窗口、安装/生产修改均0；未查生产健康，ACK及STOP/到期/PAUSED不变，PR保持Draft。保留输入WORK_LOG 166,072 B全部历史原字节和11 CRLF；发布/回读另有本轮交付回执。
+
+
+## 2026-10-26 — Alice accepts the loaded-target readonly precheck and scopes G3
+
+红魔交回只读成功报告、R1补件及最终交接。Alice固定当前PR2 head 9bd9e8b061a571f64681fa8266d35681668ee73a，直接取得三份Drive原件，父目录为原40_REPORTS；121,460 B、49 ZIP条目/46 payload的CRC、长度与SHA-256通过。最终回执关闭前一冻结报告中的R1回读pending；历史DNS失败和原件保留。
+
+限定接受：准确原专用对话经原生工具导航后，当前安装可查询idle、requested/snapshot revision 2/2及末尾owner不变；柯蓝实机CLI1.549100秒/exit0，initialize1/owner2/history1/start0，RX11帧140,498 B。Alice复算逐帧总字节一致；can_send=false为只读约束。没有独立视觉UI-ID或Windows复跑，不推断上次唯一根因，不把当前idle当未来永久状态，不判G3通过。
+
+独立审阅最终入口af82da32…383ef7d2ad7：执行开关、固定selection/三字段、源码和归档pin、零发送预算、输入读取前计时及固定截止收紧。Alice Linux/Python3.12.14复跑原16测试（1.098秒）及交付R3两项阻塞输入反例（1.159秒），全部通过/无跳过/exit0；五文件关键Ruff零诊断。两个0.5秒合成子进程约0.566/0.592秒退出2，不声称严格0.5秒内退出。候选未改；原115项按未变范围复用，不重复累计。R3用例经unittest导入，未宣称核对未交付PREPARATION原件或实机超时全路径。
+
+R1补件7份原字节与原清单/blob一致，其余211固定基础blob映射匹配，218源码重建来源齐备；原私有PLAN只提供脱敏参考。旧分隔符打包缺陷关闭，不重跑历史失败实验。
+
+更新CURRENT_STATE和[行动方案第16节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#16-当前接续打开原对话后的限定接受与新-g3-两批范围)，新增[本轮审查证据](evidence/alice-owner-precheck-review-20261026.json)。第15节只读操作已完成，不再要求重复查询或证明唯一根因。下一轮保持同目标预先打开，沿用表单启用新鲜门禁、原隔离A/B、总480秒和2次start，具体预算与停止/收尾要求已列出；新时段由本机落实，不复用旧合同。Drive需求仍未实施。
+
+公开变化仅三份既有文档和一份脱敏证据；自审S0，无另派agent或本机任务消息，真实IPC/模型/窗口/安装/生产修改均0。保留169,564 B历史WORK_LOG全部原字节和11 CRLF。PR Draft，G3待真实两批，业务ACK及STOP/到期/PAUSED不变，未查生产健康。发布和全文回读由本轮交付回执记录。

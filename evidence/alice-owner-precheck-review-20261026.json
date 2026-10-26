@@ -1,0 +1,292 @@
+{
+  "schema": 1,
+  "date": "2026-10-26",
+  "author": "Alice",
+  "deployment": "cloud Linux / Python 3.12.14",
+  "review": "direct source/evidence review and offline tests; documentation self-review S0",
+  "input_head": "9bd9e8b061a571f64681fa8266d35681668ee73a",
+  "decision": {
+    "loaded_target_readonly_precheck": "limited_accepted",
+    "entry_repairs": "accepted within checked offline scope",
+    "r1_source_supplement": "accepted",
+    "g3": "not yet accepted",
+    "previous_missing_owner_unique_cause": "unknown; no extra control currently required",
+    "drive_source": "recorded / not implemented"
+  },
+  "packages": [
+    {
+      "name": "KELAN_G3_OWNER_PRECHECK_20261026.zip",
+      "bytes": 29416,
+      "sha256": "a0553a45a431353e380f8a9e7f39d401730e8b08b30610bdefd3185efd964c8a"
+    },
+    {
+      "name": "KELAN_G3_R1_SUPPLEMENT_20261026_R2.zip",
+      "bytes": 79494,
+      "sha256": "3738404fcfb54b85fcbf0fcce1750a62eefecdc331a57058f613baffe2e86ede"
+    },
+    {
+      "name": "KELAN_G3_FINAL_HANDOFF_20261026.zip",
+      "bytes": 12550,
+      "sha256": "69cc23083a272ca82dac73a55a04fcea2d6e36a08c95f849e7519ce93e47b57f"
+    }
+  ],
+  "payload_checks": [
+    {
+      "package": "KELAN_G3_FINAL_HANDOFF_20261026",
+      "payloads": 10,
+      "bytes": 23581,
+      "all_matched": true
+    },
+    {
+      "package": "KELAN_G3_OWNER_PRECHECK_20261026",
+      "payloads": 20,
+      "bytes": 68553,
+      "all_matched": true
+    },
+    {
+      "package": "KELAN_G3_R1_SUPPLEMENT_20261026_R2",
+      "payloads": 16,
+      "bytes": 233179,
+      "all_matched": true
+    }
+  ],
+  "parent_id_verified": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
+  "total_zip_bytes": 121460,
+  "zip_entries": 49,
+  "payloads": 46,
+  "crc_all_pass": true,
+  "r1": {
+    "original_manifest_bytes_identical": true,
+    "overlay_payloads_verified": 7,
+    "unchanged_source_blob_mappings_verified": 211,
+    "total_repo_paths": 218,
+    "original_plan_not_exported": true,
+    "full_source_bytes_refetched": false,
+    "reconstruction_map_sufficient": true
+  },
+  "r1_old_pending_superseded_by": {
+    "file_id": "1W-aqAmqDox4AQPNGN54E6XcHDayPjHBu",
+    "receipt": "DELIVERY_RECEIPT.json",
+    "status": "DELIVERED_AND_READBACK_VERIFIED"
+  },
+  "kelan_live": {
+    "entry_sha256": "af82da32f240e471dfc783ca29442d747161c383b39decb5df370383ef7d2ad7",
+    "selection_sha256": "4c68637a636f8d9c4286ec5e2bfe0f68a8cd7981b72a9307717b911fe7d52617",
+    "exact_chat_navigation": {
+      "tool": "navigate_to_codex_page",
+      "calls": 1,
+      "navigated": true,
+      "visual_ui_id_inspection": false
+    },
+    "started_utc": "2026-10-26T13:42:57.331220+00:00",
+    "duration_seconds": 90,
+    "result": {
+      "snapshot_query_completed": true,
+      "runtime_status": "idle",
+      "model_sends": 0,
+      "can_send": false,
+      "identity_verified": true,
+      "revision": 2,
+      "requested_revision": 2,
+      "owner_same_after": true,
+      "elapsed_seconds": 1.3440000000409782
+    },
+    "supervisor": {
+      "native_exit": 0,
+      "watchdog_expired": false,
+      "process_closed": true,
+      "elapsed_seconds": 1.5491001605987549,
+      "retry": 0,
+      "model_sends": 0
+    },
+    "actual_counts": {
+      "initialize": 1,
+      "owner_discovery": 2,
+      "history": 1,
+      "start_write_attempts": 0,
+      "non_cleanup_tx_frames": 6,
+      "cleanup_frames": 1,
+      "rx_frames": 11,
+      "rx_known_bytes": 140498,
+      "rx_upper_bytes": 140498,
+      "tx_known_bytes": 1970,
+      "tx_upper_bytes": 1970,
+      "rollout_reads": 1,
+      "rollout_known_bytes": 22533,
+      "rollout_upper_bytes": 22533
+    },
+    "limits": {
+      "history": 1,
+      "initialize": 1,
+      "max_frame_bytes": 33554432,
+      "non_cleanup_tx_frames": 6,
+      "owner_discovery": 2,
+      "rollout_reads": 1,
+      "rx_frames": 512,
+      "start_write_attempts": 0,
+      "total_requests": 4,
+      "total_rollout_bytes": 65537,
+      "total_rx_bytes": 134217728
+    },
+    "archive_bytes": 640129388,
+    "archive_sha256": "04862a659c6a90fc50514d8c0b8016709d97dece58839726c57495ed72f1d9f0",
+    "acceptance_limits": [
+      "Current installation and exact previously selected target only",
+      "Navigation reported by purpose-built tool; no screenshot or independent visual UI-ID claim",
+      "Does not prove unique root cause of previous missing owner",
+      "No real busy observation or double-batch notification",
+      "No production, autoload, Drive receiver, installation or merge"
+    ]
+  },
+  "alice_frame_conservation": {
+    "frame_count": 11,
+    "payload_plus_headers": 140498,
+    "matches": true
+  },
+  "source_pins": [
+    {
+      "path": "candidate/owner_precheck.py",
+      "bytes": 9010,
+      "sha256": "af82da32f240e471dfc783ca29442d747161c383b39decb5df370383ef7d2ad7",
+      "source_package": "owner_precheck"
+    },
+    {
+      "path": "candidate/test_owner_precheck.py",
+      "bytes": 5486,
+      "sha256": "10251868f6a23a11d47cf2fef8145af96ecea833488a9bfb6010568ea4cb4019",
+      "source_package": "owner_precheck"
+    },
+    {
+      "path": "candidate/test_worker_guards.py",
+      "bytes": 3005,
+      "sha256": "ca7f4aebf60b9e4927e2fbcf813f3784ddf6660b729847749f9bbe054b53ebea",
+      "source_package": "owner_precheck"
+    },
+    {
+      "path": "export-fix/review_overlay.py",
+      "bytes": 138,
+      "sha256": "806b07a90e0e8b8b2d2617d29a0efe228aba9bcb6ef3fb510aae83f335d8ba10",
+      "source_package": "r1_supplement"
+    },
+    {
+      "path": "export-fix/test_overlay_paths.py",
+      "bytes": 793,
+      "sha256": "9650045c41fe04578c8c53d4e758d6b931966329d142305c0b83506549809199",
+      "source_package": "r1_supplement"
+    }
+  ],
+  "alice_offline": {
+    "checks": [
+      {
+        "check": "regression",
+        "exit": 0,
+        "elapsed": 1.269
+      },
+      {
+        "check": "r3_deadline",
+        "exit": 0,
+        "elapsed": 1.219
+      }
+    ],
+    "regression": {
+      "methods": 16,
+      "passed": 16,
+      "skipped": 0,
+      "failures": 0,
+      "errors": 0,
+      "unittest_seconds": 1.098,
+      "modules": [
+        "test_worker_guards",
+        "test_owner_precheck",
+        "test_overlay_paths"
+      ],
+      "log_sha256": "fc94690b9bd72166288a4b1951e856bafaf9a32ac0a03c49a1d3a65822582bf6"
+    },
+    "r3": {
+      "methods": 2,
+      "passed": 2,
+      "skipped": 0,
+      "unittest_seconds": 1.159,
+      "invocation": "python -B -m unittest discover -v -s review/r3 -p review_r3_checks.py",
+      "main_blocked": {
+        "mode": "main",
+        "synthetic_duration_seconds": 0.5,
+        "reviewer_wait_seconds": 3,
+        "elapsed_seconds": 0.5915648770023836,
+        "exit_code": 2,
+        "reviewer_killed_child": false,
+        "stdout": "selection-entered\n",
+        "stderr": "",
+        "native_actions": 0
+      },
+      "worker_blocked": {
+        "mode": "worker",
+        "synthetic_duration_seconds": 0.5,
+        "reviewer_wait_seconds": 3,
+        "elapsed_seconds": 0.5661954780080123,
+        "exit_code": 2,
+        "reviewer_killed_child": false,
+        "stdout": "selection-entered\n",
+        "stderr": "",
+        "native_actions": 0
+      },
+      "scope": "Actual supplied cases imported through unittest; no __main__ six-input verification claim; PREPARATION original not exported"
+    },
+    "ruff": {
+      "version": "0.17.1",
+      "files": 5,
+      "select": [
+        "E9",
+        "F63",
+        "F7",
+        "F82"
+      ],
+      "exit": 0,
+      "diagnostics": 0,
+      "default_style_checked": false
+    },
+    "prior_115_rerun": false,
+    "source_modified": false
+  },
+  "limits": [
+    "Kelan owns Windows navigation/state/shutdown observations; no cloud live replay",
+    "Same archive and exact target only; idle is point-in-time",
+    "Complete-history still read once; no new summary endpoint",
+    "Two deadline cases are synthetic, not full real-timeout cleanup proof",
+    "Five source pins checked; private PREPARATION and raw target/config/installation artifacts not independently read",
+    "R1 seven overlay bytes checked and 211 base blob mappings checked; original private PLAN not reconstructed",
+    "No scientific/formal proof claim or applicable new Lean target"
+  ],
+  "next_g3": {
+    "proposal_prepared": true,
+    "runtime_started": false,
+    "same_target_explicitly_opened": true,
+    "fresh_form_enablement_probe_in_shared_budget": true,
+    "separate_90_second_probe_required": false,
+    "duration_seconds": 480,
+    "start_write_attempts": 2,
+    "initialize": 12,
+    "owner_discovery": 20,
+    "history": 16,
+    "total_requests": 50,
+    "non_cleanup_tx_frames": 128,
+    "rx_frames": 512,
+    "max_frame_bytes": 33554432,
+    "total_rx_bytes": 134217728,
+    "rollout_reads": 64,
+    "total_rollout_bytes": 134217728,
+    "automatic_rearm": false,
+    "reuse_old_stop_or_deadline": false,
+    "max_connect_attempts": 1,
+    "g3_runtime_source": "ab71c9d1 plus previously reviewed R3 eight-file overlay; any new delta must be explicit",
+    "status": "prepare concrete local timing and execute only within new scoped run"
+  },
+  "cloud_real_actions": {
+    "ipc": 0,
+    "model_sends": 0,
+    "windows_ui": 0,
+    "install_or_production": 0,
+    "agent_messages": 0
+  },
+  "public_write_scope": "three existing Markdown documents and one sanitized review evidence; no private package or runtime source publication"
+}
