@@ -882,3 +882,23 @@ State: G2 implementation_ready / Alice review_pending; G3 not executed,PR2 remai
 更新CURRENT_STATE、SIMPLE_SETUP_DESIGN及[行动方案第14节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#14-当前接续g2-验收与-g3-准备边界)，新增[验收证据](evidence/alice-g2-review-20261024.json)。修正当前入口中残留的“G2尚未实现”，原第13节和历史日志保留时间语境。下一步准备G3固定候选/目标/配置、完整查询及发送预算、停止条件和两批准确证据；本次不新增真实试验额度，也不要求重复G2实现。
 
 运行源码未改；文档自审S0，未另派agent或向柯蓝发任务。真实IPC、模型、GUI操作、生产安装/恢复、ACK变更均0；未检查生产健康。旧G0实机/34实验回归和Windows全套按不变源码范围复用，不重复累计测试数量。无新依赖或适用Lean目标。PR保持Draft；历史STOP/到期/PAUSED及连续授权不变。文档检查与同PR发布/完整回读结果由本次证据和交付记录补齐。
+
+
+## 2026-10-26 — Alice records the Drive-to-local trigger requirement
+
+来源：红魔提出“有文件放入drive的指定文件夹然后本地的条件触发器也能检测到然后唤醒相应对话的柯蓝进行相关的操作”，随后明确要求先记录需求，再研究柯蓝本轮G3阻点。已记录目标：指定Drive目录来料→完整落地本地→按条件触发准确绑定的柯蓝对话；保持来源、条件、目标三个配置概念。
+
+这是新增来源需求，尚未实现或部署。Alice提出的小型Drive API接收器与桌面同步均为候选路线；一分钟检查、复用Hub认证、原生Google文档导出及相同字节重新上传的任务语义均未定稿，不能把建议写成用户已选实现。后续应复用现有通知推进、忙时等待及不确定不重发；下载完整性、远端版本去重/断线恢复、输入输出分离和目标映射需在接入时验证。当前优先调查G3 owner不可用，未开展Drive接入或新建自动任务。
+
+
+## 2026-10-26 — Alice reviews the G3 owner failure and records the next step
+
+红魔交回已关闭的G3试验，要求研究owner不可用。固定公开基线ab71c9d17639c05389c5e3e51d34eb38c323eb50；直接下载指定Drive ZIP（214,930 B，SHA-256 150feb1f8dde8c30d88b69bbe9481af1e293d40cd2266523c2e960e4cdc5fc35），核对76条目CRC及75 payload长度/哈希，最终8候选与R3清单/副本匹配。没有公开私有聊天、配置、数据库或整包，G3运行候选仍未提交到公开分支。
+
+接受本次负面证据，不接受G3通过。柯蓝Windows153.546289秒、exit2、target_not_ready_waiting_owner；initialize/owner发现各1，history/start均0，未完成初始化、无A/B。源码和合成错误回包核对表明失败在owner发现，非快照超限或busy证明；准确选择与实际加载是两件事。本轮未打开目标，且notify启用门禁和cycle_tick都没有接入旧严格模式加载器，不能仅开启owner_loading_enabled解决。根因仍unknown，不能擅断“窗口未打开”或“版本升级”。
+
+Alice Linux/Python3.12.14在最终候选隔离副本复跑115相关测试：114通过/1 Windows-only跳过/0失败错误，unittest10.286秒，退出0。八文件关键Ruff零诊断；原R3完成证据失败反例1通过，模拟launcher正确exit2；合成owner拒绝经真实启用路径得到同一停止码、无初始化/发送。首次辅助脚本字段错误、R3夹具缺失及工具缓存缺失均如实保留在本次证据中，修正检查环境后完成；候选源码未改。柯蓝Windows历史结果单独归属；未声称独立复核220快照文件或完整R1（缺该轮源码增量）。
+
+更新CURRENT_STATE及[行动方案第15节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#15-当前接续g3-owner-不可用调查与最小复验)，新增[Alice证据](evidence/alice-g3-review-20261026.json)。下一步先明确打开原专用对话，再一次有界只读查询；仍失败才另定已加载目标对照。新真实窗口/额度尚未执行，旧试验不重启。Drive需求另记于设计第13节，尚未实施。
+
+本轮公开变更仅文档/证据；自审S0，没有另派agent、向本机投递任务或发送评论消息。云端真实IPC、模型、Windows窗口、安装/生产修改均0；未查生产健康，ACK及STOP/到期/PAUSED不变，PR保持Draft。保留输入WORK_LOG 166,072 B全部历史原字节和11 CRLF；发布/回读另有本轮交付回执。
