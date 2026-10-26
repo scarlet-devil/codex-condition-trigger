@@ -97,7 +97,7 @@ def start_params(thread_id, client_id, text):
                     'mcpAppModelContextAttachments': []}}, 'isSteering': False}
 
 
-def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=True):
+def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=True, reader=None):
     """Read only the explicitly configured rollout. Preserve tool records verbatim.
 
     Missing/partial/changed history is unknown, never evidence of an idle target.
@@ -107,7 +107,7 @@ def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=Tru
     before = path.stat()
     if before.st_size > MAX_ROLLOUT:
         raise ValueError('target rollout exceeds bounded observer limit')
-    data = path.read_bytes()
+    data = path.read_bytes() if reader is None else reader(path)
     after = path.stat()
     if (before.st_ino, before.st_size, before.st_mtime_ns) != (after.st_ino, after.st_size, after.st_mtime_ns):
         raise ValueError('target rollout changed while reading')

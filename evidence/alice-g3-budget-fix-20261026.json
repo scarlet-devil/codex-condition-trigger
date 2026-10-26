@@ -1,0 +1,162 @@
+{
+  "schema": 1,
+  "date": "2026-10-26",
+  "author": "Alice",
+  "review_kind": "S0 self-review; no independent agent",
+  "base_commit": "d02b1b6036f7be3ee7bef6ac4a9b5d4e988d2902",
+  "environment": {
+    "os": "Linux",
+    "python": "3.12.14",
+    "live_windows": false
+  },
+  "package": {
+    "bytes": 245799,
+    "sha256": "06842b6a43afa8ba4906f62f378b93a1b28e95ef837ee26dab4e95e4645ac5c4",
+    "zip_entries": 65,
+    "manifest_payloads": 64,
+    "payload_bytes": 657966,
+    "crc_and_payload_hashes_verified": true
+  },
+  "decision": {
+    "g3": "not_accepted",
+    "r2_form_and_a": "limited_accepted_from_Kelan_evidence",
+    "b": "uncertain; terminal observed but no result; no retry or ACK",
+    "candidate": "offline_verified; Windows pending"
+  },
+  "timeline_seconds": {
+    "start_to_a_fixture": 337.780199,
+    "a_accept_to_fresh_idle": 119.936149,
+    "a_idle_remaining": 10.599092,
+    "b_start_remaining": 0.387711,
+    "supervisor_elapsed": 480.300218,
+    "installation_total": 3.891
+  },
+  "responsibility": {
+    "execution": "initial path and missing parameter errors by Kelan",
+    "workflow": "Alice scope repeated form work inside the model budget",
+    "code": "no minimum remaining time for a new start",
+    "not_proved": [
+      "all setup time caused by human slowness",
+      "pure model execution time",
+      "reason B produced no output"
+    ]
+  },
+  "implementation": {
+    "start_reserve_default_seconds": 180,
+    "total_seconds": 480,
+    "max_start_attempts": 2,
+    "workflow": "explicit batches_only, same real controller and watcher",
+    "uncertainty": "Known-unsent only before first-byte admission; partial write never becomes unsent",
+    "old_rule_reused": false,
+    "production_changed": false
+  },
+  "checks": {
+    "distinct_methods": 131,
+    "passed": 130,
+    "skipped": 1,
+    "skip_reason": "Windows overlapped-I/O",
+    "runs": {
+      "regression.log": {
+        "sha256": "f1f594275acbb12e8befd9a34d10d89d87c32e9690fe76734915f6a45fb4712b",
+        "tail": "_id\":\"138086f23b78063c78b60b8fb2e9682a395b8da1c1e0c4d343b43f77d6d85960\",\"event\":\"dispatch_accepted\",\"state\":\"accepted\"}\n{\"event\":\"cycle_tick\",\"state\":\"accepted\"}\n{\"event\":\"cycle_tick\",\"state\":\"ended\"}\n{\"event\":\"cycle_tick\",\"state\":\"notification_released\"}\n{\"event\":\"watcher_stopped\"}\nok\n\n----------------------------------------------------------------------\nRan 127 tests in 13.973s\n\nOK (skipped=1)\n"
+      },
+      "pin-regression.log": {
+        "sha256": "9941c2daeef58d60075ac683d36eaf476c50c19951ce97d87dfb5e1eaf0b239a",
+        "tail": "itializes) ... ok\ntest_changed_installation_pin_never_initializes (test_g3_admission.BatchWorkflowTests.test_changed_installation_pin_never_initializes) ... ok\ntest_missing_installation_pin_never_initializes (test_g3_admission.BatchWorkflowTests.test_missing_installation_pin_never_initializes) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.019s\n\nOK\n"
+      },
+      "launch-final.log": {
+        "sha256": "df21def4c73cbb59e07c6558ab3e7aa2e8d4699732bc2ac76ba3986556661d8d",
+        "tail": "tializes) ... ok\ntest_changed_installation_pin_never_initializes (test_g3_admission.BatchWorkflowTests.test_changed_installation_pin_never_initializes) ... ok\ntest_missing_installation_pin_never_initializes (test_g3_admission.BatchWorkflowTests.test_missing_installation_pin_never_initializes) ... ok\n\n----------------------------------------------------------------------\nRan 24 tests in 3.836s\n\nOK\n"
+      }
+    },
+    "critical_ruff_files": 9,
+    "critical_ruff_rules": [
+      "E9",
+      "F63",
+      "F7",
+      "F82"
+    ],
+    "critical_ruff": "pass",
+    "default_ruff": "findings retained; not all-green",
+    "test_development_errors": [
+      "fixture setUp reused with incompatible super() inheritance",
+      "test set dispatch_interval instead of controller.interval",
+      "test read nonexistent delivered instead of business_delivery"
+    ],
+    "simulation": "headless workflow uses real Controller/Store/watcher, FakeDesktop and accelerated simulation interval; native Windows remains untested",
+    "full_suite_rerun": false,
+    "registered_lean_target": null,
+    "gitleaks": {
+      "version": "8.30.1",
+      "mode": "dir",
+      "scope": "13 selected public delivery files, not git history",
+      "findings": 0,
+      "exit_code": 0
+    }
+  },
+  "source_files": [
+    {
+      "path": "desktop_ipc.py",
+      "bytes": 32651,
+      "sha256": "6e3608251f5295f30f493d4e3cb42ff5d4441ea9c1099491ed9e487782e31af6",
+      "git_blob": "f588f2f0c096cfe6f3ec777091d5518961c45f60"
+    },
+    {
+      "path": "rule_service.py",
+      "bytes": 3987,
+      "sha256": "58c24c862569a190260d934b0c4fbef53763a15a13cc7e9a8fac0b7b8e3ebcb2",
+      "git_blob": "c5b79b8a714e4970403a8ed6839e30ec3271c315"
+    },
+    {
+      "path": "simple_catalog.py",
+      "bytes": 4607,
+      "sha256": "fd27fbf983df009a06b9055d703e5876133911f724791e1efc6f89b434904ffa",
+      "git_blob": "cc1e4f881e015a300aba679d907e85bbc6c82af8"
+    },
+    {
+      "path": "experimental/g3_trial.py",
+      "bytes": 18437,
+      "sha256": "5e3561a72739adea3de773da3b3d7213ed475fd2cd1e21320c6e44e126fc31a8",
+      "git_blob": "d7540403aa6d55e1c9212b98244dbf92e8ac37cb"
+    },
+    {
+      "path": "experimental/g3_launch.py",
+      "bytes": 17901,
+      "sha256": "de417f601267e5a80f6fb8f472ca501e9bcdfa644c78de7b80b07563a439f535",
+      "git_blob": "1191fe7e067abaef78ce2f12e2651798391f8e50"
+    },
+    {
+      "path": "tests/test_g3_trial.py",
+      "bytes": 9548,
+      "sha256": "fdeff8a19d22feb90c12b26bbc9308502d8203e3b51df2215fdb82474636521f",
+      "git_blob": "ce8abeab7a9fed09b8ec9ff83c4be1c20c826d50"
+    },
+    {
+      "path": "tests/test_g3_launch.py",
+      "bytes": 12034,
+      "sha256": "ab53307bc8f87ff2101b021eec164ff6cdd25f3c66a8c88676a3c1f7f95d4113",
+      "git_blob": "7d7fa2dcd86b7583a794e0714585e3660421948e"
+    },
+    {
+      "path": "tests/test_g3_repairs.py",
+      "bytes": 5088,
+      "sha256": "520c0b35cc0a410ff55d6468f2257899b7292361335eb223ae618a1f35a77f31",
+      "git_blob": "2ba5d4ec5f3beec5b96db5d6749d5b5297aaca9f"
+    },
+    {
+      "path": "tests/test_g3_admission.py",
+      "bytes": 13103,
+      "sha256": "75678de153f3cf5af8fa0a4179562a2c964889cef32ee96eb28fd9a3b31bacf7",
+      "git_blob": "c34d2c45ac36a8e81ee30e5d428ff4cefabeab77"
+    }
+  ],
+  "cloud_real_actions": {
+    "model": 0,
+    "ipc": 0,
+    "windows_ui": 0,
+    "local_task_messages": 0,
+    "installation": 0,
+    "production_changes": 0
+  },
+  "next_step": "Prepare frozen new private contract/entry before arming; run a new batch-only Windows scope, verify both outputs and cleanup; do not retry old B."
+}

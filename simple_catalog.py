@@ -100,12 +100,15 @@ def read_catalog(path, *, search=""):
     return result
 
 
-def verify_selection(selection):
+def verify_selection(selection, *, reader=None):
     if selection.get("selection_key") != selection.get("id"):
         raise ValueError("selection_identity_changed")
     p = Path(selection["rollout_path"])
-    with p.open("rb") as f:
-        first = f.readline(65537)
+    if reader is None:
+        with p.open("rb") as f:
+            first = f.readline(65537)
+    else:
+        first = reader(p)
     if len(first) > 65536:
         raise ValueError("rollout_identity_limit")
     try:

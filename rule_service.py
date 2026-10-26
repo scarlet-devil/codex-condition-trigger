@@ -11,7 +11,7 @@ import trigger as tr
 PRESETS = ('new_content_stable','ready_content_stable')
 
 
-def preview(folder, condition, selection, *, state_dir=None, instruction=None, **advanced):
+def preview(folder, condition, selection, *, state_dir=None, instruction=None, identity_reader=None, **advanced):
     """Selection comes from the bounded catalog, not a display-name lookup."""
     if condition not in PRESETS or selection.get('selection_key') != selection.get('id'):
         raise ValueError('invalid condition or catalog binding')
@@ -19,7 +19,7 @@ def preview(folder, condition, selection, *, state_dir=None, instruction=None, *
     if set(advanced)-allowed:
         raise ValueError('unsupported rule override')
     identity = str(uuid.UUID(selection['id']))
-    verify_selection(selection)
+    verify_selection(selection, reader=identity_reader)
     rule_id = uuid.uuid4().hex
     c=json.loads((Path(__file__).parent/'example.windows.json').read_text(encoding='utf-8'))
     c.update(input_dir=folder,state_dir=state_dir or str(tr.target_registry_root()/'rules'/rule_id),
