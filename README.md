@@ -4,6 +4,10 @@
 
 [简体中文](README.zh-CN.md) · [AI / contributor entry](AGENTS.md) · [Current status](CURRENT_STATE.md)
 
+Windows users can use the [three-field setup window](docs/SIMPLE_SETUP_G2.md): choose a folder, condition and conversation, then preview and enable. G0–G3 are accepted within their stated scope: the verified installation, an explicitly opened and accurately bound dedicated chat, and the tested workload. The PR remains Draft; acceptance does not merge it or enable production.
+
+Before this PR is merged, the form is on `draft/three-field-setup-design`; the default `main` clone below does not yet include it. Follow the [candidate checkout steps](docs/SIMPLE_SETUP_G2.md#准备与入口) in the usage guide.
+
 A small, experimental Python service for workflows where incoming files should trigger a review or analysis in an existing conversation. The local program detects changes, waits for stable bytes, deduplicates content and freezes a batch before handing it to the selected chat adapter.
 
 For example: a research agent writes a report, the report stops changing, and the project conversation receives its exact frozen version for review. No new content and no pending work means no model turn is requested.
@@ -16,6 +20,7 @@ This is a community project, unaffiliated with OpenAI. The file watcher can be t
 - Uses a stability window and SHA-256 content hashes to avoid processing incomplete or duplicate bytes.
 - Stores immutable input versions, batch manifests and delivery state in SQLite.
 - Supports separate JSONL queue and experimental Windows Desktop IPC adapters.
+- Provides a three-field Tk window. Ordinary notifications advance after the previous batch's exact terminal event and fresh target idle, without a business ACK.
 - Tracks watcher health, execution outcomes and verified business delivery separately.
 - Freezes output files in a durable upload outbox; an optional adapter uses an existing Drive Exchange Hub to recover uploads by a persistent remote ID.
 
@@ -76,6 +81,8 @@ The watcher exits on STOP; Ctrl+C also exits the current watcher. After an inten
 
 ## Connecting a real conversation
 
+The three-field entry is `simple_setup.py`. First open the exact dedicated chat in Codex Desktop under the same Windows user, then follow the [usage guide](docs/SIMPLE_SETUP_G2.md). Match the project and distinguishing ID as well as the title. Selecting a catalog row does not load its owner. Initial enablement requires a successful current connection and idle check. The window's enable action permits real tasks; it differs from the CLI dry demo above.
+
 | Component | What you must supply |
 | --- | --- |
 | File input | Absolute input, state and project paths; input and state trees must not overlap. The default stability window is 120 seconds. |
@@ -93,16 +100,17 @@ Live commands can submit work or transfer files. `run --live` and `dispatch` are
 | Area | Verified scope |
 | --- | --- |
 | Automatic triggering | Real Windows watcher trials dispatched two successive synthetic batches into the original conversation, with caller-verified results. |
+| Three-field setup and ordinary notifications | G1/G2 implementation and simulation accepted; G3 completed two real batches in the opened, exact dedicated chat. B waited while A ran; each was sent once and produced the expected output. See the [limited acceptance](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#18-当前结论g3-双批专测限定接受进入交付收尾). |
 | Login recovery | A real Windows login started an isolated dry watcher, produced a ready batch and stopped within its deadline. |
 | Native outcomes | Implemented and reviewed; a loaded chat was read through real IPC. The original production target's full business workflow remains unverified. |
 | Upload recovery | A real Drive canary recovered after the client discarded its receipt, using the same remote ID and byte readback. |
-| Latest regression | 185 tests: **184 passed, 1 Windows-only test skipped** on cloud Linux, including the three optional outbox-to-Hub tests. See the [validation record](evidence/alice-merge-validation-20261020.json). |
+| Historical baseline regression (2026-10-20) | 185 tests: **184 passed, 1 Windows-only test skipped** on cloud Linux, including the three optional outbox-to-Hub tests. See the [validation record](evidence/alice-merge-validation-20261020.json). Current three-field evidence and attribution are in [section 18](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#18-当前结论g3-双批专测限定接受进入交付收尾); overlapping checks are not added together. |
 
 These are separate experiments, not a single proof of unattended operation. Hub startup after reboot and the original target's complete business workflow remain follow-up work.
 
 Window loading is off by default. The current Windows UI backend requires an explicitly supervised, no-navigation interval of at most **600 seconds**; arbitrary-navigation unattended window cleanup is not validated. No model, permission or sandbox overrides are sent by the chat adapter. A merge does not activate an old trial or clear its STOP/deadline.
 
-Other limits: file conditions only (no webhook service, GUI or rule language); byte deduplication is not semantic deduplication; historical blobs have no automatic retention policy. A READY marker requires the producer to remove the old marker before writing and recreate it last.
+Other limits: local file conditions and a three-field GUI, without a webhook service or general rule language; Drive-folder ingestion is not implemented. Byte deduplication is not semantic deduplication; historical blobs have no automatic retention policy. A READY marker requires the producer to remove the old marker before writing and recreate it last. The setup window does not automatically load an absent chat or register startup/scheduled tasks.
 
 ## Development
 
@@ -120,4 +128,3 @@ For a bug report, include the commit, OS/Python version, adapter, sanitized conf
 The design draws on OpenAI Codex queue semantics, Codex Triggers' separation of detection and delivery, and CodexAgentControl's documented IPC protocol. The actual file-watching dependency is watchdog. See [design references](docs/DESIGN_AND_REFERENCES.md), [pinned sources](SOURCES.json) and [third-party notices](THIRD_PARTY_NOTICES.md).
 
 This repository does not yet contain a project LICENSE. The MIT text in `THIRD_PARTY_NOTICES.md` belongs to the referenced third-party project; it is not this project's license.
-
