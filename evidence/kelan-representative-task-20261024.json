@@ -1,0 +1,445 @@
+{
+  "schema": 1,
+  "date_local": "2026-10-24",
+  "timezone": "Asia/Shanghai",
+  "author": "Kelan",
+  "deployment_environment": "local Windows",
+  "acting_role": "bounded representative-task experiment and evidence handoff",
+  "task_source": "Human relayed Alice section 11 at input_commit; no previous allowance reused",
+  "input_commit": "09e36beafeb293b3b6263b7b856cb841ff3cc605",
+  "input_tree": "634fa8ec5353b4fe15bdc0ae08442a51696a0754",
+  "candidate": {
+    "file_count": 188,
+    "full_git_blobs_lengths_sha_match": true,
+    "unchanged_after_trial": true,
+    "imports": [
+      {
+        "module": "cwd_paths",
+        "path": "cwd_paths.py",
+        "sha256": "6abcf3a9856674b267fb1eafa1936565deb46fdbfd4e0126ef47f81b01d83909"
+      },
+      {
+        "module": "trigger",
+        "path": "trigger.py",
+        "sha256": "624ffabd694c1b7ee04e537f21ad63d057f2e5fcd9188a90f69348e0bc6e050a"
+      },
+      {
+        "module": "chat_adapters",
+        "path": "chat_adapters.py",
+        "sha256": "cac5010d542dc7404eb8d7bc69b083c68860792b51cc505fc99e1dc075cc665e"
+      },
+      {
+        "module": "desktop_ipc",
+        "path": "desktop_ipc.py",
+        "sha256": "73d01271141887465d5c3fcaf2646fd7a01827433a5de93149eef19eabaf384d"
+      },
+      {
+        "module": "trial_limits",
+        "path": "trial_limits.py",
+        "sha256": "985bf7078574cb1eeb53d9677548482c5830c308598dfdc56dfc1e03a2f1cf17"
+      },
+      {
+        "module": "experimental.snapshot_measure",
+        "path": "experimental/snapshot_measure.py",
+        "sha256": "0a819e956ba2d84df400b8c3a3ace06a09a3442d5934f81b86a1aee7bee049bb"
+      },
+      {
+        "module": "experimental.conversation_catalog",
+        "path": "experimental/conversation_catalog.py",
+        "sha256": "cc8d82267b816af43c6442946f77b4c6a8260404f8fb70666de140f2ff88a9aa"
+      }
+    ],
+    "python_version": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+    "watchdog_import": true,
+    "source_manifest_sha256": "98e7dc600910111559906a1dc3171da8c18ddbf29282079e904897d6f35aca60",
+    "runtime_source_unchanged_from": "d55c62d204ba8193974b5434b19898dd65776a43"
+  },
+  "selection": {
+    "original_creation_receipt_reused": true,
+    "same_original_binding": true,
+    "readonly_catalog_unique_target": true,
+    "rollout_first_line_id_cwd_verified": true,
+    "private_values_omitted": true,
+    "catalog_limits": {
+      "max_entries": 500,
+      "max_bytes": 1048576
+    },
+    "selection_test_evidence": "12 catalog tests within previous 34 experimental tests; same source, not rerun",
+    "selection_contracts": [
+      "source/archive/subagent filtering",
+      "name before title",
+      "duplicate names distinguished by stable ID"
+    ]
+  },
+  "material": {
+    "bytes": 34289,
+    "sha256": "5cc5433657424bea202100b3c5d096d1288d2e5765d67221e69eefc8cc70a4af",
+    "synthetic": true,
+    "expected_points": {
+      "records": 122,
+      "unique_record_ids": 120,
+      "exact_duplicate_ids": [
+        "R010"
+      ],
+      "conflicting_ids": [
+        "R033"
+      ],
+      "missing_required_fields": [
+        {
+          "record_id": "R070",
+          "fields": [
+            "amount"
+          ]
+        }
+      ]
+    }
+  },
+  "observed": {
+    "input_head": "09e36beafeb293b3b6263b7b856cb841ff3cc605",
+    "start_utc": "2026-10-23T17:10:11.203114+00:00",
+    "expires_at_utc": "2026-10-23T17:20:11.202119+00:00",
+    "end_utc": "2026-10-23T17:14:07.353345+00:00",
+    "window_seconds": 600,
+    "elapsed_seconds": 236.15600000007544,
+    "samples": {
+      "before": {
+        "snapshot_query_completed": true,
+        "runtime_status": "idle",
+        "can_send": false,
+        "model_sends": 0,
+        "diagnostic_schema": 1,
+        "frame_cap_bytes": 33554432,
+        "cumulative_receive_cap_bytes": 134217728,
+        "ipc_budget_seconds": 10,
+        "installation_verified": true,
+        "verification_seconds": 0.9209999999729916,
+        "revision": 8,
+        "requested_revision": 8,
+        "owner_same_after": true,
+        "measurements": {
+          "read_budget_debited_bytes": 29075,
+          "completed_read_bytes": 29075,
+          "completed_write_bytes": 1967,
+          "frame_headers": 11,
+          "complete_bodies": 11,
+          "max_declared_body_bytes": 8972,
+          "target_snapshot_bodies": 3,
+          "max_target_snapshot_body_bytes": 8972,
+          "incomplete_io": false
+        },
+        "ipc_seconds": 0.2190000000409782,
+        "total_seconds": 1.1400000000139698
+      },
+      "during": {
+        "snapshot_query_completed": true,
+        "runtime_status": "busy",
+        "can_send": false,
+        "model_sends": 0,
+        "diagnostic_schema": 1,
+        "frame_cap_bytes": 33554432,
+        "cumulative_receive_cap_bytes": 134217728,
+        "ipc_budget_seconds": 10,
+        "installation_verified": true,
+        "verification_seconds": 1.077999999979511,
+        "revision": 14,
+        "requested_revision": 14,
+        "owner_same_after": true,
+        "measurements": {
+          "read_budget_debited_bytes": 56214,
+          "completed_read_bytes": 56214,
+          "completed_write_bytes": 1967,
+          "frame_headers": 11,
+          "complete_bodies": 11,
+          "max_declared_body_bytes": 18018,
+          "target_snapshot_bodies": 3,
+          "max_target_snapshot_body_bytes": 18018,
+          "incomplete_io": false
+        },
+        "ipc_seconds": 0.3440000000409782,
+        "total_seconds": 1.422000000020489
+      },
+      "after": {
+        "snapshot_query_completed": true,
+        "runtime_status": "idle",
+        "can_send": false,
+        "model_sends": 0,
+        "diagnostic_schema": 1,
+        "frame_cap_bytes": 33554432,
+        "cumulative_receive_cap_bytes": 134217728,
+        "ipc_budget_seconds": 10,
+        "installation_verified": true,
+        "verification_seconds": 1.015999999945052,
+        "revision": 16,
+        "requested_revision": 16,
+        "owner_same_after": true,
+        "measurements": {
+          "read_budget_debited_bytes": 161566,
+          "completed_read_bytes": 161566,
+          "completed_write_bytes": 1967,
+          "frame_headers": 12,
+          "complete_bodies": 12,
+          "max_declared_body_bytes": 53036,
+          "target_snapshot_bodies": 3,
+          "max_target_snapshot_body_bytes": 53036,
+          "incomplete_io": false
+        },
+        "ipc_seconds": 0.14000000001396984,
+        "total_seconds": 1.1559999999590218
+      }
+    },
+    "dispatch_calls": 1,
+    "dispatch_result": "accepted",
+    "lifecycle_reads": 24,
+    "state": "completed",
+    "business_ack": false,
+    "closed": true,
+    "busy_observed": true,
+    "requests": {
+      "initialize": 4,
+      "thread-owner-discovery": 8,
+      "thread-follower-load-complete-history": 5,
+      "thread-follower-start-turn": 1
+    },
+    "completed_request_writes": {
+      "initialize": 4,
+      "thread-owner-discovery": 8,
+      "thread-follower-load-complete-history": 5,
+      "thread-follower-start-turn": 1
+    },
+    "unknown_request_writes": {},
+    "start_write_completed": 1,
+    "final_batch_state": "ended",
+    "bindings": {
+      "single_start_attempt": true,
+      "single_start_completed": true,
+      "same_thread": true,
+      "client_message_matches_intent": true,
+      "request_id_matches_intent": true,
+      "isSteering_false": true,
+      "inherits_thread_settings": true,
+      "native_receipt_turn_id_present": true
+    },
+    "terminal": {
+      "state": "ended",
+      "execution_outcome": "unknown",
+      "same_receipt_turn": true,
+      "post_intent_baseline": true,
+      "exact_dispatch_text_match": true,
+      "terminal_type": "task_complete",
+      "records": 58,
+      "rollout_bytes": 466164,
+      "rollout_sha256": "1b5d5905d4dba01c6c56a878c51034f521e93e6af4eb1193babeecf995835056",
+      "tool_call_records": 4,
+      "final_text_chars": 249
+    },
+    "request_connections": {
+      "dispatch": {
+        "completed": {
+          "initialize": 1,
+          "thread-owner-discovery": 2,
+          "thread-follower-load-complete-history": 2,
+          "thread-follower-start-turn": 1
+        },
+        "outcome_unknown": {},
+        "attempting": {}
+      },
+      "sample_after": {
+        "completed": {
+          "initialize": 1,
+          "thread-owner-discovery": 2,
+          "thread-follower-load-complete-history": 1
+        },
+        "outcome_unknown": {},
+        "attempting": {}
+      },
+      "sample_before": {
+        "completed": {
+          "initialize": 1,
+          "thread-owner-discovery": 2,
+          "thread-follower-load-complete-history": 1
+        },
+        "outcome_unknown": {},
+        "attempting": {}
+      },
+      "sample_during": {
+        "completed": {
+          "initialize": 1,
+          "thread-owner-discovery": 2,
+          "thread-follower-load-complete-history": 1
+        },
+        "outcome_unknown": {},
+        "attempting": {}
+      }
+    },
+    "output": {
+      "exists": true,
+      "verified": true,
+      "bytes": 446,
+      "sha256": "62a6baa4dc67e4837570dae39d025811a716a80bd460d31ae150390cc77f4491",
+      "fields": {
+        "records": true,
+        "unique_record_ids": true,
+        "exact_duplicate_ids": true,
+        "conflicting_ids": true,
+        "missing_required_fields": true
+      },
+      "output_json": {
+        "records": 122,
+        "unique_record_ids": 120,
+        "exact_duplicate_ids": [
+          "R010"
+        ],
+        "conflicting_ids": [
+          "R033"
+        ],
+        "missing_required_fields": [
+          {
+            "record_id": "R070",
+            "fields": [
+              "amount"
+            ]
+          }
+        ],
+        "summary": "SHA-256与大小核验通过；共122条记录、120个唯一record_id；1个ID存在完全相同重复，1个ID存在字段冲突，1条记录缺少必填项。"
+      }
+    },
+    "stop_present": true,
+    "new_initialization_turns": 0,
+    "query_retries": 0,
+    "tk_retests": 0,
+    "growth": {
+      "max_snapshot_bytes": 44064,
+      "completed_read_bytes": 132491
+    }
+  },
+  "task_tool_execution": {
+    "tool_calls": 4,
+    "exit_codes_in_order": [
+      0,
+      0,
+      1,
+      0
+    ],
+    "failed_call": 3,
+    "error_class": "ResourceUnavailable",
+    "failed_executable_kind": "WindowsApps Python application alias",
+    "reported_reason": "system cannot access this file; Python process did not start",
+    "subsequent_action": "PowerShell computes the same synthetic result and writes/reads the agreed output in the same model turn",
+    "controller_python_unchanged": true,
+    "controller_ipc_route_unchanged": true,
+    "additional_start_attempts": 0,
+    "additional_model_turns": 0,
+    "root_cause_limit": "No diagnosis beyond the reported alias launch failure; no machine repair or reproduction attempted",
+    "scope_review": "Section 11 mentions changes of execution tool. Controller route remained fixed, but target task changed interpreter after failure; disclose and leave scope acceptance to Alice.",
+    "complete_input_material_exact_string_found_in_four_call_or_output_records": false
+  },
+  "wrapper": {
+    "pins": [
+      {
+        "path": "execute_once.py",
+        "bytes": 13806,
+        "sha256": "30ec4ae2ff4188501cbd78a6f1930493d6db4ad1eb0a7686d7999d5aa0d50ee2"
+      },
+      {
+        "path": "sequence.py",
+        "bytes": 588,
+        "sha256": "c3a424b05858c8d0e9d38f3a4c7f1ad325642412c096a1d408f6b081e3ce7527"
+      },
+      {
+        "path": "catalog_check.py",
+        "bytes": 3040,
+        "sha256": "33a047a9033b5753f89a13b16dd69d29d40394a65cf655af282deb7b56fd6e9b"
+      },
+      {
+        "path": "test_sequence.py",
+        "bytes": 2150,
+        "sha256": "4ac4fbcab0a8939354fd106aefd202a0cbd94dd92132ae736dcfcfb2c75a1031"
+      },
+      {
+        "path": "test_pipe_budget.py",
+        "bytes": 2471,
+        "sha256": "e119fd9e1713738cd07d7cd46b489347cd0f17ccff134a3998dbbc046857cc0d"
+      },
+      {
+        "path": "test_text_match.py",
+        "bytes": 840,
+        "sha256": "4256d5738e25a3f7d81ea9ef607fb48f9131331ca673743630c97537bac1f42e"
+      }
+    ],
+    "unchanged_after_trial": true,
+    "final_tests": {
+      "methods": 15,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0
+    },
+    "final_test_log_sha256": "0c41c07eedbf7f276c0826ee134e64f3ee913b618cd7f49d5af66bff15d446d1",
+    "red_evidence": {
+      "sequence": {
+        "failed": 7,
+        "passed": 0
+      },
+      "deadline": {
+        "failed": 3,
+        "passed": 2
+      },
+      "text_match": {
+        "failed": 2,
+        "passed": 1
+      }
+    },
+    "ruff": "E9,F63,F7,F82 selected rules passed; not a full lint claim",
+    "review": {
+      "reviewer": "Kelan local subtask /root/s11_harness_review",
+      "context_independence": "S1",
+      "method": "M0 static review",
+      "result": "APPROVE for bounded wrapper only",
+      "execute_once_sha256": "30ec4ae2ff4188501cbd78a6f1930493d6db4ad1eb0a7686d7999d5aa0d50ee2",
+      "sequence_sha256": "c3a424b05858c8d0e9d38f3a4c7f1ad325642412c096a1d408f6b081e3ce7527",
+      "closed_finding": "Outer trial deadline/STOP was checked only at sample entry; final wrapper clips read/write deadlines and checks before each new actual request, with unsubscribe-only bounded cleanup.",
+      "additional_adjustments": [
+        "Text correlation follows product message/content fields and exact full dispatch text",
+        "Request attempts, completed writes and unknown writes are separate"
+      ],
+      "tests_attribution": "15 checks run by root; reviewer read logs and sources without rerunning",
+      "live_actions_by_reviewer": 0,
+      "limits": [
+        "Installation verification itself has no whole-process hard cutoff",
+        "Accepted turns are not automatically cancelled by local STOP",
+        "Rollout terminal is not business success",
+        "Reviewer did not independently reverify all remote candidate blobs"
+      ]
+    },
+    "limits": [
+      "Installation hashing itself is not force-interrupted by outer deadline; new IPC is denied on late return",
+      "Accepted host task is not cancelled by local STOP",
+      "Adapter has its own time/frame limits, not the meter cumulative RX contract"
+    ]
+  },
+  "historical_tests": {
+    "experimental": 34,
+    "affected_windows": 55,
+    "rerun_this_round": false,
+    "reason": "unchanged exact runtime sources; previous accepted fixture correction and lint limits retained"
+  },
+  "work_log_prefix": {
+    "bytes": 150413,
+    "sha256": "4dabc4bcea0fb557dc1fadfb6d0e33d0b4f8da51b3ec97f46dce7826cdc46f13",
+    "crlf": 11
+  },
+  "review": {
+    "self_review": "Kelan S0",
+    "wrapper_review": "independent local task S1/M0; not Alice/S2",
+    "Alice": "review_pending"
+  },
+  "state": {
+    "experiment": "completed_closed",
+    "G0": "evidence_ready_review_pending",
+    "PR": "Draft/unmerged",
+    "business_ack": false,
+    "production_health_checked": false,
+    "production_mutations": 0,
+    "window_actions": 0,
+    "new_chat_creation": 0
+  }
+}

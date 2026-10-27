@@ -570,3 +570,381 @@ Linux固定输入185项检查：183通过、1失败、1平台跳过；唯一失�
 实际文档提交SHA、远端完整回读及合并结果由[PR #1](https://github.com/scarlet-devil/codex-condition-trigger/pull/1)的本轮回执记录；本条在合并前准备，不提前宣称远端成功。采用保留历史的普通merge；若head移动则停止并重新核对，不强推、不删除分支。需要回退时通过后续受审revert保留历史，不回滚业务库或覆盖旧回执。
 
 原生产STOP/到期/PAUSED保持；原目标完整业务验收与Hub自动恢复是后续启用事项。完成远端核对和已授权合并后结束此次工作，不后台等待、不恢复云端自动任务。
+
+
+## 2026-10-23｜Alice 完成三项配置体验的设计草案
+
+来源：红魔在本项目当前对话提出“只需要指定文件夹，指定触发的条件，指定触发后唤醒的对话就可以使用”，并明确“嗯可以，开始设计吧”。本轮按设计授权形成可评审方案与项目记录，未把旧 PR #1 的合并授权延伸到新变更。无稳定消息链接，保留必要短引文，不虚构消息 ID 或精确时刻。
+
+实际执行者为云端 Alice，承担设计、文档编辑及自审；Class C / enhanced，S0。固定输入 main@5c1882c7b78fc023d0588953e6e43db55ebe216d；GitHub 读取确认 PR #1 已合并且开始时无开放 PR。已读当前入口、最近日志、配置、集成/IPC 说明以及 trigger.py、chat_adapters.py、desktop_ipc.py 的相关实现。云端可读写 GitHub 及本地文档，未接入本机 Windows 数据或生产状态，没有派发其他 agent 或冒充柯蓝。
+
+新增 [三项配置设计](docs/SIMPLE_SETUP_DESIGN.md)，并更新 CURRENT_STATE.md 的当前任务及已合并基线。主界面仅文件夹、条件、对话，触发指令可选；首选本机轻量 Python/Tkinter 表单。提议新规则默认 notify，按准确接收和回合结束证据、目标空闲推进下一批，不伪造 delivered/ACK；旧配置缺字段继续 strict verified_delivery。初始内容默认忽略并进入独立 baseline，不能借 seed 伪造业务交付。资源上限、恢复/暂停、状态展示、规则修订和兼容契约均在设计中说明。
+
+关键事实：现有 IPC 可以核验指定 thread 的 owner/cwd/rollout，但没有会话枚举能力；自动目录发现仍是 G0 待验证项。现有 Store 按内容哈希去重，普通 completed/ended 状态会挡住后续批次，故简易体验需要调度语义改动而非只加表单。设计保留不确定投递不重发、准确目标绑定、原生 idle/start 残余竞态与默认关闭的窗口加载。方案、代码实现和真实可用性分别记录。
+
+检查范围：本轮仅 3 份 Markdown，检查相对链接/围栏、示例 JSON、准确基线和源码陈述；WORK_LOG 原字节前缀及历史混合换行保留。未跑运行回归或 Windows/模型/Drive 试验，185 项的历史回归仍归属 2026-10-20，不能写成本轮新结果。准确文档提交、文件差异及远端完整回读由新 Draft PR 的提交和正文记录，不在此预填未知 SHA 或成功状态。
+
+当前 design_ready / review_pending；具体默认值尚属 Alice 提案，真实会话发现来源、Desktop 版本兼容及 G3 实机行为待验证。下一项建议是 G0 只读发现/绑定验证，实际本地执行者未指派，也未向其他窗口发送任务。新设计不改运行源码、测试、配置、历史业务库、ACK、STOP/到期锁、PAUSED 或云端自动任务；无安装、模型发送、宣传、Ready 或合并。文档可由后续提交修订/撤回，不影响已合并运行版本。
+
+
+## 2026-10-23｜Alice 接收 G0 初查转述；状态读取阻点进入设计
+
+来源：红魔在本项目当前对话转交柯蓝对设计头 845ad38ef6d169435dade90163e102cc48dd2e13 的本机 G0 摘要。转交称目录有181条未归档项目记录和2组重名、目录与rollout首行对应、需要处理扩展Windows路径及name/title；原成果聊天owner不可用，维护聊天owner可达但状态查询读到34,956,277字节帧头后被32MiB上限拒绝；tkinter/Tcl初查成功，GUI未验证；模型发送和窗口操作均0。上述是转交材料的观察，不是Alice实测。两份报告/诊断仍仅本地，原件、哈希、实际安装版本和命令尚未回读，不据摘要签署G0通过。
+
+Alice在云端直接读取原PR及固定设计/状态/日志、desktop_ipc.py、test_desktop_ipc.py、test_native_state.py。确认current_state先follow并load-complete-history，再取带revision的完整snapshot后输出小投影；read_frame先读4字节长度，越界时尚未解析正文，方法/owner过滤更晚。因此支持先查轻量状态路径，但无法仅凭帧头判定被拒的具体响应/广播。上限33,554,432字节，报告值超出1,401,845字节；没有修改上限或读取本机正文。
+
+沿原Draft #2更新设计第10节和CURRENT_STATE：保留三项体验，G0仍未通过；目录列表只读元数据，选中项才实时核验；区分展示名与路由、扩展路径身份、owner可达与当前状态unknown。下一项为补交可公开材料、检查实际安装协议是否支持轻量且新鲜的状态证据，并在既有目标上做有界只读探针。全量历史后摘小字段或仅抬帧上限不能单独宣布成本问题解决；无轻量接口时返回证据与有界替代，不凭空指定新方法。
+
+执行者Alice，cloud Work，Class C/enhanced，设计修订S0自审；没有派发柯蓝、调用通信任务或取得新增独立审查。修改范围仍为设计、当前概览和本日志三份Markdown。按文件差异、文档链接/围栏/JSON、原日志字节前缀和远端全文回读核验；未执行运行测试/真实IPC/模型/GUI/上传试验，历史回归不重新计功。准确提交与检查结果见原PR正文及Git历史。
+
+当前review_pending，真实G0未通过，原件回读及候选查询验证待后续。本轮不增加新审批问题，不把设计更新当作本机已接单或实现授权；运行代码、配置、生产STOP/期限/PAUSED和业务ACK保持本轮未触碰。无Ready、merge、安装、恢复监听或社区宣传。接续入口为[三项配置设计第10节](docs/SIMPLE_SETUP_DESIGN.md)；由红魔或既有授权通道向真实本地窗口交付后才成立接单事实。
+
+
+## 2026-10-23｜Kelan 补交 G0 原调查，并完成薄状态路径有界复核
+
+Human 在原项目聊天转交 Alice 的三项接续：补交两份本地材料的可公开版本、核对实际安装的无完整历史状态入口、对已加载/不可达原目标做有界只读验证。固定接手4dd30721de987aa779ea624ab83a94db8006e60e，基线main5c1882c；本地Windows Kelan执行及S0自审，研究C/enhanced，具体授权的公开同Draft交付D/constitutional。Active28/28；身份内核和私有登记不发布。
+
+新增[历史调查脱敏版](docs/KELAN_PR2_G0_INTAKE_20261023.md)、[历史窄诊断](evidence/kelan-g0-ipc-frame-20261023.json)，保留原件长度/SHA及失败，不为补材料重跑旧失败。原超限正文0字节；方法、来源与目标仍未知。旧记录区间推导1747B，不包含initialize，非当时整连接计量。
+
+本轮安装26.1016.8622.0/签名Valid，归档a05dfd86…、协议源6a266611…一致。静态确认follow本身发送整个conversation snapshot；read-model-settings v1只返回七个设置字段。两个准确目标各一次，固定64KiB单帧/1MiB累计/10秒共用IPC截止，重试0：loaded_control接收2059B/发送804B/IPC0.015秒/全程0.890秒，resumed但缺runtime/id/cwd/revision；original_results接收1245B/发送476B/IPC0.016秒/全程0.860秒，owner_unavailable。两个runtime均unknown/can_send=false。每目标本地安装核验还哈希625947531B归档，不把小IPC流量说成端到端轻量或10秒硬保证。
+
+准确解释器导入预检、七项合成预算/禁止发送/路径检查与Ruff E9/F63/F7/F82通过；未重跑185历史套件。完整原生忙闲/cwd/revision正反例未取得，不能以partial read计通过。官方及安装内部thread/read(false)存在，但原Desktop宿主的外部桥接通路未确认；不启动独立server冒充、不抬上限、不进入G1/G2。
+
+[接续报告](docs/KELAN_LIGHT_STATE_FOLLOWUP_20261023.md)与[实测](evidence/kelan-light-state-results-20261023.json)附精确方法、字节/耗时、字段限制、后续取舍。运行源码/配置/监听/旧STOP/ACK均未改，模型0、窗口0，无merge/Ready。现有持续运行的实时健康未在本轮验收。完整性沙箱访问失败后宿主只读通过；一次GitHub参数错误和直接网络DNS失败未写远端，之后使用连接器。旧日志字节前缀保留，所有发布文件将由交付回执做完整远端回读，不把准备文本当发布成功。Alice review_pending，G0仍未通过。
+
+
+## 2026-10-23｜Alice 复审薄状态证据；限定原宿主入口调查
+
+来源：红魔在原项目对话转交柯蓝提交 `9116c88881d5fb1d04270de3fd63fc34aefe6bf6` 及评论 #6361355983，请本项目接续判断。云端 Alice 在原 Draft #2 的设计授权内复审并修订三份既有 Markdown；Class C / enhanced，设计修订 S0。未向本地柯蓝或其他 agent 发消息、派任务，没有把 PR #1 的旧合并授权延伸到本 PR。
+
+实际核对：固定提交 10 个变更文件完整读取并匹配 Git blob，清单 9 项字节数/SHA-256/blob 全部一致；另读设计、AGENTS、desktop_ipc.py 和相邻测试，共 14 个 blob。公开探针 AST 解析通过，人工核对请求白名单、单帧/累计预算、共用截止与相关响应检查；实测帧和头的求和为 2059/1245 B，与摘要一致。探针的依赖哈希起初与仓库 LF 文件不同，核对确认它准确匹配同一源码的 CRLF 字节，未修改源码。一次过大的本地工具入参失败后改为分块写入检查副本，未造成远端写入或权限变更。
+
+结论：本轮公开证据审阅完成，接受作为 G0 受阻的依据；并非 G0 通过、合并批准或实机独立复现。原安装源码未整体公开，安装静态结论仍归属柯蓝；七项合成检查公开件只有计数摘要，Ruff 结果来自报告，Alice 未重跑它们。Windows 两次观测、私有原件和当前持续监听健康均未由 Alice 实测。185 项历史回归不重复计功。
+
+直接读取官方 App Server 文档确认摘要接口与运行状态语义，但文档不证明 Windows 原 Desktop 的外部入口。更新[设计第11节](docs/SIMPLE_SETUP_DESIGN.md)：旧 snapshot 保留 revision；候选无 revision 协议研究等价新鲜度，必须核对原服务、准确目标/cwd、本次响应和服务端读取语义，不能只靠 request ID。建议下一轮最多60分钟沿 requestClient 到原服务连接/启动处调查；无现有可复用入口则停止，不修改安装、不注入、不重启或另起 server 冒充。入口有据才在原两目标上做各一次有界只读摘要查询。后续仍要完成目录过滤、Tk 验证并保留 idle/start 竞态限制。
+
+本轮只改设计、CURRENT_STATE、本日志；旧日志全部字节保留，历史报告/探针/清单不修改。文档核对、准确新增提交、远端全文回读及范围检查以本 PR 的本轮回执为准，不预填未知 SHA。G0 blocked，PR Draft / review_pending；G1/G2、运行配置、生产任务、ACK、窗口、模型、安装、Ready 和合并均未发生。下一轮是待接续范围，不声称本机已执行。
+
+
+## 2026-10-23 — Kelan bounded original-service entry investigation; G0 remains blocked
+
+- Request/source: Human relayed Alice's accepted evidence review and design section 11 at input `95c6519dfefd70654dd10dddf79dac1a4b647563`. One read-only investigation, maximum 60 minutes; no package edits, injection, host restart or alternate app-server. Kelan executed locally on Windows; self-review S0. Alice review of this increment remains pending.
+- Actual investigation: 09:33:51–09:46:15 UTC, 744 seconds. See [report](docs/KELAN_ORIGINAL_SERVICE_ENTRY_20261023.md), [evidence](evidence/kelan-original-service-entry-20261023.json) and [manifest](evidence/kelan-original-service-entry-manifest-20261023.json). The installed connection factory uses a Desktop-owned stdio app-server child. Known IPC registration, optional WebSocket configuration, non-Windows daemon and SSH MCP forwarding did not yield a verified existing original-service summary endpoint. Original Desktop/main app-server TCP listener census completed with no matches; no ports were connected.
+- Provenance/cost: installation 26.1016.8622.0, archive 625947531 bytes / SHA-256 a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49; three key source copies matched exact installed bytes. Successful check 0.775323 seconds, signature 0.482104, archive hash 0.248328; one observation only. Initial signature subprocess and stderr decoding failure preserved, corrected explicit module/UTF-8 check passed. Two metadata pipe opens, zero protocol messages. No installation cache implemented.
+- Scope/result: no verified endpoint means both conditional state probes were not attempted; runtime remains unknown. No new freshness, idle or sendability proof, no G0 acceptance or G1/G2 work. No model/window actions, production/config changes, business ACK, new service, credentials access or current listener health claim. The separately authorized continuous run and historical STOP/PAUSED boundaries were not changed.
+- Checks: exact-interpreter import preflight; signature/archive/source byte checks; successful TCP census; report/evidence/manifest and remote full-content verification recorded at delivery. The 185-test runtime suite was not rerun because runtime behavior did not change. Public output omits private targets, process IDs/paths, raw sessions and proprietary installed source bodies. The earlier manifest remains scoped to its historical commit; this increment has its own manifest.
+- Next decision: preserve limited experimental integration and defer G0, seek a supported Desktop forwarding endpoint, or separately choose tool-owned service/chats with changed product semantics. Modifying host startup or internal bridging is beyond this completed investigation. No automatic continuation into implementation.
+
+
+### Delivery byte reconciliation correction
++
++Final local-to-Git-blob verification found that the initial be49f92 transport preparation used text newline normalization: 11 historical CRLF line endings in WORK_LOG became LF. Text readback matched the normalized payload, but the original byte prefix and published manifest entry did not match that intermediate commit. No wording or runtime behavior changed. The follow-up restores the prepared original bytes and uses read_bytes().decode('utf-8') for transport; full Git blob/length/SHA-256 and remote content are checked before final completion. The initial commit and its erroneous byte-preservation claim remain traceable; the final receipt identifies the correcting commit. This is a delivery-preparation error, not a GitHub transport or Desktop endpoint failure.
++
+
+## 2026-10-23｜Alice 接受限定入口调查，整理三项决定与最小补丁接续
+
+来源：红魔在本项目讨论专用触发对话、小探针与忙时延后、快照及接口修改后，明确要求“写好work_Log以及让柯蓝下一步行动的方案”。云端 Alice 以原 Draft #2 的 `e83da5506a7b25f27ac90477926c0e4180ff6a0a` 接手；本轮为方案与文档工作，Class C / enhanced，设计自审 S0。未通过通信工具向柯蓝或其他 agent 派发任务。
+
+实际复核：完整回读 e83da55 的 5 个增量文件和 AGENTS/设计，共 7 个 Git blob 匹配；该提交清单 4 项长度、SHA-256、blob 一致。接受公开材料作为“当前安装及已检查通道未找到原服务现成摘要入口”的限定依据。原调查 12 分 24 秒及 Windows/安装源码观测仍归属柯蓝；Alice 没有独立实机复现。调查接续已完成，不重复派发第 11.3 节的 60 分钟任务。历史报告的 pending 为当时状态，当前审阅结论在本条与 CURRENT_STATE 更新，不改写原报告/清单。
+
+三项决定：（1）首轮用用户指定的专用 Desktop 对话，维护与自动化分开；以准确 thread/cwd/rollout/当前 owner 绑定，同对话新用户回合保持 isSteering:false。（2）日常采用只读忙闲查询，真实小消息只作有界验收；现有 busy 测试并未证明宿主原子拒绝。直接试发后延迟仅为待验证候选，须证明未接收/未入队/未 steering；超时或失回执继续 uncertain，不盲重发。（3）优先准备独立只读摘要接口的小补丁，复用现有 IPC 和原服务连接，保留原完整快照。材料路径不改变状态返回协议，被拒 34,956,277 B 帧的内容和归属仍未知，不能归因为已读到的聊天正文。
+
+新增[给柯蓝的下一步方案](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md)，同步 CURRENT_STATE 和设计第 12 节。下一交付是副本上的最小补丁、调用端、相关隔离测试及加载/完整性/回退方案；定位 owner/摘要处理器、IPC 注册和调用端，实际文件数与安装耦合待证明。普通副本修改不需另造审批流程；原安装替换/重启必须先有具体可审阅候选，本次没有实施。候选成立后再验原服务查询、补齐目录/Tk，按 G1/G2/G3 推进。原生 idle/start 非原子限制保留，不把讨论结果或 fake adapter 通过写成 G0 通过。
+
+文档检查通过：77 处相对链接、1 个 JSON 示例及代码围栏；人工核对当前状态与接续方案一致。输入 WORK_LOG 的全部 115,710 B 前缀和 11 个历史 CRLF 按字节保留。最终提交、远端全文回读及变更范围核对结果见本 PR 本轮交付记录。不修改历史报告/证据，不重跑 185 项运行套件冒充本轮实现验收。
+
+G0 blocked；方案已整理，PR Draft / review_pending。运行补丁、安装、窗口、模型发送、业务 ACK、生产配置、Ready 和合并均为 0；当前持续监听健康未检查，既有持续运行与旧 STOP/到期/PAUSED 边界保持。此条是当前后续范围，不声称柯蓝已接单或执行。
+
+
+## 2026-10-23 — Thin-state copy candidate and protected loading gate (Kelan)
+
+Human relayed Alice's fixed e3f479f plan. Candidate-only implementation adds one summary follower method, a narrow existing-native-connection bridge, an isolated default-off caller, and exact hash-bound byte transforms. Six anchors across three copied modules preserve old APIs; no production adapter/config edits. The private call reads one thread/read(includeTurns:false), checks owner and original connection generations, rejects queued expiry, returns scalar native identity/status, and bounds response encoding/caller traffic. No real pipe factory or send capability is enabled.
+
+33 JS + 14 Python candidate tests pass; 18 real-source extraction checks (including six full syntax parses) pass; 36 related old IPC/native/adapter tests pass. Three copy apply/revert cycles restore exact bytes; wrong originals/tampering are rejected. Ruff/ESLint pass. S1 local subtask review found and closed two P1 protocol/API wiring errors and two P2 delayed-request/redaction gaps. It independently reran candidate/source checks; this is not Alice acceptance. Initial failures and environment corrections remain in evidence; full 185-test suite was not rerun.
+
+New loading evidence: installed chrome.dll has unique v1 fuse wire 010011001; embedded ASAR integrity and ASAR-only loading are enabled, its signature is Valid, and all three archive entries carry SHA256 integrity metadata. A copy module test cannot establish protected full-package loading. No ASAR repack, PE edit, fuse disable, re-signing, install/restart, injection, alternate service, real state query, model/window action, production change or ACK occurred. Archive a05dfd86... remains unchanged. Existing continuous authorization and historical STOP/PAUSED scopes are retained; current production health was not inspected.
+
+Report: [copy candidate](docs/KELAN_THIN_STATE_COPY_CANDIDATE_20261023.md); [code/tests](experimental/thin_state/README.md); [evidence](evidence/kelan-thin-state-candidate-20261023.json). Candidate code is implementation_ready / review_pending; live loading needs an explicit trust-path decision, G0 is still blocked. Do not repeat the completed endpoint investigation or move to G1/G2 before original-host and other G0 evidence exists. PR remains Draft/unmerged; Alice review_pending.
+
+
+
+## 2026-10-23｜Alice 限定接受副本候选；先核对加载修改与恢复集合
+
+来源：红魔转交柯蓝 `ec2fb862050384385b66ed9dc0e0bfff7156a2e4` 候选及评论 #6363911334，交 Alice 判断加载信任路线。云端 Alice 复审 13 个增量文件及 AGENTS、运行 IPC、设计与前轮方案，共 17 个 Git blob 完整匹配；候选清单 12 项长度/SHA-256/blob 全部一致，前轮 118,854 B 日志前缀哈希及 11 个 CRLF 核对通过。
+
+本轮直接执行公开候选检查：Node v24.19.0 的 JS 33/33、Python 3.12.14 的 14/14，退出码均 0，无失败/跳过；完整输出见[云端复核证据](evidence/alice-thin-state-review-20261023.json)。另核对 6 处补丁锚点摘要、3 个模块长度增量和固定 Electron fuse 索引 4/5。私有模块的 18 项抽取、36 项旧回归、3 份真实副本回退及签名观察仍归属柯蓝，本轮未冒称重跑。S1 为本地报告归属，未提供子任务全文；同方法复跑不声称方法独立性，Alice 文档改动为 S0。
+
+结论：接受隔离副本候选，公开范围未发现阻止该限定接受的新必改项；不接受原宿主加载、G0 或生产启用。官方 Electron 机制支持“重打 ASAR 还需匹配内嵌头摘要”的条件推断。fuse 在 chrome.dll 不证明摘要资源也在那里；资源实际持有文件、原头字节匹配、包签名层与可靠恢复单位尚缺。数字签名与可重算哈希分开，不能把本机另签说成保留原厂签名。
+
+[行动方案第 6 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#6-当前接续接受副本候选核对加载改动集合)给出当前最小接续：只读检查已识别 EXE/DLL 的具名资源、核对原 ASAR 头、实际包/签名及恢复来源，交回一张最小修改/恢复表或具体不可行证据。保留校验，不自动关闭 fuse、重签、改权限/证书、替换安装、重启或另起服务；无需真实失败启动。需要新签名/包身份等实际取舍时，以准确方案交红魔决定。没有重复旧端点调查，也没有派发本地任务。
+
+清理 CURRENT_STATE 中“候选已实现”与旧“尚未实现”的同时有效表述；历史条目保留。同步设计入口、候选 README 和接续方案，不修改候选源码或旧报告/清单。本条按字节追加，保留输入日志全部 121,206 B 和 11 个 CRLF；文档检查、发布提交及全文回读以原 PR 本轮交付为准。
+
+整体 Draft / review_pending，G0 blocked；Windows 运行、真实 IPC、模型、窗口、安装、生产配置、ACK、Ready、合并均未执行。当前持续监听健康未检查，原持续授权与历史停止边界保持。规范固定输入沿用已读版本；本轮审查/方案为 Class C / enhanced，自身文档 S0。
+
+
+## 2026-10-23 — Read-only protected-load inventory (Kelan)
+
+Human relayed Alice's 04bd74fc section 6. The bounded task is complete: the unique ASAR header digest resource is INTEGRITY/ELECTRONASAR in ChatGPT.exe, not chrome.dll. Its 122 bytes at file offset 4765376 encode SHA256 4a73080a...fabbd7; this matches the exact original ASAR JSON header (offset 16, 5898329 bytes). Static PE parsing and Windows data-only resource mapping agree. No executable entrypoints were invoked. Three whole-file hashes match the prior candidate inputs.
+
+Current EXE/DLL Authenticode and CodeIntegrity.cat signatures report Valid. This installation is a Store/Ok registered package, not a development package. All 14658 relevant 64-KiB block hashes and three extension FileHash values match. PKCX CMS cryptographic signature checks, but no full original MSIX container/trust-chain verification or CAT member-coverage claim is made. The minimal content change set is app.asar plus ChatGPT.exe's signed resource; chrome.dll fuses stay untouched. Package blockmap/signature/catalog consistency and identity/update/data binding require a separate concrete transaction.
+
+The inspected scope contains readable installed originals and three historical module copies/restores, but no verified same-version reinstallable recovery unit. A historical test temporary directory was inaccessible; this is a bounded negative result, not a claim about the entire disk. Original module round trips do not establish package restoration. The report lists exact changes, signature effects, restart, validation and recovery requirements; controlled loading remains blocked pending a trustworthy recovery unit and an explicit signer/package-identity choice.
+
+Two initial helper classification errors (algorithm-name case and FileHash counted as Block) were corrected after inspecting actual fields; initial output is preserved. Sandbox-only governance/package reads were denied; approved native read-only calls succeeded, with no permissions changed. Static inventory completed in 1.392 seconds on this run, not a polling benchmark. Actual signature/resource/block evidence is local Kelan observation; no new independent review is claimed. The earlier 33 JS/14 Python acceptance remains Alice's scoped result, not rerun here.
+
+See [loading inventory and transaction table](docs/KELAN_PROTECTED_LOAD_INVENTORY_20261023.md), [structured evidence](evidence/kelan-load-inventory-20261023.json) and the dated manifest. Existing log bytes are preserved as an exact prefix; current-state interpretation is updated without rewriting historical evidence. Public delivery is limited to sanitized evidence/checker sources; full proprietary header/source, private chat identities and credentials remain local. Publish/readback details are recorded in this PR's delivery receipt.
+
+G0 blocked; prior copy-only acceptance retained, this new inventory review_pending, PR Draft. No package edit/repack/signing, certificate/ACL/registration change, restart, IPC/model/window action, production change, ACK, endpoint rescan or new service. Current listener health is not inspected; existing continuous authority and historical STOP/PAUSED scopes remain. Next step is Alice/Human's concrete loading/recovery choice, not automatic installation.
+
+
+## 2026-10-23 — Alice accepts loading inventory and recommends a product route decision
+
+红魔转交柯蓝 `9a863af5b419743fac21b40ac7b8f0257b543d56` 的只读加载清点，请接续既有审查/方案工作。本轮执行者为云端 Alice，Linux Work；按已授权原 Draft PR #2 更新当前状态、既有方案、设计入口和候选说明，不派发本地任务。审阅结论：接受限定清点交付；副本候选既有接受保留，原宿主加载及 G0 仍 blocked。
+
+独立核对 12 个输入/相关 Git blob、6 项清单的长度/SHA-256/blob、输入提交相对 04bd74fc 的 7 个变更及 161 个不变 blob。前次日志 124,002 B 的摘要/blob 与 11 个 CRLF 完整前缀一致。两份检查器通过 Python AST 解析并检查读取方式；公开资源 JSON 重建为相同 122 B/摘要，与报告所记原 ASAR 头一致，资源区间在证书表前。按文件长度复算 74+5,032+9,552=14,658 块、三个文件共 960,516,587 B。以上为公开字节和证据内部一致性核对，私有 Windows 文件、原始块、签名、登记及原生资源结果均归属柯蓝，未声称云端重跑。Microsoft 文档确认数据资源映射和 CheckSignature(true) 的限定语义；CMS 数学签名不等于完整容器/证书链/CAT 成员验证。
+
+本轮没有新代码必改项。实际耦合已确定为 ASAR、EXE 资源及包级信任/恢复；无需为本候选修改 DLL 或关闭校验。没有验证到同版本恢复包是限定检查结果，并非证明无法恢复。Alice 建议不把改造 Store 安装作为三字段产品默认前提，优先考虑未修改 Desktop 的专用对话有限兼容验证；它仍读完整快照，有体量和成本限制，不能解决大型历史。此为建议，尚未获得红魔的路线选择，现行 G0、32 MiB 旧通道单帧边界及薄状态无回退契约未改变。
+
+[行动方案第 7 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#7-清点审阅与接入路线选择)给出已选择路线后的一次最小验证范围：准确专用对话绑定、有界只读状态与成本观测、单独授权的真实新用户回合、超限保留批次并停止投递。旧第 6 节标记已完成，不继续循环清点。若红魔选择原包实验，需以明确签名/身份/数据/更新策略和可靠恢复单位形成具体事务；本轮没有自动追加恢复搜索或改包任务。
+
+候选源码和生产源码均未改，复用此前 33 JS + 14 Python 云端直接测试证据，本轮不重跑 47 项或历史 185 项。文档、链接、历史字节和提交回读为本轮相关检查；结果与输出提交见 PR 本轮交付记录。保留本次输入日志全部 127,292 B 和 11 个 CRLF，历史报告、清单和 review_pending 原始字段不回写。自身文档修改为 S0，未发起子任务或声称独立代理复核。
+
+无安装、重签、证书/ACL/注册修改、重启、真实 IPC/模型/窗口动作、生产配置或 ACK 修改；当前监听健康未查。既有持续运行授权与历史 STOP/到期/PAUSED 边界保持。原 PR 保持 Draft/unmerged，整体设计 review_pending；这轮清点审查已完成，下一项是产品路线选择。
+
+
+## 2026-10-23 — Select dedicated-conversation reduction and prepare bounded measurement (Alice)
+
+来源：红魔讨论在新窗口先约定任务/输出格式，并接受“新对话、长材料落文件、短回执、测量任务前后快照”的建议，随后明确“嗯可以，按照这个思路解决吧。对了其他两个阻塞是否有进展”。输入为 b6638bae64ad6fb65e23a64e7e154f81bce37320。云端 Alice 选择并落实未修改 Desktop 的有限兼容验证路线；更新现有设计、当前状态及行动方案，不再等待重复的路线确认。旧补丁加载、包信任/恢复和端点调查只留历史，不列为本路线前置条件。
+
+实际新增 experimental/snapshot_measure.py 和 13 项合成检查，复用原 IPCClient.current_state。只读白名单、安装固定摘要、32 MiB 单帧、128 MiB 累计、核验后共享 10 秒截止、零重试；无 live CLI/pipe 自动发现/模型发送/生产接线，can_send 始终 false。输出只含投影及计量，不导出正文/私人身份；部分失败读取的扣账与已完成字节分开，不夸称精确流量或硬进程截止。Python 3.12.14 实跑 13/13 通过；首次 Ruff 提出 11 项导入/字典样式及过宽异常捕获问题，修正后 Ruff 0.17.1 全项通过，13 项测试重跑仍通过。Gitleaks 8.30.1 扫描本次七份交付材料无发现；原 47 项副本及 185 项生产证据按原范围保留，不因本次隔离工具重跑。源码检查与最终回读结果见本轮 PR 交付记录。
+
+[当前行动方案第 8 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#8-当前执行专用新对话减量验证)规定一次最多 10 分钟、最多三次只读样本，初始化和代表性合成任务合计最多两次模型回合；绑定/Tk、前后体量与耗时、可遇到的 busy 以及同一对话新用户回合一起取证。空白 UI 不假定已有服务端 thread；只读计量不会自动授予发送许可。超限/身份不符/未知/接收不明停止依赖动作，保留材料，不自动换目标、清历史、加上限或重启改包研究。此为本机执行范围和已准备工具，未向本地发送任务，未声称实机发生。
+
+另外两项的事实状态：本机已有目录/rollout 身份初查，但最终用户列表、同名/改名/扩展路径和新目标绑定尚未验收；旧实现的 busy 发送前拦截及 isSteering:false 有既有证据，当前目标的实机行为、普通 notify 调度和 idle/start 竞态仍未闭合。Tk 只有导入/Tcl 结果。已核对原 PR head 和最近交接，没有新增本机验收可引用。
+
+本轮工程与文档为 Alice 云端直接执行及 Self-review/S0，无独立子任务声明。保留输入日志全部 130,487 B 和 11 个 CRLF；原运行源码、配置、持续监听、历史 STOP/到期/PAUSED、业务账本及 ACK 不变。尚无新 Windows/IPC/模型/窗口实测，G0 pending verification，原 PR Draft/unmerged；没有把路线获选或合成检查通过写成问题已修复。
+
+
+## 2026-10-23 — Dedicated conversation initialized; first snapshot rejects state (Kelan)
+
+Human relayed bd299ae3 section 8 and explicitly chose native creation of a truly new dedicated conversation. Original Desktop retained; no fork/history copy or business-target rebinding. One initialization turn completed and exact creation/catalog/rollout ID/cwd binding passed. One read-only IPC sample returned current_state/protocol and unknown: max declared/target snapshot body 8,972 B, completed RX 28,810 B, TX 1,692 B, 10 headers/bodies and 3 target-labelled snapshots. Installation verified in 1.031 s, IPC 0.016 s, total 1.047 s. No cap reached, but native state/freshness and final owner recheck did not complete; this is not G0 success. Raw private frames/error text were not exported, so the specific failing condition remains unknown.
+
+The live window started 13:36:29.245 UTC with an unchanged 13:46:29.245 deadline; the first sample started 13:38:31.694 and stopped dependent work after its failure. Counts: one initialization, one snapshot, zero representative/busy/after tasks or samples, zero live retries. Prepared synthetic input was not analyzed by the new chat. No claim of isSteering:false/current-target follow-up, idle/start atomicity, or representative before/after reduction. The historical 34,956,277-byte rejected header is not a matched baseline and cannot support a reduction percentage.
+
+The isolated catalog helper excludes archived/subagent/guardian records and spawn edges, prioritizes name, uses full IDs for duplicate titles, bounds metadata, and limits Windows path normalization. Initial project distribution was 187 records (5 user, 60 subagent, 122 guardian), all has_user_event=0. Actual native creation exposed a missed agent_created_thread source; a failing regression and corrected whitelist preceded the first IPC sample. Same target/deadline retained. Fresh-context S1 review also found unsafe extended dot-segment equivalence; clean extended paths only, ambiguous trailing dot/space rejected. Final 12 catalog + 13 measurement checks pass, Ruff passes. The path issue does not explain the live protocol failure.
+
+Tk window and chooser entry were recorded, but selected directory did not match; Computer Use screenshot/window mismatch and activation error prevented verified success. Chooser/close actor is not established. Tk remains incomplete. See [report](docs/KELAN_DEDICATED_SNAPSHOT_TRIAL_20261023.md), [sanitized evidence](evidence/kelan-dedicated-snapshot-20261023.json) and dated manifest. Original log prefix (133,519 B, 11 CRLFs) preserved. Actual interpreter/import, sandbox DB denial and approved read-only fallback, initial test/lint failures, Tk launch evidence gap, and generic protocol failure are retained locally; no installation or permission repair claimed.
+
+Current task is evidence delivery/review_pending; G0 not passed, G1–G3 not started. Suggest bounded redacted reason codes plus synthetic counterexamples before any new live allowance; do not retry this closed trial. No installation/package/endpoint work, production changes, ACK, listener-health claim or alteration of continuous authority/historical STOP/expiry/PAUSED. PR remains Draft/unmerged; Alice acceptance pending.
+
+
+## 2026-10-23 — Accept bounded trial evidence and add precise failure diagnostics (Alice)
+
+红魔转交柯蓝 `f10faeb1276c3dab10479f81e00b11d1670c7b1f` 的专用新对话首轮结果，沿此前“按照这个思路解决”继续复审并修复诊断缺口。Alice 云端完整核对 29 份公开输入/依赖的 Git blob、6 项交付清单及历史 133,519 B 前缀；接受该初始化样本体量较小及目录 helper 修正的限定证据。8,972 B 最大正文、28,810 B 累计接收与 current_state/protocol 未通过同时成立；不能回溯猜定 cwd 根因，不接受原生 idle、长期体量或 G0 通过。Windows 实测及本地 S1 仍归属柯蓝报告。
+
+本轮修改 Draft 的共享 desktop_ipc 校验器和只读计量器：在原拒绝点产生有限白名单原因码，不解析/外发远端异常文本；新增 error_reason 与单列 unsubscribe_failure，保留主错误，清理异常不再遮盖它。路径比较、owner/thread/cwd/revision 的通过条件、状态映射和发送契约未放宽；原 Desktop 安装及正在部署的触发器副本未修改。新增 9 项合成测试覆盖结构/revision/身份拒绝、脱敏、旧/错归属帧、扩展路径不自动放行、清理异常与中断。
+
+原 25 项实验检查先复跑通过；最终 34 项实验检查全部通过，46 项相关 IPC/状态/适配器/采集回归为 45 通过、1 Windows 专属跳过。初跑缺公开 example 夹具造成 25 errors；补齐后缺 watchdog 造成 2 errors；取得固定原件并安装 requirements 的 watchdog 6.0.0 到临时测试目录后，最终相关回归通过。Ruff 初次新增 B023 已修正；实验文件通过，desktop_ipc 与输入相比零新增诊断、9 项既有提示保留。完整 185 项、47 项补丁副本与真实 Windows 未重跑。检查和归属见[机器可读核验](evidence/alice-snapshot-diagnostics-review-20261023.json)。
+
+[当前接续第 9 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#9-当前接续定位状态校验失败)已替代结束的第 8 节：同一已创建目标只读采一次，零模型、零初始化、无自动重试，并独立补 Tk 正确选择。静态绑定有进展；当前原生身份/状态、Tk、真实 busy/同对话追问、任务后增长及 notify 调度仍未闭合。没有向柯蓝发送通信或 PR 评论，也没有本机查询、窗口动作、生产配置或业务 ACK 修改。源码补丁为 Alice Self-review/S0，整体 Draft/review_pending；本轮材料审阅完成，G0 not passed。
+
+本次日志完整保留输入 136,768 B 和 11 CRLF；历史原件/失败记录保留。部署副本、持续运行授权、历史 STOP/到期/PAUSED 各维持原状态，当前监听健康未检查。固定输出提交和全字节回读结果以本轮 PR 正文交付记录为准。
+
+
+## 2026-10-23 — One diagnostic query identifies cwd representation rejection; Tk selection verified (Kelan)
+
+Executed Alice section 9 from fixed 60be8e0f in an isolated local copy. Same dedicated target rechecked against native creation receipt, current read-only catalog and rollout header; no new chat/initialization or original-business rebinding. Eight source Git blobs/hash/length checks and actual import paths passed. One new 600-second allowance began 14:54:24.076199 UTC and closed after the only query at 14:54:24.945589 UTC. Model sends/retries/representative/busy/after samples: zero.
+
+The native sample returned current_state/protocol/snapshot_cwd_mismatch, unknown and can_send=false. Expected cwd was a clean extended-drive form from the catalog, while native cwd was ordinary absolute-drive form. Same-query private two-string projection proves exact and legacy normcase/normpath comparisons false, while both forms are accepted and equal under the existing restrictive catalog helper. This identifies this sample's rejection condition, not the historical generic protocol cause or filesystem object identity. No comparison relaxation or second live query was made. Native state/freshness/final-owner completion remains unverified; G0 not passed.
+
+Completed RX 29,139 B / TX 1,691 B, 11 headers and 11 complete bodies, maximum declared/target body 8,972 B, three target snapshots, incomplete_io=false. Installation archive pin a05dfd86 verified in 0.829 s, IPC 0.031 s, meter total 0.860 s (wrapper about 0.875 s). 32 MiB frame/128 MiB cumulative/10 s IPC limits retained. No cleanup failure was observed. Hash cost remains included, not a daily-polling latency promise.
+
+On-disk fixed source was untouched; execution used an explicit temporary failure_reason wrapper. It copies only expected_cwd/native_cwd from the exact local cwd ProtocolCheckError and current_state code object, preserves the original reason, restores the wrapper in finally and writes private strings after IPC. Supporting audit helper and three synthetic tests are delivered outside production modules. Stub red: one failure among three; final 3/3 pass. Fixed experimental suite 34/34 and selected experimental Ruff pass. Initial manifest-path preparation and unimportable-start-directory failures occurred before tests/live IPC and are retained; cloud 45/1 and historical 185/47 are not local reruns.
+
+Human coordinated a short no-keyboard/mouse interval. Own Tk window and correct screenshot verified; chooser opened. An indexed confirm click unexpectedly navigated to the parent directory. Fresh screenshot recovery entered input and clicked its visible confirmation, then observed Directory check: True and closed the test window. Receipt selection_matches/closed true, timed_out false, process exit 0. Root cause of the misdirected indexed click is unestablished. This closes the independent chooser check only, not the full form or reliable unattended UI automation. No Codex UI operation.
+
+See [Chinese report](docs/KELAN_STATE_DIAGNOSTIC_20261023.md), [sanitized evidence](evidence/kelan-state-diagnostic-20261023.json) and dated manifest. Exact prior WORK_LOG byte prefix and existing CRLFs preserved. Recommend a narrowly specified native path-equivalence candidate with same-path/different-path and unsupported-form counterexamples, then review before another bounded live step. Current state acceptance, task growth, real busy/follow-up/turn association and G1-G3 remain pending. No production/config/install/ACK/authority/STOP/PAUSED changes or listener-health claim. Draft/unmerged, Alice review_pending.
+
+
+## 2026-10-23 — Accept cwd diagnosis and implement restricted drive-path comparison (Alice)
+
+红魔转交固定 `38a20a7dbae2777a0ee36b4d17022b043f2fcabe`；沿既定专用对话路线复审并完成最小候选。Alice 云端核对 36 份公开输入/依赖 blob、6 项清单、8 份执行来源 pin 和历史 139,580 B 前缀。接受本次 cwd 表示差异拒绝点定位及独立 Tk 正确选择/关闭；真实查询、私有两路径与截图仍归属柯蓝，公开观察器 3 项已直接复跑。不能回溯确定此前 generic protocol 根因或声称文件系统对象身份相同；G0 仍未通过。
+
+新增 cwd_paths.py，将目录筛选、native snapshot、rollout 首行/turn_context 及结果采集的 cwd 比较统一到受限 Windows 词法规则。干净扩展盘符和普通绝对盘符可匹配；不同目录、相对/UNC/设备空间、扩展点段/斜杠/重复分隔符、尾点/尾空格和设备/流组件拒绝，先验证再规范化。保留原始 cwd 证据与非 Windows 规则；不调用文件系统解析、不改 thread/owner/revision、状态映射或发送/ACK 契约。AGENTS 代码导航及设计/当前方案已更新；历史报告和原始失败材料保留。
+
+接线前 4 项反例检查为 3 failures/1 error；修复后通过。另以 Windows 路径语义复现两处旧 POSIX 夹具误用（1 failure/1 error），改为平台对应的合成 cwd，未放宽生产规则。最终：34 项实验通过；55 项相关路径/IPC/状态/适配器/采集回归为 54 通过、1 Windows 专属跳过；42 项额外 Windows 路径语义模拟和 3 项观察器通过。5 份选定文件 Ruff 零告警；4 份既有文件保留 40 条原有提示，无新增。第一次 lint 差异对照把既有 C408 所在行的 cwd 字面量改为常量误标为新增；对照固定输入后已更正，不压制规则。未重跑完整历史套件、副本补丁或真实 Windows。检查与源 pin 见[复核记录](evidence/alice-cwd-fix-review-20261023.json)。
+
+[当前行动第 10 节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#10-当前接续复验受限-cwd-修复)要求隔离副本包含新增模块，复核后沿同一专用目标只读采一次、零模型/初始化/重试；旧额度不续用，已接受 Tk 烟测不重做。当前状态成功后仍需后续代表性任务体量、busy/普通追问及 turn 关联；表单与普通 notify 调度未实现。候选为 Alice Self-review/S0、Draft/review_pending；材料审阅完成但未合并/安装/启用。
+
+保留输入日志全部 143,192 B、11 CRLF；未修改部署副本、安装、生产配置、持续授权、历史 STOP/到期/PAUSED、账本或 ACK，未查当前监听健康。本轮没有本机 IPC、模型、窗口动作，也未通过通信工具或评论派发。固定输出及完整远端回读以 PR 正文为准。
+
+## 2026-10-24｜Kelan 复验受限 cwd 修复，真实状态子项通过
+
+来源：红魔转交Alice d55c62d2第10节；本地Windows柯蓝执行Class C/enhanced有界验证，自查S0。固定完整输入 `d55c62d204ba8193974b5434b19898dd65776a43`，185文件CRC/长度/Git blob核验，8模块实际导入/摘要一致，候选源码未改。部署/配置/ACK、持续授权和历史STOP/到期/PAUSED保持，未查监听健康。
+
+同一专用目标创建回执/当前只读目录/rollout首行绑定一致；仅一次真实IPC，snapshot_query_completed=true、idle、revision/requested_revision=6/6、最终owner一致。RX29,373B，最大8,972B；验证/IPC/总计约0.906/0.032/0.938秒。32MiB/128MiB/10秒预算与安装pin保持；can_send=false、模型/初始化/重试/窗口/Tk重做均0，单次600秒窗口已闭合。没有旧traceback观察器。
+
+34实验通过；55相关回归初次39个PermissionError错误事件来自sandbox TEMP夹具，保留原日志；最小本轮临时目录检查通过后仅调整测试运行器tempdir，55全部通过/0skip，候选不变。选定5文件Ruff通过；另11条既有native_state测试提示保留，未重跑云端40条基线比较及完整历史套件。
+
+[报告](docs/KELAN_CWD_REVALIDATION_20261024.md)、[证据](evidence/kelan-cwd-revalidation-20261024.json)、[清单](evidence/kelan-cwd-revalidation-manifest-20261024.json)；保留本输入WORK_LOG全部146,038B及11CRLF前缀。输出提交/回读与交接结果由本批PR回执补齐，不提前认定交付或Alice接受。
+
+本轮通过当前状态子项；G0总体仍未通过，代表性任务后体量、busy/普通追问turn关联、完整表单/notify待续。原完整历史路径和每次安装哈希成本未解决为高频轮询方案；不回溯旧generic错误。Alice review_pending，PR Draft/unmerged；请审阅本次范围后确定下一次最小联合试验，不自动重开额度或进入G1–G3。
+
+
+## 2026-10-24 — Alice accepts bounded cwd revalidation and scopes the next trial
+
+来源：红魔转交柯蓝 [77ef0c0f2e9399338ee7e5e1939b40426347f16c](https://github.com/scarlet-devil/codex-condition-trigger/commit/77ef0c0f2e9399338ee7e5e1939b40426347f16c) 及[交接](https://github.com/scarlet-devil/codex-condition-trigger/pull/2#issuecomment-6369537540)。执行者为云端 Alice；本轮为公开证据/源码关联复审和既有文档接续，Self-review/S0，无独立子任务、Windows 实测或模型发送。
+
+完整读取五份交付及相关入口；四项清单长度/SHA-256/Git blob、八项实际导入源码 pin 相符；与 d55c62d2 比较仅五份文档/证据改变，183 个既有 blob 未变。146,038 B/11 CRLF 原日志前缀与上次云端候选一致；本次追加保留输入 147,988 B 全部字节。公开摘要/哈希核对不冒称重新验证私有 Windows 原始日志、完整候选 ZIP 或本地绑定。
+
+接受本次当前状态子项：同一专用目标，idle、revision/requested_revision=6/6、最终 owner 一致；最大 8,972 B、RX 29,373 B，验证/IPC/总计约 0.906/0.032/0.938 秒。只读 can_send=false 合乎契约。34 实验+55 相关回归通过（0skip）归属柯蓝，初次39个 TEMP 权限错误事件和测试夹具目录修正保留；源码未改，不为文档复审重复测试。既有11条 Ruff 提示及完整历史套件未重跑的限制保留。
+
+更新 CURRENT_STATE、设计稿和[行动方案第11节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#11-当前接续代表性任务后的体量与回合关联)：cwd 状态及独立 Tk 子项关闭；G0 尚需选择证据收口和代表性任务后测量。G1规则/notify、G2完整表单、G3两批真实通知不混入 G0 前置要求。下一轮方案为同一目标最多1次 start/1模型回合、最多3次计量采样、10分钟窗口，保留发送路径额外读检查的真实计数；任务太快未捕获busy不补发。已关闭第8–10节额度不续用；未派发或执行下一轮。
+
+本轮只修改四份既有文档，核对相对链接、锚点和阶段/数字一致性；实际推送与回读结果在本批 PR 正文及用户交付中补齐。PR保持Draft，未合并/安装/启用；生产配置、业务ACK、持续授权及历史STOP/到期/PAUSED未改，监听健康未查。已完成的是本次材料复审，不能把它写成整体G0或产品验收通过。
+
+## 2026-10-24｜Kelan 第11节单次代表性任务：idle/busy/idle与准确turn通过，交回G0审阅
+
+Human转交09e36bea第11节；固定完整188文件与7模块实际导入pin，运行源码未改，34+55历史测试不重跑。沿用专用目标/创建回执，当前目录唯一候选及rollout身份一致；引用原12项目录过滤测试。新隔离账本北京时间01:10:11至01:14:07，236.156秒关闭；1start/1模型、3计量，适配器额外2history，合计5history/4initialize握手/8owner；无未知写入。Tk/新建/初始化回合/窗口/重采0。
+
+真实样本idle/busy/idle，revision8/14/16均满足请求下界与最终owner；最大目标快照8972/18018/53036B，RX29075/56214/161566B，任务后差44064/132491B。安装0.921/1.078/1.016s、IPC0.219/0.344/0.140s，含安装总计1.140/1.422/1.156s；保持32MiB/128MiB/10s，仍全历史路径和每次安装哈希。准确意图/receipt-turn/isSteering:false/继承设置与完整投递原文关联通过；24次只读文件观察得到task_complete/ended，native execution_outcome仍unknown，业务ACK=false。
+
+合成材料34289B/SHA 5cc5433657424bea202100b3c5d096d1288d2e5765d67221e69eefc8cc70a4af；122记录/120唯一，输出446B/SHA 62a6baa4dc67e4837570dae39d025811a716a80bd460d31ae150390cc77f4491，五字段正确。目标四次工具退出0/0/1/0：WindowsApps Python别名启动ResourceUnavailable后，同回合用PowerShell计算并写入/回读成功。控制器固定Python和IPC路径不变，无额外start；“更改执行工具”边界是否涵盖此偏差交Alice判断，不隐去失败，不重跑取理想结果。样本增长含失败工具记录，不作正常任务通用基准。
+
+临时辅助器7序列、5截止、3文本检查最终15通过；保留7失败、3失败2通过、2失败1通过红测。S1/M0独立本地源码审查关闭外层截止/STOP延迟发现问题；仅辅助器修正，6冻结文件/188候选实测后不变，基础Ruff通过。安装hash自身不是进程硬超时，宿主已接受任务不由本地STOP取消；本轮正常闭合。
+
+[报告](docs/KELAN_REPRESENTATIVE_TASK_20261024.md)、[证据](evidence/kelan-representative-task-20261024.json)、[清单](evidence/kelan-representative-task-manifest-20261024.json)。原WORK_LOG 150413B/11CRLF字节前缀完整保留。G0 evidence_ready/review_pending，前轮cwd/Tk接受有效；G1通知/G2表单/G3两批是后续阶段而非G0前置。未改生产安装/配置/ACK/连续授权与旧STOP/PAUSED，未查监听健康；PR Draft不合并，公开交付以回执为准。
+
+
+## 2026-10-24 — Alice accepts limited G0 and defines G1 implementation
+
+来源：红魔转交92ecba6bb16899ac3e1cc71948997d5b7895874e后，先询问剩余阻塞，再明确“开始写结论和下一步做什么”。云端Alice据此完成阶段结论和原Draft内接续文档；Self-review/S0，未派发agent或本地任务，未实现G1、运行Windows、发送模型或改生产配置。
+
+本轮输入五份公开交付共188,865B，四项manifest的长度/SHA-256/Git blob一致；七个执行模块pin、相关源码/测试和提交差异核对，186个其他blob未变。WORK_LOG原150,413B/11CRLF前缀与上次云端输出一致；本轮追加保留输入152,992B全部字节。私有辅助器原件、Windows原日志和会话未在云端独立重读，15项检查/S1-M0复核及旧34+55通过结果保留执行者归属，未重跑。
+
+**决定：G0 limited_accepted。** 当前安装/同一专用目标/合成工作量下，选择绑定、任务前后有界新鲜状态、busy观测及普通新回合准确接收/结束关联通过。idle/busy/idle，revision8/14/16，最大目标快照8972/18018/53036B；1start/1模型、3计量+2适配器history，236.156秒闭合。ended/outcome=unknown与文件五字段正确分别保留，ACK=false，不外推长期增长、自动延迟队列或原子idle/start。
+
+接受已披露的目标内Python别名失败后同回合PowerShell替换偏差：控制器/IPC/绑定/预算及回合数量未变，失败记录进入实测增长。原“更改执行工具”措辞未区分控制器与任务内部工具，记录歧义和本次接受，不把历史改成无偏差，不要求重跑取理想结果。后续按两层分别判断，不把工作负载内合法等价工具替换当作触发器链路变更。
+
+更新CURRENT_STATE、设计稿和[行动方案第12节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#12-当前接续g0-限定接受与-g1-实现)。下一步G1为隔离规则编译/初始基线/notify推进、证据与业务ACK分离、跨规则同目标互斥及必要恢复兼容测试；fake adapter完成双批自动推进，旧strict继续等待真实交付。G1尚未实施/派发；G2表单、G3真实两批后续，旧第8–11节额度全部关闭。正常任务结果未知与终止证据未知分开处理，不用超时/假ACK放行。
+
+本轮四份既有文档，按文档范围核对链接、锚点、阶段/数字和源码接线；没有新增运行测试或形式证明。推送/全文回读及准确输出head在本批PR记录和交付中补齐。上轮柯蓝覆盖PR正文被自动审查以本批五份材料的授权范围拒绝之事实保留；本轮是红魔新的结论/方案请求，不回溯改写该拒绝。PR保持Draft，不合并/安装/启用；原ACK、连续授权、历史STOP/到期/PAUSED未变，监听实时健康未查。
+
+
+## 2026-10-24 — Kelan implements isolated G1 ordinary notifications
+
+红魔转交 Alice 的 db69330f9a893093a52d4dc2812626be52c649ea 第12节后，本地柯蓝完成 G1 候选（Class C/enhanced；执行与S0自查）。固定输入191个blob完整核验。G0 limited_accepted 沿用，无实机重跑；原目标/安装/生产配置/ACK/历史STOP及授权未改，监听健康未查。
+
+新增 notify_state / rule_service，通过现有 Store、dispatch_one、DesktopAdapter、cycle_tick 接线；默认严格交付模式不变。初始ignore独立原子baseline，native acceptance/准确终止/fresh idle释放三类证据独立于业务ACK；每批绑定规则revision，条件和指令不能静默变更。普通通知丢失回执不按全文回退补造接受；失败/中断/unknown真终止可推进但原结果保留。同目标当前版本worker共享锁和持久notify占用，暂停epoch防止初始化覆盖已成功暂停。100未释放批次/1GiB默认限制，不清历史。旧原版trigger实际拒写notify状态，DB字节未变。
+
+最终全项目230方法：229通过、1符号链接权限跳过；34实验回归通过。新增36方法已含于230。冻结Hub子集16成员CRC、15项manifest/hash通过，无生产Hub安装。fake双批演示notify发送2次/strict1次，A运行期间均1次，delivered=0/ACK=false；真实IPC/模型/窗口均0。基础Ruff规则零诊断；默认规则保留基线/新风格差异，未宣称全绿。无依赖升级/新Lean证明。
+
+本地S1/M0独立审查发现混合模式互斥和暂停初始化竞态，均复现、修复；独立指定3项复核全通过，关闭两项，非Alice验收。自查ACK覆盖、fresh idle持久证据及指令绑定反例已修正；初期夹具/异常文本/期限字段错误与TEMP权限失败保留归属，不把全部红测算产品缺陷。
+
+[实现与复现报告](docs/KELAN_G1_NOTIFY_IMPLEMENTATION_20261024.md)、[证据](evidence/kelan-g1-notify-20261024.json)、[材料清单](evidence/kelan-g1-notify-manifest-20261024.json)。G1 implementation_ready/review_pending；请Alice复审后决定G2/G3。当前规则不支持就地编辑，需暂停后新建独立状态且保留旧批次；历史二进制/外部发送不受新锁约束，idle/start竞态和完整历史成本仍保留。PR保持Draft；推送与逐文件回读结果以本次交付回执/评论为准，不据本日志预先声称远端完成。
+
+
+## 2026-10-24 — Alice accepts G1 and designs the G2 form tests
+
+来源：红魔明确“验收吧，如果没问题就直接开始下一轮G2测试的设计”。云端Alice固定审阅88dc1756d08a9f8a353628816a72ec7169f7718a，读取原PR、交接、源码与新测试。G1 accepted，接受范围为实现与合成验证；未发现阻止本阶段接受的问题，不据此合并、安装或批准真实两批试验。
+
+直接核对17文件376,659B，16项payload完整字节/长度/SHA-256/Git blob，清单自身blob；185个原有blob未变，旧原版trigger夹具来源一致。柯蓝日志保留的155,823B/11CRLF前缀与Alice前次输出一致，本轮追加继续保留输入158,248B全部原字节。私有Windows完整日志与本地S1/M0原件未在云端独立重读。
+
+Alice在Linux/Python3.12.14独立执行新增36项unittest，36通过、0失败/错误/跳过；原fake双批演示notify2/strict1、A运行时均1、ACK=false、delivered=0；Ruff0.17.1对9个相关文件E9/F63/F7/F82零诊断。柯蓝Windows全套229通过/1符号链接权限跳过及34实验回归按已绑定源码复用，未重跑，不把两轮数字相加；默认Ruff新旧风格诊断仍保留。无新依赖或适用Lean目标。
+
+更新CURRENT_STATE、SIMPLE_SETUP_DESIGN和[行动方案第13节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#13-当前接续g1-验收与-g2-表单测试设计)，新增[验收证据](evidence/alice-g1-review-20261024.json)。G2 design_ready / implementation_not_started：三字段Tk、受限只读目录来源、准确选择、异步预览和受管worker接线；enabled与实际监听分开，暂停/关闭/重启和状态真实性列入测试。首版沿用两预设/所有普通文件/120秒/固定READY及现有可选项，暂不提供自定义glob、READY路径或就地编辑；默认任务说明与G1实际简短审查文案一致，不声称自动推断项目工作流。
+
+本轮仅验收与设计，运行源码未改；文档按链接、锚点、阶段、范围和历史字节核对，检查结果见证据。本轮文档Self-review/S0，未派发agent/柯蓝任务。真实IPC、模型、GUI动作、生产安装/恢复、ACK修改均0；未检查生产健康。G2需候选实现与fake界面测试后另行复审，G3额度未设；旧第8–11节窗口、STOP/到期/PAUSED及连续授权不变。原Draft PR内提交与回读结果在本批交付记录补齐。
+
+
+## 2026-10-24 Kelan — G2 three-field form and Windows fake-transport verification
+
+Input d153f0b0ff950568d17ff04573819f77c29429b5 section13, 203 blobs verified. G0 limited_accepted and G1 accepted retained. Local Kelan implemented the thin Tk form, bounded readonly Desktop catalog source, controller/worker ownership and explicit fake entry; no new service, real Desktop IPC, model turn, install or production action. See docs/KELAN_G2_FORM_20261024.md, docs/SIMPLE_SETUP_G2.md and evidence/kelan-g2-form-20261024.json.
+
+Final Python3.12.14 Windows suite:257 methods,256passed/1symlink-permission skip,0fail/error,native exit0;27new methods included. Windows overlapped I/O and all3 frozen-Hub tests ran. Source pins unchanged before/after. New six files default Ruff/format clean;10files critical rules clean;four shared modules default30→32 disclosed (BLE001 boundary catch,SIM117 nested with). Unchanged G0/34experimental checks not repeated. TDD/failed attempts and final subprocess exit capture retained; no addition of overlapping counts.
+
+First actual GUI smoke failed because the new fake returned baseline.bytes=0;A sent once and retained uncertain, noB/noresend,224.110s. Added actual-GUI-fake full watcher regression and fixed synthetic evidence. Separate final GUI smoke passed with1s test stability(default120 unchanged):selected second duplicate target,initialignore1file,A running/Bwaiting,exact release thenB once,bothended/backlog0/ACKfalse/outcomeunknown,pause/resume/minimize/close. Worker started71.640s;listening observed before A write86.687s;full193.312s,not human learning cost. Process0,windowgone,workersreleased,locksreacquired,readonly saved-rule reload passed andpaused;no independent GUI reopen claimed.
+
+Actual catalog readonly probe:7project-matching rows,4firstline identities matched,3missingrollouts;0.031s,nohistory/IPC. It predates final metadata-error propagation fix and retains its exact source hash. Local S1/M1 reviewer verified209frozen files,ran24G2+36G1 checks,independently reproduced invalid-ZIP initialization manifest mismatch and verified repair1case;later4thread-cleanup and2catalog-boundary checks passed,overlapping. Not Alice/S2. Windows progress contention,failure recovery,second-form ownership,completed-thread retention and budget error propagation fixes/evidence preserved.
+
+State: G2 implementation_ready / Alice review_pending; G3 not executed,PR2 remainsDraft/unmerged. Existing production configuration,ACK,STOP,expiry,PAUSED and continuous authorization untouched; production health not checked. Scope ends at candidate handoff. Raw logs/DBs/private metadata/screenshots stay local; selected public source/report/evidence only. Governance Active28/28 samebc77e24 pin; no identity/governance modifications. External delivery state belongs to the final verified receipt/comment, not this local log entry.
+
+
+## 2026-10-24 — Alice accepts G2 within the simulated transport scope
+
+来源：红魔交回6c92f873c714697b423e5dcb8036f2fa57737a01，请Alice复审G2，并更正d153f0b0旧交接中的“G2尚未实现”。Alice固定审阅最新候选的目录、控制器、Tk界面、fake与四个共用模块及测试。G2 accepted，接受实现与模拟传输流程，没有发现本阶段阻止接受的问题；G3未执行。
+
+直接核对16交付文件342,418 B，15项payload及清单Git blob、长度、SHA-256和十个代码/测试pin一致；197个其他原有blob未变。输入日志保留d153f0b0的160,662 B/11CRLF前缀，本轮追加保留6c92f873输入163,536 B全部原字节。Alice在Linux/Python3.12.14复跑27项G2＋36项受影响G1测试，63通过、0失败/错误/跳过，退出0，8.846秒；十份相关Python关键Ruff规则零诊断。没有打开Tk或重跑Windows完整套件。
+
+柯蓝Windows257方法（256通过/1符号链接权限跳过）、最终真实Tk＋fake双批/暂停/恢复/最小化/关闭结果和本地S1/M1审查按原来源保留。私有完整日志、DB、截图未在云端重读，不能称Alice亲测Windows。首轮fake回执错误与不确定批次保留，修正后用新隔离目录通过；默认Ruff共用模块30→32诊断保留。配置71.640秒启动，86.687秒写A前已监听；全流程193.312秒，非真人学习成本。独立GUI重开未实测；保存规则重载按控制器/只读回读与界面接线接受。真实目录探针早于最后传播修复，最终合成边界验证与原探针分别归属。
+
+更新CURRENT_STATE、SIMPLE_SETUP_DESIGN及[行动方案第14节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#14-当前接续g2-验收与-g3-准备边界)，新增[验收证据](evidence/alice-g2-review-20261024.json)。修正当前入口中残留的“G2尚未实现”，原第13节和历史日志保留时间语境。下一步准备G3固定候选/目标/配置、完整查询及发送预算、停止条件和两批准确证据；本次不新增真实试验额度，也不要求重复G2实现。
+
+运行源码未改；文档自审S0，未另派agent或向柯蓝发任务。真实IPC、模型、GUI操作、生产安装/恢复、ACK变更均0；未检查生产健康。旧G0实机/34实验回归和Windows全套按不变源码范围复用，不重复累计测试数量。无新依赖或适用Lean目标。PR保持Draft；历史STOP/到期/PAUSED及连续授权不变。文档检查与同PR发布/完整回读结果由本次证据和交付记录补齐。
+
+
+## 2026-10-26 — Alice records the Drive-to-local trigger requirement
+
+来源：红魔提出“有文件放入drive的指定文件夹然后本地的条件触发器也能检测到然后唤醒相应对话的柯蓝进行相关的操作”，随后明确要求先记录需求，再研究柯蓝本轮G3阻点。已记录目标：指定Drive目录来料→完整落地本地→按条件触发准确绑定的柯蓝对话；保持来源、条件、目标三个配置概念。
+
+这是新增来源需求，尚未实现或部署。Alice提出的小型Drive API接收器与桌面同步均为候选路线；一分钟检查、复用Hub认证、原生Google文档导出及相同字节重新上传的任务语义均未定稿，不能把建议写成用户已选实现。后续应复用现有通知推进、忙时等待及不确定不重发；下载完整性、远端版本去重/断线恢复、输入输出分离和目标映射需在接入时验证。当前优先调查G3 owner不可用，未开展Drive接入或新建自动任务。
+
+
+## 2026-10-26 — Alice reviews the G3 owner failure and records the next step
+
+红魔交回已关闭的G3试验，要求研究owner不可用。固定公开基线ab71c9d17639c05389c5e3e51d34eb38c323eb50；直接下载指定Drive ZIP（214,930 B，SHA-256 150feb1f8dde8c30d88b69bbe9481af1e293d40cd2266523c2e960e4cdc5fc35），核对76条目CRC及75 payload长度/哈希，最终8候选与R3清单/副本匹配。没有公开私有聊天、配置、数据库或整包，G3运行候选仍未提交到公开分支。
+
+接受本次负面证据，不接受G3通过。柯蓝Windows153.546289秒、exit2、target_not_ready_waiting_owner；initialize/owner发现各1，history/start均0，未完成初始化、无A/B。源码和合成错误回包核对表明失败在owner发现，非快照超限或busy证明；准确选择与实际加载是两件事。本轮未打开目标，且notify启用门禁和cycle_tick都没有接入旧严格模式加载器，不能仅开启owner_loading_enabled解决。根因仍unknown，不能擅断“窗口未打开”或“版本升级”。
+
+Alice Linux/Python3.12.14在最终候选隔离副本复跑115相关测试：114通过/1 Windows-only跳过/0失败错误，unittest10.286秒，退出0。八文件关键Ruff零诊断；原R3完成证据失败反例1通过，模拟launcher正确exit2；合成owner拒绝经真实启用路径得到同一停止码、无初始化/发送。首次辅助脚本字段错误、R3夹具缺失及工具缓存缺失均如实保留在本次证据中，修正检查环境后完成；候选源码未改。柯蓝Windows历史结果单独归属；未声称独立复核220快照文件或完整R1（缺该轮源码增量）。
+
+更新CURRENT_STATE及[行动方案第15节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#15-当前接续g3-owner-不可用调查与最小复验)，新增[Alice证据](evidence/alice-g3-review-20261026.json)。下一步先明确打开原专用对话，再一次有界只读查询；仍失败才另定已加载目标对照。新真实窗口/额度尚未执行，旧试验不重启。Drive需求另记于设计第13节，尚未实施。
+
+本轮公开变更仅文档/证据；自审S0，没有另派agent、向本机投递任务或发送评论消息。云端真实IPC、模型、Windows窗口、安装/生产修改均0；未查生产健康，ACK及STOP/到期/PAUSED不变，PR保持Draft。保留输入WORK_LOG 166,072 B全部历史原字节和11 CRLF；发布/回读另有本轮交付回执。
+
+
+## 2026-10-26 — Alice accepts the loaded-target readonly precheck and scopes G3
+
+红魔交回只读成功报告、R1补件及最终交接。Alice固定当前PR2 head 9bd9e8b061a571f64681fa8266d35681668ee73a，直接取得三份Drive原件，父目录为原40_REPORTS；121,460 B、49 ZIP条目/46 payload的CRC、长度与SHA-256通过。最终回执关闭前一冻结报告中的R1回读pending；历史DNS失败和原件保留。
+
+限定接受：准确原专用对话经原生工具导航后，当前安装可查询idle、requested/snapshot revision 2/2及末尾owner不变；柯蓝实机CLI1.549100秒/exit0，initialize1/owner2/history1/start0，RX11帧140,498 B。Alice复算逐帧总字节一致；can_send=false为只读约束。没有独立视觉UI-ID或Windows复跑，不推断上次唯一根因，不把当前idle当未来永久状态，不判G3通过。
+
+独立审阅最终入口af82da32…383ef7d2ad7：执行开关、固定selection/三字段、源码和归档pin、零发送预算、输入读取前计时及固定截止收紧。Alice Linux/Python3.12.14复跑原16测试（1.098秒）及交付R3两项阻塞输入反例（1.159秒），全部通过/无跳过/exit0；五文件关键Ruff零诊断。两个0.5秒合成子进程约0.566/0.592秒退出2，不声称严格0.5秒内退出。候选未改；原115项按未变范围复用，不重复累计。R3用例经unittest导入，未宣称核对未交付PREPARATION原件或实机超时全路径。
+
+R1补件7份原字节与原清单/blob一致，其余211固定基础blob映射匹配，218源码重建来源齐备；原私有PLAN只提供脱敏参考。旧分隔符打包缺陷关闭，不重跑历史失败实验。
+
+更新CURRENT_STATE和[行动方案第16节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#16-当前接续打开原对话后的限定接受与新-g3-两批范围)，新增[本轮审查证据](evidence/alice-owner-precheck-review-20261026.json)。第15节只读操作已完成，不再要求重复查询或证明唯一根因。下一轮保持同目标预先打开，沿用表单启用新鲜门禁、原隔离A/B、总480秒和2次start，具体预算与停止/收尾要求已列出；新时段由本机落实，不复用旧合同。Drive需求仍未实施。
+
+公开变化仅三份既有文档和一份脱敏证据；自审S0，无另派agent或本机任务消息，真实IPC/模型/窗口/安装/生产修改均0。保留169,564 B历史WORK_LOG全部原字节和11 CRLF。PR Draft，G3待真实两批，业务ACK及STOP/到期/PAUSED不变，未查生产健康。发布和全文回读由本轮交付回执记录。
+
+
+## 2026-10-26 — Alice fixes G3 start admission and removes repeated form work
+
+红魔要求判断R2耗时属于流程还是柯蓝执行，并作针对性修复。输入公开d02b1b6036f7be3ee7bef6ac4a9b5d4e988d2902及R2私有ZIP（245,799 B，SHA-256 06842b6a43afa8ba4906f62f378b93a1b28e95ef837ee26dab4e95e4645ac5c4）；65 ZIP条目CRC、64 payload长度与哈希、A结果期望字段已核对。首次入口路径与漏参数是柯蓝调用失误；计时至A写入337.780秒、A接受至空闲119.936秒，B仅剩0.387711秒发送。Alice此前安排重复两阶段GUI和双批同占480秒，应修正流程；耗时无法进一步归为全部人工或模型。四次安装检查3.891秒不是主要瓶颈。
+
+有限接受R2 GUI/忽略初始/暂停恢复/A期间B等待/A准确生命周期与结果；B无结果、uncertain不改，G3仍未通过。实现180秒发送余量（墙钟及单调时钟）、准备与首字节复核、known-unsent与部分写出不确定分离；增加显式batches_only沿用真实controller/启用门禁/watcher与监督收尾，静态--check-only在武装前核对。新的空规则/隔离输入、480秒/2次start、安装pin及通知安全选项固定。首次纳入此前私有候选八文件，新增一份回归；三个共享reader接线默认行为不变。生产和Desktop安装未动。
+
+Alice Linux/Python3.12.14：127项相关检查126通过/1 Windows-only跳过(13.973秒)；另补3项pin检查通过；增加合同覆盖保护后定点复跑启动器与新增检查24项通过。最终独立用例131项，130通过/1跳过；不重复累计复跑。关键Ruff九文件通过；默认风格诊断保留。测试开发出现夹具继承、仿真周期属性、结果字段误用，均为Alice检查代码失误，失败日志保留；产品候选没有因此修改既有调度间隔。模拟双批用真实controller/watcher、替代传输和缩短仿真周期，不能代表Windows运行时性能。自审S0，无独立agent。
+
+更新CURRENT_STATE及[行动方案第17节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#17-当前接续g3-r2-时间诊断发送余量修复与双批专测)，新增[证据](evidence/alice-g3-budget-fix-20261026.json)。下一步柯蓝准备新隔离合同与冻结入口，计时前完成路径/参数/静态检查，在新的本机时段直接进行双批专测；不重做已接受GUI、不重发旧B、不续旧时限。业务结果仍需独立核验。Drive来源需求保留未实施。本轮云端真实IPC/模型/窗口/生产动作0，未发本机任务消息，未查生产健康，PR Draft未合并。保留输入WORK_LOG 172,165 B历史全部原字节及11 CRLF；发布与全文回读另记交付回执。
+
+
+## 2026-10-27 — Alice accepts the bounded G3 two-batch trial
+
+红魔交回第17节真实双批成功材料，请Alice判定限定接受。固定公开head/运行候选018f7f8c2367aefb758ea001db78b589b76b5b6c；Alice从原40_REPORTS取得116,414 B ZIP（SHA-256 d848fef7be704c40acc0f54f8c6e7aaecd3dfd34e75b9f8d929bf4084a9301e3），63条目CRC、62 payload共341,834 B长度及SHA-256、57项来源映射交付字节均核对。9份代码/测试与原已审候选和Git blob一致；16项公开增量blob/长度匹配，223份repo路径集合匹配；不冒称完整云端重读223文件或执行230项私有冻结校验。
+
+结论：G3 limited_accepted；G0—G3原范围闭合。柯蓝北京时间00:58:07.262485至01:00:01.232383，113.969898秒/exit0；A运行时B等待，A准确终态+新鲜idle后自动B，各发送一次、准确接收与结束、release revision22/22和28/28，最终closed/disabled/backlog0，无ACK。Alice独立复算A/B原输入输出全部字段及SHA/长度/批次关联，整数和311/2911；核对事件顺序、剩余466.730207/406.388740秒及62帧/2,092,551 B接收量。原生私有rollout/DB/owner及进程退出依据柯蓝摘要和已审核验脚本，不声称云端直接观测Windows。原R2未决B保持不变。
+
+新连续入口8项测试由Alice在隔离Linux/Python3.12.14用合成inert合同与mock subprocess执行，8通过/0跳过，0.007秒。初次cwd错误导致模块未找到，修正后通过，失败日志保留。旧Ruff工具缓存本轮不可用(exit127)，未声称云端Ruff通过；柯蓝已交付关键Ruff结果按原归属复用。运行代码未改，复用前轮Alice131项有效覆盖及本轮柯蓝Windows131全部通过；本地独立24项含16既有用例，不重复累计。SQL JOIN/当前message与custom_tool_call后验解析/内联引号错误为柯蓝检查工具偏差，修正证据保留，无实机重发。
+
+更新CURRENT_STATE及[方案第18节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#18-当前结论g3-双批专测限定接受进入交付收尾)，新增[验收证据](evidence/alice-g3-acceptance-20261027.json)。第17节试验已关闭，当前接续只做使用说明和最终PR检查；无新变更/发现不重复G3、不新增阶段。Drive来料需求保留待后续。未合并、安装、启用生产或派发本机消息；云端真实IPC/模型/Windows动作0，未查生产实时健康。Alice审阅与S0自审，无额外独立agent。PR保持Draft，业务ACK及旧STOP/到期/PAUSED不变；历史WORK_LOG 174,867 B及11 CRLF原字节保留。发布与完整回读另记交付回执。
+
+
+## 2026-10-27 Alice — accept documentation closeout
+
+- Source: Kelan's section-18 delivery, fixed input `c703a599877394b4e4abb62f26351e0054a635df`; Drive review ZIP 51,568 B / 17 entries / SHA-256 `00ad5812cfdbb84d23d41821ce90023eb881ec1e32935caac88d007d28138386`. CRC and 16 payload hashes verified. The four candidate base files match the pinned public blobs and bytes.
+- Accepted the English/Chinese README, three-field guide and AI entry. Alice added a safe separate checkout of the candidate branch, corrected the simulator's nonempty-directory restriction, separated catalog-count/readability guidance and advanced current-state/plan pointers. Runtime code remains unchanged.
+- Alice/cloud Linux/S0: reproduced the original 46 relative links and eight anchors, applied the checked patch in isolation with all four outputs byte-identical to the submitted candidates, and ran the real `simple_setup.py --help` entry (exit 0, no GUI/IPC/model). Final documentation checks and unchanged-source bindings are recorded in `evidence/alice-doc-closeout-20261027.json`. Initial missing-file preparation error and original patch EOF warning are preserved locally; corrected paths/final newline normalization passed.
+- Reused accepted G0–G3/runtime tests; no new unit-test/G3/Windows run. Kelan's Windows help and 230 frozen-input checks remain attributed to Kelan. No new independent agent review, deployment, production-health query, ACK, resume or local dispatch.
+- PR prepublication snapshot: Draft/open/unmerged, c703 Head, mergeable/clean, zero statuses/check-runs (not CI passed), main protected=false and repository rulesets empty. New commit and PR body require full readback after publication. Current handoff is section 19: documentation accepted, await merge decision and recheck exact Head/requirements then. Drive ingress remains recorded/unimplemented and separate.

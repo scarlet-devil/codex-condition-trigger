@@ -1,0 +1,255 @@
+{
+  "schema": 1,
+  "date": "2026-10-26",
+  "author": "Alice",
+  "environment": "Linux / Python 3.12.14",
+  "review_kind": "scoped source review, direct offline checks, self-review S0",
+  "base_commit": "ab71c9d17639c05389c5e3e51d34eb38c323eb50",
+  "decision": {
+    "g3": "attempted / blocked_before_dispatch",
+    "negative_evidence": "accepted",
+    "owner_root_cause": "unknown",
+    "drive_requirement": "recorded / not implemented",
+    "merge": false,
+    "deployment": false
+  },
+  "package": {
+    "drive_file_id": "1taV1-fBiVWeUcVGh08D9EQZG0YR1bAsz",
+    "bytes": 214930,
+    "sha256": "150feb1f8dde8c30d88b69bbe9481af1e293d40cd2266523c2e960e4cdc5fc35",
+    "zip_entries": 76,
+    "payloads_verified": 75,
+    "crc_passed": true,
+    "all_payload_lengths_and_sha256_matched": true,
+    "final_candidate_files": [
+      {
+        "path": "desktop_ipc.py",
+        "bytes": 32651,
+        "sha256": "6e3608251f5295f30f493d4e3cb42ff5d4441ea9c1099491ed9e487782e31af6"
+      },
+      {
+        "path": "experimental/g3_launch.py",
+        "bytes": 14692,
+        "sha256": "a0e8a703eea090fa805c9157dd96fcbe56fe48d8fe65922dea4da8857d82e23c"
+      },
+      {
+        "path": "experimental/g3_trial.py",
+        "bytes": 16250,
+        "sha256": "9e17e19f657fe766f1ac21eb748a26eeb59f72a795311e2e7e8589406bfb0b84"
+      },
+      {
+        "path": "rule_service.py",
+        "bytes": 3987,
+        "sha256": "58c24c862569a190260d934b0c4fbef53763a15a13cc7e9a8fac0b7b8e3ebcb2"
+      },
+      {
+        "path": "simple_catalog.py",
+        "bytes": 4607,
+        "sha256": "fd27fbf983df009a06b9055d703e5876133911f724791e1efc6f89b434904ffa"
+      },
+      {
+        "path": "tests/test_g3_launch.py",
+        "bytes": 12034,
+        "sha256": "ab53307bc8f87ff2101b021eec164ff6cdd25f3c66a8c88676a3c1f7f95d4113"
+      },
+      {
+        "path": "tests/test_g3_repairs.py",
+        "bytes": 5088,
+        "sha256": "520c0b35cc0a410ff55d6468f2257899b7292361335eb223ae618a1f35a77f31"
+      },
+      {
+        "path": "tests/test_g3_trial.py",
+        "bytes": 9548,
+        "sha256": "fdeff8a19d22feb90c12b26bbc9308502d8203e3b51df2215fdb82474636521f"
+      }
+    ],
+    "r3_manifest_sha256": "6b831d413b37192bf46818fc74fdea58c64e7a78b43148c5755ad2e9842d115f",
+    "r3_pins_and_copies_matched": true,
+    "full_220_original_files_independently_verified": false,
+    "r1_reconstruction": "R1 source overlay absent; historical logs retained, no full R1 replay claim"
+  },
+  "kelan_live_evidence": {
+    "started_at_utc": "2026-10-26T12:06:04.850369+00:00",
+    "ended_at_utc": "2026-10-26T12:08:38.396658+00:00",
+    "elapsed_seconds": 153.546289,
+    "native_exit": 2,
+    "stop_reason": "target_not_ready_waiting_owner",
+    "counts": {
+      "cleanup_frames": 0,
+      "cleanup_seconds": 0,
+      "history": 0,
+      "initialize": 1,
+      "io_timeout_seconds": 0,
+      "max_frame_bytes": 0,
+      "non_cleanup_tx_frames": 2,
+      "owner_discovery": 1,
+      "per_batch_start_attempts": 0,
+      "rollout_known_bytes": 45066,
+      "rollout_reads": 2,
+      "rollout_upper_bytes": 45066,
+      "rx_frames": 4,
+      "rx_known_bytes": 984,
+      "rx_upper_bytes": 984,
+      "start_write_attempts": 0,
+      "total_requests": 2,
+      "total_rollout_bytes": 0,
+      "total_rx_bytes": 0,
+      "tx_known_bytes": 476,
+      "tx_upper_bytes": 476
+    },
+    "phase_reached": 1,
+    "model_turns": 0,
+    "business_ack": false,
+    "final_status": {
+      "enabled": false,
+      "initialized": false,
+      "initial_files": null,
+      "initial_bytes": null,
+      "resource_reason": null,
+      "backlog": 0,
+      "batches": [],
+      "rows_limit": 20,
+      "watcher": {
+        "state": "unknown",
+        "freshness": "unknown",
+        "process_liveness": "not_proven",
+        "attention_required": true,
+        "reason": "progress record unavailable or invalid"
+      },
+      "stop_present": false,
+      "deadline": 1793016844.850369
+    },
+    "limitations": [
+      "owner_unavailable is not proof of why owner was absent",
+      "No new current-state, busy, send, two-batch, or GUI-reopen evidence",
+      "No retry, owner loading, target switch, timeout extension or production activation",
+      "One completed archive verification is not sustained polling-cost evidence",
+      "No raw conversation, screenshot, target ID or private configuration exported"
+    ]
+  },
+  "causal_inference": {
+    "path": [
+      "rule_service.enable",
+      "IPCClient.owner -> thread-owner-discovery",
+      "request: matching requestId + no-client-found -> IPCFailure(owner_discovery, owner_unavailable)",
+      "DesktopAdapter.inspect -> waiting_owner",
+      "BoundedAdapter.inspect -> target_not_ready_waiting_owner"
+    ],
+    "raw_live_error_body_available": false,
+    "reason_basis": "fixed code, sanitized live counters and independent synthetic reproduction",
+    "catalog_selection_loads_target": false,
+    "notify_enable_calls_strict_window_loader": false,
+    "notify_cycle_bypasses_window_loader": true,
+    "remaining_hypotheses": [
+      "target not currently loaded/registered",
+      "host/connection scope",
+      "version-related target/owner registration behavior"
+    ],
+    "root_cause_proven": false
+  },
+  "alice_checks": {
+    "regression": {
+      "modules": [
+        "test_g3_trial",
+        "test_g3_launch",
+        "test_g3_repairs",
+        "test_simple_catalog",
+        "test_simple_controller",
+        "test_notify",
+        "test_notify_boundaries",
+        "test_rule_service",
+        "test_desktop_ipc"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 10.495,
+      "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+      "platform": "linux",
+      "methods": 115,
+      "passed": 114,
+      "skipped": 1,
+      "failures": 0,
+      "errors": 0,
+      "unittest_seconds": 10.286,
+      "skip_reason": "Windows overlapped-I/O contract",
+      "log_sha256": "ecec52832e9ab507e9c739338e8b11b17f884859f897ffe3e8e8518392f31d46"
+    },
+    "ruff": {
+      "version": "0.17.1",
+      "files": 8,
+      "rules": [
+        "E9",
+        "F63",
+        "F7",
+        "F82"
+      ],
+      "exit_code": 0,
+      "diagnostics": 0,
+      "default_style_checked": false
+    },
+    "owner_negative": {
+      "result": {
+        "synthetic": true,
+        "real_ipc": 0,
+        "model_sends": 0,
+        "reason": "target_not_ready_waiting_owner",
+        "requests": [
+          "initialize",
+          "thread-owner-discovery"
+        ],
+        "history": 0,
+        "start_write_attempts": 0,
+        "enabled": false,
+        "initialized": false,
+        "backlog": 0,
+        "pipe_closed": true
+      },
+      "probe_source": "\"\"\"Offline causal check using the delivered framing fixture; no Desktop I/O.\"\"\"\nimport json\nfrom test_g3_launch import LauncherTests, Peer, constrained_preview\nfrom test_g3_trial import pack\nfrom experimental.g3_trial import BoundedAdapter, BudgetStopped, make_client\nimport rule_service as rs\nfrom simple_controller import read_status\n\n\nclass MissingOwner(Peer):\n    def io(self, value, deadline, write=False, before_write=None):\n        if write:\n            item = json.loads(value[4:])\n            if item['method'] == 'thread-owner-discovery':\n                if before_write:\n                    before_write()\n                self.requests.append(item['method'])\n                self.pending.extend(pack(dict(type='response',\n                    requestId=item['requestId'], resultType='error',\n                    error='no-client-found')))\n                return len(value)\n        return super().io(value, deadline, write, before_write)\n\n\ncase = LauncherTests()\ncase.setUp()\ntry:\n    config = constrained_preview(case.preview(), case.contract, case.selection)['config']\n    peers = []\n    def factory(c, paused):\n        adapter = BoundedAdapter(c, paused, case.budget)\n        def client(timeout):\n            peer = MissingOwner(c)\n            peers.append(peer)\n            return make_client(case.budget, timeout, pipe_factory=lambda: peer,\n                               verifier=lambda _: {})\n        adapter.client_factory = client\n        return adapter\n    try:\n        rs.enable(config, adapter_factory=factory)\n    except BudgetStopped as error:\n        assert str(error) == 'target_not_ready_waiting_owner', str(error)\n    else:\n        raise AssertionError('missing owner enabled rule')\n    status = read_status(config)\n    assert case.budget.reason == 'target_not_ready_waiting_owner'\n    assert peers[0].requests == ['initialize', 'thread-owner-discovery']\n    assert peers[0].closed\n    assert case.budget.counts['history'] == 0\n    assert case.budget.counts['start_write_attempts'] == 0\n    assert status['enabled'] is False and status['initialized'] is False\n    assert status['backlog'] == 0\n    print(json.dumps(dict(synthetic=True, real_ipc=0, model_sends=0,\n        reason=case.budget.reason, requests=peers[0].requests,\n        history=0, start_write_attempts=0, enabled=status['enabled'],\n        initialized=status['initialized'], backlog=status['backlog'],\n        pipe_closed=peers[0].closed), indent=2))\nfinally:\n    case.doCleanups()\n",
+      "reproduce": "Put verified final candidate root, tests and installed watchdog on PYTHONPATH; save probe_source to a temporary .py file and run python -B. It uses only the synthetic Peer."
+    },
+    "r3_exit_counterexample": {
+      "script": "review-findings/review_r3_exit_check.py",
+      "passed": 1,
+      "skipped": 0,
+      "test_exit": 0,
+      "launcher_exit": 2,
+      "unittest_seconds": 0.789,
+      "log": "test_completion_receipt_failure_cannot_exit_zero (__main__.CompletionFailure.test_completion_receipt_failure_cannot_exit_zero) ... ok\n\n----------------------------------------------------------------------\nRan 1 test in 0.789s\n\nOK\n{\"case\": \"completion_receipt_failure\", \"closed\": true, \"exit_code\": 2, \"supervisor_error\": \"BudgetStopped: evidence_write_failed\", \"two_released\": true}\n"
+    },
+    "non_product_check_errors": [
+      "Owner probe initially used rs.status initialized field (absent), then compared read_status backlog to wrong type; corrected probe only, not candidate.",
+      "R3 first attempt lacked baseline example.windows.json beside overlay; added missing verified baseline fixtures; original log retained.",
+      "Ruff cache absent (exit127); installed skill-pinned 0.17.1 in isolated tool environment.",
+      "One combined source-read command used wrong cwd and stopped before Ruff; corrected command then passed."
+    ],
+    "limitations": [
+      "No live Windows/Tk/Desktop/model calls",
+      "No full project regression or current production health test",
+      "Kelan Windows 115 results were on R2, R3 local check was one existing counterexample",
+      "All-220-file original snapshot not independently reconstructed",
+      "Source unchanged; no applicable registered Lean target"
+    ]
+  },
+  "next_step": {
+    "proposal_only": true,
+    "same_exact_target_open_then_one_readonly_check": true,
+    "proposed_seconds": 90,
+    "automatic_retries": 0,
+    "model_sends": 0,
+    "initialize_max": 1,
+    "owner_discovery_max": 2,
+    "history_max": 1,
+    "max_frame_bytes": 33554432,
+    "max_rx_bytes": 134217728,
+    "needs_actual_entry_budget_enforcement": true,
+    "old_trial_rearmed": false,
+    "control_target_is_separate_followup_if_needed": true
+  },
+  "cloud_real_actions": {
+    "ipc": 0,
+    "model": 0,
+    "windows_ui": 0,
+    "production_changes": 0,
+    "agent_messages": 0
+  },
+  "publication_scope": "four existing Markdown documents plus this sanitized evidence; no runtime candidate or private package publication"
+}

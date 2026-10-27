@@ -1,0 +1,218 @@
+{
+  "schema": 1,
+  "date": "2026-10-24",
+  "reviewer": "Alice",
+  "environment": {
+    "os": "Linux",
+    "python": "3.12.14",
+    "ruff": "0.17.1"
+  },
+  "reviewed_commit": "88dc1756d08a9f8a353628816a72ec7169f7718a",
+  "input_parent": "db69330f9a893093a52d4dc2812626be52c649ea",
+  "decision": "G1 accepted: implementation and synthetic verification",
+  "g2": "design_ready / implementation_not_started",
+  "findings": {
+    "blocking_findings_identified": 0,
+    "claim": "No blocking finding identified in this review; not a proof of all concurrency or production behavior."
+  },
+  "public_delivery": {
+    "files": 17,
+    "bytes": 376659,
+    "manifest_payloads_verified": 16,
+    "git_blob_verified": true,
+    "sha256_and_lengths_verified": true,
+    "unchanged_previous_blobs": 185,
+    "previous_log_prefix_bytes": 155823,
+    "previous_log_prefix_crlf": 11,
+    "previous_log_prefix_matches": true
+  },
+  "source_pins": {
+    "trigger.py": {
+      "bytes": 40907,
+      "sha256": "6c3199f1d047e3204e4fe8c2bbe270ca126fe707c07c29a04125057cf2122600",
+      "git_blob": "5b1c2dbd08b7249fd121f064cbff1e299f16be51"
+    },
+    "desktop_ipc.py": {
+      "bytes": 32602,
+      "sha256": "a605eb0c6cf91a1a1550d6badf6f1079180a559bcabff307dca148887acefe89",
+      "git_blob": "0719343c08c48438b7c5ec8a654c66c686111c2a"
+    },
+    "owner_loading.py": {
+      "bytes": 13498,
+      "sha256": "0bb7159d3fa9ef3596d9d74e9f7e086140c2163121868e5398d3c3e198ebbfd4",
+      "git_blob": "14f036cbf9e9ec6571bd3e61e5abd643b878f5b7"
+    },
+    "notify_state.py": {
+      "bytes": 13720,
+      "sha256": "565056d247cef917df6e6ae69dd5de803bc80a37edc79a3790bee0facfb9acc3",
+      "git_blob": "5a834d43a71da687f01d6a66e1810e3e2060405e"
+    },
+    "rule_service.py": {
+      "bytes": 3516,
+      "sha256": "72277ab7c5fe6cedf91327fc3959ffc1ba5e289e24b85d0854feab2179259a94",
+      "git_blob": "9c3c839d72b7260d7440b50520904e15c53f13a3"
+    },
+    "tests/test_trigger.py": {
+      "bytes": 16232,
+      "sha256": "dc7f3b4746bbf5c9bd8e6b880d5cc8164ce8672ac907251015071928dc19e9d5",
+      "git_blob": "b2a1b4c2b4df88e489d1d22a7d8a8452c56f102c"
+    },
+    "tests/test_notify.py": {
+      "bytes": 9127,
+      "sha256": "d81b5767172c1207698d82904c441594d75de741eb9f0f41dd6980713a1786a0",
+      "git_blob": "bfb2e68fb5add5d4119737fa6385453b4c3f0d51"
+    },
+    "tests/test_notify_boundaries.py": {
+      "bytes": 9932,
+      "sha256": "839fb047e380663c3c2b239be61ab3b032b1967e021a7e67d507e22558876286",
+      "git_blob": "385e26c57c0c5cc2a1843a519f4485b9010298b9"
+    },
+    "tests/test_rule_service.py": {
+      "bytes": 6132,
+      "sha256": "ea28ac07d1b0845ee95355bba23017736ac025757048ebd44a5f0e0d7c705119",
+      "git_blob": "56792a57d12f99350cea05b22bcf4b948701de1e"
+    },
+    "tests/fixtures/legacy_trigger_db69330f.py": {
+      "bytes": 37162,
+      "sha256": "624ffabd694c1b7ee04e537f21ad63d057f2e5fcd9188a90f69348e0bc6e050a",
+      "git_blob": "05201969d1c36c84da11b66d2dd3650d5cb5d8ef"
+    },
+    "tests/fixtures/legacy_trigger_db69330f.json": {
+      "bytes": 164,
+      "sha256": "29b5d2044c3795ab1df80ad5f36aebf749a686ca316ec49f0eeabae67cd06891",
+      "git_blob": "fade47f4af4d4800ff6e1fb71c830a7d5522a35e"
+    },
+    "experimental/notify_demo.py": {
+      "bytes": 1865,
+      "sha256": "b96c7b0659f4bee8c16c86aba2ac3d29a0fb84d202acf4064a2941fa87859c17",
+      "git_blob": "553453fbdc82ef367dfc68248b1d1ff00e8545ef"
+    }
+  },
+  "direct_checks": {
+    "unittest": {
+      "command": "python -B -m unittest -v test_notify test_notify_boundaries test_rule_service",
+      "module_path": [
+        "repository root",
+        "tests"
+      ],
+      "methods": 36,
+      "passed": 36,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0
+    },
+    "demo": {
+      "command": "python -B experimental/notify_demo.py --temp-parent <writable isolated directory>",
+      "exit_code": 0,
+      "results": [
+        {
+          "mode": "notify",
+          "files_are_synthetic": true,
+          "ipc_calls": 0,
+          "model_calls": 0,
+          "sends_while_a_running": 1,
+          "adapter_sends": 2,
+          "sent_b_once": true,
+          "first_batch_retained": true,
+          "first_state": "ended",
+          "business_ack": false,
+          "delivered": 0,
+          "backlog": 1
+        },
+        {
+          "mode": "verified_delivery",
+          "files_are_synthetic": true,
+          "ipc_calls": 0,
+          "model_calls": 0,
+          "sends_while_a_running": 1,
+          "adapter_sends": 1,
+          "sent_b_once": false,
+          "first_batch_retained": true,
+          "first_state": "ended",
+          "business_ack": false,
+          "delivered": 0,
+          "backlog": 2
+        }
+      ]
+    },
+    "ruff": {
+      "version": "0.17.1",
+      "rules": "E9,F63,F7,F82",
+      "files": [
+        "trigger.py",
+        "desktop_ipc.py",
+        "owner_loading.py",
+        "notify_state.py",
+        "rule_service.py",
+        "experimental/notify_demo.py",
+        "tests/test_notify.py",
+        "tests/test_notify_boundaries.py",
+        "tests/test_rule_service.py"
+      ],
+      "exit_code": 0,
+      "findings": 0,
+      "default_all_green_claimed": false
+    }
+  },
+  "reused_kelan_checks": {
+    "source": "evidence/kelan-g1-notify-20261024.json",
+    "windows_suite": {
+      "methods": 230,
+      "passed": 229,
+      "skips": 1,
+      "skip_reason": "Windows symlink permission"
+    },
+    "experimental_passed": 34,
+    "private_full_logs_independently_read": false,
+    "local_s1_m0_findings_closed_reported": 2,
+    "local_recheck_methods_overlapping_suite": 3,
+    "rerun_in_cloud_this_turn": false
+  },
+  "scope": {
+    "runtime_source_changed": false,
+    "subagents_dispatched": 0,
+    "kelan_tasks_sent": 0,
+    "real_ipc": 0,
+    "model_calls": 0,
+    "gui_actions": 0,
+    "production_installs": 0,
+    "business_ack_changes": 0,
+    "production_health_checked": false
+  },
+  "limitations": [
+    "No G2 UI or G3 real two-batch acceptance",
+    "Native idle/start race remains",
+    "Full history growth and query cost remain",
+    "Locks exclude current-version workers, not historical binaries or external senders",
+    "Default Ruff retains documented baseline and new diagnostics",
+    "No in-place rule editing; preserve old state when creating replacement",
+    "No applicable registered Lean proof target"
+  ],
+  "local_check_log_hashes": {
+    "new-tests.out": {
+      "bytes": 7419,
+      "sha256": "338bea4e4e62c09353879f7b29e9c8556f19b501002aa24e4661327a3eff7132"
+    },
+    "new-tests.err": {
+      "bytes": 5138,
+      "sha256": "c6e988d246548439a4661934b0a9627f5a1199f35c4786b8671bcfaae08a06ac"
+    },
+    "demo.out": {
+      "bytes": 641,
+      "sha256": "67928277d8da6e71538ac625b903c2528665185de45b96a404204267726c185a"
+    },
+    "demo.err": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "ruff-critical.out": {
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "ruff-critical.err": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}

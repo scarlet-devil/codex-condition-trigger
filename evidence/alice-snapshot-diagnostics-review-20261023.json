@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "date": "2026-10-23",
+  "actor": "Alice",
+  "environment": "cloud Linux / Python 3.12.14",
+  "input_commit": "f10faeb1276c3dab10479f81e00b11d1670c7b1f",
+  "material_review": "accepted_with_recorded_limits",
+  "implementation_review": "Self-review / S0; Draft candidate",
+  "G0": "not_passed",
+  "input_checks": {
+    "git_blobs": 29,
+    "increment_files": 7,
+    "manifest_entries": 6,
+    "preceding_log_prefix_bytes": 133519,
+    "current_log_prefix_preserved_bytes": 136768,
+    "CRLF_preserved": 11
+  },
+  "windows_evidence": {
+    "executor": "Kelan (reported; not rerun by Alice)",
+    "maximum_snapshot_body_bytes": 8972,
+    "completed_receive_bytes": 28810,
+    "ipc_seconds": 0.016,
+    "total_seconds": 1.047,
+    "state_query_completed": false,
+    "error_stage": "current_state",
+    "error_category": "protocol",
+    "exact_cause": "unknown; original sample has no precise reason",
+    "representative_turns": 0,
+    "busy_after_samples": 0
+  },
+  "changes": {
+    "shared_validator": "fixed local validation reason labels and primary/cleanup error separation",
+    "meter": "diagnostic_schema=1, error_reason, unsubscribe_failure; no raw errors or frames exported",
+    "unchanged_acceptance": "owner/thread/cwd/revision checks, status mapping, send contract and installation validation",
+    "limits": {
+      "frame_bytes": 33554432,
+      "cumulative_receive_bytes": 134217728,
+      "ipc_seconds_after_installation_verification": 10,
+      "can_send": false
+    }
+  },
+  "source_files": [
+    {
+      "path": "desktop_ipc.py",
+      "bytes": 30787,
+      "sha256": "7ed8f13aa3e7d6fc3d74c8cfa5e77bd1a4c47ec50b7932b0944b967857e382dc",
+      "git_blob": "fcc9657865c8c6609e46452a09cad75cca20448f"
+    },
+    {
+      "path": "experimental/snapshot_measure.py",
+      "bytes": 10124,
+      "sha256": "0a819e956ba2d84df400b8c3a3ace06a09a3442d5934f81b86a1aee7bee049bb",
+      "git_blob": "7f9e43854be9544d2323e55c2e3c468bbe5baddd"
+    },
+    {
+      "path": "experimental/tests/test_snapshot_diagnostics.py",
+      "bytes": 7865,
+      "sha256": "89dac896fd6255d3d2be4998a0733a533134864cd629898912e7c1aa60ecf35b",
+      "git_blob": "4a2570c36f32b45a792046977ebf7e5225add98c"
+    }
+  ],
+  "tests": {
+    "original_experimental_baseline": {
+      "run": 25,
+      "passed": 25
+    },
+    "final": [
+      {
+        "label": "experimental",
+        "run": 34,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 34,
+        "skip_reasons": []
+      },
+      {
+        "label": "ipc_native_adapter_collector",
+        "run": 46,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1,
+        "passed": 45,
+        "skip_reasons": [
+          "Windows overlapped-I/O contract"
+        ]
+      }
+    ],
+    "diagnostic_test_methods_added": 9,
+    "initial_setup_failures": [
+      {
+        "errors": 25,
+        "cause": "isolated checkout lacked public example.windows.json fixture",
+        "resolution": "retrieved and verified exact input blob"
+      },
+      {
+        "errors": 2,
+        "cause": "watchdog missing",
+        "resolution": "installed requirements pin watchdog 6.0.0 into disposable test dependency directory"
+      }
+    ],
+    "final_log_sha256": {
+      "trialreview-experimental-final.log": "7e5c49b1df6318ba1f7c09da1b56cd37598e9620b53092c2f30ddcefd29284ed",
+      "trialreview-ipc_native_adapter_collector-final.log": "079e65fea64ebed6720d023a87c353b2cb4238b36cd2c46a0a545221bad3bce3"
+    }
+  },
+  "lint": {
+    "ruff_version": "0.17.1",
+    "experimental_files": "passed",
+    "core_baseline_diagnostics": 9,
+    "core_current_diagnostics": 9,
+    "core_new_diagnostics": 0,
+    "comparison": "same rule, message and source line; baseline pinned to f10faeb1",
+    "new_test_B023": "fixed before final run"
+  },
+  "not_rerun": [
+    "full 185-test suite",
+    "47 copy-candidate tests",
+    "live Windows IPC",
+    "GUI chooser",
+    "model or business delivery"
+  ],
+  "cloud_actions": {
+    "model_sends": 0,
+    "live_ipc": 0,
+    "window_actions": 0,
+    "installation_changes": 0,
+    "deployed_configuration_changes": 0,
+    "messages_or_pr_comments_to_kelan": 0
+  },
+  "next_scope": "same existing dedicated target; one bounded read-only observation and separate observable Tk chooser; zero model/init/representative turns, zero automatic retries",
+  "privacy": "finite local reason labels only; no private identifiers, paths, error text, raw frames or installed vendor sources",
+  "pr": "Draft / unmerged; candidate review_pending"
+}

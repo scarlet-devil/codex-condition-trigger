@@ -15,12 +15,38 @@ import time
 import uuid
 
 from chat_adapters import NotDispatched, RPCError
+from cwd_paths import cwd_matches
 
 MAX_FRAME = 32 * 1024 * 1024
 MAX_ROLLOUT = 64 * 1024 * 1024
 METHODS = {'initialize': 1, 'thread-owner-discovery': 1, 'thread-follower-start-turn': 2,
            'thread-stream-following-changed': 1, 'thread-stream-state-changed': 11,
            'thread-follower-load-complete-history': 1}
+
+PROTOCOL_REASONS = frozenset((
+    'frame_not_object', 'history_result_not_object', 'history_revision_invalid',
+    'snapshot_params_not_object', 'snapshot_change_not_object', 'snapshot_state_not_object',
+    'snapshot_thread_mismatch', 'snapshot_cwd_invalid', 'snapshot_cwd_mismatch',
+    'response_method_mismatch', 'response_owner_mismatch', 'response_not_success',
+))
+
+
+class ProtocolCheckError(RPCError, ValueError):
+    """Local validation label; contains no peer values or exception text.
+
+    Both bases preserve the existing RPCError/ValueError catch boundaries.
+    This refines diagnostics only; it does not make a rejected state usable.
+    """
+    def __init__(self, reason):
+        self.reason = reason if reason in PROTOCOL_REASONS else 'protocol_unclassified'
+        super().__init__(self.reason)
+
+
+def protocol_reason(error):
+    """Export only labels assigned by this module, never parse error strings."""
+    if type(error) is ProtocolCheckError and error.reason in PROTOCOL_REASONS:
+        return error.reason
+    return 'protocol_unclassified'
 
 
 class IPCFailure(RPCError):
@@ -47,6 +73,12 @@ def sha(data):
 
 def protocol_object(value, where):
     if not isinstance(value, dict):
+        reason = {'frame': 'frame_not_object', 'history.result': 'history_result_not_object',
+                  'snapshot.params': 'snapshot_params_not_object',
+                  'snapshot.change': 'snapshot_change_not_object',
+                  'snapshot.state': 'snapshot_state_not_object'}.get(where)
+        if reason:
+            raise ProtocolCheckError(reason)
         raise RPCError('expected protocol object: ' + where)
     return value
 
@@ -65,7 +97,7 @@ def start_params(thread_id, client_id, text):
                     'mcpAppModelContextAttachments': []}}, 'isSteering': False}
 
 
-def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=True):
+def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=True, reader=None):
     """Read only the explicitly configured rollout. Preserve tool records verbatim.
 
     Missing/partial/changed history is unknown, never evidence of an idle target.
@@ -75,7 +107,7 @@ def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=Tru
     before = path.stat()
     if before.st_size > MAX_ROLLOUT:
         raise ValueError('target rollout exceeds bounded observer limit')
-    data = path.read_bytes()
+    data = path.read_bytes() if reader is None else reader(path)
     after = path.stat()
     if (before.st_ino, before.st_size, before.st_mtime_ns) != (after.st_ino, after.st_size, after.st_mtime_ns):
         raise ValueError('target rollout changed while reading')
@@ -86,8 +118,7 @@ def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=Tru
     meta = rows[0]
     if meta.get('type') != 'session_meta' or meta.get('payload', {}).get('id') != thread_id:
         raise ValueError('wrong target rollout identity')
-    norm = lambda p: os.path.normcase(os.path.normpath(p))
-    if norm(meta['payload'].get('cwd', '')) != norm(expected_cwd):
+    if not cwd_matches(meta['payload'].get('cwd', ''), expected_cwd):
         raise ValueError('wrong target cwd')
     offset = len(lines[0])
     if baseline and (before.st_ino != baseline['inode'] or len(data) < baseline['bytes']
@@ -100,7 +131,7 @@ def rollout_state(path, thread_id, expected_cwd, *, baseline=None, lifecycle=Tru
         offset += len(line)
         kind, p = row.get('type'), protocol_object(row.get('payload', {}), 'rollout payload')
         if kind == 'turn_context':
-            if p.get('cwd') and norm(p['cwd']) != norm(expected_cwd):
+            if p.get('cwd') and not cwd_matches(p['cwd'], expected_cwd):
                 raise ValueError('turn context cwd changed')
             settings = {k: p[k] for k in ('model', 'effort', 'approval_policy', 'sandbox_policy', 'cwd') if k in p}
         if not lifecycle or not after_baseline:
@@ -348,10 +379,12 @@ class IPCClient:
                 category = ('owner_unavailable' if item.get('error') == 'no-client-found'
                             else 'remote_rejected')
                 raise IPCFailure(stage, category)
-            if item.get('method') != method or (target and item.get('handledByClientId') != target):
-                raise ValueError('IPC response method or owner mismatch')
+            if item.get('method') != method:
+                raise ProtocolCheckError('response_method_mismatch')
+            if target and item.get('handledByClientId') != target:
+                raise ProtocolCheckError('response_owner_mismatch')
             if item.get('resultType') != 'success':
-                raise RPCError('IPC request was not acknowledged as successful')
+                raise ProtocolCheckError('response_not_success')
             return item
 
     def owner(self, thread_id):
@@ -368,6 +401,8 @@ class IPCClient:
         this function. Disconnect also removes the temporary follower.
         """
         deadline = time.monotonic() + self.timeout
+        failed = False
+        self.current_state_cleanup_failure = None
         def following(value, until):
             self.write_frame(dict(type='broadcast', method='thread-stream-following-changed',
                 version=METHODS['thread-stream-following-changed'], sourceClientId=self.client_id,
@@ -378,7 +413,7 @@ class IPCClient:
                                  target=owner, deadline=deadline)
             revision = protocol_object(reply.get('result'), 'history.result').get('revision')
             if type(revision) is not int or revision < 0:
-                raise RPCError('missing current stream revision')
+                raise ProtocolCheckError('history_revision_invalid')
             following(True, deadline)
             while True:
                 item = self.read_frame(deadline)
@@ -397,10 +432,12 @@ class IPCClient:
                         or current_revision < revision):
                     continue
                 state = protocol_object(change.get('conversationState'), 'snapshot.state')
-                norm = lambda p: os.path.normcase(os.path.normpath(p))
-                if (state.get('id') != thread_id or not isinstance(state.get('cwd'), str)
-                        or norm(state['cwd']) != norm(expected_cwd)):
-                    raise RPCError('native snapshot identity or cwd mismatch')
+                if state.get('id') != thread_id:
+                    raise ProtocolCheckError('snapshot_thread_mismatch')
+                if not isinstance(state.get('cwd'), str):
+                    raise ProtocolCheckError('snapshot_cwd_invalid')
+                if not cwd_matches(state['cwd'], expected_cwd):
+                    raise ProtocolCheckError('snapshot_cwd_mismatch')
                 runtime = state.get('threadRuntimeStatus')
                 status = runtime.get('type') if isinstance(runtime, dict) else None
                 status = {'active': 'busy', 'idle': 'idle'}.get(status, 'unknown') if isinstance(status, str) else 'unknown'
@@ -412,11 +449,20 @@ class IPCClient:
                     from native_collector import project_turn
                     result['turn_result'] = project_turn(state, turn_id)
                 return result
+        except BaseException:
+            failed = True
+            raise
         finally:
             try:
                 following(False, time.monotonic() + min(self.timeout, 1))
-            except (OSError, TimeoutError, EOFError):
-                pass  # Adapter.close disconnects; do not mask the primary result.
+            except (OSError, EOFError, ValueError, RPCError, TypeError, KeyError, RecursionError) as error:
+                self.current_state_cleanup_failure = {
+                    'category': ipc_failure(error, 'current_state').category,
+                    'reason': protocol_reason(error), 'primary_failed': failed}
+                # Retain the primary rejection even if unsubscribe also fails.
+                # Transport cleanup still uses the existing disconnect fallback.
+                if not failed and not isinstance(error, (OSError, EOFError)):
+                    raise
 
     def close(self):
         self.pipe.close()
@@ -447,7 +493,10 @@ class DesktopAdapter:
             if failure.stage in ('owner_discovery', 'current_state') and failure.category == 'owner_unavailable':
                 return {'can_send': False, 'reason': 'waiting_owner'}
             raise failure from None
-        return {'can_send': self.native['status'] == 'idle', 'reason': 'waiting_owner_' + self.native['status']}
+        result = {'can_send': self.native['status'] == 'idle', 'reason': 'waiting_owner_' + self.native['status']}
+        if self.c.get('dispatch_mode') == 'notify':
+            result['fresh_state'] = self.native
+        return result
 
     def observe(self, row):
         if row['state'] == 'ready' or not row.get('dispatch_meta') or not row.get('dispatch_text'):
@@ -459,9 +508,21 @@ class DesktopAdapter:
         if row.get('turn_id'):
             turn = candidates.get(row['turn_id'])
             if turn:
-                return dict(state=turn['state'], execution_outcome=turn.get('execution_outcome', 'unknown'),
+                receipt = dict(state=turn['state'], execution_outcome=turn.get('execution_outcome', 'unknown'),
                             turn_id=row['turn_id'], detail='target rollout lifecycle; task_complete does not prove success')
+                if self.c.get('dispatch_mode') == 'notify' and turn['state'] in ('ended','failed'):
+                    matches = [r for r in turn['records'] if r.get('type') == 'response_item'
+                        and r.get('payload',{}).get('type') == 'message' and r['payload'].get('role') == 'user'
+                        and len(r['payload'].get('content',[])) == 1
+                        and r['payload']['content'][0].get('type') == 'input_text'
+                        and r['payload']['content'][0].get('text') == row['dispatch_text']]
+                    if len(matches) != 1:
+                        return None
+                    receipt['notify_evidence'] = self.notification_evidence(row, meta, row['turn_id'], 'terminal')
+                return receipt
             return dict(state='accepted', turn_id=row['turn_id'], detail='native acceptance retained; lifecycle not visible yet')
+        if self.c.get('dispatch_mode') == 'notify':
+            return None  # unauthenticated text fallback cannot confer native acceptance
         matches = []
         for key, turn in candidates.items():
             for record in turn['records']:
@@ -503,7 +564,7 @@ class DesktopAdapter:
             raise NotDispatched('paused')
         from trial_limits import trial_deadline
         expires_at = trial_deadline(self.c)
-        request_options = {}
+        request_options = {'before_write': self.paused} if self.c.get('dispatch_mode') == 'notify' else {}
         if expires_at is not None:
             remaining = expires_at - time.time()
             if remaining <= 0:
@@ -518,7 +579,17 @@ class DesktopAdapter:
         result = protocol_object(protocol_object(reply, 'start.reply').get('result'), 'start.result')
         native = protocol_object(result.get('result'), 'start.native')
         turn_id = protocol_id(protocol_object(native.get('turn'), 'start.turn').get('id'), 'turn.id')
-        return dict(state='accepted', turn_id=turn_id, detail='native IPC accepted; lifecycle and business delivery pending')
+        receipt = dict(state='accepted', turn_id=turn_id, detail='native IPC accepted; lifecycle and business delivery pending')
+        if self.c.get('dispatch_mode') == 'notify':
+            receipt['notify_evidence'] = self.notification_evidence(dict(row,dispatch_text=text),metadata,turn_id,'accepted')
+        return receipt
+
+    def notification_evidence(self, row, metadata, turn_id, phase):
+        return dict(phase=phase, source='native_ipc' if phase == 'accepted' else 'native_turn_rollout',
+                    thread_id=self.c['thread_id'], cwd=self.c['expected_cwd'], batch_id=row['id'],
+                    manifest_sha256=sha((row['manifest']+'\n').encode()), request_id=metadata['request_id'],
+                    client_id=row['client_id'], turn_id=turn_id, baseline=metadata['baseline'],
+                    text_sha256=sha(row['dispatch_text'].encode()),exact_text=True,post_intent=True)
 
     def close(self):
         if self.client is not None:

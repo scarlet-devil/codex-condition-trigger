@@ -1,0 +1,103 @@
+{
+  "input_commit": "db69330f9a893093a52d4dc2812626be52c649ea",
+  "payload_count": 16,
+  "payload_bytes": 372873,
+  "files": [
+    {
+      "path": "trigger.py",
+      "bytes": 40907,
+      "sha256": "6c3199f1d047e3204e4fe8c2bbe270ca126fe707c07c29a04125057cf2122600",
+      "git_blob": "5b1c2dbd08b7249fd121f064cbff1e299f16be51"
+    },
+    {
+      "path": "desktop_ipc.py",
+      "bytes": 32602,
+      "sha256": "a605eb0c6cf91a1a1550d6badf6f1079180a559bcabff307dca148887acefe89",
+      "git_blob": "0719343c08c48438b7c5ec8a654c66c686111c2a"
+    },
+    {
+      "path": "owner_loading.py",
+      "bytes": 13498,
+      "sha256": "0bb7159d3fa9ef3596d9d74e9f7e086140c2163121868e5398d3c3e198ebbfd4",
+      "git_blob": "14f036cbf9e9ec6571bd3e61e5abd643b878f5b7"
+    },
+    {
+      "path": "notify_state.py",
+      "bytes": 13720,
+      "sha256": "565056d247cef917df6e6ae69dd5de803bc80a37edc79a3790bee0facfb9acc3",
+      "git_blob": "5a834d43a71da687f01d6a66e1810e3e2060405e"
+    },
+    {
+      "path": "rule_service.py",
+      "bytes": 3516,
+      "sha256": "72277ab7c5fe6cedf91327fc3959ffc1ba5e289e24b85d0854feab2179259a94",
+      "git_blob": "9c3c839d72b7260d7440b50520904e15c53f13a3"
+    },
+    {
+      "path": "tests/test_trigger.py",
+      "bytes": 16232,
+      "sha256": "dc7f3b4746bbf5c9bd8e6b880d5cc8164ce8672ac907251015071928dc19e9d5",
+      "git_blob": "b2a1b4c2b4df88e489d1d22a7d8a8452c56f102c"
+    },
+    {
+      "path": "tests/test_notify.py",
+      "bytes": 9127,
+      "sha256": "d81b5767172c1207698d82904c441594d75de741eb9f0f41dd6980713a1786a0",
+      "git_blob": "bfb2e68fb5add5d4119737fa6385453b4c3f0d51"
+    },
+    {
+      "path": "tests/test_notify_boundaries.py",
+      "bytes": 9932,
+      "sha256": "839fb047e380663c3c2b239be61ab3b032b1967e021a7e67d507e22558876286",
+      "git_blob": "385e26c57c0c5cc2a1843a519f4485b9010298b9"
+    },
+    {
+      "path": "tests/test_rule_service.py",
+      "bytes": 6132,
+      "sha256": "ea28ac07d1b0845ee95355bba23017736ac025757048ebd44a5f0e0d7c705119",
+      "git_blob": "56792a57d12f99350cea05b22bcf4b948701de1e"
+    },
+    {
+      "path": "tests/fixtures/legacy_trigger_db69330f.py",
+      "bytes": 37162,
+      "sha256": "624ffabd694c1b7ee04e537f21ad63d057f2e5fcd9188a90f69348e0bc6e050a",
+      "git_blob": "05201969d1c36c84da11b66d2dd3650d5cb5d8ef"
+    },
+    {
+      "path": "tests/fixtures/legacy_trigger_db69330f.json",
+      "bytes": 164,
+      "sha256": "29b5d2044c3795ab1df80ad5f36aebf749a686ca316ec49f0eeabae67cd06891",
+      "git_blob": "fade47f4af4d4800ff6e1fb71c830a7d5522a35e"
+    },
+    {
+      "path": "experimental/notify_demo.py",
+      "bytes": 1865,
+      "sha256": "b96c7b0659f4bee8c16c86aba2ac3d29a0fb84d202acf4064a2941fa87859c17",
+      "git_blob": "553453fbdc82ef367dfc68248b1d1ff00e8545ef"
+    },
+    {
+      "path": "CURRENT_STATE.md",
+      "bytes": 10736,
+      "sha256": "c9ec7ac2925ceb5e0c8a8f123758fb551627cf1b0994b4ae92f2aa7f6d89dd10",
+      "git_blob": "4dbdf726933acd377b2addf0d8c41552a3cfbf08"
+    },
+    {
+      "path": "WORK_LOG.md",
+      "bytes": 158248,
+      "sha256": "469aafc1716a9c5ce025e0aa275cf97dc5eb017a9e2f58735899d66f7374fd39",
+      "git_blob": "743438a2b0ad146d0ebdfcb497e59beba182b089"
+    },
+    {
+      "path": "docs/KELAN_G1_NOTIFY_IMPLEMENTATION_20261024.md",
+      "bytes": 9299,
+      "sha256": "2418881af1bc02f79d67b8b20bd9d1d6dfeba2bf607c593fd730b19bc41710a8",
+      "git_blob": "0ea27e0932aa4f3e1c9ff58df4fc5f703d08d22b"
+    },
+    {
+      "path": "evidence/kelan-g1-notify-20261024.json",
+      "bytes": 9733,
+      "sha256": "830e4d31eaae0156822f24d34fbca29bd63f192df11f7df5c143d85eabc70c6b",
+      "git_blob": "be0727b41184333167f312bb4e9972d1e7d10e2d"
+    }
+  ]
+}

@@ -1,0 +1,192 @@
+{
+  "sources": {
+    "README.md": {
+      "bytes": 8774,
+      "sha256": "8cb86fe7266ec575c3ad655e666e94d236e81e3b7a5caea5fdc32173521723a3",
+      "git_blob": "7599c5a24eb2f5dde2192551e251dc1ed3cc01a3"
+    },
+    "README.zh-CN.md": {
+      "bytes": 7030,
+      "sha256": "48a36cd009756a056358d4fb31a0e59b07cc800a5e40892ff40b8064334886ea",
+      "git_blob": "02100d6727834d6d4567d59ab9af150979140b3f"
+    },
+    "AGENTS.md": {
+      "bytes": 5886,
+      "sha256": "facd5817d2e0ba6cece77f0b749d56dd05e3ade59fdbc6d79cbe1f71600d26ce",
+      "git_blob": "14d179f02376f64a7f73cfb9827898a9755f12a4"
+    },
+    "docs/SIMPLE_SETUP_G2.md": {
+      "bytes": 2336,
+      "sha256": "437fc459bf843cbe97910c88178bc8e39ecd172c3f4381f08d82908f1032c9bd",
+      "git_blob": "4cf681572ee6394cccbb2eb0c7103c21557f8254"
+    },
+    "simple_setup.py": {
+      "bytes": 22030,
+      "sha256": "fa7463c49b06fe4ce258f68f1088f3d1675acd9cba598f07e233deda95e1b8df",
+      "git_blob": "37e129bc6458a375a4bea0e89850158f8307c5e0"
+    },
+    "simple_controller.py": {
+      "bytes": 19623,
+      "sha256": "5f82d345c398d7ccb1adf8fdc5997ed58e2ff942cc7651efc2f08662f1da74fe",
+      "git_blob": "818d3b68fd0eb3e72186a5779346fbc141253c0d"
+    },
+    "simple_catalog.py": {
+      "bytes": 4607,
+      "sha256": "fd27fbf983df009a06b9055d703e5876133911f724791e1efc6f89b434904ffa",
+      "git_blob": "cc1e4f881e015a300aba679d907e85bbc6c82af8"
+    },
+    "rule_service.py": {
+      "bytes": 3987,
+      "sha256": "58c24c862569a190260d934b0c4fbef53763a15a13cc7e9a8fac0b7b8e3ebcb2",
+      "git_blob": "c5b79b8a714e4970403a8ed6839e30ec3271c315"
+    },
+    "experimental/simple_form_fake.py": {
+      "bytes": 5683,
+      "sha256": "ab3d04d7ddfa4cf99016f25e3097c639c1a2d7e2d44b16f99f59329dc7ec8a70",
+      "git_blob": "7177616f435525aece99f87f946378a4ea586759"
+    },
+    "trigger.py": {
+      "bytes": 41302,
+      "sha256": "77a618be9f98a01cd164937a6155a73cdbcc72216db0beae0c27b585406240a3",
+      "git_blob": "706a52a05195cad3f905e66e6f31e1fd3ce3175d"
+    },
+    "requirements.txt": {
+      "bytes": 16,
+      "sha256": "0741e8d1875c6a936a622fd74adb5c825d57c4c416097365b0ef1e1a7cacc120",
+      "git_blob": "c6c52fb2787e8cbe2b5c1c261204d62697ae9c30"
+    }
+  },
+  "original_candidate": {
+    "relative_links": 46,
+    "anchors": 8
+  },
+  "patch_check_exit": 0,
+  "patch_application_matches_all_four_candidates": true,
+  "help_exit": 0,
+  "help_stdout": {
+    "bytes": 276,
+    "sha256": "1884fc91a20a970152ba36b1c3900099144a0fc00ce46f30243ae87f133dc601",
+    "git_blob": "4a7c2557f45dbbad8b5e5ecf29ce4e370bd1b574"
+  },
+  "final_four_documents": {
+    "relative_links": 48,
+    "anchors": 10
+  },
+  "final_code_map_paths": [
+    "trigger.py",
+    "tests/test_trigger.py",
+    "tests/test_review_regressions.py",
+    "simple_setup.py",
+    "simple_catalog.py",
+    "simple_controller.py",
+    "rule_service.py",
+    "tests/test_simple_catalog.py",
+    "tests/test_simple_controller.py",
+    "tests/test_rule_service.py",
+    "notify_state.py",
+    "trigger.py",
+    "tests/test_notify.py",
+    "tests/test_notify_boundaries.py",
+    "experimental/g3_launch.py",
+    "experimental/g3_trial.py",
+    "tests/test_g3_launch.py",
+    "tests/test_g3_admission.py",
+    "chat_adapters.py",
+    "desktop_ipc.py",
+    "cwd_paths.py",
+    "tests/test_chat_adapters.py",
+    "tests/test_desktop_ipc.py",
+    "tests/test_native_state.py",
+    "tests/test_cwd_paths.py",
+    "owner_loading.py",
+    "windows_window_backend.ps1",
+    "tests/test_owner_loading.py",
+    "tests/test_window_cycle.py",
+    "trial_limits.py",
+    "trial_worker.py",
+    "install_trial_task.ps1",
+    "worker_health.py",
+    "tests/test_trial_deadline.py",
+    "tests/test_recovery_worker.py",
+    "execution_result.py",
+    "native_collector.py",
+    "tests/test_native_collector.py",
+    "tests/test_followup_fixes.py",
+    "delivery_outbox.py",
+    "hub_delivery_driver.py",
+    "tests/test_hub_delivery_driver.py",
+    "tests/test_followup_fixes.py",
+    "tests/test_material_wait.py"
+  ],
+  "preserved_work_log_prefix": {
+    "bytes": 177467,
+    "sha256": "73829f784f52e10c50519b6ccbfd5a9925f1c847965ebec070c5fd7b71a49b5f",
+    "git_blob": "cffdcc1ac49c34da57c183492ec53846a8837a9b"
+  },
+  "review_environment": {
+    "executor": "Alice",
+    "platform": "Linux",
+    "python": "3.12.14",
+    "independence": "S0"
+  },
+  "new_model_tasks": 0,
+  "new_G3_runs": 0,
+  "runtime_changes": false,
+  "limitations": [
+    "Windows and private frozen-input evidence remains Kelan-attributed.",
+    "No CI statuses or check-runs were reported; no CI-pass claim.",
+    "No deployment, merge or production-health observation."
+  ],
+  "prepublication": {
+    "head": "c703a599877394b4e4abb62f26351e0054a635df",
+    "base": "5c1882c7b78fc023d0588953e6e43db55ebe216d",
+    "draft": true,
+    "merged": false,
+    "mergeable": true,
+    "mergeable_state": "clean",
+    "statuses": 0,
+    "check_runs": 0,
+    "main_protected": false,
+    "rulesets": []
+  },
+  "package": {
+    "bytes": 51568,
+    "entries": 17,
+    "payloads": 16,
+    "sha256": "00ad5812cfdbb84d23d41821ce90023eb881ec1e32935caac88d007d28138386"
+  },
+  "corrections": [
+    "Candidate branch acquisition before merge",
+    "Empty existing simulation directory is allowed; nonempty is refused",
+    "Catalog count versus unreadable/schema failure",
+    "Current plan pointers and terminal blank lines"
+  ],
+  "preparation_failures": [
+    "Initial source lookup used a reduced local runtime tree without README; fetched and verified fixed-head originals.",
+    "Original patch applied with one EOF blank-line warning; final four documents have one terminal newline.",
+    "Initial no-index diff checker treated exit 1 as an error despite empty diagnostics; repeated in an isolated Git index with git diff --check exit 0. No product changes resulted."
+  ],
+  "accepted_documents": {
+    "README.md": {
+      "bytes": 10794,
+      "sha256": "aed86cc9b348608cdb53a651d8d347292228680645f855db3c24c2d5f084b9e5",
+      "git_blob": "a4147f2a10969fe939f840d3f7937cc44e94d17a"
+    },
+    "README.zh-CN.md": {
+      "bytes": 8864,
+      "sha256": "9374c8d753c8178080a99834fdc1f032bb440c7dfa6dcb3b121c248496d88f73",
+      "git_blob": "4870e7e08e8b0fd9f5d3483ad22908060cb62865"
+    },
+    "AGENTS.md": {
+      "bytes": 7691,
+      "sha256": "021063d6fa23b5e8a05514be794fa440f8129fddd8d2c4f396cdab99c9fcd087",
+      "git_blob": "4fb14bed3e0535e9138ae40594a081f400101b45"
+    },
+    "docs/SIMPLE_SETUP_G2.md": {
+      "bytes": 7904,
+      "sha256": "597bb3d4475045fef0f03af49793021bc615c7aa52177a5d7e282d860cdaef72",
+      "git_blob": "034e87bf0a20007ec5d12de5015c0ed3ceb18bd6"
+    }
+  },
+  "final_diff_whitespace_exit": 0
+}

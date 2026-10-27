@@ -1,0 +1,308 @@
+{
+  "schema": 1,
+  "date": "2026-10-23",
+  "deployment_environment": "local",
+  "author_identity": "Kelan",
+  "acting_role": "read-only loading investigator",
+  "task_assignment": "Human relayed Alice plan section 6 at 04bd74fc1490fb06d06414d3cebfd554499a3a16",
+  "input_commit": "04bd74fc1490fb06d06414d3cebfd554499a3a16",
+  "review_type": "Self-review",
+  "context_independence": "S0",
+  "status": "review_pending",
+  "G0": "blocked",
+  "static_inventory": {
+    "schema": 1,
+    "scope": [
+      "app/ChatGPT.exe",
+      "app/chrome.dll",
+      "app/resources/app.asar"
+    ],
+    "files": {
+      "app/ChatGPT.exe": {
+        "bytes": 4795184,
+        "sha256": "f7f605cceb2e75dca52e03362329a889f917cc1f8d1036cd26386727a2319415",
+        "read_stable": true,
+        "pe": {
+          "certificate_table_offset": 4779520,
+          "certificate_table_bytes": 15664,
+          "resource_rva": 4210688,
+          "resource_bytes": 652602,
+          "matching_resources": [
+            {
+              "type": "INTEGRITY",
+              "name": "ELECTRONASAR",
+              "language": 1033,
+              "codepage": 1200,
+              "file_offset": 4765376,
+              "bytes": 122,
+              "section": ".rsrc",
+              "sha256": "35932b5c93f51ce5e25d0684e609de1edd389f6ba8e87aa9dd1b191bba911159",
+              "json": [
+                {
+                  "file": "resources\\app.asar",
+                  "alg": "SHA256",
+                  "value": "4a73080abfb68f83e8c079ce00d8502257cda91730ee13f5776b6c8907fabbd7"
+                }
+              ],
+              "outside_certificate_table": true,
+              "entries": [
+                {
+                  "file": "resources\\app.asar",
+                  "alg": "SHA256",
+                  "value": "4a73080abfb68f83e8c079ce00d8502257cda91730ee13f5776b6c8907fabbd7",
+                  "matches_original_raw_header": true
+                }
+              ]
+            }
+          ],
+          "resource_types": [
+            "GOOGLEUPDATEAPPLICATIONCOMMANDS",
+            "INTEGRITY",
+            "LIMITEDACCESSFEATURE",
+            3,
+            14,
+            16,
+            24
+          ]
+        }
+      },
+      "app/chrome.dll": {
+        "bytes": 329773872,
+        "sha256": "0a6efd67f459f2fc6cb1604529cca9825d97537d2101d503d33d7e245c1283c1",
+        "read_stable": true,
+        "pe": {
+          "certificate_table_offset": 329758208,
+          "certificate_table_bytes": 15664,
+          "resource_rva": 328019968,
+          "resource_bytes": 2769489,
+          "matching_resources": [],
+          "resource_types": [
+            "WEVT_TEMPLATE",
+            1,
+            3,
+            9,
+            11,
+            12,
+            14,
+            16,
+            24
+          ]
+        }
+      },
+      "app/resources/app.asar": {
+        "bytes": 625947531,
+        "sha256": "a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49",
+        "read_stable": true,
+        "raw_json_header": {
+          "offset": 16,
+          "bytes": 5898329,
+          "sha256": "4a73080abfb68f83e8c079ce00d8502257cda91730ee13f5776b6c8907fabbd7",
+          "header_size_field": 5898340,
+          "pickle_payload_size": 5898336
+        }
+      }
+    },
+    "source_stable": true,
+    "package_manifest": {
+      "bytes": 8671,
+      "sha256": "d2f593a2b94c0258ec30feff2623ca896f3209378ef8c6b838364a5ac97e85ef",
+      "identity": {
+        "Name": "OpenAI.Codex",
+        "ProcessorArchitecture": "x64",
+        "Version": "26.1016.8622.0",
+        "Publisher": "CN=50BDFD77-8903-4850-9FFE-6E8522F64D5B"
+      },
+      "applications": [
+        {
+          "Id": "App",
+          "Executable": "app/ChatGPT.exe",
+          "EntryPoint": "Windows.FullTrustApplication"
+        },
+        {
+          "Id": "CodexCoreCommandRunner",
+          "Executable": "app/resources/codex-command-runner.exe",
+          "EntryPoint": "Windows.FullTrustApplication"
+        }
+      ],
+      "dependencies": [
+        {
+          "Name": "Windows.Desktop",
+          "MinVersion": "10.0.19041.0",
+          "MaxVersionTested": "10.0.26100.0"
+        }
+      ]
+    },
+    "blockmap": {
+      "bytes": 3398965,
+      "sha256": "b6b7229958a33f8e75871166235e6352311f8e41d707d8d6b6e2cade3481d861",
+      "hash_method": "http://www.w3.org/2001/04/xmlenc#sha256",
+      "files": {
+        "app/ChatGPT.exe": {
+          "declared_bytes": 4795184,
+          "blocks": 74,
+          "matching_blocks": 74,
+          "file_hash_count": 1,
+          "file_hash_match": true,
+          "all_match": true
+        },
+        "app/chrome.dll": {
+          "declared_bytes": 329773872,
+          "blocks": 5032,
+          "matching_blocks": 5032,
+          "file_hash_count": 1,
+          "file_hash_match": true,
+          "all_match": true
+        },
+        "app/resources/app.asar": {
+          "declared_bytes": 625947531,
+          "blocks": 9552,
+          "matching_blocks": 9552,
+          "file_hash_count": 1,
+          "file_hash_match": true,
+          "all_match": true
+        }
+      }
+    },
+    "package_signature_file": {
+      "bytes": 12187,
+      "sha256": "b457c95a904857d680ceacdba031fb6b7b3c833bd843a1f5f547cc02cde94711",
+      "magic_hex": "504b4358"
+    },
+    "elapsed_seconds": 1.392
+  },
+  "native_resource_crosscheck": {
+    "crosschecks": [
+      {
+        "file": "ChatGPT.exe",
+        "flags": "LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE | LOAD_LIBRARY_AS_IMAGE_RESOURCE",
+        "bytes": 122,
+        "sha256": "35932b5c93f51ce5e25d0684e609de1edd389f6ba8e87aa9dd1b191bba911159",
+        "json": [
+          {
+            "file": "resources\\app.asar",
+            "alg": "SHA256",
+            "value": "4a73080abfb68f83e8c079ce00d8502257cda91730ee13f5776b6c8907fabbd7"
+          }
+        ],
+        "matches_static_parser": true
+      },
+      {
+        "file": "chrome.dll",
+        "flags": "LOAD_LIBRARY_AS_DATAFILE_EXCLUSIVE | LOAD_LIBRARY_AS_IMAGE_RESOURCE",
+        "win32_error": 1813,
+        "matches_static_parser": true
+      }
+    ],
+    "executable_entrypoints_invoked": false,
+    "all_match": true
+  },
+  "pe_signatures": [
+    {
+      "file": "app/ChatGPT.exe",
+      "status": "Valid",
+      "signature_type": "Authenticode",
+      "signer": "OpenAI OpCo, LLC",
+      "issuer": "Microsoft ID Verified CS AOC CA 04",
+      "signer_thumbprint": "0A627748F8DBEA79279DB3B4A0F19618B7789E41"
+    },
+    {
+      "file": "app/chrome.dll",
+      "status": "Valid",
+      "signature_type": "Authenticode",
+      "signer": "OpenAI OpCo, LLC",
+      "issuer": "Microsoft ID Verified CS AOC CA 04",
+      "signer_thumbprint": "0A627748F8DBEA79279DB3B4A0F19618B7789E41"
+    }
+  ],
+  "registered_package": {
+    "full_name": "OpenAI.Codex_26.1016.8622.0_x64__2p2nqsd0c76g0",
+    "signature_kind": "Store",
+    "status": "Ok",
+    "is_development_mode": false,
+    "is_partially_staged": false,
+    "is_bundle": false,
+    "is_resource_package": false
+  },
+  "package_cms": {
+    "method": "SignedCms.Decode(P7X bytes after PKCX); CheckSignature(true)",
+    "cryptographic_signature_valid": true,
+    "trust_chain_validated": false,
+    "full_package_container_validated": false,
+    "content_type": "1.3.6.1.4.1.311.2.1.4",
+    "content_bytes": 264,
+    "signer_subject": "CN=50BDFD77-8903-4850-9FFE-6E8522F64D5B",
+    "issuer": "Microsoft Marketplace CA G 024",
+    "thumbprint": "A772A909DD25245952D4B7A3E031F45C33883420",
+    "digest_algorithm": "2.16.840.1.101.3.4.2.1"
+  },
+  "code_integrity_catalog": {
+    "file": "AppxMetadata/CodeIntegrity.cat",
+    "bytes": 23765,
+    "sha256": "452cc56ca684c845966a403ef03b9589f7ff5ab2bdf9ee889247e6ea1727f3bf",
+    "status": "Valid",
+    "signature_type": "Authenticode",
+    "signer": "CN=50BDFD77-8903-4850-9FFE-6E8522F64D5B",
+    "issuer": "Microsoft Marketplace CA G 024",
+    "member_coverage_checked": false
+  },
+  "recovery": {
+    "scope": [
+      "current fixed installation targets/package metadata",
+      "prior candidate private copies",
+      "project monitor runs file names: archive/package/backup/recovery/installer"
+    ],
+    "matching_reinstallable_package_verified": false,
+    "previous_module_originals_available": 3,
+    "previous_module_restores_available": 3,
+    "current_originals_readable": true,
+    "complete_independent_backup_prepared": false,
+    "directory_scan_complete": false,
+    "scan_limit": "one historical test temp directory access denied",
+    "online_store_version_recovery_tested": false,
+    "whole_disk_search_performed": false,
+    "installation_restore_tested": false
+  },
+  "corrections": [
+    "Initial strict comparison of SHA256 against sha256 misclassified an equal digest; canonical algorithm case used in final output.",
+    "Initial XML child iteration counted 2021 FileHash as a Block. Final parsing selects 2010 Block and separately verifies 2021 FileHash.",
+    "First sandbox governance Git and package query denied access; approved read-only native calls passed. No permission settings changed."
+  ],
+  "no_actions": [
+    "modify package",
+    "repack",
+    "re-sign",
+    "certificate store",
+    "ACL",
+    "registration",
+    "restart",
+    "IPC",
+    "model send",
+    "window",
+    "production config",
+    "business ACK",
+    "repeat endpoint search"
+  ],
+  "historical_not_rerun": [
+    "33 JS and 14 Python candidate tests",
+    "18 source extraction checks",
+    "36 related legacy tests",
+    "185 whole-suite tests",
+    "fuse mapping"
+  ],
+  "limitations": [
+    "CMS signature-only is not full package trust validation",
+    "CAT member coverage not inspected",
+    "no loaded patched host",
+    "no proven package recovery",
+    "no installed application performance benchmark",
+    "current listener health not checked"
+  ],
+  "source_urls": [
+    "https://www.electronjs.org/docs/latest/tutorial/asar-integrity",
+    "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format#process-for-generating-the-authenticode-pe-image-hash",
+    "https://learn.microsoft.com/en-us/windows/win32/api/libloaderapi/nf-libloaderapi-loadlibraryexw",
+    "https://learn.microsoft.com/en-us/uwp/schemas/blockmapschema/element-block",
+    "https://learn.microsoft.com/en-us/windows/msix/package/sign-app-package-using-signtool",
+    "https://learn.microsoft.com/en-us/windows/win32/appxpkg/troubleshooting"
+  ]
+}

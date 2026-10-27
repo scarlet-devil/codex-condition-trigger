@@ -1,9 +1,12 @@
 """Bounded owner snapshot and old-history-gap regression contracts."""
 import json
+import os
 import unittest
 from unittest import mock
 import desktop_ipc as ipc
 import test_desktop_ipc as fixtures
+
+WORK_CWD = r'D:\work' if os.name == 'nt' else '/work'
 
 
 class SnapshotTests(unittest.TestCase):
@@ -13,7 +16,7 @@ class SnapshotTests(unittest.TestCase):
         self.snapshot = dict(type='broadcast', method='thread-stream-state-changed', version=11,
             sourceClientId='owner', targetClientIds=['client'], params=dict(
                 conversationId='target', hostId='local', change=dict(type='snapshot', revision=revision,
-                    conversationState=dict(id='target', cwd='/work', resumeState='resumed',
+                    conversationState=dict(id='target', cwd=WORK_CWD, resumeState='resumed',
                         threadRuntimeStatus=dict(type='idle')))))
         if change:
             self.snapshot['params']['change']['conversationState'].update(change)
@@ -30,7 +33,7 @@ class SnapshotTests(unittest.TestCase):
 
     def test_current_status_is_bound_to_owner_target_cwd_and_revision(self):
         client = self.client()
-        result = client.current_state('target', 'owner', '/work')
+        result = client.current_state('target', 'owner', WORK_CWD)
         self.assertEqual(result['status'], 'idle')
         self.assertEqual(result['revision'], 12)
         self.assertEqual(self.sent[-1]['params']['following'], False)
@@ -44,23 +47,23 @@ class SnapshotTests(unittest.TestCase):
                                  ({'threadRuntimeStatus': None}, 'unknown'),
                                  ({'resumeState': 'resuming'}, 'unknown')]:
             with self.subTest(change=change):
-                self.assertEqual(self.client(change).current_state('target', 'owner', '/work')['status'], expected)
+                self.assertEqual(self.client(change).current_state('target', 'owner', WORK_CWD)['status'], expected)
         for change in ({'id': 'other'}, {'cwd': '/other'}):
             with self.subTest(change=change), self.assertRaises(ipc.RPCError):
-                self.client(change).current_state('target', 'owner', '/work')
+                self.client(change).current_state('target', 'owner', WORK_CWD)
 
     def test_old_revision_wrong_owner_or_targeted_client_is_not_evidence(self):
         cases = [dict(revision=11), dict(outer={'sourceClientId': 'other'}),
                  dict(outer={'targetClientIds': ['other']}), dict(outer={'version': 10})]
         for case in cases:
             with self.subTest(case=case), self.assertRaises((EOFError, TimeoutError)):
-                self.client(**case).current_state('target', 'owner', '/work')
+                self.client(**case).current_state('target', 'owner', WORK_CWD)
             self.assertFalse(self.sent[-1]['params']['following'])
 
     def test_malformed_runtime_type_cannot_escape_protocol_boundary(self):
         for value in ([], {}):
             with self.subTest(value=value):
-                result = self.client({'threadRuntimeStatus': {'type': value}}).current_state('target', 'owner', '/work')
+                result = self.client({'threadRuntimeStatus': {'type': value}}).current_state('target', 'owner', WORK_CWD)
                 self.assertEqual(result['status'], 'unknown')
 
 

@@ -1,0 +1,304 @@
+{
+  "date": "2026-10-23",
+  "author": "Kelan",
+  "deployment": "local Windows Desktop",
+  "acting_role": "candidate implementer",
+  "input_commit": "e3f479fbaf4e1e4135bec01f3c11339137bd677a",
+  "scope": "copy-only thin-state candidate; no live loading or transport",
+  "candidate": "implementation_ready",
+  "workflow_state": "review_pending",
+  "G0": "blocked",
+  "copy_validation": {
+    "archive_bytes": 625947531,
+    "archive_sha256": "a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49",
+    "archive_stat_unchanged": true,
+    "elapsed_seconds": 0.407855,
+    "modules": [
+      {
+        "path": ".vite/build/src-CsH31EEu.js",
+        "original_bytes": 1664092,
+        "original_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+        "patched_bytes": 1670395,
+        "patched_sha256": "513a222448c1cecea4251269b59f35143b8834f8b5308b976bd81005ebcd825a",
+        "restored_sha256": "6a266611954c6f0c72aca09bb13c0c793959a69e8d6330778a7cdef21835a1db",
+        "exact_roundtrip": true,
+        "wrong_source_refusals": 2,
+        "tampered_candidate_refusals": 1,
+        "edits": [
+          {
+            "original_byte_offset": 8310,
+            "old_bytes": 40,
+            "new_bytes": 79,
+            "old_sha256": "13620d87efe85b5adb5b8d48207e0d69bcaba550981140af256de0e1e80a217d",
+            "new_sha256": "bcf6fd19231e0a395a559b02a1f478981db14147703d4a2a8c4a397e0b15d32f"
+          },
+          {
+            "original_byte_offset": 1609829,
+            "old_bytes": 41,
+            "new_bytes": 81,
+            "old_sha256": "ede40def1f1734b3e415cf55d6af8b0a21b897872f623e4f68216396b4cbe999",
+            "new_sha256": "e119d9bc27475d2e9293f9226cd87f5f28684eae015d04a5a979c6a59b437077"
+          },
+          {
+            "original_byte_offset": 535685,
+            "old_bytes": 43,
+            "new_bytes": 151,
+            "old_sha256": "b92e28bb6c376219311a0b05a2f26070564ecf4e32c52599de32bfc9b4aadf02",
+            "new_sha256": "e688cc2af7608c75112e6b8c8f4ec42d70e9ff694e016311764b03b14ce5c5a2"
+          },
+          {
+            "original_byte_offset": 1261415,
+            "old_bytes": 90,
+            "new_bytes": 116,
+            "old_sha256": "041cc4b4717f47ed0c558a2415635d0b58ef5cf7ab92aea7e1e2f06d5c6afe71",
+            "new_sha256": "73866039187ba1759b8352de2e45e5c4b1f963b48d8002bdb1d748451cef27b8"
+          }
+        ]
+      },
+      {
+        "path": "webview/assets/app-initial-ad16eaadf81f.js",
+        "original_bytes": 14606938,
+        "original_sha256": "84d1c97245fec7be606fd1d263459d9a4c841836751c6ba5e9b348b69687332f",
+        "patched_bytes": 14613136,
+        "patched_sha256": "e9ad1480512278a809ecad338c63ed9ba44e3730ce0e064dc06903d9940194ab",
+        "restored_sha256": "84d1c97245fec7be606fd1d263459d9a4c841836751c6ba5e9b348b69687332f",
+        "exact_roundtrip": true,
+        "wrong_source_refusals": 2,
+        "tampered_candidate_refusals": 1,
+        "edits": [
+          {
+            "original_byte_offset": 2478010,
+            "old_bytes": 43,
+            "new_bytes": 151,
+            "old_sha256": "b92e28bb6c376219311a0b05a2f26070564ecf4e32c52599de32bfc9b4aadf02",
+            "new_sha256": "e688cc2af7608c75112e6b8c8f4ec42d70e9ff694e016311764b03b14ce5c5a2"
+          }
+        ]
+      },
+      {
+        "path": ".vite/build/application-network-startup-BG13czUt.js",
+        "original_bytes": 292827,
+        "original_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+        "patched_bytes": 292986,
+        "patched_sha256": "4e826933d646b9a60fe0827eeddea5da5ec02b8ff8bc31d69c81c4ddef57f27f",
+        "restored_sha256": "90db83017c05bf247b53a09bb04a3312e0003259c56144535b09805085b16a6c",
+        "exact_roundtrip": true,
+        "wrong_source_refusals": 2,
+        "tampered_candidate_refusals": 1,
+        "edits": [
+          {
+            "original_byte_offset": 279572,
+            "old_bytes": 44,
+            "new_bytes": 203,
+            "old_sha256": "0d0d05da771bb249ee67d8c9b5d1eea7344e90089819a2e8359d8fbd27b38a30",
+            "new_sha256": "4359d9357879683f300aa4f1fb9b6c9ee4012ee35cbaca16bfe60292d94733f2"
+          }
+        ]
+      }
+    ],
+    "archive_repack": false,
+    "installed_writes": 0,
+    "host_launches": 0,
+    "pipe_connections": 0,
+    "model_sends": 0,
+    "window_operations": 0,
+    "full_proprietary_sources_public": false
+  },
+  "loading_static": {
+    "read_only_binary_inspection": [
+      {
+        "file": "ChatGPT.exe",
+        "bytes": 4795184,
+        "sha256": "f7f605cceb2e75dca52e03362329a889f917cc1f8d1036cd26386727a2319415",
+        "sentinel_matches": 0
+      },
+      {
+        "file": "chrome.dll",
+        "bytes": 329773872,
+        "sha256": "0a6efd67f459f2fc6cb1604529cca9825d97537d2101d503d33d7e245c1283c1",
+        "sentinel_matches": 1,
+        "fuse_version": 1,
+        "wire_length": 9,
+        "wire_hex": "303130303131303031"
+      }
+    ],
+    "asar_entries": [
+      {
+        "path": ".vite/build/src-CsH31EEu.js",
+        "integrity_present": true,
+        "algorithm": "SHA256"
+      },
+      {
+        "path": "webview/assets/app-initial-ad16eaadf81f.js",
+        "integrity_present": true,
+        "algorithm": "SHA256"
+      },
+      {
+        "path": ".vite/build/application-network-startup-BG13czUt.js",
+        "integrity_present": true,
+        "algorithm": "SHA256"
+      }
+    ],
+    "fuse_mapping_source_commit": "00f2479b958d917fe0f6e7711e85f62b74b3e7c2",
+    "signature_revalidated_this_turn": true,
+    "installed_writes": 0,
+    "executions": 0,
+    "interpretation": "chrome.dll has v1 fuse wire 010011001: embedded ASAR integrity and ASAR-only loading are enabled. ChatGPT.exe absence alone was inconclusive. Actual patched-host loading remains unverified.",
+    "dll_signature": {
+      "signer": "CN=\"OpenAI OpCo, LLC\", O=\"OpenAI OpCo, LLC\", L=San Francisco, S=California, C=US",
+      "status": "Valid"
+    },
+    "official_sources": [
+      "https://github.com/electron/fuses/blob/00f2479b958d917fe0f6e7711e85f62b74b3e7c2/src/config.ts",
+      "https://github.com/electron/fuses/blob/00f2479b958d917fe0f6e7711e85f62b74b3e7c2/src/constants.ts",
+      "https://www.electronjs.org/docs/latest/tutorial/asar-integrity"
+    ]
+  },
+  "checks": {
+    "node_bridge": {
+      "passed": 33,
+      "failed": 0
+    },
+    "python_candidate": {
+      "passed": 14,
+      "failed": 0
+    },
+    "source_extract": {
+      "passed": 18,
+      "syntax_modules_included": 6
+    },
+    "legacy_related": {
+      "passed": 36,
+      "failed": 0
+    },
+    "ruff": "passed",
+    "eslint": "passed",
+    "full_185_suite": "not_run"
+  },
+  "review": {
+    "task": "/root/thin_state_candidate_review",
+    "independence": "S1",
+    "identity": "local subtask; not Alice",
+    "findings_closed": [
+      "P1 actual native API name",
+      "P1 local method version/hostId",
+      "P2 queued expiry",
+      "P2 host error redaction"
+    ],
+    "independent_rerun": {
+      "node": 33,
+      "python": 14,
+      "source_extract": 18
+    },
+    "remaining_in_scope_must_fixes": 0,
+    "alice_status": "review_pending"
+  },
+  "privacy": "no private chat IDs, user paths, credentials, identities, sessions or complete vendor sources",
+  "failed_or_corrected": [
+    "expected stub RED: JS9pass21fail/Python3failures4errors",
+    "initial lint9Python1JS corrected",
+    "legacy module import corrected",
+    "sandbox temporary-directory permission failure; synthetic temp moved into run",
+    "reviewer wrong Acorn path corrected",
+    "initial executable-only fuse assertion failed",
+    "one GitHub constants transport error, fixed-commit read succeeded",
+    "Windows command length206 before process creation, JSON file transfer used"
+  ],
+  "local_log_fingerprints": {
+    "bridge-final.txt": {
+      "bytes": 1838,
+      "sha256": "b57316ee687f7f699ef24a3277f7a7aae86ee9fe87fcd0a00b544cdb7ce9b8a8",
+      "raw_uploaded": false
+    },
+    "bridge-green.txt": {
+      "bytes": 1632,
+      "sha256": "f8f5e3ab969075ce423f5cdbf506fa93f053b574e7ca60b3ca91a0b831d9a23a",
+      "raw_uploaded": false
+    },
+    "bridge-red.txt": {
+      "bytes": 17826,
+      "sha256": "e05bb8653a4d2bf6a97e873d9eba537c529592ac7e6c7a2bf2cf503f73f636aa",
+      "raw_uploaded": false
+    },
+    "client-green.txt": {
+      "bytes": 1274,
+      "sha256": "10c3a7a2058a1668721bb72d29bc4589c3c5e6884b3428728e5ee3f462d3c8d7",
+      "raw_uploaded": false
+    },
+    "client-red.txt": {
+      "bytes": 7043,
+      "sha256": "4dbb0d5c9f2c6fdd780d4f533bd06af01b32f8ac2f9e29c8007e4807cf185d98",
+      "raw_uploaded": false
+    },
+    "copy-module-check.txt": {
+      "bytes": 186,
+      "sha256": "05d38b79dd1e6642ed445e0e212e72eab194f90fa0c4e3995710691448fdb4ad",
+      "raw_uploaded": false
+    },
+    "copy-validation-console.txt": {
+      "bytes": 3924,
+      "sha256": "75060887efbf8fbcc6e455e55f6c9f34312e74a74ca8cb31fbd0f70df764be72",
+      "raw_uploaded": false
+    },
+    "eslint-initial.txt": {
+      "bytes": 245,
+      "sha256": "e01445c6b5334d9451cb23f3f8fb4818d052f65c6edcf128f3b41b110f412262",
+      "raw_uploaded": false
+    },
+    "eslint.txt": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_uploaded": false
+    },
+    "legacy-tests-initial.txt": {
+      "bytes": 2661,
+      "sha256": "54d38862843f65edcba718ae57d6035f92dcfbc584ae5931eefb04ce709df651",
+      "raw_uploaded": false
+    },
+    "legacy-tests-sandbox-temp-failure.txt": {
+      "bytes": 88003,
+      "sha256": "782870b045578ada4198177bc12a48f3ab0f2183c5c41d524df05f99421c3c62",
+      "raw_uploaded": false
+    },
+    "legacy-tests.txt": {
+      "bytes": 5213,
+      "sha256": "730728a4c9b1ea8ca6352ecf805ab5db7bf852d46a3d9803586b577c58953575",
+      "raw_uploaded": false
+    },
+    "python-final.txt": {
+      "bytes": 1565,
+      "sha256": "b7bfc7c5970a3c42fbe333de1d481d8138a895a318476758cf95a5c236925c1a",
+      "raw_uploaded": false
+    },
+    "ruff-initial.txt": {
+      "bytes": 886,
+      "sha256": "cbcf389b528eedfa5a08182fbb0e953468651e8f79c452b270e035c75904a7ed",
+      "raw_uploaded": false
+    },
+    "ruff.txt": {
+      "bytes": 20,
+      "sha256": "a4443afdcfb6d7363adb285762515ccf7cf50473b1a05c20c1a50f6bed4d26b0",
+      "raw_uploaded": false
+    }
+  },
+  "not_executed": [
+    "ASAR repack",
+    "PE resource/fuse/signature change",
+    "Desktop/app-server launch/restart",
+    "original-host IPC query",
+    "model send",
+    "window operation",
+    "production config/source change",
+    "business ACK",
+    "installation cache",
+    "G0 catalog/Tk completion",
+    "G1/G2/G3"
+  ],
+  "limitations": [
+    "no real original-service identity/freshness proof",
+    "copy rollback is not installation rollback",
+    "wall-clock adjustment/suspend/real queue untested",
+    "idle and send not atomic",
+    "no installation verifier bypass; live pipe factory intentionally absent"
+  ]
+}

@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "date": "2026-10-23",
+  "actor": "Alice",
+  "environment": "cloud Linux / Python 3.12.14",
+  "input_commit": "38a20a7dbae2777a0ee36b4d17022b043f2fcabe",
+  "accepted_material": "single-query cwd representation rejection and independent Tk chooser result, within Kelan reported scope",
+  "acceptance_limit": "not prior generic error root cause, filesystem object identity, real Desktop fix, full form or G0",
+  "input_checks": {
+    "verified_public_blobs": 36,
+    "manifest_entries": 6,
+    "executed_source_pins": 8,
+    "historical_log_prefix_bytes": 139580,
+    "current_log_prefix_preserved_bytes": 143192,
+    "CRLF": 11
+  },
+  "windows_observation": {
+    "executor": "Kelan; not rerun by Alice",
+    "error_reason": "snapshot_cwd_mismatch",
+    "expected_extended_drive": true,
+    "native_extended_drive": false,
+    "legacy_equal": false,
+    "catalog_equal": true,
+    "max_snapshot_bytes": 8972,
+    "receive_bytes": 29139,
+    "total_seconds": 0.86,
+    "Tk_chooser": "accepted from local records; screenshots not independently reread"
+  },
+  "candidate": {
+    "source": "restricted lexical normalization in cwd_paths.py",
+    "consumers": [
+      "experimental catalog",
+      "native snapshot",
+      "rollout header and turn context",
+      "native outcome collection"
+    ],
+    "accepted_forms": "ordinary absolute Windows drive paths and clean extended-drive equivalents",
+    "rejected_forms": [
+      "different drives/directories",
+      "relative, UNC, device and Volume namespaces",
+      "extended dot segments, forward slash and repeated separators",
+      "trailing dot or space components",
+      "DOS device aliases, ADS colon, reserved/control characters"
+    ],
+    "not_claimed": [
+      "filesystem identity",
+      "junction/symlink resolution",
+      "short-name/long-name alias identity",
+      "Windows case-sensitive directory identity"
+    ],
+    "preserved": [
+      "raw cwd evidence",
+      "thread/owner/revision checks",
+      "runtime-status mapping",
+      "send intent/receipt/ACK contracts",
+      "Desktop installation",
+      "32 MiB frame / 128 MiB cumulative / 10-second IPC budgets",
+      "can_send=false in sampler"
+    ],
+    "source_files": [
+      {
+        "path": "cwd_paths.py",
+        "bytes": 2391,
+        "sha256": "6abcf3a9856674b267fb1eafa1936565deb46fdbfd4e0126ef47f81b01d83909",
+        "git_blob": "e749a9f86402d03e0ce7e9b4caa14ee9b3b349c9"
+      },
+      {
+        "path": "desktop_ipc.py",
+        "bytes": 30700,
+        "sha256": "73d01271141887465d5c3fcaf2646fd7a01827433a5de93149eef19eabaf384d",
+        "git_blob": "a2303d7588c7bede8789e1ac2762d0f795c72bf8"
+      },
+      {
+        "path": "native_collector.py",
+        "bytes": 5690,
+        "sha256": "03b4ae3ba8720566c62115b61921f0a6f8ca3e0d7425a294d004b04950d8b431",
+        "git_blob": "8d38a8b54862c5afbc049b8fc3f5dfc0c495918c"
+      },
+      {
+        "path": "experimental/conversation_catalog.py",
+        "bytes": 1911,
+        "sha256": "cc8d82267b816af43c6442946f77b4c6a8260404f8fb70666de140f2ff88a9aa",
+        "git_blob": "a21fd1f85312f933a5d083bea73d9b855f125c2c"
+      },
+      {
+        "path": "experimental/tests/test_snapshot_measure.py",
+        "bytes": 9491,
+        "sha256": "d0b93b83431b621ec340f456f416b8113922e48db4758d79cdc725e8847cf9ba",
+        "git_blob": "dfb60168ccff367281c051dce7f5c482d174de9c"
+      },
+      {
+        "path": "experimental/tests/test_snapshot_diagnostics.py",
+        "bytes": 8408,
+        "sha256": "acf2ebbb4a6940dac486ea96f582a1af912038a818650040a6634ac84220c05d",
+        "git_blob": "6b697c2481ceb9cf523ed882bb2b98e60052b217"
+      },
+      {
+        "path": "tests/test_cwd_paths.py",
+        "bytes": 5569,
+        "sha256": "563eee5131d139ca3736c17d31d8d2075cca92b9d489bb5b348a05f04abc4b82",
+        "git_blob": "5475604721820a3a2c2034c881299d159126c55b"
+      },
+      {
+        "path": "tests/test_native_collector.py",
+        "bytes": 8079,
+        "sha256": "71091a277a89a1a0b1f1a0b28d4e559b2b1e564368cfda97f77b39889b95ce0c",
+        "git_blob": "a5e7eb5fc58f3e452ab775a94b0420de85517dba"
+      },
+      {
+        "path": "tests/test_native_state.py",
+        "bytes": 5407,
+        "sha256": "d8150f9fa979b6df512cbb1e55ce54b92208b8ef0b33d8744dbe277929bbda84",
+        "git_blob": "8394df1eb25dd5dc8667cc9943ee92bf9808e220"
+      }
+    ]
+  },
+  "tests": {
+    "final": [
+      {
+        "label": "experimental",
+        "run": 34,
+        "pass": 34,
+        "fail": 0,
+        "error": 0,
+        "skip": 0,
+        "skip_reasons": []
+      },
+      {
+        "label": "cwd_ipc_native_adapter_collector",
+        "run": 55,
+        "pass": 54,
+        "fail": 0,
+        "error": 0,
+        "skip": 1,
+        "skip_reasons": [
+          "Windows overlapped-I/O contract"
+        ]
+      },
+      {
+        "label": "received_observer",
+        "run": 3,
+        "pass": 3,
+        "fail": 0,
+        "error": 0,
+        "skip": 0,
+        "skip_reasons": []
+      },
+      {
+        "label": "windows_path_semantics_simulated",
+        "run": 42,
+        "pass": 42,
+        "fail": 0,
+        "error": 0,
+        "skip": 0,
+        "skip_reasons": []
+      }
+    ],
+    "red_before_wiring": {
+      "methods": 4,
+      "failures": 3,
+      "errors": 1,
+      "reason": "native/rollout/collector representation rejection and catalog device-component normalization"
+    },
+    "red_windows_fixture_check": {
+      "methods": 2,
+      "failures": 1,
+      "errors": 1,
+      "reason": "old successful-path fixtures used POSIX-only cwd on Windows path semantics",
+      "resolution": "platform-valid synthetic paths; runtime rules not relaxed"
+    },
+    "extra_windows_checks": "42 simulated-path checks, not native Windows or real Desktop",
+    "logs_sha256": {
+      "cwdreview-received_observer-final.log": "db6494af42b431e5e7270942cbf0a1691528e9af5f56b373f50fa92f8abdd1a6",
+      "cwdreview-experimental-final.log": "d2e353c806d31c6473b5c4b84f738bab453f77e6c27cf1cefd702ae6bd88ce9d",
+      "cwdreview-windows_path_semantics_simulated-final.log": "da7caebc2fb43649a54917c3e1315d9bc4767cbfca8496ad764b8bb25295bef8",
+      "cwdreview-cwd_ipc_native_adapter_collector-final.log": "33e8712b3d8d785e299aabb29f62a4984109ced82fd6efa1787e2c8d03844436"
+    }
+  },
+  "lint": {
+    "ruff": "0.17.1",
+    "selected_clean": true,
+    "baseline_comparison": [
+      {
+        "path": "desktop_ipc.py",
+        "baseline": 9,
+        "current": 9,
+        "new": 0
+      },
+      {
+        "path": "native_collector.py",
+        "baseline": 10,
+        "current": 10,
+        "new": 0
+      },
+      {
+        "path": "tests/test_native_state.py",
+        "baseline": 11,
+        "current": 11,
+        "new": 0
+      },
+      {
+        "path": "tests/test_native_collector.py",
+        "baseline": 10,
+        "current": 10,
+        "new": 0
+      }
+    ],
+    "comparison_note": "Same rule/message/source line, with only the explicit cwd literal-to-fixture substitution mapped in test_native_state.py; existing C408 is unchanged."
+  },
+  "sources": [
+    "https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file"
+  ],
+  "review": "Alice Self-review/S0 for candidate; received evidence review complete; no sub-agent review",
+  "not_rerun": [
+    "complete historical test suite",
+    "47 copy-candidate suite",
+    "native Windows IPC or GUI"
+  ],
+  "cloud_live_actions": {
+    "ipc_queries": 0,
+    "model_sends": 0,
+    "window_actions": 0,
+    "installation_or_production_changes": 0,
+    "messages_or_pr_comments_to_kelan": 0
+  },
+  "next_scope": "isolated fixed candidate with new module; same dedicated target; one read-only sample, zero models/initializations/retries; completed Tk smoke not repeated",
+  "state": "Draft / unmerged; real Desktop candidate validation pending; G0 not passed"
+}

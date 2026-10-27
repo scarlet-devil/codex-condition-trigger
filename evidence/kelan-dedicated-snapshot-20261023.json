@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "date": "2026-10-23",
+  "author_identity": "Kelan",
+  "deployment_environment": "local",
+  "acting_role": "bounded Windows experiment implementer",
+  "input_commit": "bd299ae3c886381f43096a92a89f7ff00134170c",
+  "task_assignment": "Human relayed Alice section 8, then explicitly authorized creating the dedicated chat",
+  "state": "review_pending",
+  "G0": "not_passed",
+  "experiment": {
+    "start_utc": "2026-10-23T13:36:29.245Z",
+    "latest_allowed_start_utc": "2026-10-23T13:46:29.245Z",
+    "actual_samples": 1,
+    "initialization_turns": 1,
+    "representative_turns": 0,
+    "busy_samples": 0,
+    "after_samples": 0,
+    "retry_count": 0,
+    "stopped_after_initial_failure": true,
+    "accepted_initialization_completed": true,
+    "new_thread_reused_original_business_binding": false,
+    "fork_or_history_copy": false,
+    "live_pipe_count": 1,
+    "snapshot_measure_model_sends": 0
+  },
+  "initial_sample": {
+    "snapshot_query_completed": false,
+    "runtime_status": "unknown",
+    "can_send": false,
+    "model_sends": 0,
+    "frame_cap_bytes": 33554432,
+    "cumulative_receive_cap_bytes": 134217728,
+    "ipc_budget_seconds": 10,
+    "installation_verified": true,
+    "verification_seconds": 1.0310000000754371,
+    "error_stage": "current_state",
+    "error_category": "protocol",
+    "measurements": {
+      "read_budget_debited_bytes": 28810,
+      "completed_read_bytes": 28810,
+      "completed_write_bytes": 1692,
+      "frame_headers": 10,
+      "complete_bodies": 10,
+      "max_declared_body_bytes": 8972,
+      "target_snapshot_bodies": 3,
+      "max_target_snapshot_body_bytes": 8972,
+      "incomplete_io": false
+    },
+    "ipc_seconds": 0.015999999945051968,
+    "total_seconds": 1.047000000020489,
+    "started_at": "2026-10-23T13:38:31.693938+00:00",
+    "binding_checks_passed": true
+  },
+  "installation": {
+    "expected_archive_sha256": "a05dfd86ca508148c83c25590639cf91a52c6647733cdf200723d85357052b49",
+    "verified": true,
+    "modified": false,
+    "hash_cost_included_in_verification_seconds": true
+  },
+  "catalog_before_creation": {
+    "source": {
+      "vscode": 5,
+      "structured-subagent": 182
+    },
+    "thread_source": {
+      "user": 5,
+      "subagent": 60,
+      "guardian_review": 122
+    },
+    "agent_path": {
+      "None": 127,
+      "child-agent-path": 60
+    },
+    "history_mode": {
+      "paginated": 187
+    },
+    "has_user_event": {
+      "0": 187
+    },
+    "archived": {
+      "0": 187
+    },
+    "scanned_project_rows": 187,
+    "thread_spawn_edges_columns": [
+      "parent_thread_id",
+      "child_thread_id",
+      "status"
+    ]
+  },
+  "selected_binding": {
+    "native_created_return_id_equals_catalog_id": true,
+    "catalog_id_cwd_equals_rollout_first_line": true,
+    "source": "vscode",
+    "thread_source": "agent_created_thread",
+    "has_spawn_parent": false,
+    "name_prioritized": true,
+    "native_runtime_identity_verified": false,
+    "native_revision_freshness_verified": false,
+    "native_owner_final_recheck": false,
+    "private_identifiers_in_public_evidence": false,
+    "initial_filter_failure": "agent_created_thread excluded",
+    "offline_fix_before_first_ipc": true,
+    "original_deadline_retained": true
+  },
+  "tk_smoke": {
+    "tk_window_created": true,
+    "chooser_opened": true,
+    "selection_matches": false,
+    "timed_out": false,
+    "closed": true,
+    "accepted": false,
+    "action_attribution": "unknown for chooser/close",
+    "automation_error": "foreground window did not report a process id",
+    "screenshot_matches_selected_window": false
+  },
+  "checks": {
+    "catalog_methods": 12,
+    "meter_methods": 13,
+    "all_passed": 25,
+    "ruff": "passed",
+    "historical_185_suite": "not_rerun",
+    "copy_candidate_47": "not_rerun",
+    "initial_catalog_red": {
+      "methods": 9,
+      "failure_subcases": 11,
+      "errors": 1
+    },
+    "native_created_red": {
+      "methods": 1,
+      "failed": 1
+    },
+    "path_regression_red": {
+      "methods": 12,
+      "failed_subcases": 6,
+      "output_truncated": true
+    }
+  },
+  "review": {
+    "kind": "controlled fresh-context subtask",
+    "context_independence": "S1",
+    "method": "static analysis and synthetic counterexamples",
+    "alice_acceptance": false,
+    "finding": "P2 extended path dot-segment equivalence and trailing dot/space ambiguity",
+    "fix": "restrict extended path syntax and reject ambiguous trailing components",
+    "final_status": "P2_closed_no_remaining_blocking_findings_in_scope",
+    "reviewer_catalog_tests_passed": 12,
+    "reviewer_meter_tests": "not_rerun",
+    "reviewer_ruff": "not_rerun",
+    "source_sha256": "4ad4af638b5488c4499d5b671c17d77d4ab1c04caec2bd40329b40c75daa0d12",
+    "test_sha256": "372a667d5abbefe16b45f76b069ec695e2f9d0eda9c16097fe8b27b9990523ac"
+  },
+  "cause": "current_state protocol category only; exact failed check not retained",
+  "next_scope_proposal": "fixed redacted reason codes and synthetic failures before another separately bounded observation",
+  "redactions": [
+    "private thread/turn/client ids",
+    "user paths",
+    "rollout body",
+    "screenshots",
+    "identity/kernel files",
+    "credentials",
+    "installed source"
+  ],
+  "unchanged": [
+    "production code/config",
+    "business ACK/ledger",
+    "continuous authority",
+    "historical STOP/expiry/PAUSED",
+    "Desktop installation"
+  ],
+  "not_checked": [
+    "current listener health",
+    "busy/current target follow-up",
+    "representative result",
+    "long-term history growth"
+  ],
+  "source_urls": [
+    "https://learn.microsoft.com/en-us/windows/win32/fileio/naming-a-file"
+  ]
+}

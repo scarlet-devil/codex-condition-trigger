@@ -1,0 +1,101 @@
+{
+  "schema": "alice-thin-state-copy-review-v1",
+  "date": "2026-10-23",
+  "actor": "Alice",
+  "deployment_environment": "cloud Linux Work",
+  "input_commit": "ec2fb862050384385b66ed9dc0e0bfff7156a2e4",
+  "decision": "accept_copy_candidate_scope_only",
+  "g0": "blocked",
+  "live_loading": "not_approved_not_executed",
+  "readback": {
+    "changed_files": 13,
+    "related_files": 4,
+    "git_blobs_verified": 17,
+    "manifest_entries_verified": 12,
+    "manifest_scope_commit": "ec2fb862050384385b66ed9dc0e0bfff7156a2e4",
+    "prior_work_log_prefix_bytes": 118854,
+    "prior_prefix_hash_match": true,
+    "preserved_crlf": 11
+  },
+  "direct_checks": {
+    "node": {
+      "command": "node --test tests/test_bridge.cjs",
+      "runtime": "Node v24.19.0",
+      "working_directory": "experimental/thin_state",
+      "exit_code": 0,
+      "passed": 33,
+      "failed": 0,
+      "skipped": 0,
+      "output": "✔ native summary idle (3.025429ms)\n✔ native summary active (0.377632ms)\n✔ native summary notLoaded (0.344212ms)\n✔ native summary systemError (0.182992ms)\n✔ reject native retirement connection (0.540174ms)\n✔ reject native retirement generation (3.437392ms)\n✔ reject native retirement lifetime (0.291333ms)\n✔ reject native retirement event (0.223663ms)\n✔ reject native retirement dispose (0.407286ms)\n✔ reject native retirement stopping (0.509718ms)\n✔ reject malformed native id (0.415889ms)\n✔ reject malformed native cwd (0.172507ms)\n✔ reject malformed native status (0.099097ms)\n✔ reject malformed native long-cwd (0.095442ms)\n✔ reject unavailable not-initialized (0.299265ms)\n✔ reject unavailable no-connection (1.051143ms)\n✔ reject unavailable remote (0.222411ms)\n✔ reject unavailable wrong-transport (0.071537ms)\n✔ reject unavailable disconnected (0.207639ms)\n✔ owner path has one narrow call and does not read stored conversation (0.772729ms)\n✔ owner change lost (1.446952ms)\n✔ owner change aba (0.196052ms)\n✔ owner change client (0.211344ms)\n✔ owner change disposed (0.416659ms)\n✔ owner change wrong-result (0.210383ms)\n✔ legacy handler arguments and return identity stay unchanged (0.369249ms)\n✔ narrow client bridge replies to existing recipient only (0.215521ms)\n✔ destroyed renderer is not broadcast to other windows (0.109573ms)\n✔ host bridge uses beforeSend guard and supports abandon (0.430611ms)\n✔ native errors are fixed codes, no private server message (0.562476ms)\n✔ delayed queued private query is rejected before native read (0.339135ms)\n✔ future timestamp and extended expiration are rejected (0.168331ms)\n✔ host bridge also redacts native error messages (0.392354ms)\nℹ tests 33\nℹ suites 0\nℹ pass 33\nℹ fail 0\nℹ cancelled 0\nℹ skipped 0\nℹ todo 0\nℹ duration_ms 124.951207\n"
+    },
+    "python": {
+      "command": "python -B -m unittest discover -s tests -p 'test_*.py' -v",
+      "runtime": "Python 3.12.14",
+      "working_directory": "experimental/thin_state",
+      "exit_code": 0,
+      "passed": 14,
+      "failed": 0,
+      "skipped": 0,
+      "output": "test_disabled_sends_nothing (test_client.ClientTests.test_disabled_sends_nothing) ... ok\ntest_one_shared_deadline_including_initialize (test_client.ClientTests.test_one_shared_deadline_including_initialize) ... ok\ntest_oversize_body_never_read (test_client.ClientTests.test_oversize_body_never_read) ... ok\ntest_settings_only_never_runtime (test_client.ClientTests.test_settings_only_never_runtime) ... ok\ntest_statuses_and_only_two_requests (test_client.ClientTests.test_statuses_and_only_two_requests) ... ok\ntest_truncated_frame (test_client.ClientTests.test_truncated_frame) ... ok\ntest_unknown_method_no_legacy_fallback (test_client.ClientTests.test_unknown_method_no_legacy_fallback) ... ok\ntest_unrelated_flood_has_cumulative_bound (test_client.ClientTests.test_unrelated_flood_has_cumulative_bound) ... ok\ntest_wrong_binding_missing_status_settings_and_generation (test_client.ClientTests.test_wrong_binding_missing_status_settings_and_generation) ... ok\ntest_wrong_owner_and_method (test_client.ClientTests.test_wrong_owner_and_method) ... ok\ntest_wrong_request_id_never_accepted (test_client.ClientTests.test_wrong_request_id_never_accepted) ... ok\ntest_unknown_module_refused (test_patch.PatchGuardTests.test_unknown_module_refused) ... ok\ntest_wrong_original_bytes_refused (test_patch.PatchGuardTests.test_wrong_original_bytes_refused) ... ok\ntest_wrong_rollback_refused (test_patch.PatchGuardTests.test_wrong_rollback_refused) ... ok\n\n----------------------------------------------------------------------\nRan 14 tests in 0.012s\n\nOK\n"
+    },
+    "patch_metadata": {
+      "anchors_hashed": 6,
+      "module_length_deltas_verified": 3,
+      "helper_bytes": 6090,
+      "actual_vendor_apply_revert_rerun": false
+    },
+    "fuses": {
+      "source_commit": "00f2479b958d917fe0f6e7711e85f62b74b3e7c2",
+      "reported_wire": "010011001",
+      "verified_mapping_enabled_indexes": [
+        4,
+        5
+      ],
+      "binary_reread": false
+    }
+  },
+  "attribution": {
+    "local_source_extraction_18": "Kelan report; private complete vendor modules not available here",
+    "local_legacy_tests_36": "Kelan report; unchanged production sources; not rerun",
+    "local_copy_rollback_3": "Kelan report; metadata arithmetic checked, private bytes not rerun",
+    "local_signature_and_fuses": "Kelan Windows observations; public mapping independently read",
+    "local_S1": "reported subtask attribution; underlying review transcript not supplied; not promoted to Alice observation",
+    "alice_document_changes": "Self-review S0; same public test method is not method-independent verification"
+  },
+  "observations": [
+    "No additional must-fix found within the inspected copy-only scope; this does not prove live wiring or complete package load.",
+    "The complete public candidate tests pass; only six scalar fields are projected and the caller never grants send permission.",
+    "CURRENT_STATE contained both a new implemented-candidate note and old current claims of no implementation; reconciled in this review."
+  ],
+  "loading_conclusions": {
+    "direct_public_fact": "Electron checks the packaged ASAR-header baseline and onlyLoadAppFromAsar restricts app-code search to app.asar.",
+    "conditional_inference": "Given reported enabled fuses and changed protected entries, repacking only app.asar is insufficient under standard Electron semantics.",
+    "unknown": [
+      "PE file actually supplying ElectronAsar/Integrity for this installed build",
+      "matching installed header/resource bytes",
+      "installation package/signature constraints and supported restore unit",
+      "actual protected-host load",
+      "real original-host identity/freshness"
+    ],
+    "trust_boundary": "A locally regenerated hash is not the vendor's digital signature; normal signed PE resource changes invalidate that file's original Authenticode signature. Fuse location alone does not identify the resource-bearing file."
+  },
+  "next_scope": "One bounded read-only local loading inventory and a concrete transaction proposal; no repeated endpoint search or live load. Inspect only the identified host/archive/resources and package metadata, then deliver the minimal changed-object and rollback table. Preserve validation; do not silently change signer/package identity/product target.",
+  "sources": [
+    "https://www.electronjs.org/docs/latest/tutorial/asar-integrity",
+    "https://www.electronjs.org/docs/latest/tutorial/fuses",
+    "https://github.com/electron/fuses/blob/00f2479b958d917fe0f6e7711e85f62b74b3e7c2/src/config.ts",
+    "https://github.com/electron/fuses/blob/00f2479b958d917fe0f6e7711e85f62b74b3e7c2/src/constants.ts",
+    "https://learn.microsoft.com/en-us/windows/win32/debug/pe-format#process-for-generating-the-authenticode-pe-image-hash"
+  ],
+  "not_executed": [
+    "private installed-source extraction",
+    "full 185 runtime suite",
+    "Windows signature or package verification",
+    "ASAR/PE/fuse/certificate changes",
+    "installation or restart",
+    "real IPC/model/window actions",
+    "production configuration or ACK changes",
+    "task dispatch to Kelan",
+    "merge or Ready transition"
+  ]
+}

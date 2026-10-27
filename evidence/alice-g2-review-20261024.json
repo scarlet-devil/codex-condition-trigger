@@ -1,0 +1,231 @@
+{
+  "schema": 1,
+  "date": "2026-10-24",
+  "reviewer": "Alice",
+  "reviewed_commit": "6c92f873c714697b423e5dcb8036f2fa57737a01",
+  "parent": "d153f0b0ff950568d17ff04573819f77c29429b5",
+  "decision": "G2 accepted: implementation and simulated transport workflow",
+  "g3": "not_started; no live query/send budget granted by this review",
+  "findings": {
+    "blocking_identified": 0,
+    "scope": "Reviewed changed code and evidence, not an exhaustive concurrency or real Desktop proof"
+  },
+  "public_delivery": {
+    "files": 16,
+    "bytes": 342418,
+    "manifest_payloads_verified": 15,
+    "full_bytes_hash_length_and_git_blob_verified": true,
+    "source_code_pins_verified": 10,
+    "unchanged_other_previous_blobs": 197,
+    "prior_log_prefix_bytes": 160662,
+    "prior_log_prefix_crlf": 11,
+    "prior_log_prefix_matches": true,
+    "this_review_preserves_input_log_bytes": 163536
+  },
+  "source_code_pins": [
+    {
+      "path": "simple_catalog.py",
+      "bytes": 4524,
+      "sha256": "aa522041a926c3777cbaf2b7b823ac301c0f7011cec4898dc4c91718f9ffe290"
+    },
+    {
+      "path": "simple_controller.py",
+      "bytes": 19623,
+      "sha256": "5f82d345c398d7ccb1adf8fdc5997ed58e2ff942cc7651efc2f08662f1da74fe"
+    },
+    {
+      "path": "simple_setup.py",
+      "bytes": 22030,
+      "sha256": "fa7463c49b06fe4ce258f68f1088f3d1675acd9cba598f07e233deda95e1b8df"
+    },
+    {
+      "path": "experimental/simple_form_fake.py",
+      "bytes": 5683,
+      "sha256": "ab3d04d7ddfa4cf99016f25e3097c639c1a2d7e2d44b16f99f59329dc7ec8a70"
+    },
+    {
+      "path": "tests/test_simple_catalog.py",
+      "bytes": 5363,
+      "sha256": "24c402f800104c3ddfcfd5dd919c9228d1f8ff2e99a9176e923b02d17b41142a"
+    },
+    {
+      "path": "tests/test_simple_controller.py",
+      "bytes": 16828,
+      "sha256": "70cb00c087c45d5ae5a9a8281cdcbad2f94e2e11988b570543c3555c43ca6281"
+    },
+    {
+      "path": "rule_service.py",
+      "bytes": 3941,
+      "sha256": "a8b779ccbdf1f5de121a6d60101dff9127ada34de07a5a11d76c6bef7f80aece"
+    },
+    {
+      "path": "notify_state.py",
+      "bytes": 14036,
+      "sha256": "38f78d642ba7389fd037f3febc1ba784de50cc32e90feb3f8a84a30d7ccea9f7"
+    },
+    {
+      "path": "worker_health.py",
+      "bytes": 3028,
+      "sha256": "c37facc98be24537bb361612797d6edda1f020b97b514de2f786d9444f88179b"
+    },
+    {
+      "path": "trigger.py",
+      "bytes": 41302,
+      "sha256": "77a618be9f98a01cd164937a6155a73cdbcc72216db0beae0c27b585406240a3"
+    }
+  ],
+  "direct_checks": {
+    "environment": {
+      "os": "Linux",
+      "python": "3.12.14",
+      "watchdog": "6.0.0",
+      "ruff": "0.17.1"
+    },
+    "unittest": {
+      "command": "python -B -m unittest -v test_simple_catalog test_simple_controller test_notify test_notify_boundaries test_rule_service",
+      "module_path": [
+        "repository root",
+        "tests",
+        "installed dependencies"
+      ],
+      "g2_methods": 27,
+      "affected_g1_methods": 36,
+      "methods": 63,
+      "passed": 63,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "exit_code": 0,
+      "seconds": 8.846,
+      "real_tk_window_opened": false
+    },
+    "ruff": {
+      "rules": "E9,F63,F7,F82",
+      "files": [
+        "simple_catalog.py",
+        "simple_controller.py",
+        "simple_setup.py",
+        "experimental/simple_form_fake.py",
+        "tests/test_simple_catalog.py",
+        "tests/test_simple_controller.py",
+        "rule_service.py",
+        "notify_state.py",
+        "worker_health.py",
+        "trigger.py"
+      ],
+      "exit_code": 0,
+      "findings": 0,
+      "default_rules_rerun": false
+    },
+    "local_log_hashes": {
+      "focused-tests.out": {
+        "bytes": 13247,
+        "sha256": "46cec62a165ee4d1c716a43c3d8f454563364a596ebc611a726f4a7c2f2ef115"
+      },
+      "focused-tests.err": {
+        "bytes": 9348,
+        "sha256": "28502ceabcc3b40a1d8f48fa57a77498bd679d670b0fe1574c05d048e511e9ff"
+      },
+      "ruff-critical.out": {
+        "bytes": 2,
+        "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+      },
+      "ruff-critical.err": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    }
+  },
+  "attributed_kelan_evidence": {
+    "source": "evidence/kelan-g2-form-20261024.json",
+    "windows_suite": {
+      "methods": 257,
+      "passed": 256,
+      "skips": 1,
+      "skip_reason": "Windows symlink permission",
+      "seconds": 47.797,
+      "windows_overlapped_and_three_frozen_hub_tests_ran": true
+    },
+    "final_real_tk_fake_smoke": {
+      "two_batches_sent_once": true,
+      "a_running_b_waits": true,
+      "both_ended": true,
+      "backlog": 0,
+      "ack": false,
+      "execution_outcome": "unknown",
+      "pause_resume_minimize_close": true,
+      "locks_reacquired": true,
+      "configuration_worker_started_seconds": 71.64,
+      "listening_observed_before_write_a_seconds": 86.687,
+      "full_trial_seconds": 193.312,
+      "independent_gui_reopen": false,
+      "real_desktop_ipc_and_model_calls": 0,
+      "zero_basis": "explicit isolated fake factory, not OS-wide metering"
+    },
+    "first_smoke_failure": {
+      "cause": "new fake baseline.bytes=0 rejected by existing receipt contract",
+      "a_sent_once": true,
+      "b_not_sent": true,
+      "uncertain_retained": true,
+      "retry_not_sent": true,
+      "separate_final_fixture_after_fix": true
+    },
+    "catalog_probe": {
+      "matching_rows": 7,
+      "firstline_verified": 4,
+      "missing_rollouts": 3,
+      "seconds": 0.031,
+      "predates_final_metadata_error_propagation_fix": true,
+      "source_sha256": "e407d24795c8d37cff3c84d73cd55fbcb9804c029ba1781cce4204b546955581"
+    },
+    "local_review_level": "Kelan S1/M1; not Alice or S2",
+    "private_raw_logs_databases_screenshots_independently_read_by_alice": false,
+    "default_ruff_shared_modules_before_after": [
+      30,
+      32
+    ]
+  },
+  "accepted_deviations": [
+    "Saved-rule reload/no-auto-start accepted on direct controller tests, reported readonly reload and reviewed GUI wiring; independent GUI reopen unobserved",
+    "Real metadata read predates final propagation fix; final synthetic tests cover fix without claiming a new real read",
+    "Initial failed GUI trial retained separately; only corrected final run supports two-batch smoke acceptance",
+    "Configuration timing below two minutes is an automated prepared-environment observation; full trial and human learning cost differ"
+  ],
+  "scope": {
+    "runtime_source_changed": false,
+    "subagents_dispatched": 0,
+    "kelan_tasks_sent": 0,
+    "real_ipc": 0,
+    "model_calls": 0,
+    "gui_actions": 0,
+    "production_installs_or_restarts": 0,
+    "business_ack_changes": 0,
+    "production_health_checked": false,
+    "document_self_review": "S0"
+  },
+  "limitations": [
+    "G3 real two-batch chain not yet tested",
+    "Private version-specific catalog schema",
+    "Native idle/start race remains",
+    "Full-history growth and polling costs remain",
+    "Default Ruff diagnostics remain disclosed",
+    "No applicable registered Lean target"
+  ],
+  "document_checks": {
+    "relative_links": 144,
+    "anchors": 18,
+    "errors": [],
+    "gitleaks_exit_code": 0,
+    "gitleaks_findings": 0,
+    "scope": [
+      "CURRENT_STATE.md",
+      "docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md",
+      "docs/SIMPLE_SETUP_DESIGN.md",
+      "WORK_LOG.md",
+      "evidence/alice-g2-review-20261024.json"
+    ],
+    "runtime_source_unchanged": true,
+    "work_log_prefix_bytes": 163536,
+    "work_log_crlf": 11
+  }
+}
