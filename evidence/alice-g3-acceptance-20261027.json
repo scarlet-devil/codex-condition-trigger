@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "date": "2026-10-27",
+  "author": "Alice",
+  "role": "cloud reviewer; S0 self-review, no extra independent agent",
+  "base_commit": "018f7f8c2367aefb758ea001db78b589b76b5b6c",
+  "decision": "G3 limited_accepted",
+  "scope": "current pinned installation, accurately bound loaded dedicated conversation, reused accepted GUI evidence, real synthetic two-batch notification workflow",
+  "package": {
+    "bytes": 116414,
+    "sha256": "d848fef7be704c40acc0f54f8c6e7aaecd3dfd34e75b9f8d929bf4084a9301e3",
+    "zip_entries": 63,
+    "payload_files": 62,
+    "payload_bytes": 341834,
+    "crc_and_payload_hashes_verified": true,
+    "provenance_entries": 57,
+    "redacted_derivatives": 3,
+    "original_parent_verified": true
+  },
+  "alice_independent_checks": {
+    "outputs": {
+      "A": {
+        "label": "A",
+        "records": 27,
+        "unique_ids": 25,
+        "exact_duplicate_ids": [
+          "A03"
+        ],
+        "conflicting_ids": [
+          "A07"
+        ],
+        "missing_ids": [
+          "A25"
+        ],
+        "integer_value_sum": 311
+      },
+      "B": {
+        "label": "B",
+        "records": 27,
+        "unique_ids": 25,
+        "exact_duplicate_ids": [
+          "B03"
+        ],
+        "conflicting_ids": [
+          "B07"
+        ],
+        "missing_ids": [
+          "B25"
+        ],
+        "integer_value_sum": 2911
+      }
+    },
+    "elapsed_seconds": 113.96989798545837,
+    "start_remaining_seconds": [
+      466.7302074432373,
+      406.38873958587646
+    ],
+    "event_order_verified": true,
+    "rx_frames": 62,
+    "rx_bytes": 2092551,
+    "requests": {
+      "initialize": 5,
+      "thread-owner-discovery": 7,
+      "thread-stream-following-changed": 14,
+      "thread-follower-load-complete-history": 7,
+      "thread-follower-start-turn": 2
+    },
+    "public_source_pins_verified": 16,
+    "snapshot_path_set_verified": 223,
+    "code": [
+      {
+        "path": "desktop_ipc.py",
+        "bytes": 32651,
+        "sha256": "6e3608251f5295f30f493d4e3cb42ff5d4441ea9c1099491ed9e487782e31af6"
+      },
+      {
+        "path": "rule_service.py",
+        "bytes": 3987,
+        "sha256": "58c24c862569a190260d934b0c4fbef53763a15a13cc7e9a8fac0b7b8e3ebcb2"
+      },
+      {
+        "path": "simple_catalog.py",
+        "bytes": 4607,
+        "sha256": "fd27fbf983df009a06b9055d703e5876133911f724791e1efc6f89b434904ffa"
+      },
+      {
+        "path": "experimental/g3_launch.py",
+        "bytes": 17901,
+        "sha256": "de417f601267e5a80f6fb8f472ca501e9bcdfa644c78de7b80b07563a439f535"
+      },
+      {
+        "path": "experimental/g3_trial.py",
+        "bytes": 18437,
+        "sha256": "5e3561a72739adea3de773da3b3d7213ed475fd2cd1e21320c6e44e126fc31a8"
+      },
+      {
+        "path": "tests/test_g3_trial.py",
+        "bytes": 9548,
+        "sha256": "fdeff8a19d22feb90c12b26bbc9308502d8203e3b51df2215fdb82474636521f"
+      },
+      {
+        "path": "tests/test_g3_admission.py",
+        "bytes": 13103,
+        "sha256": "75678de153f3cf5af8fa0a4179562a2c964889cef32ee96eb28fd9a3b31bacf7"
+      },
+      {
+        "path": "tests/test_g3_launch.py",
+        "bytes": 12034,
+        "sha256": "ab53307bc8f87ff2101b021eec164ff6cdd25f3c66a8c88676a3c1f7f95d4113"
+      },
+      {
+        "path": "tests/test_g3_repairs.py",
+        "bytes": 5088,
+        "sha256": "520c0b35cc0a410ff55d6468f2257899b7292361335eb223ae618a1f35a77f31"
+      }
+    ],
+    "native_private_records_replayed": false
+  },
+  "entry_tests": {
+    "executor": "Alice",
+    "platform": "Linux",
+    "python": "3.12.14",
+    "methods": 8,
+    "passed": 8,
+    "skipped": 0,
+    "exit_code": 0,
+    "seconds": 0.007,
+    "synthetic_contract": true,
+    "subprocess_mocked": true,
+    "original_source_unmodified": true,
+    "log_sha256": "4d972b4a442a9ed5228b7a626b1528c1eb6a87efada5b3f2cac536dabd3ba624",
+    "first_attempt": "wrong cwd: test modules not found; corrected and retained failure log"
+  },
+  "runtime_regressions": {
+    "source_unchanged": true,
+    "alice_prior": {
+      "distinct": 131,
+      "passed": 130,
+      "windows_skip": 1
+    },
+    "kelan_current": {
+      "methods": 131,
+      "passed": 131,
+      "skipped": 0,
+      "seconds": 27.188
+    },
+    "kelan_independent": {
+      "methods": 24,
+      "overlap_with_existing": 16,
+      "passed": 24
+    },
+    "not_rerun_in_cloud_this_review": true
+  },
+  "ruff": {
+    "alice_current": "not run successfully; cache absent, exit127",
+    "kelan_current": "delivered critical Ruff pass, attributed to Kelan",
+    "code_modified": false
+  },
+  "kelan_native_evidence": {
+    "start": "2026-10-26T16:58:07.262485+00:00",
+    "end": "2026-10-26T17:00:01.232383+00:00",
+    "elapsed_seconds": 113.969898,
+    "exit_code": 0,
+    "starts": 2,
+    "outputs_correct": true,
+    "release_revisions": [
+      [
+        22,
+        22
+      ],
+      [
+        28,
+        28
+      ]
+    ],
+    "closed": true,
+    "enabled": false,
+    "backlog": 0,
+    "stop_present": true,
+    "stored_execution_outcome": "unknown",
+    "business_ack_written": false,
+    "native_target_binding": "Kelan local verification script and sanitized summaries; private raw mappings not replayed in cloud",
+    "installation_pin": "04862a659c6a90fc50514d8c0b8016709d97dece58839726c57495ed72f1d9f0"
+  },
+  "limitations": [
+    "no cloud replay of raw private native history, database or precise owner/turn IDs",
+    "snapshot source path set and 16 public increments checked, not all 223 private snapshot bytes reread",
+    "180-second refusal not exercised by successful live trial; offline evidence reused",
+    "no unattended navigation, automatic loading, long-history or cross-version production claim"
+  ],
+  "next_step": "finish human/AI usage docs and final PR review; no repeat G3 without relevant new change/finding; merge/deploy remain separate",
+  "cloud_real_actions": {
+    "ipc": 0,
+    "model": 0,
+    "windows_ui": 0,
+    "local_task_messages": 0,
+    "installation": 0,
+    "production_changes": 0
+  },
+  "historical_r2_b": "retained uncertain, never retried or retroactively marked successful"
+}

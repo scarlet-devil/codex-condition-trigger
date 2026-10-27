@@ -928,3 +928,14 @@ R1补件7份原字节与原清单/blob一致，其余211固定基础blob映射�
 Alice Linux/Python3.12.14：127项相关检查126通过/1 Windows-only跳过(13.973秒)；另补3项pin检查通过；增加合同覆盖保护后定点复跑启动器与新增检查24项通过。最终独立用例131项，130通过/1跳过；不重复累计复跑。关键Ruff九文件通过；默认风格诊断保留。测试开发出现夹具继承、仿真周期属性、结果字段误用，均为Alice检查代码失误，失败日志保留；产品候选没有因此修改既有调度间隔。模拟双批用真实controller/watcher、替代传输和缩短仿真周期，不能代表Windows运行时性能。自审S0，无独立agent。
 
 更新CURRENT_STATE及[行动方案第17节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#17-当前接续g3-r2-时间诊断发送余量修复与双批专测)，新增[证据](evidence/alice-g3-budget-fix-20261026.json)。下一步柯蓝准备新隔离合同与冻结入口，计时前完成路径/参数/静态检查，在新的本机时段直接进行双批专测；不重做已接受GUI、不重发旧B、不续旧时限。业务结果仍需独立核验。Drive来源需求保留未实施。本轮云端真实IPC/模型/窗口/生产动作0，未发本机任务消息，未查生产健康，PR Draft未合并。保留输入WORK_LOG 172,165 B历史全部原字节及11 CRLF；发布与全文回读另记交付回执。
+
+
+## 2026-10-27 — Alice accepts the bounded G3 two-batch trial
+
+红魔交回第17节真实双批成功材料，请Alice判定限定接受。固定公开head/运行候选018f7f8c2367aefb758ea001db78b589b76b5b6c；Alice从原40_REPORTS取得116,414 B ZIP（SHA-256 d848fef7be704c40acc0f54f8c6e7aaecd3dfd34e75b9f8d929bf4084a9301e3），63条目CRC、62 payload共341,834 B长度及SHA-256、57项来源映射交付字节均核对。9份代码/测试与原已审候选和Git blob一致；16项公开增量blob/长度匹配，223份repo路径集合匹配；不冒称完整云端重读223文件或执行230项私有冻结校验。
+
+结论：G3 limited_accepted；G0—G3原范围闭合。柯蓝北京时间00:58:07.262485至01:00:01.232383，113.969898秒/exit0；A运行时B等待，A准确终态+新鲜idle后自动B，各发送一次、准确接收与结束、release revision22/22和28/28，最终closed/disabled/backlog0，无ACK。Alice独立复算A/B原输入输出全部字段及SHA/长度/批次关联，整数和311/2911；核对事件顺序、剩余466.730207/406.388740秒及62帧/2,092,551 B接收量。原生私有rollout/DB/owner及进程退出依据柯蓝摘要和已审核验脚本，不声称云端直接观测Windows。原R2未决B保持不变。
+
+新连续入口8项测试由Alice在隔离Linux/Python3.12.14用合成inert合同与mock subprocess执行，8通过/0跳过，0.007秒。初次cwd错误导致模块未找到，修正后通过，失败日志保留。旧Ruff工具缓存本轮不可用(exit127)，未声称云端Ruff通过；柯蓝已交付关键Ruff结果按原归属复用。运行代码未改，复用前轮Alice131项有效覆盖及本轮柯蓝Windows131全部通过；本地独立24项含16既有用例，不重复累计。SQL JOIN/当前message与custom_tool_call后验解析/内联引号错误为柯蓝检查工具偏差，修正证据保留，无实机重发。
+
+更新CURRENT_STATE及[方案第18节](docs/KELAN_THIN_STATE_NEXT_STEPS_20261023.md#18-当前结论g3-双批专测限定接受进入交付收尾)，新增[验收证据](evidence/alice-g3-acceptance-20261027.json)。第17节试验已关闭，当前接续只做使用说明和最终PR检查；无新变更/发现不重复G3、不新增阶段。Drive来料需求保留待后续。未合并、安装、启用生产或派发本机消息；云端真实IPC/模型/Windows动作0，未查生产实时健康。Alice审阅与S0自审，无额外独立agent。PR保持Draft，业务ACK及旧STOP/到期/PAUSED不变；历史WORK_LOG 174,867 B及11 CRLF原字节保留。发布与完整回读另记交付回执。
