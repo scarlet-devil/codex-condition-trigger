@@ -2,16 +2,16 @@
   "schema_version": 1,
   "record_scope": "Alice cloud Dot research analysis; separate from Kelan production delivery ledger",
   "setup_status": "takeover_enabled_model_metadata_unknown",
-  "recorded_at": "2026-10-11T06:29:53.454211+00:00",
-  "source_repository_head": "5f782e22eccdc434b26f338725ae7382567bbc79",
+  "recorded_at": "2026-11-12T12:21:20Z",
+  "source_repository_head": "bc836bee53d424e594bd9539956bb485681a45f1",
   "folder": {
     "file_id": "1EdSWfSTQdRweU9ty6VQE686heDBQfZLq",
     "name": "40_REPORTS",
     "parent_file_id": "1BEewRhn2j_zAVUw57obfX6TlLkRAhR6B",
     "parent_name": "new-skill-merge",
     "relationship_verified": true,
-    "last_listing_direct_item_count": 200,
-    "pagination": "list_folder top_k1000 returned200 direct children; no continuation token exposed"
+    "last_listing_direct_item_count": 231,
+    "pagination": "list_folder top_k1000 returned231 direct children; no continuation token exposed"
   },
   "automation": {
     "title": "精读小点成果",
@@ -333,6 +333,320 @@
       "inspection": "complete raw report/ZIP/receipt bytes; embedded survey/index fully read; candidate code not executed",
       "completion_note": "partial only; not added to reviewed_delivery_sets; same-turn notification precedes ledger mutation; read-before-write dedupe is not atomic exactly-once",
       "resume_condition": "Only new bytes for the two Library originals, the nine raw input blobs, helper/runtime receipts, or an explicitly authorized new experiment"
+    },
+    {
+      "file_id": "1usLfw7EiOKH9x9pOsAVt29OMe0Jxdwiw",
+      "name": "KELAN_DOT_ARCHIVE_INCREMENT_20261021_1be098ad.md",
+      "observed_metadata": {
+        "size_bytes": 12042,
+        "modified_time": "2026-10-21T11:18:31.321Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "0c58846d5a7b2b527ed150f5a05e1031959b32485393eff4789debc29facf8c0",
+      "content_version_key": "1usLfw7EiOKH9x9pOsAVt29OMe0Jxdwiw:0c58846d5a7b2b527ed150f5a05e1031959b32485393eff4789debc29facf8c0",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y",
+      "evidence": [
+        {
+          "file_id": "1NwYN8fhAA1mBsks1Yr_S6bvx6Qwnh4Sq",
+          "name": "KELAN_DOT_ARCHIVE_INCREMENT_EVIDENCE_20261021_1be098ad.json",
+          "raw_sha256": "f01495ce8911493f11b05c6b4171dcd3fa5b1d4339e7ebc0dde93b1e147f92fd",
+          "observed_size_bytes": 14397,
+          "observed_modified_time": "2026-10-21T11:19:27.989Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw Drive bytes read and hashed; JSON parsed; bounded evidence analysis"
+        }
+      ],
+      "inspection": "complete raw Drive report/evidence bytes read and hashed; bounded content analysis; no candidate code, package or experiment executed",
+      "last_analyzed_at": "2026-11-12T12:21:20Z",
+      "last_notified_at": "2026-11-12T12:21:20Z",
+      "open_scope": [
+        "401 active source files and R1/R2 source ZIP bodies were not independently re-read by Alice",
+        "prepare_materialize root cause and historical transport repair remain unknown"
+      ],
+      "delivery_set_key": "1usLfw7EiOKH9x9pOsAVt29OMe0Jxdwiw:0c58846d5a7b2b527ed150f5a05e1031959b32485393eff4789debc29facf8c0|1NwYN8fhAA1mBsks1Yr_S6bvx6Qwnh4Sq:f01495ce8911493f11b05c6b4171dcd3fa5b1d4339e7ebc0dde93b1e147f92fd",
+      "last_notified_delivery_set_key": "1usLfw7EiOKH9x9pOsAVt29OMe0Jxdwiw:0c58846d5a7b2b527ed150f5a05e1031959b32485393eff4789debc29facf8c0|1NwYN8fhAA1mBsks1Yr_S6bvx6Qwnh4Sq:f01495ce8911493f11b05c6b4171dcd3fa5b1d4339e7ebc0dde93b1e147f92fd",
+      "notification_evidence": "Current takeover conversation: 2026-11-12 evidence-backed Chinese analysis delivered in commentary before ledger mutation; no message ID exposed",
+      "analysis_summary": "Archive inventory is internally reconciled, but 401 source files and helper root cause were not independently verified; later items supersede the initial missing-originals state.",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; direct report/JSON inspection is separate from Kelan-transferred underlying originals or execution claims",
+      "resume_condition": "New report bytes, changed/new related evidence, direct access to listed missing originals/logs, or explicitly authorized experiment; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "1DdAU9FMLgLleNH6JOMmmYGHALGsWvElc",
+      "name": "KELAN_LIBRARY_DIAGNOSTIC_CLOSEOUT_20261021_c89c59ea.md",
+      "observed_metadata": {
+        "size_bytes": 8626,
+        "modified_time": "2026-10-21T11:30:29.037Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "60691f37ec57bb48035ae55b6387de35da3869fe94bab85b29a81a3afd3a5b17",
+      "content_version_key": "1DdAU9FMLgLleNH6JOMmmYGHALGsWvElc:60691f37ec57bb48035ae55b6387de35da3869fe94bab85b29a81a3afd3a5b17",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "1usLfw7EiOKH9x9pOsAVt29OMe0Jxdwiw",
+      "evidence": [
+        {
+          "file_id": "1-VfGdV8zxiiqDtVqu-8l13ZdtPadSQsf",
+          "name": "KELAN_LIBRARY_DIAGNOSTIC_CLOSEOUT_EVIDENCE_20261021_c89c59ea.json",
+          "raw_sha256": "41a6cb436d88e2e214eadf216dd7a94132af77decda9c371f10e6287eb130346",
+          "observed_size_bytes": 4776,
+          "observed_modified_time": "2026-10-21T11:31:19.808Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw Drive bytes read and hashed; JSON parsed; bounded evidence analysis"
+        }
+      ],
+      "inspection": "complete raw Drive report/evidence bytes read and hashed; bounded content analysis; no candidate code, package or experiment executed",
+      "last_analyzed_at": "2026-11-12T12:21:20Z",
+      "last_notified_at": "2026-11-12T12:21:20Z",
+      "open_scope": [
+        "Three original payloads were still absent at this report's time; later Kelan reports say they were obtained",
+        "No independent lower-level cause or repair validation"
+      ],
+      "delivery_set_key": "1DdAU9FMLgLleNH6JOMmmYGHALGsWvElc:60691f37ec57bb48035ae55b6387de35da3869fe94bab85b29a81a3afd3a5b17|1-VfGdV8zxiiqDtVqu-8l13ZdtPadSQsf:41a6cb436d88e2e214eadf216dd7a94132af77decda9c371f10e6287eb130346",
+      "last_notified_delivery_set_key": "1DdAU9FMLgLleNH6JOMmmYGHALGsWvElc:60691f37ec57bb48035ae55b6387de35da3869fe94bab85b29a81a3afd3a5b17|1-VfGdV8zxiiqDtVqu-8l13ZdtPadSQsf:41a6cb436d88e2e214eadf216dd7a94132af77decda9c371f10e6287eb130346",
+      "notification_evidence": "Current takeover conversation: 2026-11-12 evidence-backed Chinese analysis delivered in commentary before ledger mutation; no message ID exposed",
+      "analysis_summary": "The missing final CLOSE/READBACK documentation is closed; this is not a new download or a repaired transport.",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; direct report/JSON inspection is separate from Kelan-transferred underlying originals or execution claims",
+      "resume_condition": "New report bytes, changed/new related evidence, direct access to listed missing originals/logs, or explicitly authorized experiment; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "1LBrJa8nU1tLpamswTz4rRLvbByBEtOEE",
+      "name": "KELAN_AI_EVIDENCE_ORIGINALS_REVIEW_20261021_5009b826.md",
+      "observed_metadata": {
+        "size_bytes": 17211,
+        "modified_time": "2026-10-21T14:41:20.807Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "78864d42347de1bfaaddb0c26450acd2982eb2d250b4eaf64760449b6f216907",
+      "content_version_key": "1LBrJa8nU1tLpamswTz4rRLvbByBEtOEE:78864d42347de1bfaaddb0c26450acd2982eb2d250b4eaf64760449b6f216907",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y",
+      "evidence": [
+        {
+          "file_id": "1cUrghaPesBcqMvnnLNdRJC0PVdq9kz9U",
+          "name": "KELAN_AI_EVIDENCE_ORIGINALS_REVIEW_EVIDENCE_20261021_5009b826.json",
+          "raw_sha256": "35057b190c94f34e0f94ff889c5369f14b0b947a973a2b588b17d3afeb7025f2",
+          "observed_size_bytes": 7395,
+          "observed_modified_time": "2026-10-21T14:42:23.812Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw Drive bytes read and hashed; JSON parsed; bounded evidence analysis"
+        }
+      ],
+      "inspection": "complete raw Drive report/evidence bytes read and hashed; bounded content analysis; no candidate code, package or experiment executed",
+      "last_analyzed_at": "2026-11-12T12:21:20Z",
+      "last_notified_at": "2026-11-12T12:21:20Z",
+      "open_scope": [
+        "Source ZIP later reported obtained but not delivered to Alice as raw Drive evidence",
+        "Model behavior, baseline, false rejections and cost remain unmeasured"
+      ],
+      "delivery_set_key": "1LBrJa8nU1tLpamswTz4rRLvbByBEtOEE:78864d42347de1bfaaddb0c26450acd2982eb2d250b4eaf64760449b6f216907|1cUrghaPesBcqMvnnLNdRJC0PVdq9kz9U:35057b190c94f34e0f94ff889c5369f14b0b947a973a2b588b17d3afeb7025f2",
+      "last_notified_delivery_set_key": "1LBrJa8nU1tLpamswTz4rRLvbByBEtOEE:78864d42347de1bfaaddb0c26450acd2982eb2d250b4eaf64760449b6f216907|1cUrghaPesBcqMvnnLNdRJC0PVdq9kz9U:35057b190c94f34e0f94ff889c5369f14b0b947a973a2b588b17d3afeb7025f2",
+      "notification_evidence": "Current takeover conversation: 2026-11-12 evidence-backed Chinese analysis delivered in commentary before ledger mutation; no message ID exposed",
+      "analysis_summary": "Two Markdown originals support a useful evidence-review contract; the source ZIP was still missing at this stage and no model or installation evidence exists.",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; direct report/JSON inspection is separate from Kelan-transferred underlying originals or execution claims",
+      "resume_condition": "New report bytes, changed/new related evidence, direct access to listed missing originals/logs, or explicitly authorized experiment; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "1DDmcqxniGjLw_9WRP-alVapiHAhUsZ3R",
+      "name": "KELAN_AI_EVIDENCE_PACKAGE_CLOSURE_20261021_40e3b11a.md",
+      "observed_metadata": {
+        "size_bytes": 15335,
+        "modified_time": "2026-10-21T15:22:39.875Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "9ad3530435d6e8ad0af2545440d7256c10866d0f5382663379f014e3cdeae800",
+      "content_version_key": "1DDmcqxniGjLw_9WRP-alVapiHAhUsZ3R:9ad3530435d6e8ad0af2545440d7256c10866d0f5382663379f014e3cdeae800",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "1LBrJa8nU1tLpamswTz4rRLvbByBEtOEE",
+      "evidence": [
+        {
+          "file_id": "1mAs3FBm9ulJCJCOgdoPD1Vl9JYoVbz6b",
+          "name": "KELAN_AI_EVIDENCE_PACKAGE_CLOSURE_EVIDENCE_20261021_40e3b11a.json",
+          "raw_sha256": "2e868966a1782dd760d34a6a6e893f33b2a1b45622d2554b5345fb3f5dc6118e",
+          "observed_size_bytes": 8244,
+          "observed_modified_time": "2026-10-21T15:23:42.236Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw Drive bytes read and hashed; JSON parsed; bounded evidence analysis"
+        }
+      ],
+      "inspection": "complete raw Drive report/evidence bytes read and hashed; bounded content analysis; no candidate code, package or experiment executed",
+      "last_analyzed_at": "2026-11-12T12:21:20Z",
+      "last_notified_at": "2026-11-12T12:21:20Z",
+      "open_scope": [
+        "Underlying source ZIP, fixtures and historical execution logs are not directly readable by Alice from this delivery",
+        "Actual quick_validate, model behavior and benefit are absent",
+        "Future behavior evaluation must hide acceptance answers from the tested model"
+      ],
+      "delivery_set_key": "1DDmcqxniGjLw_9WRP-alVapiHAhUsZ3R:9ad3530435d6e8ad0af2545440d7256c10866d0f5382663379f014e3cdeae800|1mAs3FBm9ulJCJCOgdoPD1Vl9JYoVbz6b:2e868966a1782dd760d34a6a6e893f33b2a1b45622d2554b5345fb3f5dc6118e",
+      "last_notified_delivery_set_key": "1DDmcqxniGjLw_9WRP-alVapiHAhUsZ3R:9ad3530435d6e8ad0af2545440d7256c10866d0f5382663379f014e3cdeae800|1mAs3FBm9ulJCJCOgdoPD1Vl9JYoVbz6b:2e868966a1782dd760d34a6a6e893f33b2a1b45622d2554b5345fb3f5dc6118e",
+      "notification_evidence": "Current takeover conversation: 2026-11-12 evidence-backed Chinese analysis delivered in commentary before ledger mutation; no message ID exposed",
+      "analysis_summary": "Kelan reports the 20582-byte source ZIP, eight members, 25 self-authored static pass records and 15 fixtures as internally consistent. Alice received only the report and JSON, not the underlying ZIP, so this remains transferred package evidence.",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; direct report/JSON inspection is separate from Kelan-transferred underlying originals or execution claims",
+      "resume_condition": "New report bytes, changed/new related evidence, direct access to listed missing originals/logs, or explicitly authorized experiment; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "1-seVJe6H1ZWhXEHa8KzoxuonHJPhsDNA",
+      "name": "KELAN_ARCHIVE_INDEX_PROVENANCE_20261021_f5f36c9c.md",
+      "observed_metadata": {
+        "size_bytes": 9440,
+        "modified_time": "2026-10-21T15:56:34.848Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "d0619e961830a1c08e6e92859c724bae740bf458b1b4ff24de063108018b885c",
+      "content_version_key": "1-seVJe6H1ZWhXEHa8KzoxuonHJPhsDNA:d0619e961830a1c08e6e92859c724bae740bf458b1b4ff24de063108018b885c",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "1DDmcqxniGjLw_9WRP-alVapiHAhUsZ3R",
+      "evidence": [
+        {
+          "file_id": "1712sfGyP-_BO3Yu29fylQNnFwEM8krBN",
+          "name": "KELAN_ARCHIVE_INDEX_PROVENANCE_EVIDENCE_20261021_f5f36c9c.json",
+          "raw_sha256": "cb148d7a21aaf4639fe211dd8002b81acc357f130869f0df0b53710cbac54404",
+          "observed_size_bytes": 9021,
+          "observed_modified_time": "2026-10-21T15:59:25.625Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw Drive bytes read and hashed; JSON parsed; bounded evidence analysis"
+        }
+      ],
+      "inspection": "complete raw Drive report/evidence bytes read and hashed; bounded content analysis; no candidate code, package or experiment executed",
+      "last_analyzed_at": "2026-11-12T12:21:20Z",
+      "last_notified_at": "2026-11-12T12:21:20Z",
+      "open_scope": [
+        "Source attribution is reported inside receipts; original user message/write event was not independently authenticated",
+        "404 active originals were not rescanned"
+      ],
+      "delivery_set_key": "1-seVJe6H1ZWhXEHa8KzoxuonHJPhsDNA:d0619e961830a1c08e6e92859c724bae740bf458b1b4ff24de063108018b885c|1712sfGyP-_BO3Yu29fylQNnFwEM8krBN:cb148d7a21aaf4639fe211dd8002b81acc357f130869f0df0b53710cbac54404",
+      "last_notified_delivery_set_key": "1-seVJe6H1ZWhXEHa8KzoxuonHJPhsDNA:d0619e961830a1c08e6e92859c724bae740bf458b1b4ff24de063108018b885c|1712sfGyP-_BO3Yu29fylQNnFwEM8krBN:cb148d7a21aaf4639fe211dd8002b81acc357f130869f0df0b53710cbac54404",
+      "notification_evidence": "Current takeover conversation: 2026-11-12 evidence-backed Chinese analysis delivered in commentary before ledger mutation; no message ID exposed",
+      "analysis_summary": "The archive index grows from 401 to 404 rows only by recording the three originals; this is bookkeeping provenance, not three new research results.",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; direct report/JSON inspection is separate from Kelan-transferred underlying originals or execution claims",
+      "resume_condition": "New report bytes, changed/new related evidence, direct access to listed missing originals/logs, or explicitly authorized experiment; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "1-oUfKtEzNjdamerF4QItOiLxUw79VBGT",
+      "name": "KELAN_CHANGELOG_CANDIDATE_REVIEW_20261024_687dd546.md",
+      "observed_metadata": {
+        "size_bytes": 14490,
+        "modified_time": "2026-10-24T13:28:40.864Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "4846130ab986ecead6668b95e9e870a852b354f6589c46fecfc0b7cbfb1a6a61",
+      "content_version_key": "1-oUfKtEzNjdamerF4QItOiLxUw79VBGT:4846130ab986ecead6668b95e9e870a852b354f6589c46fecfc0b7cbfb1a6a61",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
+      "reviewed_at": null,
+      "related_prior_report_id": null,
+      "evidence": [
+        {
+          "file_id": "1dDxf1Muq9pi3gKY4NSBVB1JPrbW8YJ-O",
+          "name": "KELAN_CHANGELOG_CANDIDATE_EVIDENCE_20261024_687dd546.json",
+          "raw_sha256": "3f789061c6bb605a981952d5a6e3bbd1effb24777c89a9374ad67f2d17666204",
+          "observed_size_bytes": 6192,
+          "observed_modified_time": "2026-10-24T13:29:18.486Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw Drive bytes read and hashed; JSON parsed; bounded evidence analysis"
+        }
+      ],
+      "inspection": "complete raw Drive report/evidence bytes read and hashed; bounded content analysis; no candidate code, package or experiment executed",
+      "last_analyzed_at": "2026-11-12T12:21:20Z",
+      "last_notified_at": "2026-11-12T12:21:20Z",
+      "open_scope": [
+        "No model output, fixed baseline, editing-time/token/cost measurement or complete applicable license evidence",
+        "Potential refactor/test filtering omissions are hypothetical, not observed failures"
+      ],
+      "delivery_set_key": "1-oUfKtEzNjdamerF4QItOiLxUw79VBGT:4846130ab986ecead6668b95e9e870a852b354f6589c46fecfc0b7cbfb1a6a61|1dDxf1Muq9pi3gKY4NSBVB1JPrbW8YJ-O:3f789061c6bb605a981952d5a6e3bbd1effb24777c89a9374ad67f2d17666204",
+      "last_notified_delivery_set_key": "1-oUfKtEzNjdamerF4QItOiLxUw79VBGT:4846130ab986ecead6668b95e9e870a852b354f6589c46fecfc0b7cbfb1a6a61|1dDxf1Muq9pi3gKY4NSBVB1JPrbW8YJ-O:3f789061c6bb605a981952d5a6e3bbd1effb24777c89a9374ad67f2d17666204",
+      "notification_evidence": "Current takeover conversation: 2026-11-12 evidence-backed Chinese analysis delivered in commentary before ledger mutation; no message ID exposed",
+      "analysis_summary": "Static review supports deferring as-is adoption, but upstream does contain version-range and human-review guidance. No behavioral or benefit result exists.",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; direct report/JSON inspection is separate from Kelan-transferred underlying originals or execution claims",
+      "resume_condition": "New report bytes, changed/new related evidence, direct access to listed missing originals/logs, or explicitly authorized experiment; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "1ZCb_J4_z1AKDTQN55RjSBQH1OI3Kwsdx",
+      "name": "KELAN_CHANGELOG_V1_CALIBRATION_20261024_9e8a499b.md",
+      "observed_metadata": {
+        "size_bytes": 11616,
+        "modified_time": "2026-10-24T13:50:14.783Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "41257ba9b2b958257822e628b441ba79892f422a82a559f8c0c4b62b851667d6",
+      "content_version_key": "1ZCb_J4_z1AKDTQN55RjSBQH1OI3Kwsdx:41257ba9b2b958257822e628b441ba79892f422a82a559f8c0c4b62b851667d6",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "1-oUfKtEzNjdamerF4QItOiLxUw79VBGT",
+      "evidence": [
+        {
+          "file_id": "1ek3I8dI3vBrSk0X47coL5d1IV57qzmoK",
+          "name": "KELAN_CHANGELOG_V1_EVIDENCE_20261024_9e8a499b.json",
+          "raw_sha256": "b27bc3731b3ee464c6126c70dddb4e22120046a1bd1df4861f99813613c524b8",
+          "observed_size_bytes": 5033,
+          "observed_modified_time": "2026-10-24T13:50:45.888Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw Drive bytes read and hashed; JSON parsed; bounded evidence analysis"
+        }
+      ],
+      "inspection": "complete raw Drive report/evidence bytes read and hashed; bounded content analysis; no candidate code, package or experiment executed",
+      "last_analyzed_at": "2026-11-12T12:21:20Z",
+      "last_notified_at": "2026-11-12T12:21:20Z",
+      "open_scope": [
+        "No new behavior, benefit, installation or licensing evidence",
+        "Future two-arm design remains unrun and would be exploratory only"
+      ],
+      "delivery_set_key": "1ZCb_J4_z1AKDTQN55RjSBQH1OI3Kwsdx:41257ba9b2b958257822e628b441ba79892f422a82a559f8c0c4b62b851667d6|1ek3I8dI3vBrSk0X47coL5d1IV57qzmoK:b27bc3731b3ee464c6126c70dddb4e22120046a1bd1df4861f99813613c524b8",
+      "last_notified_delivery_set_key": "1ZCb_J4_z1AKDTQN55RjSBQH1OI3Kwsdx:41257ba9b2b958257822e628b441ba79892f422a82a559f8c0c4b62b851667d6|1ek3I8dI3vBrSk0X47coL5d1IV57qzmoK:b27bc3731b3ee464c6126c70dddb4e22120046a1bd1df4861f99813613c524b8",
+      "notification_evidence": "Current takeover conversation: 2026-11-12 evidence-backed Chinese analysis delivered in commentary before ledger mutation; no message ID exposed",
+      "analysis_summary": "The v1 update correctly narrows two overbroad criticisms and does not change the no-adoption/no-experiment disposition.",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; direct report/JSON inspection is separate from Kelan-transferred underlying originals or execution claims",
+      "resume_condition": "New report bytes, changed/new related evidence, direct access to listed missing originals/logs, or explicitly authorized experiment; no unchanged-gap repeat"
+    },
+    {
+      "file_id": "1jWhYh85j-x_67QOul9ipna6UEyBt4Ui_",
+      "name": "KELAN_DMFT_EXTRACTION_SURVEY_20261025_a0887613.md",
+      "observed_metadata": {
+        "size_bytes": 13684,
+        "modified_time": "2026-10-25T01:53:01.931Z",
+        "mime_type": "text/markdown"
+      },
+      "status": "partial",
+      "raw_content_sha256": "93268f81a2c8620f4f71ed57ed693b6346f0c30e463c55b8735748033b7c7e01",
+      "content_version_key": "1jWhYh85j-x_67QOul9ipna6UEyBt4Ui_:93268f81a2c8620f4f71ed57ed693b6346f0c30e463c55b8735748033b7c7e01",
+      "analysis_output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
+      "reviewed_at": null,
+      "related_prior_report_id": "1tbcrW9aGC91PPAoFdZIxp00cxEwcVH5P",
+      "evidence": [
+        {
+          "file_id": "1fAn4BbkD3fCOxVCtXo4MZxtifI8A8sCj",
+          "name": "KELAN_DMFT_EXTRACTION_EVIDENCE_20261025_a0887613.json",
+          "raw_sha256": "e8a6858fdf51bc1e55a0511ae86489e5350c5d1d077ba82e8b2d51589a1be02a",
+          "observed_size_bytes": 7778,
+          "observed_modified_time": "2026-10-25T01:53:34.295Z",
+          "mime_type": "application/json",
+          "inspection": "complete raw Drive bytes read and hashed; JSON parsed; bounded evidence analysis"
+        }
+      ],
+      "inspection": "complete raw Drive report/evidence bytes read and hashed; bounded content analysis; no candidate code, package or experiment executed",
+      "last_analyzed_at": "2026-11-12T12:21:20Z",
+      "last_notified_at": "2026-11-12T12:21:20Z",
+      "open_scope": [
+        "Complete unedited default/layout outputs and hashes",
+        "Exact command/options/input PDF hash, pdftotext binary identity, exit/stdout/stderr and post-processing record",
+        "No Docling inference, score, cost or DMFT numerical validation"
+      ],
+      "delivery_set_key": "1jWhYh85j-x_67QOul9ipna6UEyBt4Ui_:93268f81a2c8620f4f71ed57ed693b6346f0c30e463c55b8735748033b7c7e01|1fAn4BbkD3fCOxVCtXo4MZxtifI8A8sCj:e8a6858fdf51bc1e55a0511ae86489e5350c5d1d077ba82e8b2d51589a1be02a",
+      "last_notified_delivery_set_key": "1jWhYh85j-x_67QOul9ipna6UEyBt4Ui_:93268f81a2c8620f4f71ed57ed693b6346f0c30e463c55b8735748033b7c7e01|1fAn4BbkD3fCOxVCtXo4MZxtifI8A8sCj:e8a6858fdf51bc1e55a0511ae86489e5350c5d1d077ba82e8b2d51589a1be02a",
+      "notification_evidence": "Current takeover conversation: 2026-11-12 evidence-backed Chinese analysis delivered in commentary before ledger mutation; no message ID exposed",
+      "analysis_summary": "The transcription of equations 2, 4 and 5 matches the fixed arXiv source; the claimed pdftotext run remains transferred because raw outputs, commands and exit evidence are absent.",
+      "completion_note": "partial only; not added to reviewed_delivery_sets; direct report/JSON inspection is separate from Kelan-transferred underlying originals or execution claims",
+      "resume_condition": "New report bytes, changed/new related evidence, direct access to listed missing originals/logs, or explicitly authorized experiment; no unchanged-gap repeat"
     }
   ],
   "reviewed_delivery_sets": [],
@@ -340,7 +654,9 @@
     "Raw report/evidence versions hashed during this run; no normalization/export used.",
     "Four groups remain partial where underlying raw evidence/code is absent; inspected report contents are complete.",
     "Do not repeat this analysis/notification for unchanged delivery sets or unchanged missing evidence.",
-    "No candidate execution, local production ACK, automation update or trial extension. Read-before-write deduplication is not atomic exactly-once."
+    "No candidate execution, local production ACK, automation update or trial extension. Read-before-write deduplication is not atomic exactly-once.",
+    "2026-11-12 correction: tracked-ID-only comparison missed eight new in-scope report fileIds and eight evidence JSONs. Future scans must classify all untracked direct children before concluding no new material.",
+    "Kelan later reports three originals received, but this Drive delivery exposes only reports/evidence JSON; Alice did not independently read the underlying source ZIP, fixtures or historical execution logs."
   ],
   "setup_notes_history": [
     "All source content hashes remain null until full raw bytes are obtained. Normalized readable text is not a raw byte identity.",
@@ -348,44 +664,36 @@
     "Third report states no separate ZIP for the four-input continuation; assess its actual cited evidence, not a universal ZIP requirement."
   ],
   "last_analysis": {
-    "at": "2026-10-11T06:14:06Z",
-    "output": "docs/ALICE_DOT_RESULTS_CLOSEOUT_INCREMENT_ANALYSIS_20261011.md",
+    "at": "2026-11-12T12:21:20Z",
+    "output": "docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md",
     "status": "partial",
-    "source_head": "b9e4fffaf7db6fe863b5d98ebaf7600afb5678bf",
-    "delivery_set_key": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y:2b2aedea46164b29b4908c09363cfea16ae2c95a187e7396d39a8aeaedfd4608|1nhaXlQ__mtQvkUtPfMagUpYqZB52Id_9:dcdd57e21b90cc17d1a31c2e0897ab2e0fe62884c06377c8030341e201c998ef|1SVMOvMtS5d8Oh5Yxzh6S7g_E9LogJSuW:e4e02b41d63a556729863ffdd3892cc767eab0f821c595678011a7fb06607143",
-    "raw_inputs": {
-      "report": {
-        "file_id": "1P-6R7yu0gstc1XoiwY8b0S423pGVWQ5y",
-        "bytes": 17709,
-        "sha256": "2b2aedea46164b29b4908c09363cfea16ae2c95a187e7396d39a8aeaedfd4608"
-      },
-      "evidence_zip": {
-        "file_id": "1nhaXlQ__mtQvkUtPfMagUpYqZB52Id_9",
-        "bytes": 103346,
-        "sha256": "dcdd57e21b90cc17d1a31c2e0897ab2e0fe62884c06377c8030341e201c998ef"
-      },
-      "receipt": {
-        "file_id": "1SVMOvMtS5d8Oh5Yxzh6S7g_E9LogJSuW",
-        "bytes": 2886,
-        "sha256": "e4e02b41d63a556729863ffdd3892cc767eab0f821c595678011a7fb06607143"
-      }
+    "source_head": "bc836bee53d424e594bd9539956bb485681a45f1",
+    "delivery_set_key": "1usLfw7EiOKH9x9pOsAVt29OMe0Jxdwiw:0c58846d5a7b2b527ed150f5a05e1031959b32485393eff4789debc29facf8c0|1NwYN8fhAA1mBsks1Yr_S6bvx6Qwnh4Sq:f01495ce8911493f11b05c6b4171dcd3fa5b1d4339e7ebc0dde93b1e147f92fd|1DdAU9FMLgLleNH6JOMmmYGHALGsWvElc:60691f37ec57bb48035ae55b6387de35da3869fe94bab85b29a81a3afd3a5b17|1-VfGdV8zxiiqDtVqu-8l13ZdtPadSQsf:41a6cb436d88e2e214eadf216dd7a94132af77decda9c371f10e6287eb130346|1LBrJa8nU1tLpamswTz4rRLvbByBEtOEE:78864d42347de1bfaaddb0c26450acd2982eb2d250b4eaf64760449b6f216907|1cUrghaPesBcqMvnnLNdRJC0PVdq9kz9U:35057b190c94f34e0f94ff889c5369f14b0b947a973a2b588b17d3afeb7025f2|1DDmcqxniGjLw_9WRP-alVapiHAhUsZ3R:9ad3530435d6e8ad0af2545440d7256c10866d0f5382663379f014e3cdeae800|1mAs3FBm9ulJCJCOgdoPD1Vl9JYoVbz6b:2e868966a1782dd760d34a6a6e893f33b2a1b45622d2554b5345fb3f5dc6118e|1-seVJe6H1ZWhXEHa8KzoxuonHJPhsDNA:d0619e961830a1c08e6e92859c724bae740bf458b1b4ff24de063108018b885c|1712sfGyP-_BO3Yu29fylQNnFwEM8krBN:cb148d7a21aaf4639fe211dd8002b81acc357f130869f0df0b53710cbac54404|1-oUfKtEzNjdamerF4QItOiLxUw79VBGT:4846130ab986ecead6668b95e9e870a852b354f6589c46fecfc0b7cbfb1a6a61|1dDxf1Muq9pi3gKY4NSBVB1JPrbW8YJ-O:3f789061c6bb605a981952d5a6e3bbd1effb24777c89a9374ad67f2d17666204|1ZCb_J4_z1AKDTQN55RjSBQH1OI3Kwsdx:41257ba9b2b958257822e628b441ba79892f422a82a559f8c0c4b62b851667d6|1ek3I8dI3vBrSk0X47coL5d1IV57qzmoK:b27bc3731b3ee464c6126c70dddb4e22120046a1bd1df4861f99813613c524b8|1jWhYh85j-x_67QOul9ipna6UEyBt4Ui_:93268f81a2c8620f4f71ed57ed693b6346f0c30e463c55b8735748033b7c7e01|1fAn4BbkD3fCOxVCtXo4MZxtifI8A8sCj:e8a6858fdf51bc1e55a0511ae86489e5350c5d1d077ba82e8b2d51589a1be02a",
+    "direct_drive_artifacts": {
+      "reports": 8,
+      "evidence_json": 8,
+      "total": 16,
+      "all_complete_raw_bytes_hashed": true
     },
-    "archive_verification": {
-      "zip_members": 35,
-      "manifest_listed_files": 34,
-      "manifest_matches": 34,
-      "crc_ok": true,
-      "unsafe_paths": 0
+    "official_source_checks": {
+      "kdense_commit": "92ace75ac21efe19a620434e0ca4e356081fe807",
+      "composio_commit": "be2a406907dbc61b73e6827ded415c96139d13a2",
+      "docling_commit": "3181d9fcbb8b7568ceba14b7ed5cd21f66b221e7",
+      "cpython_commit": "ebf955df7a89ed0c7968f79faec1de49f61ed7cb",
+      "arxiv": "cond-mat/9306057v1"
     },
-    "embedded_research": {
-      "path_versions": 9,
-      "input_version_bytes": 10550,
-      "unique_blobs": 8,
-      "raw_referenced_blobs_included": false
+    "classification": {
+      "new_in_scope_reports": 8,
+      "new_in_scope_evidence": 8,
+      "excluded_engineering_or_alice_outputs": true
     },
-    "originals_available": false,
-    "candidate_execution": false,
-    "installation": false,
+    "material_boundaries": {
+      "kelan_reports_three_originals_received": true,
+      "underlying_three_originals_directly_readable_by_alice_in_this_delivery": false,
+      "model_behavior_run": false,
+      "candidate_installation": false,
+      "pdftotext_execution_reproduced": false
+    },
     "model_metadata": "unknown"
   },
   "automation_history": [
