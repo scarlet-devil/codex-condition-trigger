@@ -2,6 +2,14 @@
 
 Updated 2026-10-20 · Project: `scarlet-devil/codex-condition-trigger`
 
+## Alice dot-results increment — 2026-11-12
+
+Alice found eight in-scope Kelan reports and eight evidence JSONs that were absent from the 2026-10-11 ledger. The direct folder count is 231, not the ledger's historical 200. All 16 Drive artifacts were read as complete raw bytes and hashed. [Detailed analysis](docs/ALICE_DOT_RESULTS_INCREMENT_ANALYSIS_20261112.md) records the evidence layers and exact limitations.
+
+The practical conclusions are: the later archive says Kelan obtained the three missing originals, but Alice still lacks those underlying raw originals in this delivery; the AI-evidence review package is structurally promising but has no model/benefit evidence and a future answer-key exposure risk; the changelog candidate is deferred after correcting two overbroad criticisms; the DMFT transcription matches the fixed paper, while the claimed pdftotext run lacks raw execution evidence. No candidate, model, local trial, ACK, timer or PR state was changed.
+
+The watcher must inspect untracked direct children as well as existing ledger IDs. Unchanged tracked IDs do not establish that the folder contains no new report.
+
 ## Active decision
 
 Human approved preparing the human README and AI entry files, then merging [PR #1](https://github.com/scarlet-devil/codex-condition-trigger/pull/1), on 2026-10-20 at 20:50 Asia/Shanghai. Alice's preceding assessment supports merging the implemented version while retaining its operational limits.
